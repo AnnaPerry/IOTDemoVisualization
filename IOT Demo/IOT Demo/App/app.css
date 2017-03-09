@@ -53,6 +53,18 @@ html, body {
     
 }
 
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+    border-top-right-radius: 6px; 
+    border-bottom-right-radius: 6px; 
+
+}
+
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child){
+    border-top-left-radius: 6px; 
+    border-bottom-left-radius: 6px;
+
+}
+
 /*.row-height {
   display: table;
   table-layout: fixed;

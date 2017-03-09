@@ -1,4 +1,4 @@
-﻿<div id="MyChartDiv" class="row" ng-init="init()">
+﻿<div  class="row" ng-init="init()">
     <div class="btn-group btn-group-lg" role="group" >
         <button type="button" ng-click="toggle(attribute)" class="btn btn-primary btn-block" ng-class="{'active': attribute.Selected}" ng-repeat="attribute in TSattributes">{{attribute.Name}}</button>
 
@@ -7,8 +7,8 @@
     <br />
 
         <div>
-            <div><strong>chart placeholder</strong></div>
-            <div></div>
+            <div ><strong>chart placeholder</strong></div>
+            <div id="MyChartDiv" ng-init="createChart()" style="width: 100%; height: 400px; background-color:black"></div>
         </div>
   
 </div>

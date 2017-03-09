@@ -21,7 +21,7 @@ angular.module('iotdemoApp')
     var _attributes, _targetattributes;
     var snapshotUrl, plotUrl;
 
-    var setPointValue = 0;
+    var setPointValue = 50;
 
     function getAttributesPromise(path) {
 
@@ -184,7 +184,7 @@ angular.module('iotdemoApp')
         }
         else {
             return getAttributesPromise(rootElement + "\\" + selectedAsset).then(function (response) {
-
+                _attributes = response;
                 plotUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + startTime + '&endTime' + endTime + '&', _attributes, filterParams);
 
                 return $http.get(plotUrl).then(function (response) {
