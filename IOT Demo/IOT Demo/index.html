@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>IOT Demo - OSIsoft</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="App/app.css" rel="stylesheet" />
+
+</head>
+<body ng-app="iotdemoApp">
+   
+    <div >
+
+        <canvas id="debugCanvas"></canvas>
+
+        <div>
+            <div id="container" ng-controller="baseController as base" ng-init="base.init()"></div>
+
+            <nav class="navbar navbar-inverse ">
+                <div class="container-fluid">
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li ><a href="#/Summary" >Summary</a></li>
+                            <li ><a href="#/Details" >Details</a></li>
+                            <li ><a href="#/TimeSeries" >Time Series</a></li>
+                            <li><a href="#/Change">Change Output</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 "></div>
+                    <div class="col-xs-12 col-sm-6 ">
+                        <div>
+                            
+                            <div class="jumbotron" ng-view>   </div>
+                        </div>
+                    </div>
+               </div>
+
+
+
+            </div>
+
+                
+        </div>
+
+
+    </div>
+            
+
+
+
+
+
+
+  
+            
+
+                
+
+     
+
+
+
+
+    <script type="text/javascript" src="Scripts/three.js"></script>
+    <script type="text/javascript" src="Scripts/awe-v8.js"></script>
+    <script type="text/javascript" src="Scripts/awe-loader.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/angular.js"></script>
+    <script type="text/javascript" src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-sanitize.js"></script>
+    <script type="text/javascript" src="Scripts/underscore-min.js"></script>
+    <script  src="amcharts/amcharts.js"></script>
+    <script src="amcharts/serial.js"></script>
+    <script src="amcharts/themes/dark.js"></script>
+
+    <script src="App/app.js"></script>
+    <script src="App/baseController.js"></script>
+ 
+    <script src="App/Views/kpiController.js"></script>
+    <script src="App/Views/rawdataController.js"></script>
+    <script src="App/Views/timeseriesController.js"></script>
+    <script src="App/Views/outputController.js"></script>
+    <script src="App/Services/dataService.js"></script>
+
+</body>
+</html>
