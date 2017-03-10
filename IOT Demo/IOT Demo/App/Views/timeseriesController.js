@@ -1,8 +1,8 @@
 ﻿'use strict';
 app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataService', function ($scope, $http, $interval, dataService) {
     $scope.TSattributes = [
-        { Name: "Bearing oil health", Selected: true },
-        { Name: "Set point", Selected: true },
+        { Name: "Bearing oil health", Selected: false },
+        { Name: "Set point", Selected: false },
         { Name: "X-axis acceleration", Selected: true },
         { Name: "Y-axis acceleration", Selected: true },
         { Name: "Z-axis acceleration", Selected: true }
