@@ -1,8 +1,12 @@
 ﻿'use strict';
 app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataService', function ($scope, $http, $interval, dataService) {
     $scope.TSattributes = [
-     { Name: "Bearing oil health", Selected: true },
-     { Name: "Set point", Selected: true }   
+        { Name: "Bearing oil health", Selected: true },
+        { Name: "Set point", Selected: true },
+        { Name: "X-axis acceleration", Selected: true },
+        { Name: "Y-axis acceleration", Selected: true },
+        { Name: "Z-axis acceleration", Selected: true }
+
     ];
     var stop;
 
@@ -60,7 +64,7 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
         "titles": [{
             "text": '', //mostRecentDataFromPISystem[document.getElementById("plotDataItemSelector").value].Name,
-            "size": 15
+            "size": 1
         }],
         "valueAxes": [{
             "axisAlpha": 0,
@@ -85,7 +89,16 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
             "valueLineAlpha": 0.5,
             "cursorAlpha": 0
         },
-        "categoryField": "FormattedTimestamp",
+        "legend": {
+            "useGraphSettings": false,
+            "labelText": "[[title]]",
+            "valueText": "",
+            "fontSize": 9,
+            "equalWidths": false,
+            "markerSize": 9
+        },
+        //"categoryField": "FormattedTimestamp",
+        "categoryField": "TwoLineFormattedTimestamp",
         "categoryAxis": {
             "dateFormats": [{period:'hh',format:'JJ:NN'}],
             "axisAlpha": 0,
@@ -93,7 +106,8 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
             "minorGridAlpha": 0.1,
             "minorGridEnabled": true,
             "autoRotateCount": 10,
-            "autoRotateAngle": 90
+            "autoRotateAngle": 0,//90,
+            "fontSize": 9
         }
     };
 
@@ -123,6 +137,7 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
                 graph['bullet'] = "round";
                 graph['bulletSize'] = 3;
                 graph['valueField'] = attribute.Name + ' Value';
+                graph['title'] = attribute.Name;
 
                 graphArray.push(graph);
 
@@ -133,6 +148,7 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
                 var item = {};
                 item[attribute.Name + ' Value'] = dataItem.Value;
                 item['FormattedTimestamp'] = myFormatTimestampFunction(new Date(dataItem.Timestamp));
+                item['TwoLineFormattedTimestamp'] = myTwoLineFormatTimestampFunction(new Date(dataItem.Timestamp));
                 item[attribute.Name + ' UnitsAbbreviation'] = dataItem.UnitsAbbreviation;
                 item['AttributeNames'] = [attribute.Name];
 
@@ -171,6 +187,22 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
             + "-"
             + myPrependZeroIfNeededFunction(MyDateObject.getDate())
             + " "
+            + myPrependZeroIfNeededFunction(MyDateObject.getHours())
+            + ":"
+            + myPrependZeroIfNeededFunction(MyDateObject.getMinutes())
+            + ":"
+            + myPrependZeroIfNeededFunction(MyDateObject.getSeconds());
+        return MyDateString;
+    };
+    // Converts a date object to a small date string on two lines
+    function myTwoLineFormatTimestampFunction(MyDateObject) {
+        var MyDateString = "";
+        MyDateString = MyDateObject.getFullYear()
+            + "-"
+            + myPrependZeroIfNeededFunction(1 + MyDateObject.getMonth())
+            + "-"
+            + myPrependZeroIfNeededFunction(MyDateObject.getDate())
+            + "\n"
             + myPrependZeroIfNeededFunction(MyDateObject.getHours())
             + ":"
             + myPrependZeroIfNeededFunction(MyDateObject.getMinutes())
