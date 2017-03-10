@@ -11,7 +11,7 @@ angular.module('iotdemoApp')
 
     //hardcoding the root element and selected asset
     var rootElement = "\\\\"+ _afserver +"\\Asset Framework DB 1\\Assets";
-    var targetElementPath = "\\\\" + _afserver + "\\Asset Framework DB 1\\zzz Data Generation\\Phone Sensors";
+    var targetElementPath = "\\\\" + _afserver + "\\Asset Framework DB 1\\zzz Data Generation\\Phone 1 Sensors";
     var selectedAsset = "Asset 1";
     var startTime = '*-10m';
     var endTime = '*';
@@ -147,32 +147,22 @@ angular.module('iotdemoApp')
        return {
         //get data here
     getSnapshots : function (filterParams) {
+        if (_attributes && snapshotUrl) {
+            return $http.get(snapshotUrl).then(function (response) {
+                return response;
+            });
 
-        //if (angular.isDefined(stop)) $interval.cancel(stop);;
-
-       // stop = $interval(function () {
-            if (_attributes && snapshotUrl) {
-                //var dataUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', _attributes, filterParams);
+        }
+        else {
+            return getAttributesPromise(rootElement + "\\" + selectedAsset).then(function (response) {
+                _attributes = response;
+                snapshotUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', _attributes, filterParams);
 
                 return $http.get(snapshotUrl).then(function (response) {
-                   // snapshots.Items = response.data.Items;
                     return response;
                 });
-
-            }
-            else {
-                return getAttributesPromise(rootElement + "\\" + selectedAsset).then(function (response) {
-                    _attributes = response;
-                    snapshotUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', _attributes, filterParams);
-
-                    return $http.get(snapshotUrl).then(function (response) {
-                     //   snapshots.Items = response.data.Items;
-                        return response;
-                    });
-                });
-            }
-        //}, 10000);
-            
+            });
+        }        
     },
     getPloValues : function (filterParams) {
         if (_attributes && plotUrl) {
