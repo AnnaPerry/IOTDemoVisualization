@@ -72,6 +72,7 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
             "tickLength": 0
         }],
         "graphs": [],
+        /*
         "chartScrollbar": {
             "scrollbarHeight": 2,
             "offset": -1,
@@ -80,8 +81,8 @@ app.controller('timeseriesController', ['$scope', '$http', '$interval', 'dataSer
             "selectedBackgroundColor": "#67b7dc",
             "selectedBackgroundAlpha": 1//,
             //"dragIcon": "dragIconRectSmall.png"
-
         },
+        */
         "chartCursor": {
             "fullWidth": true,
             "valueLineEabled": true,
