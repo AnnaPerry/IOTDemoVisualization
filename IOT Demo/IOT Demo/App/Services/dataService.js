@@ -131,9 +131,12 @@ angular.module('iotdemoApp')
             // Get the current acceleration values in 3 axes (measured in meters per second squared)
             if (!event.acceleration.x) {
                 currentXYZAccelerationReadings = {
-                    x: 0,
+                    /*x: 0,
                     y: 0,
-                    z: 0
+                    z: 0 */
+                    x: Math.random(), // generate random data; used to simply set these to 0
+                    y: Math.random(),
+                    z: Math.random()
                 };
             } else {
                 currentXYZAccelerationReadings = event.acceleration;
