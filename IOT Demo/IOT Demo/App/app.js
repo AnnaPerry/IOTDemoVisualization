@@ -1,9 +1,10 @@
 ﻿'use strict';
 var app = angular.module('iotdemoApp', ['ui.router'])
-.config(['$stateProvider', '$locationProvider', function ($stateProvider, $locationProvider) {
+.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
 
     $locationProvider.hashPrefix('');
-
+    
+    $urlRouterProvider.otherwise('/');
     $stateProvider
                 .state({
                     name: 'home',
@@ -22,6 +23,7 @@ var app = angular.module('iotdemoApp', ['ui.router'])
                     url: '/ar/:assetName',
                     templateUrl: 'App/Views/arView.html',
                     controller: 'arController',
+                    abstract: true,
                     resolve: {
                         assetName: ['$stateParams', function ($stateParams) { return $stateParams.assetName }]
                     }
