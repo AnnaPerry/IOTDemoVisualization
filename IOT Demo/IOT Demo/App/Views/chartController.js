@@ -62,7 +62,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     var chartDef = {
         "type": "serial",
         "theme": "dark",
-        // Use the array of data that was passed in
         "dataProvider": [],
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
         "titles": [{
@@ -82,15 +81,24 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "valueLineAlpha": 0.5,
             "cursorAlpha": 0
         },
-        "categoryField": "FormattedTimestamp",
+        "legend": {
+            "useGraphSettings": false,
+            "labelText": "[[title]]",
+            "valueText": "",
+            "fontSize": 9,
+            "equalWidths": false,
+            "markerSize": 9
+        },
+        "categoryField": "TwoLineFormattedTimestamp",
         "categoryAxis": {
-            "dateFormats": [{period:'hh',format:'JJ:NN'}],
+            "dateFormats": [{ period: 'hh', format: 'JJ:NN' }],
             "axisAlpha": 0,
             "gridAlpha": 0.1,
             "minorGridAlpha": 0.1,
             "minorGridEnabled": true,
             "autoRotateCount": 10,
-            "autoRotateAngle": 90
+            "autoRotateAngle": 0,
+            "fontSize": 9
         }
     };
 
@@ -120,6 +128,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
                 graph['bullet'] = "round";
                 graph['bulletSize'] = 3;
                 graph['valueField'] = attribute.Name + ' Value';
+                graph['title'] = attribute.Name;
 
                 graphArray.push(graph);
 
@@ -130,6 +139,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
                 var item = {};
                 item[attribute.Name + ' Value'] = dataItem.Value;
                 item['FormattedTimestamp'] = myFormatTimestampFunction(new Date(dataItem.Timestamp));
+                item['TwoLineFormattedTimestamp'] = myTwoLineFormatTimestampFunction(new Date(dataItem.Timestamp));
                 item[attribute.Name + ' UnitsAbbreviation'] = dataItem.UnitsAbbreviation;
                 item['AttributeNames'] = [attribute.Name];
 
@@ -149,7 +159,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             });
 
         });
-        chartDataArray = _.sortBy(chartDataArray, 'FormattedTimestamp');
+        //chartDataArray = _.sortBy(chartDataArray, 'FormattedTimestamp');
 
 
         chart.dataProvider = chartDataArray;
@@ -168,6 +178,22 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             + "-"
             + myPrependZeroIfNeededFunction(MyDateObject.getDate())
             + " "
+            + myPrependZeroIfNeededFunction(MyDateObject.getHours())
+            + ":"
+            + myPrependZeroIfNeededFunction(MyDateObject.getMinutes())
+            + ":"
+            + myPrependZeroIfNeededFunction(MyDateObject.getSeconds());
+        return MyDateString;
+    };
+    // Converts a date object to a small date string on two lines
+    function myTwoLineFormatTimestampFunction(MyDateObject) {
+        var MyDateString = "";
+        MyDateString = MyDateObject.getFullYear()
+            + "-"
+            + myPrependZeroIfNeededFunction(1 + MyDateObject.getMonth())
+            + "-"
+            + myPrependZeroIfNeededFunction(MyDateObject.getDate())
+            + "\n"
             + myPrependZeroIfNeededFunction(MyDateObject.getHours())
             + ":"
             + myPrependZeroIfNeededFunction(MyDateObject.getMinutes())
