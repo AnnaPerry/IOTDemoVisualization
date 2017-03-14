@@ -1,0 +1,32 @@
+﻿
+<div class="container-fluid" ng-init="init()">
+
+    <div class="card-deck">
+        <div class="card">  
+            <div class="card-header">
+                <h5>{{health.Name}}</h5>
+            </div>
+            <div class="card-block">
+                <div id="healthChartDiv" ng-init="makeHealthChart()" style="width: 50%; height: 400px; background-color:white"></div>
+            <p class="card-text">{{health.Value.Value}}</p>
+
+            </div>
+        </div>
+
+        <div class="card" >
+            <div class="card-header">
+                <h5>{{setpoint.Name}}</h5>
+            </div>
+            <div class="card-block">
+                <div id="setpointChartDiv" ng-init="makeSetPointChart()" style="width: 50%; height: 400px; background-color:white"></div>
+                <p class="card-text">{{setpoint.Value.Value}}</p>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<div class="center-horizontal bottom-vertical">
+    <a ui-sref="assetoverview"><i class="fa fa-chevron-down fa-3x"></i></a>
+</div>

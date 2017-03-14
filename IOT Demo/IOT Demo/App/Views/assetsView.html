@@ -1,0 +1,22 @@
+﻿<div class="container-fluid" ng-init="init()">
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Asset Name</th>
+                <th>Description</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="asset in assetArray">
+                <th scope="row">{{$index + 1}}</th>
+                <td>{{friendlyAssetName}} {{$index + 1}}</td>
+                <td>{{asset.Description}}</td>
+                <td><a ui-sref="arview({assetName: asset.Name})"><span class="fa fa-play fa-2x"></span></a></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

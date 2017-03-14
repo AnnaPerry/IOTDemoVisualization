@@ -3,33 +3,36 @@ angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
  
-
-    var _wssPIWebAPIUrl = "wss://pi4egdemo1/piwebapi";
-    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi";
-    var _afserver = "localhost"
+    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    var _afserver = 'localhost';
+    var _afdb = 'Asset Framework DB 1';
+    var _afdbwebid = '';
+    var _startTime = '*-10m';
+    var _endTime = '*';
 
 
     //hardcoding the root element and selected asset
     var rootElement = "\\\\"+ _afserver +"\\Asset Framework DB 1\\Assets";
     var targetElementPath = "\\\\" + _afserver + "\\Asset Framework DB 1\\zzz Data Generation\\Phone 1 Sensors";
     var selectedAsset = "Asset 1";
-    var startTime = '*-10m';
-    var endTime = '*';
+    
     var currentXYZAccelerationReadings;
 
 
-    var _attributes, _targetattributes;
+    var _targetattributes;
     var snapshotUrl, plotUrl;
 
     var setPointValue = 50;
 
-    function getAttributesPromise(path) {
+    function getafdb() {
+        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
+        return $http.get(url).then(function (response) {
+            return response.data.WebId;
+        });
 
-        //var deferred = $q.defer();
-        //if(attributes){
-        //    deferred.resolve(attributes);
-        //}
-        //else{
+    };
+
+    function getAttributesPromise(path) {
 
         var getElementUrl = encodeURI(_httpsPIWebAPIUrl + "/elements?path=" + path);
         
@@ -56,22 +59,16 @@ angular.module('iotdemoApp')
                 var attributes = response.data.getAttributes.Content.Items;
                 return attributes;
             });        
-        
-    //    }
-
-      //  return deferred.promise;
-
 
     };
 
-    function constructUrl(url, attrarray, filters) {
-        
-        attrarray.forEach(function (attribute) {
-            //filter by name. Ideally will switch this to filter by af category. 
-            if (_.contains(filters, attribute.Name)) {
-                url += 'webid=' + attribute.WebId + '&'
-            }
-        });
+    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
+        if (!attributeCategory) return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
+        return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
+    };
+
+    function constructUrl(url, attributes) {
+        attributes.forEach(function (attribute) { url += 'webid=' + attribute.WebId + '&' });
         url = url.slice(0, -1);
         return url;
     };
@@ -143,65 +140,73 @@ angular.module('iotdemoApp')
     };
     
 
-    var stop;
-       return {
-        //get data here
-    getSnapshots : function (filterParams) {
-        if (_attributes && snapshotUrl) {
-            return $http.get(snapshotUrl).then(function (response) {
-                return response;
-            });
 
-        }
-        else {
-            return getAttributesPromise(rootElement + "\\" + selectedAsset).then(function (response) {
-                _attributes = response;
-                snapshotUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', _attributes, filterParams);
+    return {
 
-                return $http.get(snapshotUrl).then(function (response) {
-                    return response;
+        getElements: function (elementTemplate) {
+            if (_afdbwebid) {
+                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
+                return $http.get(url).then(function (response) { return response.data.Items});
+            }
+            else {
+
+                return getafdb().then(function (webid) {
+                    _afdbwebid = webid;
+                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
+
+                    return $http.get(url).then(function (response) { return response.data.Items });
                 });
-            });
-        }        
+            }
     },
-    getPloValues : function (filterParams) {
-        if (_attributes && plotUrl) {
-            
-            return $http.get(plotUrl).then(function (response) {
-                return response;
+    getElementAttributes: function (elementTemplate,elementNameFilter,attributeCategory) {
+        if (_afdbwebid) {
+            var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
+
+            return $http.get(url).then(function (response) {
+                return response.data.Items;
             });
-
-        }
-        else {
-            return getAttributesPromise(rootElement + "\\" + selectedAsset).then(function (response) {
-                _attributes = response;
-                plotUrl = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + startTime + '&endTime' + endTime + '&', _attributes, filterParams);
-
-                return $http.get(plotUrl).then(function (response) {
-                    return response;
-                });
-            });
-        }
-    },
-    sendDatatoPI : function () {
-        if (_targetattributes) {
-            sendCurrentReadings(_targetattributes);
-
         } else {
+            return getafdb().then(function (webid) {
+                _afdbwebid = webid;
 
-            getAttributesPromise(targetElementPath).then(function (response) {
-                _targetattributes = response;
-                sendCurrentReadings(_targetattributes);
-                //construct data object
+                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
 
+                return $http.get(url).then(function (response) {
+                    return response.data.Items;
+                });
 
             });
         }
+    },
+    getSnapshots: function (attributes) {
+        var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
+        return $http.get(url).then(function (response) {
+            return response;
+        });                
+    },
+    getPloValues : function (attributes) {
+        var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
+        return $http.get(url).then(function (response) {
+            return response;
+        });        
+    },
+    getTargetAsset: function (assetName) {
+        var assetid = assetName.match(/[0-9]+/i)[0];
+        return 'Phone ' + assetid + ' Sensors';
+
+    },
+    sendDatatoPI: function (elementTemplate, targetAssetName) {
+
+        this.getElementAttributes(elementTemplate, targetAssetName).then(function (attributes) {
+            sendCurrentReadings(attributes);
+        });
+        
 
     },
     updateSetPoint: function (newvalue) {
         setPointValue = newvalue;
-    }
+    },
+    friendlyAssetName: 'Pump'
    };
 
 

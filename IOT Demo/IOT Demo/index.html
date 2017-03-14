@@ -6,94 +6,63 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
     <link href="App/app.css" rel="stylesheet" />
 
 </head>
 <body ng-app="iotdemoApp">
    
-    <div >
-
-        <canvas id="debugCanvas"></canvas>
-
-        <div>
-            <div id="container" ng-controller="baseController as base" ng-init="base.init()"></div>
-
-            <nav class="navbar navbar-inverse ">
-                <div class="container-fluid">
-
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li ><a href="#/Summary">Summary</a></li>
-                            <li ><a href="#/Details">Details</a></li>
-                            <li ><a href="#/TimeSeries">Time Series</a></li>
-                            <li><a href="#/Change">Change Output</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </nav>
-
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 "></div>
-                    <div class="col-xs-6 col-sm-6 ">
-                        <div>
-                            
-                            <div class="jumbotron" >
-                                <div ng-view></div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-
-
-
-            </div>
-
-                
-        </div>
-
-
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse fixed-top bg-inverse">
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a class="nav-link active" ui-sref="home"><span class="fa fa-home fa-2x"></span> Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-toggler-right">
+                <li class="nav-item"><a class="nav-link" ui-sref="home"><span class="fa fa-gear fa-2x"></span></a></li>
+            </ul>
+       
+        </nav>
     </div>
-            
+    
+
+    <div class="container maincontainer" ui-view>
+    </div>
 
 
 
 
 
 
-  
-            
 
-                
+        <script type="text/javascript" src="Scripts/three.js"></script>
+        <script type="text/javascript" src="Scripts/awe-v8.js"></script>
+        <script type="text/javascript" src="Scripts/awe-loader.js"></script>
+        <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="Scripts/angular.js"></script>
+        <script type="text/javascript" src="Scripts/angular-ui-router.js"></script>
+        <script src="Scripts/angular-sanitize.js"></script>
+        <script type="text/javascript" src="Scripts/underscore-min.js"></script>
+        <script src="amcharts/amcharts.js"></script>
+        <script src="amcharts/serial.js"></script>
+        <script src="amcharts/gauge.js"></script>
+        <script src="amcharts/themes/patterns.js"></script>
+        <script src="amcharts/themes/dark.js"></script>
+        <script src="amcharts/themes/light.js"></script>
 
-     
+        <script src="App/app.js"></script>
+        <script src="App/Views/mainController.js"></script>
+        <script src="App/Views/assetsController.js"></script>
+        <script src="App/Views/arController.js"></script>
+        <script src="App/Views/tableController.js"></script>
+        <script src="App/Views/chartController.js"></script>
+    
+        <script src="App/baseController.js"></script>
 
 
-
-
-    <script type="text/javascript" src="Scripts/three.js"></script>
-    <script type="text/javascript" src="Scripts/awe-v8.js"></script>
-    <script type="text/javascript" src="Scripts/awe-loader.js"></script>
-    <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="Scripts/angular.js"></script>
-    <script type="text/javascript" src="Scripts/angular-route.js"></script>
-    <script src="Scripts/angular-sanitize.js"></script>
-    <script type="text/javascript" src="Scripts/underscore-min.js"></script>
-    <script  src="amcharts/amcharts.js"></script>
-    <script src="amcharts/serial.js"></script>
-    <script src="amcharts/themes/patterns.js"></script>
-    <script src="amcharts/themes/dark.js"></script>
-
-    <script src="App/app.js"></script>
-    <script src="App/baseController.js"></script>
- 
-    <script src="App/Views/kpiController.js"></script>
-    <script src="App/Views/rawdataController.js"></script>
-    <script src="App/Views/timeseriesController.js"></script>
-    <script src="App/Views/outputController.js"></script>
-    <script src="App/Services/dataService.js"></script>
+       
+        
+        <script src="App/Views/outputController.js"></script>
+        <script src="App/Services/dataService.js"></script>
 
 </body>
 </html>

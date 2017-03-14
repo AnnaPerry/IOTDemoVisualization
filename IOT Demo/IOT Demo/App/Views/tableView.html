@@ -1,0 +1,21 @@
+﻿
+<div class="container-fluid" ng-init="init()">
+
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Item</th>
+                <th>Value</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dataItem in dataArray">
+                <td>{{dataItem.Name}}</td>
+                <td>{{dataItem.Value.Value}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

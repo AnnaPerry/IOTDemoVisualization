@@ -5,6 +5,8 @@
 
 #container {
     position: absolute;
+    padding:0;
+    height:100%;
     left: 0;
     top: 0;
     bottom: 0;
@@ -34,7 +36,42 @@ strong {
 
 html, body {
     background-color:#e9eaed;
+    height:100%
 }
+
+
+/*.card-deck {
+  display: inline-flex;
+  flex-wrap: nowrap;
+}*/
+
+
+.maincontainer {
+height:inherit;
+width:inherit;
+padding-top:15%;
+}
+
+.card-block {
+padding: 0 0 0 0;
+}
+
+
+.center-horizontal {
+  position: absolute;
+  left:50%;
+}
+.bottom-vertical {
+    position: absolute;
+    top: 90%;
+}
+
+
+
+
+
+
+
 
 .font-white {
     color:white;
@@ -42,18 +79,16 @@ html, body {
     font-size: large;
 }
 
-.container-fluid {
-    /*height: 100%;*/
 
-}
 
 .jumbotron {
     opacity:0.7;
     background-color:darkgray;
-    height: 100%
+    height: 100%;
+  
 }
 
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+/*.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
     border-top-right-radius: 6px; 
     border-bottom-right-radius: 6px; 
 
@@ -63,7 +98,7 @@ html, body {
     border-top-left-radius: 6px; 
     border-bottom-left-radius: 6px;
 
-}
+}*/
 
 /*.row-height {
   display: table;
