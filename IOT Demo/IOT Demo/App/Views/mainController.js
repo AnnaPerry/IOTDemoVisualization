@@ -65,10 +65,12 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         if (!healthChart || !setpointChart || !$scope.health || !$scope.setpoint) return;
 
         healthChart.axes[0].bands[0].setEndValue($scope.health.Value.Good ? $scope.health.Value.Value : 0);
+        healthChart.axes[0].setBottomText(($scope.health.Value.Good ? $scope.health.Value.Value : 0) + "%");
         
 
 
         setpointChart.axes[0].bands[0].setEndValue($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0);
+        setpointChart.axes[0].setBottomText(($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0) + "%");
 
 
     };
@@ -89,7 +91,7 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                 "innerRadius": "70%",
                 "startValue": 0
             }],
-            "bottomText": "text",
+            "bottomText": "---",
             "endValue": 100
         }]
 
@@ -108,7 +110,7 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                    "innerRadius": "70%",
                    "startValue": 0
                }],
-               "bottomText": "text",
+               "bottomText": "---",
                "endValue": 100
            }]
 
