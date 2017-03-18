@@ -3,7 +3,8 @@ app.controller('outputController', ['$scope', '$http', '$interval', 'dataService
 
 
     $scope.init = function () {
-        $scope.rangeValue = 50;
+        console.log(dataService);
+        $scope.rangeValue = dataService.currentSetPoint;
 
         if (angular.isDefined(stop)) return;
 

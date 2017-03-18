@@ -18,7 +18,16 @@
                 <li class="nav-item"><a class="nav-link active" ui-sref="home"><span class="fa fa-home fa-2x"></span> Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-toggler-right">
-                <li class="nav-item"><a class="nav-link" ui-sref="home"><span class="fa fa-gear fa-2x"></span></a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
+                       <span class="fa fa-gear fa-2x"></span>
+                       
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">AR toggle</a>
+                        
+                    </div>
+                </li>
             </ul>
        
         </nav>
@@ -40,7 +49,7 @@
         <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="Scripts/angular.js"></script>
         <script type="text/javascript" src="Scripts/angular-ui-router.js"></script>    
-
+        <script type="text/javascript" src="Scripts/bootstrap.js"></script>
         
         <script src="Scripts/angular-sanitize.js"></script>
         <script type="text/javascript" src="Scripts/underscore-min.js"></script>
@@ -58,7 +67,7 @@
         <script src="App/Views/tableController.js"></script>
         <script src="App/Views/chartController.js"></script>
     
-        <script src="App/baseController.js"></script>
+        <!--<script src="App/baseController.js"></script>-->
 
 
        

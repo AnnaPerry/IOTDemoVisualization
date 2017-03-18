@@ -49,7 +49,14 @@ html, body {
 .maincontainer {
 height:inherit;
 width:inherit;
-padding-top:15%;
+padding-top:85px;
+}
+
+
+
+.el-inherit-size {
+    height:inherit;
+    width:inherit;
 }
 
 .card-block {
@@ -67,25 +74,31 @@ padding: 0 0 0 0;
 }
 
 
-
-
-
-
-
-
-.font-white {
-    color:white;
-    font-weight:bold;
-    font-size: large;
+.btn-primary {
+    border-color: darkgray;
 }
-
 
 
 .jumbotron {
     opacity:0.7;
     background-color:darkgray;
     height: 100%;
+    overflow:auto;
   
+}
+
+.btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+
+    border-color: darkgray;
+}
+
+@media (max-height: 450px) {
+    .maincontainer {
+height:inherit;
+width:inherit;
+padding-top:65px;
+}
+
 }
 
 /*.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){

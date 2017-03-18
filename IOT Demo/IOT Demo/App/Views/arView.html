@@ -1,4 +1,4 @@
-﻿<div ng-init="sendDatatoPI()">
+﻿<div ng-init="sendDatatoPI()" class="el-inherit-size">
 
     <canvas id="debugCanvas"></canvas>
 
@@ -6,7 +6,7 @@
         <!--<div id="container" ng-init="init()">-->
 
 
-    <div class="d-flex flex-row-reverse" >
+    <div class="d-flex flex-row-reverse el-inherit-size" >
         
         <div class="p-2">
             <ul style="list-style-type:none">
@@ -15,9 +15,9 @@
                 <li><a ui-sref=".chart"><span class="fa fa-area-chart fa-2x"></span></a></li>
             </ul>               
         </div>
-        <div class="p-2">
-            <div class="jumbotron">
-                <div ui-view></div>
+        <div class="p-2" style="width:50%">
+            <div class="jumbotron "  >
+                <div ui-view style="height:inherit"></div>
             </div>
         </div>
         <div class="p-2"></div>

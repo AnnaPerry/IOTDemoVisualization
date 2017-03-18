@@ -3,24 +3,15 @@ angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
  
-    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    //  var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    var _httpsPIWebAPIUrl = "https://arcadia.osisoft.int/piwebapi/";
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
     var _afdbwebid = '';
     var _startTime = '*-10m';
     var _endTime = '*';
-
-
-    //hardcoding the root element and selected asset
-    var rootElement = "\\\\"+ _afserver +"\\Asset Framework DB 1\\Assets";
-    var targetElementPath = "\\\\" + _afserver + "\\Asset Framework DB 1\\zzz Data Generation\\Phone 1 Sensors";
-    var selectedAsset = "Asset 1";
     
     var currentXYZAccelerationReadings;
-
-
-    var _targetattributes;
-    var snapshotUrl, plotUrl;
 
     var setPointValue = 50;
 
@@ -29,36 +20,6 @@ angular.module('iotdemoApp')
         return $http.get(url).then(function (response) {
             return response.data.WebId;
         });
-
-    };
-
-    function getAttributesPromise(path) {
-
-        var getElementUrl = encodeURI(_httpsPIWebAPIUrl + "/elements?path=" + path);
-        
-            var batchRequest = {};
-            batchRequest["GetTopElement"] = {
-                "Method": "GET",
-                "Resource": getElementUrl
-            };
-
-            batchRequest["getAttributes"] = {
-                "Method": "GET",
-                "Resource": "{0}",
-                "ParentIds": ["GetTopElement"],
-                "Parameters": ["$.GetTopElement.Content.Links.Attributes"]
-            }
-
-
-           return $http({
-                url: _httpsPIWebAPIUrl + "/batch",
-                method: 'POST',
-                data: JSON.stringify(batchRequest),
-                Headers: { 'Content-Type': 'application/json' }
-            }).then(function (response) {
-                var attributes = response.data.getAttributes.Content.Items;
-                return attributes;
-            });        
 
     };
 
@@ -206,6 +167,8 @@ angular.module('iotdemoApp')
     updateSetPoint: function (newvalue) {
         setPointValue = newvalue;
     },
+    currentSetPoint: setPointValue
+    ,
     friendlyAssetName: 'Pump'
    };
 
