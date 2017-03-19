@@ -50,7 +50,10 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
                         ['Scripts/awe.marker_ar.js' + d, 'Scripts/awe.rendering_effects.js' + d]
                       ],
                       success: function () {
+
                           awe.setup_scene();
+
+                          //document.getElementById("container").style.zIndex = 10;
 
                           awe.settings.update({ data: { value: 'ar' }, where: { id: 'view_mode' } })
 

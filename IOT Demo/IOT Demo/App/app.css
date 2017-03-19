@@ -12,6 +12,7 @@
     bottom: 0;
     right: 0;
     overflow: hidden;
+    z-index: 10;
 }
 
 #debugCanvas {
@@ -39,6 +40,9 @@ html, body {
     height:100%
 }
 
+.el-z {
+z-index:11;
+}
 
 /*.card-deck {
   display: inline-flex;
@@ -100,6 +104,9 @@ padding-top:65px;
 }
 
 }
+
+
+
 
 /*.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
     border-top-right-radius: 6px; 

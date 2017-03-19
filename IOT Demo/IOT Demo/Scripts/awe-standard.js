@@ -1077,6 +1077,7 @@
           awe_canvas.style.left = '0px';
           awe_canvas.style.width = '100%';
           awe_canvas.style.height = '100%';
+          awe_canvas.style.zIndex = '10';
         }
         if (BODY.container_id && document.getElementById(BODY.container_id)) {
           document.getElementById(BODY.container_id).appendChild(awe_canvas);
@@ -1376,6 +1377,7 @@
           video.style.left = '-999em';
           video.style.height = '100%';
           video.style.width = '100%';
+          video.style.zIndex = '10';
           video.setAttribute('width', '100%');  
           video.setAttribute('height', '100%');
           
