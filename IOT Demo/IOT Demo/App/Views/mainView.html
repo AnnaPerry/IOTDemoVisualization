@@ -1,13 +1,13 @@
 ﻿
-<div class="container-fluid" ng-init="init()">
+<div class="container-fluid el-inherit-size" style="padding-bottom: 50px;" ng-init="init()">
 
-    <div class="card-deck">
+    <div class="card-deck el-inherit-size">
         <div class="card">  
             <div class="card-header">
                 <h5>{{health.Name}}</h5>
             </div>
             <div class="card-block">
-                <div id="healthChartDiv" ng-init="makeHealthChart()" style="width: 90%; height: 400px; background-color:white"></div>
+                <div id="healthChartDiv" ng-init="makeHealthChart()" style="width: 90%; height: 50%; min-height:220px; max-height:500px; background-color:white"></div>
             <!-- <p class="card-text">{{health.Value.Value}}</p> -->
 
             </div>
@@ -18,7 +18,7 @@
                 <h5>{{setpoint.Name}}</h5>
             </div>
             <div class="card-block">
-                <div id="setpointChartDiv" ng-init="makeSetPointChart()" style="width: 90%; height: 400px; background-color:white"></div>
+                <div id="setpointChartDiv" ng-init="makeSetPointChart()" style="width: 90%; height: 50%; min-height:220px; max-height:500px; background-color:white"></div>
                 <!-- <p class="card-text">{{setpoint.Value.Value}}</p> -->
 
             </div>
@@ -27,6 +27,14 @@
     </div>
 </div>
 
-<div class="center-horizontal bottom-vertical">
+
+
+<nav class="navbar navbar-inverse fixed-bottom">
+    <ul class="nav navbar-nav text-center">
+        <li class="nav-item"><a class="nav-link" ui-sref="assetoverview"><i style="color:#292b2c" class="fa fa-chevron-down fa-2x"></i></a></li>
+    </ul>
+</nav>
+
+<!--<div class="center-horizontal bottom-vertical">
     <a ui-sref="assetoverview"><i class="fa fa-chevron-down fa-3x"></i></a>
-</div>
+</div>-->

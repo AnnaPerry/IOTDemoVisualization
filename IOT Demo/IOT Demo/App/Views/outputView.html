@@ -4,8 +4,8 @@
             <div class="panel-body">
                 <div>
                     <!-- <div><strong>{{rangeValue}}</strong></div> -->
-                    The current set point is <b>{{rangeValue}}</b>%.  Drag the slider to change the set point:
-                    <input ng-change="update()" ng-model="rangeValue" type="range" min=0 max=100 step=5>
+                    <div> current set point is <b>{{rangeValue}}</b>%.  Drag the slider to change the set point:</div>
+                    <div><input ng-change="update()" ng-model="rangeValue" type="range" min=0 max=100 step=5></div>
                 </div>
             </div>
         </div>

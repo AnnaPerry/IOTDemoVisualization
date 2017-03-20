@@ -16,7 +16,6 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
         $scope.zPosition = 0;
 
 
-
         window.awe.init({
             device_type: awe.AUTO_DETECT_DEVICE_TYPE,
             settings: {
@@ -117,6 +116,18 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
 
     };
 
+    $scope.toggleAR = function () {
+        if (awe) {
+            //remove video stream, delete all projections
+            //as a static picture
+
+
+        } else {
+            //start video strem
+            //add projections
+
+        }
+    };
 
     $scope.sendDatatoPI = function() {
 

@@ -53,6 +53,8 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
     };
 
 
+
+    
     $scope.makeHealthChart = function () {
         healthChart = AmCharts.makeChart("healthChartDiv", HealthChartDef);
     };
