@@ -109,7 +109,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "axisColor": "white"
         },
         "zoomOutButtonImage": "",
-        "creditsPosition":"top-right"
+        "creditsPosition": "bottom-right",
+        "colors": ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)","rgb(156, 128, 110)","rgb(197, 86, 13)"]
     };
 
 
@@ -140,7 +141,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             if (!attribute.Selected) return;
 
                 var graph = {};
-                graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]][[" + attribute.Name + " UnitsAbbreviation]]";
+                graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
                 graph['bullet'] = "round";
                 graph['bulletSize'] = 3;
                 graph['bulletAlpha'] = 0;
