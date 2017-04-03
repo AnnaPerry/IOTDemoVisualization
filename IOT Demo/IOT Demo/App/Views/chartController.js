@@ -61,25 +61,28 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
     var chartDef = {
         "type": "serial",
-        "theme": "dark",
         "dataProvider": [],
+        "color": "white",
+        "autoMargins": false,
+        "marginLeft": 20,
+        "marginRight": 20,
+        "marginTop": 10,
+        "marginBottom": 55,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        "titles": [{
-            "text": '', //mostRecentDataFromPISystem[document.getElementById("plotDataItemSelector").value].Name,
-            "size": 1
-        }],
+        "backgroundColor": "#303030",
+        "backgroundAlpha": 1,
         "valueAxes": [{
-            "axisAlpha": 0,
+            "axisAlpha": 1,
             "position": "left",
-            "tickLength": 0
+            "axisColor": "white",
+            "fillAlpha": 0.05,
+            "inside":true
         }],
         "graphs": [],
         "chartCursor": {
-            "fullWidth": true,
-            "valueLineEabled": true,
-            "valueLineBalloonEnabled": true,
-            "valueLineAlpha": 0.5,
-            "cursorAlpha": 0
+            "cursorAlpha": 1,
+            "cursorColor": "white",
+            "categoryBalloonColor": "#202020"
         },
         "legend": {
             "useGraphSettings": false,
@@ -87,19 +90,26 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "valueText": "",
             "fontSize": 9,
             "equalWidths": false,
-            "markerSize": 9
+            "markerSize": 9,
+            "color": "white",
+            "autoMargins": false,
+            "marginTop": 0,
+            "marginBottom": 5,
+            "position":"top"
         },
         "categoryField": "TwoLineFormattedTimestamp",
         "categoryAxis": {
             "dateFormats": [{ period: 'hh', format: 'JJ:NN' }],
-            "axisAlpha": 0,
-            "gridAlpha": 0.1,
-            "minorGridAlpha": 0.1,
-            "minorGridEnabled": true,
+            "axisAlpha": 1,
+            "gridAlpha": 0,
             "autoRotateCount": 10,
             "autoRotateAngle": 0,
-            "fontSize": 9
-        }
+            "fontSize": 9,
+            "color": "white",
+            "axisColor": "white"
+        },
+        "zoomOutButtonImage": "",
+        "creditsPosition":"top-right"
     };
 
 
@@ -114,6 +124,12 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
     function updateChartData() {
 
+        // Remember previous graph settings
+        var previousGraphArray;
+        if (chart.graphs) {
+            previousGraphArray = chart.graphs;
+        }
+
         if (!mostRecentDataFromPISystem || !chart) return;
 
         var chartDataArray = [];
@@ -124,9 +140,10 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             if (!attribute.Selected) return;
 
                 var graph = {};
-                graph['balloonText'] = "<b><span style='font-size:14px;'>Timestamp: [[FormattedTimestamp]]<br>Value: [[" + attribute.Name + " Value]][[" + attribute.Name + " UnitsAbbreviation]]</span></b>";
+                graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]][[" + attribute.Name + " UnitsAbbreviation]]";
                 graph['bullet'] = "round";
                 graph['bulletSize'] = 3;
+                graph['bulletAlpha'] = 0;
                 graph['valueField'] = attribute.Name + ' Value';
                 graph['title'] = attribute.Name;
 
@@ -164,9 +181,35 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
         chart.dataProvider = chartDataArray;
         chart.graphs = graphArray;
-
         chart.validateData();
         chart.animateAgain();
+
+        // If this item was previously hidden, then hide it again!
+        if (previousGraphArray) {
+            // Loop through all the graphs...
+            for (var i = 0; i < chart.graphs.length; i++) {
+
+                // Loop through all of the previous graphs...
+                for (var j = 0; j < previousGraphArray.length; j++) {
+
+                    // If these graph titles match
+                    if (previousGraphArray[j].title == chart.graphs[i].title) {
+
+                        // And if the graph used to be hidden, hide it again!
+                        if (previousGraphArray[j].hidden) {
+
+                            chart.hideGraph(chart.graphs[i]);
+
+                        }
+                        // Break out of the loop
+                        j = previousGraphArray.length;
+                    }
+                }
+            }
+        }
+        // Update the chart formatting (leave its data alone)
+        chart.validateNow;
+
     };
 
     // Converts a date object to a small date string
