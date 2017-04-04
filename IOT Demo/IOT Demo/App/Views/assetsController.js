@@ -10,7 +10,7 @@ app.controller('assetsController', ['$scope', '$http', '$interval', 'dataService
     $scope.init = function () {
         dataService.getElements(afAssetTemplate).then(function (assets) {
             $scope.assetArray = assets;
-            console.log(assets);
+            //console.log(assets);
         });
     }; 
 

@@ -3,8 +3,8 @@ angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
  
-    //  var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
-    var _httpsPIWebAPIUrl = "https://arcadia.osisoft.int/piwebapi/";
+      var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    //var _httpsPIWebAPIUrl = "https://arcadia.osisoft.int/piwebapi/";
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
     var _afdbwebid = '';

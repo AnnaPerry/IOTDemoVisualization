@@ -13,6 +13,12 @@ var app = angular.module('iotdemoApp', ['ui.router'])
                     controller: 'mainController'
                 })
                 .state({
+                    name: 'help',
+                    url: '/help',
+                    templateUrl: 'App/Views/helpView.html'//,
+                    //controller: 'helpController'
+                })
+                .state({
                     name: 'assetoverview',
                     url: '/assets',
                     templateUrl: 'App/Views/assetsView.html',

@@ -104,7 +104,6 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         // Update the chart div height
         var newHeightString = ($("#crazyGaugeDiv").parent().innerHeight() - 2) + "px";
         $("#crazyGaugeDiv").height(newHeightString);
-        console.log(newHeightString);
 
         // Refresh the chart
         crazyGaugeChart.validateNow();
