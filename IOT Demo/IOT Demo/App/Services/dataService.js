@@ -37,10 +37,12 @@ angular.module('iotdemoApp')
     function sendCurrentReadings(attributes) {
         //form data request
 
+        // Define global variables to hold recent sensor readings
         var dataObj = [];
         var timestamp = "*";
-        var batteryLevel;
-
+        var batteryLevel = 100;
+        var proximityValue = 3; // in centimenters
+        var ambientLightLevel = 320; // in lux
 
         $window.navigator.getBattery().then(function (battery) {
          
@@ -68,6 +70,14 @@ angular.module('iotdemoApp')
                         value = currentXYZAccelerationReadings.z;
                         break;
                     }
+                    case "Ambient light level": {
+                        value = ambientLightLevel;
+                        break;
+                    }
+                    case "Proximity sensor reading": {
+                        value = proximityValue;
+                        break;
+                    }
                 }
                 
                 dataObj.push({ 'WebId': attribute.WebId, 'Value': { 'Timestamp': timestamp, 'Value': value } });
@@ -82,8 +92,10 @@ angular.module('iotdemoApp')
 
     };
 
+    // Define a function to get the battery level
     function getBattery() { return navigator.getBattery().then(function (battery) { return 100 * battery.level }); }
 
+    // Set up a handler to track motion
     if ($window.DeviceMotionEvent) {
         $window.addEventListener('devicemotion', function (event) {
             // Get the current acceleration values in 3 axes (measured in meters per second squared)
@@ -99,8 +111,23 @@ angular.module('iotdemoApp')
         }, false);
 
     };
-    
 
+    // Also set up handlers for tracking proximity and light level
+    if ($window.DeviceProximityEvent) {
+        $window.addEventListener('deviceproximity', function (event) {
+            // If a proximity event is detected, save the new proximity value
+            proximityValue = event.value;
+        });
+    }
+    if ($window.DeviceLightEvent) {
+        $window.addEventListener('devicelight', function (event) {
+            // If a light change event is detected, save the new value
+            ambientLightLevel = event.value;
+        });
+    }
+
+    
+    // Reading or writing to the PI System -----------------------------------------------------------------------------
 
     return {
 
