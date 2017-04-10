@@ -4,21 +4,29 @@
 
 
     <div id="container" ng-init="init()">
-
+        
     </div>
     <div class="d-flex flex-row-reverse el-inherit-size">
+
+
         <div class="p-2 el-z">
             <ul style="list-style-type:none">
-                <li><a ui-sref=".table"><span class="fa fa-table fa-2x"></span></a></li>
-                <li><a ui-sref=".change"><span class="fa fa-pencil  fa-2x"></span></a></li>
-                <li><a ui-sref=".chart"><span class="fa fa-area-chart fa-2x"></span></a></li>
+                <li style="margin-bottom:10px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw"></span></a></li>
+                <li style="margin-bottom:10px;"><a ui-sref=".change"><span class="fa fa-pencil-square  fa-2x fa-fw"></span></a></li>
+                <li style="margin-bottom:10px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw"></span></a></li>
             </ul>
         </div>
-        <div class="p-2 el-z" style="width:50%">
+
+        <div class="p-2 el-z" style="width:70%">
             <div class="jumbotron " style="margin:0px;padding:32px;">
                 <div ui-view style="height:inherit"></div>
             </div>
         </div>
-        <div class="p-2"></div>
+
+        <div class="p-2" style="width:30%">
+            <img src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
+        </div>
+
+        
     </div>
 </div>

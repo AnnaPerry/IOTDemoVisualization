@@ -1,6 +1,13 @@
 ﻿'use strict';
 app.controller('mainController', ['$scope', '$interval', 'dataService', function ($scope, $interval, dataService) {
 
+    // Data item names for labels and querying
+    var dataItem1Name = 'Average Oil Health';
+    var dataItem2Name = 'Minimum Oil Health';
+    var dataItem3Name = 'Average Set Point';
+    var dataItem4Name = 'Minimum Set Point';
+
+    // Hard-coded information for 
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';
     var afAttributeCategory = 'KPIs and Rollups';
@@ -15,12 +22,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
                 var dataArray = response.data.Items;
 
-                $scope.health = _.findWhere(dataArray, { Name:  'Average Oil Health' });
-                $scope.setpoint = _.findWhere(dataArray, { Name: 'Average Set Point' });
-                $scope.minhealth = _.findWhere(dataArray, { Name: 'Minimum Oil Health' });
-                $scope.minsetpoint = _.findWhere(dataArray, { Name: 'Minimum Set Point' });
-                $scope.maintenancedate = _.findWhere(dataArray, { Name: 'Nearest Maintenance Date' });
-
+                $scope.health = _.findWhere(dataArray, { Name: dataItem1Name });
+                $scope.minhealth = _.findWhere(dataArray, { Name: dataItem2Name });
+                $scope.setpoint = _.findWhere(dataArray, { Name: dataItem3Name });
+                $scope.minsetpoint = _.findWhere(dataArray, { Name: dataItem4Name });
                 updatecharts();
             });
 
@@ -29,12 +34,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
                     var dataArray = response.data.Items;
 
-                    $scope.health = _.findWhere(dataArray, { Name: 'Average Oil Health' });
-                    $scope.setpoint = _.findWhere(dataArray, { Name: 'Average Set Point' });
-                    $scope.minhealth = _.findWhere(dataArray, { Name: 'Minimum Oil Health' });
-                    $scope.minsetpoint = _.findWhere(dataArray, { Name: 'Minimum Set Point' });
-                    $scope.maintenancedate = _.findWhere(dataArray, { Name: 'Nearest Maintenance Date' });
-
+                    $scope.health = _.findWhere(dataArray, { Name: dataItem1Name });
+                    $scope.minhealth = _.findWhere(dataArray, { Name: dataItem2Name });
+                    $scope.setpoint = _.findWhere(dataArray, { Name: dataItem3Name });
+                    $scope.minsetpoint = _.findWhere(dataArray, { Name: dataItem4Name });
                     updatecharts();
                 });
 
@@ -74,16 +77,16 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         if (!crazyGaugeChart /*|| !healthChart || !setpointChart || !$scope.health*/ || !$scope.setpoint) return;
 
         // Update the even numbered bands with data
-        crazyGaugeChart.axes[0].bands[1].setEndValue($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[3].setEndValue($scope.minsetpoint.Value.Good ? $scope.minsetpoint.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[5].setEndValue($scope.health.Value.Good ? $scope.health.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[7].setEndValue($scope.minhealth.Value.Good ? $scope.minhealth.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[1].setEndValue($scope.health.Value.Good ? $scope.health.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[3].setEndValue($scope.minhealth.Value.Good ? $scope.minhealth.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[5].setEndValue($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[7].setEndValue($scope.minsetpoint.Value.Good ? $scope.minsetpoint.Value.Value : 0);
 
         // Update the labels
-        crazyGaugeChart.allLabels[0].text = "Average Set Point";
-        crazyGaugeChart.allLabels[1].text = "Minimum Set Point";
-        crazyGaugeChart.allLabels[2].text = "Average Oil Health";
-        crazyGaugeChart.allLabels[3].text = "Minimum Oil Health";
+        crazyGaugeChart.allLabels[0].text = dataItem1Name;
+        crazyGaugeChart.allLabels[1].text = dataItem2Name;
+        crazyGaugeChart.allLabels[2].text = dataItem3Name;
+        crazyGaugeChart.allLabels[3].text = dataItem4Name;
 
         //console.log(crazyGaugeChart.axes[0].bands);
         /*

@@ -71,11 +71,20 @@ angular.module('iotdemoApp')
                         break;
                     }
                     case "Ambient light level": {
+
                         value = ambientLightLevel;
+                        // If there is no light sensor, generate a random reading
+                        if (!window.DeviceLightEvent) {
+                            value = Math.random() * 300;
+                        }
                         break;
                     }
                     case "Proximity sensor reading": {
                         value = proximityValue;
+                        // If there is no proximity sensor, generate a random reading
+                        if (!window.DeviceProximityEvent) {
+                            value = Math.random() * 50;
+                        }
                         break;
                     }
                 }

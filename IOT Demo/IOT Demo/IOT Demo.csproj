@@ -128,10 +128,12 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Images\assetSensorImage.png" />
     <Content Include="Images\awe_by_buildAR.png" />
     <Content Include="Images\DUCK.TIF" />
     <Content Include="Images\earth.jpg" />
     <Content Include="Images\process_SDM-2.png" />
+    <Content Include="Images\pump.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

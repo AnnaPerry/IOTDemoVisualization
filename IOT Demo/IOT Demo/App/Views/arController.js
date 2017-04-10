@@ -6,6 +6,7 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
 
     $scope.init = function () {
 
+        // Initialize camera position for AR view; if AR is disabled, this is still fine--it can be left in place
         
         $scope.xRotation = 170;
         $scope.yRotation = 360;
@@ -14,8 +15,10 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
         $scope.xPosition = 20;
         $scope.yPosition = 0;
         $scope.zPosition = 0;
+        
 
-
+        // Launch AR when the page loads
+        /*
         window.awe.init({
             device_type: awe.AUTO_DETECT_DEVICE_TYPE,
             settings: {
@@ -55,17 +58,13 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
                           //document.getElementById("container").style.zIndex = 10;
 
                           awe.settings.update({ data: { value: 'ar' }, where: { id: 'view_mode' } })
-
-                          /*
-                            Binding a POI to a jsartoolkit marker is easy
-                            - First add the awe-jsartoolkit-dependencies.js plugin (see above)
-                            - Then select a marker image you'd like to use
-                            - Then add the matching number as a suffix for your POI id (e.g. _64)
-                            NOTE: See 64.png in this directory or https://github.com/kig/JSARToolKit/blob/master/demos/markers
-                            This automatically binds your POI to that marker id - easy!
-                          */
-
-
+                          
+                            //    Binding a POI to a jsartoolkit marker is easy
+                            //    - First add the awe-jsartoolkit-dependencies.js plugin (see above)
+                            //    - Then select a marker image you'd like to use
+                            //    - Then add the matching number as a suffix for your POI id (e.g. _64)
+                            //    NOTE: See 64.png in this directory or https://github.com/kig/JSARToolKit/blob/master/demos/markers
+                            //    This automatically binds your POI to that marker id - easy!
 
                           // real marker 
                           awe.pois.add({ id: 'jsartoolkit_marker_64', position: { x: 0, y: 0, z: 0 }, visible: true });
@@ -82,9 +81,6 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
                               texture: { path: 'Images/process_SDM-2.png' },
                               visible: true
                           }, { poi_id: 'jsartoolkit_marker_64' });
-
-
-
                           awe.plugins.view('render_effects').enable();
                           awe.plugins.view('jsartoolkit').enable();
                       },
@@ -98,50 +94,42 @@ app.controller('arController', ['$scope', '$stateParams', '$interval', 'dataServ
                 ]);
             }
         });
-
+        */
 
     };
 
 
+    // When this scope is closed, stop the recurring interval timer
     var stop;
     $scope.$on('$destroy', function () {
         stopInt();
     });
 
+    // Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
             $interval.cancel(stop);
             stop = undefined;
         };
-
     };
 
+    // The interval timer gets the target AF asset and calls the dataservice to send live data from this device's sensors to the PI System
+    $scope.sendDatatoPI = function () {
+        stop = $interval(function () {
+            var targetAsset = dataService.getTargetAsset($stateParams.assetName);
+            dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
+        }, 3000);
+    };
+
+    // Function that toggles AR on and off
     $scope.toggleAR = function () {
         if (awe) {
             //remove video stream, delete all projections
             //as a static picture
-
-
         } else {
             //start video strem
             //add projections
-
         }
     };
-
-    $scope.sendDatatoPI = function() {
-
-
-        stop = $interval(function () {
-            var targetAsset = dataService.getTargetAsset($stateParams.assetName);
-
-            dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
-
-        }, 3000);
-        
-
-
-    };
-
 
 }]);
