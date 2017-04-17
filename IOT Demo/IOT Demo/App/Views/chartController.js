@@ -57,7 +57,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         updateChartData();
     };
 
-
+    // Define an array of colors used for the chart traces
+    var chartColors = ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)", "rgb(60, 191, 60)", "rgb(197, 86, 13)","rgb(46, 32, 238)","rgb(165, 32, 86)" ];
 
     var chartDef = {
         "type": "serial",
@@ -110,7 +111,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         },
         "zoomOutButtonImage": "",
         "creditsPosition": "bottom-right",
-        "colors": ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)","rgb(156, 128, 110)","rgb(197, 86, 13)"]
+        "colors": chartColors
     };
 
 

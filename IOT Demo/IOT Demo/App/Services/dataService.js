@@ -2,8 +2,10 @@
 angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
- 
-      var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    // Here is where you can hard-code in the "type" of asset that is displayed--for example, phone, pump, etc.
+    var CONST_FRIENDLY_ASSET_NAME = "Phone";
+
+    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
     //var _httpsPIWebAPIUrl = "https://arcadia.osisoft.int/piwebapi/";
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
@@ -11,9 +13,13 @@ angular.module('iotdemoApp')
     var _startTime = '*-10m';
     var _endTime = '*';
     
+    // GLobal vars to hold the current acceleration and orientation and set point
     var currentXYZAccelerationReadings;
-
+    var currentAlphaBetaGammaOrientationReadings;
     var setPointValue = 50;
+    var batteryLevel = 100;
+    var proximityValue = 3; // in centimenters
+    var ambientLightLevel = 320; // in lux
 
     function getafdb() {
         var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
@@ -40,9 +46,6 @@ angular.module('iotdemoApp')
         // Define global variables to hold recent sensor readings
         var dataObj = [];
         var timestamp = "*";
-        var batteryLevel = 100;
-        var proximityValue = 3; // in centimenters
-        var ambientLightLevel = 320; // in lux
 
         $window.navigator.getBattery().then(function (battery) {
          
@@ -68,6 +71,18 @@ angular.module('iotdemoApp')
                     }
                     case "Z-axis acceleration": {
                         value = currentXYZAccelerationReadings.z;
+                        break;
+                    }
+                    case "Alpha-axis rotation": {
+                        value = currentAlphaBetaGammaOrientationReadings.alpha;
+                        break;
+                    }
+                    case "Beta-axis rotation": {
+                        value = currentAlphaBetaGammaOrientationReadings.beta;
+                        break;
+                    }
+                    case "Gamma-axis rotation": {
+                        value = currentAlphaBetaGammaOrientationReadings.gamma;
                         break;
                     }
                     case "Ambient light level": {
@@ -119,7 +134,35 @@ angular.module('iotdemoApp')
             }
         }, false);
 
-    };
+    } else {
+        currentXYZAccelerationReadings = {
+            x: Math.random(), // generate random data; used to simply set these to 0
+            y: Math.random(),
+            z: Math.random()
+        };
+    }
+
+    // Set up a handler to track orientation
+    if ($window.DeviceOrientationEvent) {
+        $window.addEventListener('deviceorientation', function (event) {
+            // Get the current orientation
+            if (!event.alpha) {
+                currentAlphaBetaGammaOrientationReadings = {
+                    alpha: Math.random() * 90, // generate random data
+                    beta:  Math.random() * 90,
+                    gamma: Math.random() * 90
+                };
+            } else {
+                currentAlphaBetaGammaOrientationReadings = event;
+            }
+        }, false);
+    } else {
+        currentAlphaBetaGammaOrientationReadings = {
+            alpha: Math.random() * 90, // generate random data
+            beta: Math.random() * 90,
+            gamma: Math.random() * 90
+        };
+    }
 
     // Also set up handlers for tracking proximity and light level
     if ($window.DeviceProximityEvent) {
@@ -127,12 +170,17 @@ angular.module('iotdemoApp')
             // If a proximity event is detected, save the new proximity value
             proximityValue = event.value;
         });
+    } else {
+        proximityValue = Math.random() * 50;
     }
+
     if ($window.DeviceLightEvent) {
         $window.addEventListener('devicelight', function (event) {
             // If a light change event is detected, save the new value
             ambientLightLevel = event.value;
         });
+    } else {
+        ambientLightLevel = Math.random() * 300;
     }
 
     
@@ -205,7 +253,8 @@ angular.module('iotdemoApp')
     },
     currentSetPoint: setPointValue
     ,
-    friendlyAssetName: 'Pump'
+    // Here is where you reference in the "type" of asset that is displayed--for example, phone, pump, etc.
+    friendlyAssetName: CONST_FRIENDLY_ASSET_NAME
    };
 
 

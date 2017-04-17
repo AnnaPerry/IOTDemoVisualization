@@ -943,6 +943,7 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\tether.js" />
     <Content Include="Scripts\underscore-min.js" />
     <Content Include="Scripts\version.json" />
     <None Include="Web.Debug.config">

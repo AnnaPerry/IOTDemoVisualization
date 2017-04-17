@@ -7,6 +7,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
     var dataItem3Name = 'Average Set Point';
     var dataItem4Name = 'Minimum Set Point';
 
+    // Comment these lines out if you want to pretend that the battery levels are actually fuel levels
+    dataItem1Name = 'Average Battery Level';
+    dataItem2Name = 'Minimum Battery Level';
+
     // Hard-coded information for 
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';

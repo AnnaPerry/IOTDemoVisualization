@@ -14,7 +14,7 @@ var app = angular.module('iotdemoApp', ['ui.router'])
                 })
                 .state({
                     name: 'help',
-                    url: '/help',
+                    url: '/gettingstarted',
                     templateUrl: 'App/Views/helpView.html'//,
                     //controller: 'helpController'
                 })
