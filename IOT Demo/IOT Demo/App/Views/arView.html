@@ -1,18 +1,13 @@
 ﻿<div ng-init="sendDatatoPI()" class="el-inherit-size">
-
     <canvas id="debugCanvas"></canvas>
-
-
-    <div id="container" ng-init="init()">
-        
-    </div>
+    <div id="container" ng-init="init()"></div>
     <div class="d-flex flex-row-reverse el-inherit-size">
-
 
         <div class="p-2 el-z">
             <ul style="list-style-type:none">
                 <li style="margin-bottom:10px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw"></span></a></li>
-                <li style="margin-bottom:10px;"><a ui-sref=".change"><span class="fa fa-pencil-square  fa-2x fa-fw"></span></a></li>
+                <!-- The ability to write to a set point has been removed -->
+                <!-- <li style="margin-bottom:10px;"><a ui-sref=".change"><span class="fa fa-pencil-square  fa-2x fa-fw"></span></a></li> -->
                 <li style="margin-bottom:10px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw"></span></a></li>
             </ul>
         </div>
@@ -27,6 +22,5 @@
             <img src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
         </div>
 
-        
     </div>
 </div>

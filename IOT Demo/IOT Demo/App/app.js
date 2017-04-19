@@ -46,13 +46,15 @@ var app = angular.module('iotdemoApp', ['ui.router'])
                     templateUrl: 'App/Views/tableView.html',
                     controller: 'tableController'
                 })
+        // Removed the ability to have the user write values back via a slider
+        /*
                 .state({
                     name: 'arview.change',
                     url: '/change/',
                     templateUrl: 'App/Views/outputView.html',
                     controller: 'outputController'
                 })
-
+        */
 
 }]);
 

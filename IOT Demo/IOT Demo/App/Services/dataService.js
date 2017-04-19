@@ -13,13 +13,13 @@ angular.module('iotdemoApp')
     var _startTime = '*-10m';
     var _endTime = '*';
     
-    // GLobal vars to hold the current acceleration and orientation and set point
+    // GLobal vars to hold the current acceleration and orientation and etc.
     var currentXYZAccelerationReadings;
     var currentAlphaBetaGammaOrientationReadings;
-    var setPointValue = 50;
     var batteryLevel = 100;
     var proximityValue = 3; // in centimenters
     var ambientLightLevel = 320; // in lux
+    //var setPointValue = 50; // The ability to write to a set point has been temporarily removed
 
     function getafdb() {
         var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
@@ -41,8 +41,6 @@ angular.module('iotdemoApp')
     };
 
     function sendCurrentReadings(attributes) {
-        //form data request
-
         // Define global variables to hold recent sensor readings
         var dataObj = [];
         var timestamp = "*";
@@ -53,10 +51,12 @@ angular.module('iotdemoApp')
 
                 var value;
                 switch (attribute.Name) {
+                    /*
                     case "Set point": {
                         value = setPointValue;
                         break;
                     }
+                    */
                     case "Bearing oil health": {
                         value = 100 * battery.level;
                         break;
@@ -110,10 +110,7 @@ angular.module('iotdemoApp')
             //console.log(dataObj);
             var url = _httpsPIWebAPIUrl + "/streamsets/value";
             $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
-
         });
-
-
     };
 
     // Define a function to get the battery level
@@ -183,11 +180,20 @@ angular.module('iotdemoApp')
         ambientLightLevel = Math.random() * 300;
     }
 
-    
-    // Reading or writing to the PI System -----------------------------------------------------------------------------
-
+    // Function accessible by the service
     return {
-
+        // Getting or setting the set point; no longer used!
+        /*
+        updateSetPoint: function (newvalue) {
+            setPointValue = newvalue;
+        },
+        currentSetPoint: setPointValue
+        ,
+        */
+        // Here is where you reference in the "type" of asset that is displayed--for example, phone, pump, etc.
+        friendlyAssetName: CONST_FRIENDLY_ASSET_NAME
+        ,
+        // Functions for sending PI Web API Queries
         getElements: function (elementTemplate) {
             if (_afdbwebid) {
                 var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
@@ -202,61 +208,49 @@ angular.module('iotdemoApp')
                     return $http.get(url).then(function (response) { return response.data.Items });
                 });
             }
-    },
-    getElementAttributes: function (elementTemplate,elementNameFilter,attributeCategory) {
-        if (_afdbwebid) {
-            var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
-
-            return $http.get(url).then(function (response) {
-                return response.data.Items;
-            });
-        } else {
-            return getafdb().then(function (webid) {
-                _afdbwebid = webid;
-
+        },
+        getElementAttributes: function (elementTemplate,elementNameFilter,attributeCategory) {
+            if (_afdbwebid) {
                 var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
 
                 return $http.get(url).then(function (response) {
                     return response.data.Items;
                 });
+            } else {
+                return getafdb().then(function (webid) {
+                    _afdbwebid = webid;
 
+                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
+
+                    return $http.get(url).then(function (response) {
+                        return response.data.Items;
+                    });
+
+                });
+            }
+        },
+        getSnapshots: function (attributes) {
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
+            return $http.get(url).then(function (response) {
+                return response;
+            });                
+        },
+        getPloValues : function (attributes) {
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
+            return $http.get(url).then(function (response) {
+                return response;
+            });        
+        },
+        getTargetAsset: function (assetName) {
+            var assetid = assetName.match(/[0-9]+/i)[0];
+            return 'Phone ' + assetid + ' Sensors';
+
+        },
+        sendDatatoPI: function (elementTemplate, targetAssetName) {
+
+            this.getElementAttributes(elementTemplate, targetAssetName).then(function (attributes) {
+                sendCurrentReadings(attributes);
             });
         }
-    },
-    getSnapshots: function (attributes) {
-        var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
-        return $http.get(url).then(function (response) {
-            return response;
-        });                
-    },
-    getPloValues : function (attributes) {
-        var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
-        return $http.get(url).then(function (response) {
-            return response;
-        });        
-    },
-    getTargetAsset: function (assetName) {
-        var assetid = assetName.match(/[0-9]+/i)[0];
-        return 'Phone ' + assetid + ' Sensors';
-
-    },
-    sendDatatoPI: function (elementTemplate, targetAssetName) {
-
-        this.getElementAttributes(elementTemplate, targetAssetName).then(function (attributes) {
-            sendCurrentReadings(attributes);
-        });
-        
-
-    },
-    updateSetPoint: function (newvalue) {
-        setPointValue = newvalue;
-    },
-    currentSetPoint: setPointValue
-    ,
-    // Here is where you reference in the "type" of asset that is displayed--for example, phone, pump, etc.
-    friendlyAssetName: CONST_FRIENDLY_ASSET_NAME
    };
-
-
-
 }]);

@@ -16,7 +16,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             $interval.cancel(stop);
             stop = undefined;
         };
-
     };
 
 
@@ -24,37 +23,20 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     var mostRecentDataFromPISystem;
 
     $scope.init = function () {
-   
-        dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-
+         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
-
             dataService.getPloValues(attributes).then(function (response) {
-
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
             });
 
             stop = $interval(function () {
                 dataService.getPloValues(attributes).then(function (response) {
-
                     mostRecentDataFromPISystem = response.data.Items;
                     updateChartData();
                 });
             }, 5000);
-
-            
         });
-
-
-    };
-
-
-    
-    $scope.toggle = function (selectedAttribute) {
-
-        selectedAttribute.Selected = !selectedAttribute.Selected;
-        updateChartData();
     };
 
     // Define an array of colors used for the chart traces
@@ -117,11 +99,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
     //Creates the custom chart!
     $scope.createChart = function() {
-
         // Create a chart in the DIV with the ID specified here
         chart = AmCharts.makeChart("MyChartDiv", chartDef);
-
-
     };
 
     function updateChartData() {
@@ -135,21 +114,20 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         if (!mostRecentDataFromPISystem || !chart) return;
 
         var chartDataArray = [];
-
         var graphArray = [];
 
         $scope.attributes.forEach(function (attribute) {
             if (!attribute.Selected) return;
 
-                var graph = {};
-                graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
-                graph['bullet'] = "round";
-                graph['bulletSize'] = 3;
-                graph['bulletAlpha'] = 0;
-                graph['valueField'] = attribute.Name + ' Value';
-                graph['title'] = attribute.Name;
+            var graph = {};
+            graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
+            graph['bullet'] = "round";
+            graph['bulletSize'] = 3;
+            graph['bulletAlpha'] = 0;
+            graph['valueField'] = attribute.Name + ' Value';
+            graph['title'] = attribute.Name;
 
-                graphArray.push(graph);
+            graphArray.push(graph);
 
 
             _.findWhere(mostRecentDataFromPISystem, { Name: attribute.Name }).Items.forEach(function (dataItem) {
@@ -162,7 +140,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
                 item[attribute.Name + ' UnitsAbbreviation'] = dataItem.UnitsAbbreviation;
                 item['AttributeNames'] = [attribute.Name];
 
-
                 var match;
                 if (chartDataArray) match = _.findWhere(chartDataArray, { FormattedTimestamp: item.FormattedTimestamp });
                 if (match && !_.contains(match.AttributeNames,item.AttributeNames[0])) {
@@ -172,14 +149,10 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
                 };
 
                 chartDataArray.push(item);
-
-
-
             });
 
         });
         //chartDataArray = _.sortBy(chartDataArray, 'FormattedTimestamp');
-
 
         chart.dataProvider = chartDataArray;
         chart.graphs = graphArray;
@@ -199,9 +172,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
                         // And if the graph used to be hidden, hide it again!
                         if (previousGraphArray[j].hidden) {
-
                             chart.hideGraph(chart.graphs[i]);
-
                         }
                         // Break out of the loop
                         j = previousGraphArray.length;

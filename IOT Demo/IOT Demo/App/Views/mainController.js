@@ -26,10 +26,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
                 var dataArray = response.data.Items;
 
-                $scope.health = _.findWhere(dataArray, { Name: dataItem1Name });
-                $scope.minhealth = _.findWhere(dataArray, { Name: dataItem2Name });
-                $scope.setpoint = _.findWhere(dataArray, { Name: dataItem3Name });
-                $scope.minsetpoint = _.findWhere(dataArray, { Name: dataItem4Name });
+                $scope.dataItem1 = _.findWhere(dataArray, { Name: dataItem1Name });
+                $scope.dataItem2 = _.findWhere(dataArray, { Name: dataItem2Name });
+                $scope.dataItem3 = _.findWhere(dataArray, { Name: dataItem3Name });
+                $scope.dataItem4 = _.findWhere(dataArray, { Name: dataItem4Name });
                 updatecharts();
             });
 
@@ -38,10 +38,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
                     var dataArray = response.data.Items;
 
-                    $scope.health = _.findWhere(dataArray, { Name: dataItem1Name });
-                    $scope.minhealth = _.findWhere(dataArray, { Name: dataItem2Name });
-                    $scope.setpoint = _.findWhere(dataArray, { Name: dataItem3Name });
-                    $scope.minsetpoint = _.findWhere(dataArray, { Name: dataItem4Name });
+                    $scope.dataItem1 = _.findWhere(dataArray, { Name: dataItem1Name });
+                    $scope.dataItem2 = _.findWhere(dataArray, { Name: dataItem2Name });
+                    $scope.dataItem3 = _.findWhere(dataArray, { Name: dataItem3Name });
+                    $scope.dataItem4 = _.findWhere(dataArray, { Name: dataItem4Name });
                     updatecharts();
                 });
 
@@ -63,50 +63,31 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
     };
 
-
-
-    
-    $scope.makeHealthChart = function () {
-        healthChart = AmCharts.makeChart("healthChartDiv", HealthChartDef);
-    };
-    $scope.makeSetPointChart = function () {
-        setpointChart = AmCharts.makeChart("setpointChartDiv", SetPointChartDef);
-    };
     $scope.makeCrazyGauge = function () {
         crazyGaugeChart = AmCharts.makeChart("crazyGaugeDiv", crazyGaugeChartDef);
     };
 
 
     var updatecharts = function () {
-        if (!crazyGaugeChart /*|| !healthChart || !setpointChart || !$scope.health*/ || !$scope.setpoint) return;
+        if (!crazyGaugeChart) return;
 
         // Update the even numbered bands with data
-        crazyGaugeChart.axes[0].bands[1].setEndValue($scope.health.Value.Good ? $scope.health.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[3].setEndValue($scope.minhealth.Value.Good ? $scope.minhealth.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[5].setEndValue($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[7].setEndValue($scope.minsetpoint.Value.Good ? $scope.minsetpoint.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[1].setEndValue($scope.dataItem1.Value.Good ? $scope.dataItem1.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[3].setEndValue($scope.dataItem2.Value.Good ? $scope.dataItem2.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[5].setEndValue($scope.dataItem3.Value.Good ? $scope.dataItem3.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[7].setEndValue($scope.dataItem4.Value.Good ? $scope.dataItem4.Value.Value : 0);
 
         // Update the labels
-        crazyGaugeChart.allLabels[0].text = dataItem1Name;
-        crazyGaugeChart.allLabels[1].text = dataItem2Name;
-        crazyGaugeChart.allLabels[2].text = dataItem3Name;
-        crazyGaugeChart.allLabels[3].text = dataItem4Name;
-
-        //console.log(crazyGaugeChart.axes[0].bands);
-        /*
-        healthChart.axes[0].bands[0].setEndValue($scope.health.Value.Good ? $scope.health.Value.Value : 0);
-        healthChart.axes[0].setBottomText(($scope.health.Value.Good ? $scope.health.Value.Value : 0) + "%");
-
-
-        setpointChart.axes[0].bands[0].setEndValue($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0);
-        setpointChart.axes[0].setBottomText(($scope.setpoint.Value.Good ? $scope.setpoint.Value.Value : 0) + "%");
-        */
+        crazyGaugeChart.allLabels[0].text = dataItem1Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue;
+        crazyGaugeChart.allLabels[1].text = dataItem2Name + ": " + crazyGaugeChart.axes[0].bands[3].endValue;
+        crazyGaugeChart.allLabels[2].text = dataItem3Name + ": " + crazyGaugeChart.axes[0].bands[5].endValue;
+        crazyGaugeChart.allLabels[3].text = dataItem4Name + ": " + crazyGaugeChart.axes[0].bands[7].endValue;
 
         // Loop through all the chart bands as well, and update those based on each data item
-        crazyGaugeChart.axes[0].bands[1].balloonText = crazyGaugeChart.allLabels[0].text + ": " + crazyGaugeChart.axes[0].bands[1].endValue;
-        crazyGaugeChart.axes[0].bands[3].balloonText = crazyGaugeChart.allLabels[1].text + ": " + crazyGaugeChart.axes[0].bands[3].endValue;
-        crazyGaugeChart.axes[0].bands[5].balloonText = crazyGaugeChart.allLabels[2].text + ": " + crazyGaugeChart.axes[0].bands[5].endValue;
-        crazyGaugeChart.axes[0].bands[7].balloonText = crazyGaugeChart.allLabels[3].text + ": " + crazyGaugeChart.axes[0].bands[7].endValue;
+        crazyGaugeChart.axes[0].bands[1].balloonText = crazyGaugeChart.allLabels[0].text;
+        crazyGaugeChart.axes[0].bands[3].balloonText = crazyGaugeChart.allLabels[1].text;
+        crazyGaugeChart.axes[0].bands[5].balloonText = crazyGaugeChart.allLabels[2].text;
+        crazyGaugeChart.axes[0].bands[7].balloonText = crazyGaugeChart.allLabels[3].text;
 
         // Update the chart div height
         var newHeightString = ($("#crazyGaugeDiv").parent().innerHeight() - 2) + "px";
@@ -117,46 +98,6 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
     };
 
-
-    
-    var HealthChartDef = {
-        "type": "gauge",
-        "theme": "light",
-        "axes": [{
-            "axisThickness": 1,
-            "axisAlpha": 0.2,
-            "tickAlpha": 0.2,
-            "valueInterval": 100,
-            "bands": [{
-                "color": "green",
-                "endValue": 0,
-                "innerRadius": "70%",
-                "startValue": 0
-            }],
-            "bottomText": "---",
-            "endValue": 100
-        }]
-
-    };
-    var SetPointChartDef = {
-           "type": "gauge",
-           "theme": "light",
-           "axes": [{
-               "axisThickness": 1,
-               "axisAlpha": 0.2,
-               "tickAlpha": 0.2,
-               "valueInterval": 100,
-               "bands": [{
-                   "color": "green",
-                   "endValue": 0,
-                   "innerRadius": "70%",
-                   "startValue": 0
-               }],
-               "bottomText": "---",
-               "endValue": 100
-           }]
-
-    };
     var chartColors = ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)", "rgb(156, 128, 110)", "rgb(197, 86, 13)"];
     var chartAxisMax = 100;
     var crazyGaugeChartDef = {
@@ -254,7 +195,4 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
             "align": "right"
         }]
     };
-
-
-
 }]);
