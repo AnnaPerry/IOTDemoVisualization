@@ -1,16 +1,6 @@
 ﻿'use strict';
 app.controller('mainController', ['$scope', '$interval', 'dataService', function ($scope, $interval, dataService) {
 
-    // Data item names for labels and querying
-    var dataItem1Name = 'Average Oil Health';
-    var dataItem2Name = 'Minimum Oil Health';
-    var dataItem3Name = 'Average Set Point';
-    var dataItem4Name = 'Minimum Set Point';
-
-    // Comment these lines out if you want to pretend that the battery levels are actually fuel levels
-    dataItem1Name = 'Average Battery Level';
-    dataItem2Name = 'Minimum Battery Level';
-
     // Hard-coded information for 
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';
@@ -21,27 +11,26 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
     $scope.init = function () {
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-
             dataService.getSnapshots(attributes).then(function (response) {
-
                 var dataArray = response.data.Items;
-
-                $scope.dataItem1 = _.findWhere(dataArray, { Name: dataItem1Name });
-                $scope.dataItem2 = _.findWhere(dataArray, { Name: dataItem2Name });
-                $scope.dataItem3 = _.findWhere(dataArray, { Name: dataItem3Name });
-                $scope.dataItem4 = _.findWhere(dataArray, { Name: dataItem4Name });
+                // Get the first four data items!
+                $scope.dataItem1 = dataArray[0];
+                $scope.dataItem2 = dataArray[1];
+                $scope.dataItem3 = dataArray[2];
+                $scope.dataItem4 = dataArray[3];
+                // Update the chart
                 updatecharts();
             });
 
             stop = $interval(function () {
                 dataService.getSnapshots(attributes).then(function (response) {
-
                     var dataArray = response.data.Items;
-
-                    $scope.dataItem1 = _.findWhere(dataArray, { Name: dataItem1Name });
-                    $scope.dataItem2 = _.findWhere(dataArray, { Name: dataItem2Name });
-                    $scope.dataItem3 = _.findWhere(dataArray, { Name: dataItem3Name });
-                    $scope.dataItem4 = _.findWhere(dataArray, { Name: dataItem4Name });
+                    // Get the first four data items!
+                    $scope.dataItem1 = dataArray[0];
+                    $scope.dataItem2 = dataArray[1];
+                    $scope.dataItem3 = dataArray[2];
+                    $scope.dataItem4 = dataArray[3];
+                    // Update the chart
                     updatecharts();
                 });
 
@@ -78,10 +67,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         crazyGaugeChart.axes[0].bands[7].setEndValue($scope.dataItem4.Value.Good ? $scope.dataItem4.Value.Value : 0);
 
         // Update the labels
-        crazyGaugeChart.allLabels[0].text = dataItem1Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue;
-        crazyGaugeChart.allLabels[1].text = dataItem2Name + ": " + crazyGaugeChart.axes[0].bands[3].endValue;
-        crazyGaugeChart.allLabels[2].text = dataItem3Name + ": " + crazyGaugeChart.axes[0].bands[5].endValue;
-        crazyGaugeChart.allLabels[3].text = dataItem4Name + ": " + crazyGaugeChart.axes[0].bands[7].endValue;
+        crazyGaugeChart.allLabels[0].text = $scope.dataItem1.Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue;
+        crazyGaugeChart.allLabels[1].text = $scope.dataItem2.Name + ": " + crazyGaugeChart.axes[0].bands[3].endValue;
+        crazyGaugeChart.allLabels[2].text = $scope.dataItem3.Name + ": " + crazyGaugeChart.axes[0].bands[5].endValue;
+        crazyGaugeChart.allLabels[3].text = $scope.dataItem4.Name + ": " + crazyGaugeChart.axes[0].bands[7].endValue;
 
         // Loop through all the chart bands as well, and update those based on each data item
         crazyGaugeChart.axes[0].bands[1].balloonText = crazyGaugeChart.allLabels[0].text;
