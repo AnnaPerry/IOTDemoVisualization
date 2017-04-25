@@ -1993,7 +1993,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2002,7 +2002,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2011,7 +2011,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2020,7 +2020,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2029,7 +2029,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2038,7 +2038,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2048,7 +2048,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2058,7 +2058,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2067,7 +2067,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2076,7 +2076,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\%Server%\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
       </AFAttributeTemplate>
     </AFElementTemplate>
@@ -3345,70 +3345,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-      </AFElement>
-        <Name>Phone Sensors</Name>
-        <Template>Phone Sensors Template</Template>
-        <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Ambient light level</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Bearing oil health</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Set point</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>X-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.X-axis acceleration</ConfigString>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Y-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Y-axis acceleration</ConfigString>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Z-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Z-axis acceleration</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>

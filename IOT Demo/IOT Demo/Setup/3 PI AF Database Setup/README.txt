@@ -6,6 +6,8 @@ After you've created this new, empty PI AF database, you will eventually import 
 
 Finally, in PI System Explorer, in your new, empty PI AF Database named "Asset Framework DB 1", import in the .xml file by clicking File > Import from File, then in the "File" field, select the .xml file that you just edited and saved.  Leave all of the default check-boxes as they are, then click "OK".  
 
+Note: during the import, you may notice an error while processing the Unit-of-Measure Database, stating that a particular unit of measure already exists in the Unit of Measure Database.  These messages can be safely ignored; simply click "Continue" to bypass them and proceed with the import.
+
 Once the import is complete, the last step for you to do is to create all of the needed PI Points; in your new PI AF Database, right-click on the "Elements" root element, and click "Create or Update Data Reference".
 
 As the last step, set up an Alias for your PI AF Server: add the alias "localhost".  To do this, in PI System Explorer, click File > Server Properties, then under "Aliases", click the yellow "Add Alias" button, and enter in the new alias name
