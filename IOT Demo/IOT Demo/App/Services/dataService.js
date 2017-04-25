@@ -2,11 +2,12 @@
 angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
+    var SERVER_HOST_NAME = "pi4egdemo1";
+
     // Here is where you can hard-code in the "type" of asset that is displayed--for example, phone, pump, etc.
     var CONST_FRIENDLY_ASSET_NAME = "Phone";
 
-    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
-    //var _httpsPIWebAPIUrl = "https://arcadia.osisoft.int/piwebapi/";
+    var _httpsPIWebAPIUrl = "https://" + SERVER_HOST_NAME + "/piwebapi/"; //"https://pi4egdemo1/piwebapi/"; "https://arcadia.osisoft.int/piwebapi/";
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
     var _afdbwebid = '';

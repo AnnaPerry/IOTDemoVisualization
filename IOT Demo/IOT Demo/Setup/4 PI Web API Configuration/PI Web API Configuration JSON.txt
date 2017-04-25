@@ -1,0 +1,28 @@
+{
+  "AuthenticationMethods": [
+    "Anonymous"
+  ],
+  "CorsExposedHeaders": "Allow,Content-Encoding,Content-Length,Date,Location",
+  "CorsHeaders": "*",
+  "CorsMethods": "*",
+  "CorsOrigins": "*",
+  "CorsSupportsCredentials": true,
+  "DisableWrites": false,
+  "IgnoreCacheControlForBulkRequests": true,
+  "SearchBoosts": [
+    1.0,
+    0.8,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5
+  ],
+  "SearchPointAttributes": [
+    "pointsource",
+    "instrumenttag",
+    "location1",
+    "exdesc"
+  ],
+  "SearchScanInterval": 180
+}

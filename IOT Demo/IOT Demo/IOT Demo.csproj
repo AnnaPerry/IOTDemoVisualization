@@ -973,6 +973,15 @@
     <Content Include="Scripts\StereoEffect.js" />
     <Content Include="Scripts\three.js" />
     <Content Include="Scripts\VREffect.js" />
+    <Content Include="Setup\1 Operating System Configuration\README.txt" />
+    <Content Include="Setup\1 Operating System Configuration\Required Roles and Features.txt" />
+    <Content Include="Setup\2 PI System Installation\README.txt" />
+    <Content Include="Setup\2 PI System Installation\Required PI System Software List.txt" />
+    <Content Include="Setup\3 PI AF Database Setup\Asset Framework DB 1.xml" />
+    <Content Include="Setup\3 PI AF Database Setup\README.txt" />
+    <Content Include="Setup\4 PI Web API Configuration\PI Web API Configuration JSON.txt" />
+    <Content Include="Setup\4 PI Web API Configuration\README.txt" />
+    <Content Include="Setup\README.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
