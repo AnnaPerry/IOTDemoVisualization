@@ -8,7 +8,9 @@ Finally, in PI System Explorer, in your new, empty PI AF Database named "Asset F
 
 Note: during the import, you may notice an error while processing the Unit-of-Measure Database, stating that a particular unit of measure already exists in the Unit of Measure Database.  These messages can be safely ignored; simply click "Continue" to bypass them and proceed with the import.
 
-Once the import is complete, the last step for you to do is to create all of the needed PI Points; in your new PI AF Database, right-click on the "Elements" root element, and click "Create or Update Data Reference".
+Once the import is complete, the next step for you to do is to create all of the needed PI Points; in your new PI AF Database, right-click on the "Elements" root element, and click "Create or Update Data Reference".
+
+The final step is to start all PI AF Analyses that are running on thsi gateway; in PI System Explorer, under Management, select and start all Analyses.
 
 As the last step, set up an Alias for your PI AF Server: add the alias "localhost".  To do this, in PI System Explorer, click File > Server Properties, then under "Aliases", click the yellow "Add Alias" button, and enter in the new alias name
 
