@@ -1,9 +1,4 @@
-﻿* {
-    margin: 0;
-    padding: 0;
-}
-
-#container {
+﻿#container {
     position: absolute;
     padding:0;
     height:100%;
@@ -24,11 +19,6 @@
     transform: translate(-50%, -50%);
 }
 
-h2 {
-    color:dodgerblue;
-    font-weight:bold;
-}
-
 strong {
     color:dimgray;
     font-weight:bold;
@@ -44,11 +34,6 @@ html, body {
     z-index:11;
 }
 
-/*.card-deck {
-  display: inline-flex;
-  flex-wrap: nowrap;
-}*/
-
 .maincontainer {
     height:inherit;
     width:inherit;
@@ -58,10 +43,6 @@ html, body {
 .el-inherit-size {
     height:inherit;
     width:inherit;
-}
-
-.card-block {
-    padding: 0 0 0 0;
 }
 
 .center-horizontal {
@@ -82,7 +63,6 @@ html, body {
     background-color:darkgray;
     height: 100%;
     overflow:auto;
-  
 }
 
 .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {

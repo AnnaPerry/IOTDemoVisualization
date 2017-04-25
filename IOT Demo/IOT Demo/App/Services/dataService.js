@@ -65,42 +65,42 @@ angular.module('iotdemoApp')
                     }
                     case "X-axis acceleration": {
                         value = currentXYZAccelerationReadings.x;
-                        if (!window.DeviceMotionEvent) {
+                        if (value == null) {
                             value = Math.random();
                         }
                         break;
                     }
                     case "Y-axis acceleration": {
                         value = currentXYZAccelerationReadings.y;
-                        if (!window.DeviceMotionEvent) {
+                        if (value == null) {
                             value = Math.random();
                         }
                         break;
                     }
                     case "Z-axis acceleration": {
                         value = currentXYZAccelerationReadings.z;
-                        if (!window.DeviceMotionEvent) {
+                        if (value == null) {
                             value = Math.random();
                         }
                         break;
                     }
                     case "Alpha-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.alpha;
-                        if (!window.DeviceOrientationEvent) {
+                        if (value == null) {
                             value = Math.random() * 90;
                         }
                         break;
                     }
                     case "Beta-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.beta;
-                        if (!window.DeviceOrientationEvent) {
+                        if (value == null) {
                             value = Math.random() * 90;
                         }
                         break;
                     }
                     case "Gamma-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.gamma;
-                        if (!window.DeviceOrientationEvent) {
+                        if (value == null) {
                             value = Math.random() * 90;
                         }
                         break;
