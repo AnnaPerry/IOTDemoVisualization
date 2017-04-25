@@ -3,3 +3,5 @@ This application requires that the target server be configured with a specific s
 To see the list of currently installed features, from an elevated (Administrator) PowerShell prompt, run the command
 
 	Get-WindowsOptionalFeature -Online | ? state -eq 'enabled' | select featurename | sort -Descending
+
+NOTE: this app has been developed to run on Windows 10 and Windows 10 IoT; it has also been observed to run successfully on Windows Server 2012 R2 and higher.
