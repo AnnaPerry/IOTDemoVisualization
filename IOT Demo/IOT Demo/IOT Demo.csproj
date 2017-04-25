@@ -130,6 +130,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Images\assetSensorImage.png" />
+    <Content Include="Images\assetSensorImage_v2.png" />
     <Content Include="Images\awe_by_buildAR.png" />
     <Content Include="Images\DUCK.TIF" />
     <Content Include="Images\earth.jpg" />

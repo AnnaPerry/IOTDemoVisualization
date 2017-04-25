@@ -12,6 +12,9 @@ angular.module('iotdemoApp')
     var _startTime = '*-10m';
     var _endTime = '*';
     
+    // Global variable to detect if an incompatible device is used
+    var modalTriggeredAlready = false;
+
     // GLobal vars to hold the current acceleration and orientation and etc.
     var currentXYZAccelerationReadings;
     var currentAlphaBetaGammaOrientationReadings;
@@ -62,26 +65,44 @@ angular.module('iotdemoApp')
                     }
                     case "X-axis acceleration": {
                         value = currentXYZAccelerationReadings.x;
+                        if (!window.DeviceMotionEvent) {
+                            value = Math.random();
+                        }
                         break;
                     }
                     case "Y-axis acceleration": {
                         value = currentXYZAccelerationReadings.y;
+                        if (!window.DeviceMotionEvent) {
+                            value = Math.random();
+                        }
                         break;
                     }
                     case "Z-axis acceleration": {
                         value = currentXYZAccelerationReadings.z;
+                        if (!window.DeviceMotionEvent) {
+                            value = Math.random();
+                        }
                         break;
                     }
                     case "Alpha-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.alpha;
+                        if (!window.DeviceOrientationEvent) {
+                            value = Math.random() * 90;
+                        }
                         break;
                     }
                     case "Beta-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.beta;
+                        if (!window.DeviceOrientationEvent) {
+                            value = Math.random() * 90;
+                        }
                         break;
                     }
                     case "Gamma-axis rotation": {
                         value = currentAlphaBetaGammaOrientationReadings.gamma;
+                        if (!window.DeviceOrientationEvent) {
+                            value = Math.random() * 90;
+                        }
                         break;
                     }
                     case "Ambient light level": {
@@ -113,51 +134,50 @@ angular.module('iotdemoApp')
     };
 
     // Define a function to get the battery level
-    function getBattery() { return navigator.getBattery().then(function (battery) { return 100 * battery.level }); }
+    function getBattery() {
+        return navigator.getBattery().then(function (battery) {
+            return 100 * battery.level;
+        });
+    }
 
     // Set up a handler to track motion
     if ($window.DeviceMotionEvent) {
         $window.addEventListener('devicemotion', function (event) {
             // Get the current acceleration values in 3 axes (measured in meters per second squared)
-            if (!event.acceleration.x) {
-                currentXYZAccelerationReadings = {
-                    x: Math.random(), // generate random data; used to simply set these to 0
-                    y: Math.random(),
-                    z: Math.random()
-                };
-            } else {
-                currentXYZAccelerationReadings = event.acceleration;
-            }
+            currentXYZAccelerationReadings = event.acceleration;
         }, false);
-
     } else {
+        // Generate simulated data
         currentXYZAccelerationReadings = {
-            x: Math.random(), // generate random data; used to simply set these to 0
+            x: Math.random(), 
             y: Math.random(),
             z: Math.random()
         };
+        // Fire a notification if it hasn't been done yet
+        if (!modalTriggeredAlready) {
+            modalTriggeredAlready = true;
+            $("#myModal").modal();
+        }
     }
 
     // Set up a handler to track orientation
     if ($window.DeviceOrientationEvent) {
         $window.addEventListener('deviceorientation', function (event) {
             // Get the current orientation
-            if (!event.alpha) {
-                currentAlphaBetaGammaOrientationReadings = {
-                    alpha: Math.random() * 90, // generate random data
-                    beta:  Math.random() * 90,
-                    gamma: Math.random() * 90
-                };
-            } else {
-                currentAlphaBetaGammaOrientationReadings = event;
-            }
+            currentAlphaBetaGammaOrientationReadings = event;
         }, false);
     } else {
+        // Generate simulated data
         currentAlphaBetaGammaOrientationReadings = {
-            alpha: Math.random() * 90, // generate random data
+            alpha: Math.random() * 90, 
             beta: Math.random() * 90,
             gamma: Math.random() * 90
         };
+        // Fire a notification if it hasn't been done yet
+        if (!modalTriggeredAlready) {
+            modalTriggeredAlready = true;
+            $("#myModal").modal();
+        }
     }
 
     // Also set up handlers for tracking proximity and light level
@@ -167,7 +187,13 @@ angular.module('iotdemoApp')
             proximityValue = event.value;
         });
     } else {
+        // Generate simulated data
         proximityValue = Math.random() * 50;
+        // Fire a notification if it hasn't been done yet
+        if (!modalTriggeredAlready) {
+            modalTriggeredAlready = true;
+            $("#myModal").modal();
+        }
     }
 
     if ($window.DeviceLightEvent) {
@@ -176,7 +202,13 @@ angular.module('iotdemoApp')
             ambientLightLevel = event.value;
         });
     } else {
+        // Generate simulated data
         ambientLightLevel = Math.random() * 300;
+        // Fire a notification if it hasn't been done yet
+        if (!modalTriggeredAlready) {
+            modalTriggeredAlready = true;
+            $("#myModal").modal();
+        }
     }
 
     // Function accessible by the service
