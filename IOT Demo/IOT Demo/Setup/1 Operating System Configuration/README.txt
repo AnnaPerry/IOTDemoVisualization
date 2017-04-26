@@ -6,4 +6,18 @@ To see the list of currently installed features, from an elevated (Administrator
 
 NOTE: this app has been developed to run on Windows 10 and Windows 10 IoT; it has also been observed to run successfully on Windows Server 2012 R2 and higher.
 
-Once the required components have been installed, in the Windows IIS Manager application, create a new Web Site, and copy and paste all of the files for this application into the folder for that new Web Site.  Additionally, when configuring that Web Site in IIS Manager, make sure that it is configured with an HTTPS web binding, NOT a mere HTTP web binding, as the code used by this application requires running on an HTTPS site in order to properly read local sensor data values.
+Next, in Windows Control Panel, under Firewall, add a firewall exception (across all regions and domains) for TCP port 82.
+
+Once the required components have been installed, under C:\inetpub, create a new folder called "WebApp" in C:\inetpub to hold the files for this application.
+
+Into that new folder, C:\inetpub\WebApp, copy and paste all files within the GitHub IOT Demo folder (https://github.com/AnnaPerry/IOTDemoVisualization/tree/master/IOT%20Demo/IOT%20Demo).
+
+As the next to last step, in the Windows IIS Manager application, create a new Web Site named "WebApp" (see https://support.microsoft.com/en-us/help/323972/how-to-set-up-your-first-iis-web-site); in the "Add Website" dialog:
+
+	Set the "Site name" to be "WebApp"
+	
+	Under "Content Directory", select the path to the folder that you just created, C:\inetpub\WebApp, as the folder that contains this Web Site's documents.
+
+	Under the "Binding" section, select the binding type of "https", select the Port to be 82, then below, as the SSL Certificate, select the "OSIsoft Self-Signed Certificate."
+
+	Leave all other options at their defaults, then click "OK" to create your site!

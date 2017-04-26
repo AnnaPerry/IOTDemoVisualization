@@ -19,3 +19,31 @@ https://techsupport.osisoft.com/Downloads/File/c056db9e-5d15-4052-af69-15f7e5782
 For other regions, see "https://techsupport.osisoft.com/Downloads/All-Downloads/PI-Server/PI-Data-Archive", and look under the "Supporting Files" section.
 Special Instructions:
 After downloading the correct .ZIP file, extract it, and select within it the .tz file that applies to your time zone or region.  Rename that file to localhost.tz, then copy it and pase it into the PI\dat directory on your PI Server, which is typically C:\Program Files\PI\dat.
+
+Final configuration steps:
+When finished with all of these steps, create an instance of the PI Interface for Performance Monitoring:
+
+	Open the PI Interface Configuration Utility and under "Interface", click "New Windows Interface from BAT File".
+	In the file picker that appears, navigate to the directory "C:\Program Files (x86)\PIPC\Interfaces\PIPerfMon".
+	Select "PIPerfMon.bat_new", then click "Open".
+	In the "Select Host PI Data server/collective", in the drop-down under step 2, select the only option that appears (it should be the name of your new PI Server), then click OK.
+	On the left-hand menu, click "Service", then click "Create" on the top-right.
+	When next prompted whether you'd like to open the pisrvsitestart and pisrvsitestop files, click "No".
+	
+	Leave the PI Interface Configuration Utility open, and next add the service account for this new Interface (which should be NT-Service\PIPerfmon1) to the "Performance Monitor Users" Windows Group:
+			
+		Open Computer Management (or on a server, Server Management).
+		Within Computer Management, open "Local Users and Groups", and open the Performance Monitor Users group.
+		Click "Add" to add a new member to this group.
+		Under the object name field, enter in the service name for your interface, which should be nt service\piperfmon1 (make sure the under "Location" you are set to your local computer, and not a domain location).
+		Click "Check Names", and if no errors appear, then click OK to add this member, then OK again to close the group.
+	
+	Now that the service account has been added to the correct group, close Computer Management.
+	Back in the PI Interface Configuration Utility, click the green triangle icon on the menu bar to start your PI Interface.
+	Once the interface starts, close the Interface COnfiguration Utility.
+
+Congratulations! Your PI Server installation is complete!
+	
+	
+	
+	
