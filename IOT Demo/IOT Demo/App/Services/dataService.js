@@ -18,8 +18,12 @@ angular.module('iotdemoApp')
     var modalTriggeredAlready = false;
 
     // GLobal vars to hold the current acceleration and orientation and etc.
-    var currentXYZAccelerationReadings;             // In meters per second squared
-    var currentAlphaBetaGammaOrientationReadings;   // In degrees
+    var currentxAccelerationReading;                // In meters per second squared
+    var currentyAccelerationReading;                // In meters per second squared
+    var currentzAccelerationReading;                // In meters per second squared
+    var currentAlphaOrientationReading;             // In degrees
+    var currentBetaOrientationReading;              // In degrees
+    var currentGammaOrientationReading;             // In degrees
     var batteryLevel;                               // A percentage
     var proximityValue;                             // in centimenters
     var ambientLightLevel;                          // in lux
@@ -43,42 +47,42 @@ angular.module('iotdemoApp')
                         break;
                     }
                     case "X-axis acceleration": {
-                        value = currentXYZAccelerationReadings.x;
+                        value = currentxAccelerationReading;
                         if (value == null) {
-                            value = Math.random();
+                            value = Math.random() * 10;
                         }
                         break;
                     }
                     case "Y-axis acceleration": {
-                        value = currentXYZAccelerationReadings.y;
+                        value = currentyAccelerationReading;
                         if (value == null) {
-                            value = Math.random();
+                            value = Math.random() * 10;
                         }
                         break;
                     }
                     case "Z-axis acceleration": {
-                        value = currentXYZAccelerationReadings.z;
+                        value = currentzAccelerationReading;
                         if (value == null) {
-                            value = Math.random();
+                            value = Math.random() * 10;
                         }
                         break;
                     }
                     case "Alpha-axis rotation": {
-                        value = currentAlphaBetaGammaOrientationReadings.alpha;
+                        value = currentAlphaOrientationReading;
                         if (value == null) {
                             value = Math.random() * 90;
                         }
                         break;
                     }
                     case "Beta-axis rotation": {
-                        value = currentAlphaBetaGammaOrientationReadings.beta;
+                        value = currentBetaOrientationReading;
                         if (value == null) {
                             value = Math.random() * 90;
                         }
                         break;
                     }
                     case "Gamma-axis rotation": {
-                        value = currentAlphaBetaGammaOrientationReadings.gamma;
+                        value = currentGammaOrientationReading;
                         if (value == null) {
                             value = Math.random() * 90;
                         }
@@ -127,7 +131,9 @@ angular.module('iotdemoApp')
     if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', function (event) {
             // Get the current acceleration values in 3 axes (measured in meters per second squared)
-            currentXYZAccelerationReadings = event.acceleration;
+            currentxAccelerationReading = event.acceleration.x;
+            currentyAccelerationReading = event.acceleration.y;
+            currentzAccelerationReading = event.acceleration.z;
             console.log("Event listener added for this type of sensor data: " + "acceleration");
         }, false);
     } else {
@@ -138,7 +144,9 @@ angular.module('iotdemoApp')
     if (window.DeviceOrientationEvent) {
         window.addEventListener('deviceorientation', function (event) {
             // Get the current orientation
-            currentAlphaBetaGammaOrientationReadings = event;
+            currentAlphaOrientationReading = event.alpha;
+            currentBetaOrientationReading = event.beta;
+            currentGammaOrientationReading = event.gamma;
             console.log("Event listener added for this type of sensor data: " + "orientation");
         }, false);
     } else {
