@@ -14,6 +14,4 @@ app.controller('assetsController', ['$scope', '$http', '$interval', 'dataService
         });
     }; 
 
-
-
 }]);

@@ -96,25 +96,17 @@
   <ItemGroup>
     <Content Include="amcharts\amcharts.js" />
     <Content Include="amcharts\gauge.js" />
-    <Content Include="amcharts\images\dragIconRoundBig.svg" />
     <Content Include="amcharts\serial.js" />
-    <Content Include="amcharts\themes\black.js" />
-    <Content Include="amcharts\themes\chalk.js" />
-    <Content Include="amcharts\themes\dark.js" />
-    <Content Include="amcharts\themes\light.js" />
-    <Content Include="amcharts\themes\patterns.js" />
     <Content Include="App\app.js" />
     <Content Include="App\Services\dataService.js" />
     <Content Include="App\app.css" />
-    <Content Include="App\Views\arView.html" />
-    <Content Include="App\Views\arController.js" />
+    <Content Include="App\Views\chartAndTableWrapperView.html" />
+    <Content Include="App\Views\chartAndTableWrapperController.js" />
     <Content Include="App\Views\assetsController.js" />
     <Content Include="App\Views\assetsView.html" />
-    <Content Include="App\Views\helpView.html" />
+    <Content Include="App\Views\gettingStartedView.html" />
     <Content Include="App\Views\mainController.js" />
     <Content Include="App\Views\mainView.html" />
-    <Content Include="App\Views\outputController.js" />
-    <Content Include="App\Views\outputView.html" />
     <Content Include="App\Views\tableController.js" />
     <Content Include="App\Views\tableView.html" />
     <Content Include="App\Views\chartController.js" />
@@ -131,28 +123,11 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Images\assetSensorImage.png" />
     <Content Include="Images\assetSensorImage_v2.png" />
-    <Content Include="Images\awe_by_buildAR.png" />
-    <Content Include="Images\DUCK.TIF" />
-    <Content Include="Images\earth.jpg" />
     <Content Include="Images\GatewayArchitectureSVG.svg" />
-    <Content Include="Images\process_SDM-2.png" />
-    <Content Include="Images\pump.jpg" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\DUCK.MTL" />
-    <Content Include="Images\DUCK.OBJ" />
-    <Content Include="Images\windstation.mtl" />
-    <Content Include="Images\windstation.obj" />
-    <Content Include="Images\Giraffe.dae" />
-    <Content Include="Images\Giraffe.mtl" />
-    <Content Include="Images\Giraffe.obj" />
-    <Content Include="Images\Giraffe_D.tga" />
-    <Content Include="Images\Giraffe_N.tga" />
-    <Content Include="Images\Giraffe_S.tga" />
-    <Content Include="Images\Pump.mtl" />
-    <Content Include="Images\Pump.obj" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -959,23 +934,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="Scripts\awe-jsartoolkit-dependencies.js" />
-    <Content Include="Scripts\awe-loader-min.js" />
-    <Content Include="Scripts\awe-loader.js" />
-    <Content Include="Scripts\awe-standard-dependencies.js" />
-    <Content Include="Scripts\awe-standard-object_clicked.js" />
-    <Content Include="Scripts\awe-standard-object_clicked_or_focused.js" />
-    <Content Include="Scripts\awe-standard-object_focused.js" />
-    <Content Include="Scripts\awe-standard.js" />
-    <Content Include="Scripts\awe-v8.js" />
-    <Content Include="Scripts\awe.leap_ar.js" />
-    <Content Include="Scripts\awe.marker_ar.js" />
-    <Content Include="Scripts\awe.rendering_effects.js" />
     <Content Include="Scripts\leap.min-0.3.0.js" />
     <Content Include="Scripts\moment.js" />
-    <Content Include="Scripts\StereoEffect.js" />
-    <Content Include="Scripts\three.js" />
-    <Content Include="Scripts\VREffect.js" />
     <Content Include="Setup\1 Operating System Configuration\README.txt" />
     <Content Include="Setup\1 Operating System Configuration\Required Roles and Features.txt" />
     <Content Include="Setup\2 PI System Installation\README.txt" />

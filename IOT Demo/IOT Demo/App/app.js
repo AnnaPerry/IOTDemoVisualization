@@ -5,56 +5,45 @@ var app = angular.module('iotdemoApp', ['ui.router'])
     $locationProvider.hashPrefix('');
     
     $urlRouterProvider.otherwise('/');
+
     $stateProvider
-                .state({
-                    name: 'home',
-                    url: '/',
-                    templateUrl: 'App/Views/mainView.html',
-                    controller: 'mainController'
-                })
-                .state({
-                    name: 'help',
-                    url: '/gettingstarted',
-                    templateUrl: 'App/Views/helpView.html'//,
-                    //controller: 'helpController'
-                })
-                .state({
-                    name: 'assetoverview',
-                    url: '/assets',
-                    templateUrl: 'App/Views/assetsView.html',
-                    controller: 'assetsController'
-                })
-                .state({
-                    name: 'arview',
-                    url: '/ar/:assetName',
-                    templateUrl: 'App/Views/arView.html',
-                    controller: 'arController',
-                    abstract: true,
-                    resolve: {
-                        assetName: ['$stateParams', function ($stateParams) { return $stateParams.assetName }]
-                    }
-                })
-                .state({
-                    name: 'arview.chart',
-                    url: '/chart/',
-                    templateUrl: 'App/Views/chartView.html',
-                    controller: 'chartController'
-                })
-                .state({
-                    name: 'arview.table',
-                    url: '/table/',
-                    templateUrl: 'App/Views/tableView.html',
-                    controller: 'tableController'
-                })
-        // Removed the ability to have the user write values back via a slider
-        /*
-                .state({
-                    name: 'arview.change',
-                    url: '/change/',
-                    templateUrl: 'App/Views/outputView.html',
-                    controller: 'outputController'
-                })
-        */
-
+        .state({
+            name: 'home',
+            url: '/',
+            templateUrl: 'App/Views/mainView.html',
+            controller: 'mainController'
+        })
+        .state({
+            name: 'gettingstarted',
+            url: '/gettingstarted',
+            templateUrl: 'App/Views/gettingStartedView.html'//,
+        })
+        .state({
+            name: 'assetoverview',
+            url: '/assets',
+            templateUrl: 'App/Views/assetsView.html',
+            controller: 'assetsController'
+        })
+        .state({
+            name: 'chartAndTableWrapperView',
+            url: '/ar/:assetName',
+            templateUrl: 'App/Views/chartAndTableWrapperView.html',
+            controller: 'chartAndTableWrapperController',
+            abstract: true,
+            resolve: {
+                assetName: ['$stateParams', function ($stateParams) { return $stateParams.assetName }]
+            }
+        })
+        .state({
+            name: 'chartAndTableWrapperView.chart',
+            url: '/chart/',
+            templateUrl: 'App/Views/chartView.html',
+            controller: 'chartController'
+        })
+        .state({
+            name: 'chartAndTableWrapperView.table',
+            url: '/table/',
+            templateUrl: 'App/Views/tableView.html',
+            controller: 'tableController'
+        })
 }]);
-
