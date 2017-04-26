@@ -18,49 +18,26 @@ angular.module('iotdemoApp')
     var modalTriggeredAlready = false;
 
     // GLobal vars to hold the current acceleration and orientation and etc.
-    var currentXYZAccelerationReadings;
-    var currentAlphaBetaGammaOrientationReadings;
-    var batteryLevel = 100;
-    var proximityValue = 3; // in centimenters
-    var ambientLightLevel = 320; // in lux
-    //var setPointValue = 50; // The ability to write to a set point has been temporarily removed
+    var currentXYZAccelerationReadings;             // In meters per second squared
+    var currentAlphaBetaGammaOrientationReadings;   // In degrees
+    var batteryLevel;                               // A percentage
+    var proximityValue;                             // in centimenters
+    var ambientLightLevel;                          // in lux
 
-    function getafdb() {
-        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
-        return $http.get(url).then(function (response) {
-            return response.data.WebId;
-        });
-
-    };
-
-    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
-        if (!attributeCategory) return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
-        return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
-    };
-
-    function constructUrl(url, attributes) {
-        attributes.forEach(function (attribute) { url += 'webid=' + attribute.WebId + '&' });
-        url = url.slice(0, -1);
-        return url;
-    };
-
+    // Actually writes data for a certain group of attributes
     function sendCurrentReadings(attributes) {
-        // Define global variables to hold recent sensor readings
+        // Define global variable to hold all of the new values
         var dataObj = [];
-        var timestamp = "*";
 
+        // Read the current battery level, then
         $window.navigator.getBattery().then(function (battery) {
          
+            // For each of the attributes in the array of attributes that was passed in
             attributes.forEach(function (attribute) {
 
+                // Based on that attributes name, read the correct sensor on the data source device
                 var value;
                 switch (attribute.Name) {
-                    /*
-                    case "Set point": {
-                        value = setPointValue;
-                        break;
-                    }
-                    */
                     case "Bearing oil health": {
                         value = 100 * battery.level;
                         break;
@@ -125,15 +102,19 @@ angular.module('iotdemoApp')
                         break;
                     }
                 }
-                
-                dataObj.push({ 'WebId': attribute.WebId, 'Value': { 'Timestamp': timestamp, 'Value': value } });
-
+                // Add this new data value as an object to the array of value objects that will be written (at the current time)
+                dataObj.push({ 'WebId': attribute.WebId, 'Value': { 'Timestamp': "*", 'Value': value } });
             });
-            //console.log(dataObj);
+            // Assemble the URL for writing these new values
             var url = _httpsPIWebAPIUrl + "/streamsets/value";
+            // Send these new values to be written to the PI System
             $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
         });
     };
+
+    // ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Event-handing functions for reading local sensors
 
     // Define a function to get the battery level
     function getBattery() {
@@ -143,69 +124,52 @@ angular.module('iotdemoApp')
     }
 
     // Set up a handler to track motion
-    if ($window.DeviceMotionEvent) {
-        $window.addEventListener('devicemotion', function (event) {
+    if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', function (event) {
             // Get the current acceleration values in 3 axes (measured in meters per second squared)
             currentXYZAccelerationReadings = event.acceleration;
+            console.log("Event listener added for this type of sensor data: " + "acceleration");
         }, false);
     } else {
-        // Generate simulated data
-        currentXYZAccelerationReadings = {
-            x: Math.random(), 
-            y: Math.random(),
-            z: Math.random()
-        };
-        // Fire a notification if it hasn't been done yet
-        if (!modalTriggeredAlready) {
-            modalTriggeredAlready = true;
-            $("#myModal").modal();
-        }
+        displayCompatibilityAlert("acceleration");
     }
 
     // Set up a handler to track orientation
-    if ($window.DeviceOrientationEvent) {
-        $window.addEventListener('deviceorientation', function (event) {
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function (event) {
             // Get the current orientation
             currentAlphaBetaGammaOrientationReadings = event;
+            console.log("Event listener added for this type of sensor data: " + "orientation");
         }, false);
     } else {
-        // Generate simulated data
-        currentAlphaBetaGammaOrientationReadings = {
-            alpha: Math.random() * 90, 
-            beta: Math.random() * 90,
-            gamma: Math.random() * 90
-        };
-        // Fire a notification if it hasn't been done yet
-        if (!modalTriggeredAlready) {
-            modalTriggeredAlready = true;
-            $("#myModal").modal();
-        }
+        displayCompatibilityAlert("orientation");
     }
 
-    // Also set up handlers for tracking proximity and light level
-    if ($window.DeviceProximityEvent) {
-        $window.addEventListener('deviceproximity', function (event) {
+    // Also set up handlers for tracking proximity 
+    if (window.DeviceProximityEvent) {
+        window.addEventListener('deviceproximity', function (event) {
             // If a proximity event is detected, save the new proximity value
             proximityValue = event.value;
+            console.log("Event listener added for this type of sensor data: " + "proximity");
         });
     } else {
-        // Generate simulated data
-        proximityValue = Math.random() * 50;
-        // Fire a notification if it hasn't been done yet
-        if (!modalTriggeredAlready) {
-            modalTriggeredAlready = true;
-            $("#myModal").modal();
-        }
+        displayCompatibilityAlert("proximity");
     }
 
-    if ($window.DeviceLightEvent) {
-        $window.addEventListener('devicelight', function (event) {
+    // Check if the light sensor is supported!
+    if (window.DeviceLightEvent) {
+        window.addEventListener('devicelight', function (event) {
             // If a light change event is detected, save the new value
             ambientLightLevel = event.value;
+            console.log("Event listener added for this type of sensor data: " + "light");
         });
     } else {
-        // Generate simulated data
-        ambientLightLevel = Math.random() * 300;
+        displayCompatibilityAlert("light");
+    }
+
+    // Helper function that toggles the compatibility alert if a sensor isn't supported
+    function displayCompatibilityAlert(sensorType) {
+        console.log("Notification: this browser and/or device is unable to generate data for the following sensor type: " + sensorType + "; simulated data will be generated for this sensor.");
         // Fire a notification if it hasn't been done yet
         if (!modalTriggeredAlready) {
             modalTriggeredAlready = true;
@@ -213,74 +177,95 @@ angular.module('iotdemoApp')
         }
     }
 
-    // Function accessible by the service
+    // ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+    // Functions for interacting with the PI Web API to read and write data
+
+    // Returns the webId of a particular AF database, based on the hard-coded AF database name
+    function getafdb() {
+        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
+        return $http.get(url).then(function (response) {
+            return response.data.WebId;
+        });
+    };
+
+    // Returns a properly formatted query URL for asking for AF attributes within a particular database,
+    // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
+    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
+        if (!attributeCategory) {
+            return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
+        }
+        return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
+    };
+
+    // Returns a properly formatted multi-attribute URL given a URL prefix and a collection of additional attributes
+    function constructUrl(url, attributes) {
+        attributes.forEach(function (attribute) { url += 'webid=' + attribute.WebId + '&' });
+        url = url.slice(0, -1);
+        return url;
+    };
+
+    // Functions and objects accessible by the service
     return {
-        // Getting or setting the set point; no longer used!
-        /*
-        updateSetPoint: function (newvalue) {
-            setPointValue = newvalue;
-        },
-        currentSetPoint: setPointValue
-        ,
-        */
         // Here is where you reference in the "type" of asset that is displayed--for example, phone, pump, etc.
         friendlyAssetName: CONST_FRIENDLY_ASSET_NAME
         ,
-        // Functions for sending PI Web API Queries
+        // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
             if (_afdbwebid) {
                 var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
                 return $http.get(url).then(function (response) { return response.data.Items});
             }
             else {
-
+                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, then launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
                     var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
-
                     return $http.get(url).then(function (response) { return response.data.Items });
                 });
             }
         },
+        // Get an array of element attributes
         getElementAttributes: function (elementTemplate,elementNameFilter,attributeCategory) {
             if (_afdbwebid) {
                 var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
-
                 return $http.get(url).then(function (response) {
                     return response.data.Items;
                 });
             } else {
+                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, then launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
-
                     var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
-
                     return $http.get(url).then(function (response) {
                         return response.data.Items;
                     });
-
                 });
             }
         },
+        // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             });                
         },
+        // Return an array of arrays of plot values for a certain array of attributes
         getPloValues : function (attributes) {
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             });        
         },
-        getTargetAsset: function (assetName) {
-            var assetid = assetName.match(/[0-9]+/i)[0];
-            return 'Phone ' + assetid + ' Sensors';
+        // Returns the correct string for the name of the AF asset, including the asset number
+        getTargetAssetElementName: function (assetName) {
+            var assetidNumber = assetName.match(/[0-9]+/i)[0];
+            // All of the target assets start with "Phone" and end with "Sensors"; insert in the middle the asset id #
+            return 'Phone ' + assetidNumber + ' Sensors';
 
         },
+        // Given a target element template and element name, get its attributes, then send values to those attributes
         sendDatatoPI: function (elementTemplate, targetAssetName) {
-
             this.getElementAttributes(elementTemplate, targetAssetName).then(function (attributes) {
                 sendCurrentReadings(attributes);
             });
