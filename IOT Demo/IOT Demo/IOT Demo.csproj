@@ -134,6 +134,7 @@
     <Content Include="Images\awe_by_buildAR.png" />
     <Content Include="Images\DUCK.TIF" />
     <Content Include="Images\earth.jpg" />
+    <Content Include="Images\GatewayArchitectureSVG.svg" />
     <Content Include="Images\process_SDM-2.png" />
     <Content Include="Images\pump.jpg" />
     <Content Include="packages.config" />
