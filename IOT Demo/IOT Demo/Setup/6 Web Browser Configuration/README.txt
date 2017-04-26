@@ -17,26 +17,26 @@ Then your PI Web API endpoint URL is "https://pi4egdemo1/piwebapi/".  Open that 
 
 Once at this site, confirm that you would like to add a certificate exception for the PI Web API in your device browser, then reload this application.  On a mobile device, the exception will persist for 7 days.
 
-	To temporarily add this certificate exception for the Google Chrome web browser:
-		After navigating to the PI Web API URL, after being notified that "Your connection is not private", click "Advanced", then "Proceed anyway."  
-		Afterwards, re-launch the web application in your browser.
+To temporarily add this certificate exception for the Google Chrome web browser:
+	After navigating to the PI Web API URL, after being notified that "Your connection is not private", click "Advanced", then "Proceed anyway."  
+	Afterwards, re-launch the web application in your browser.
 
-	To permanently add this certificate exception for the Google Chrome web browser:
-		Open the PI Web API URL in Internet Explorer and follow the Internet Explorer-specific steps below.
-		Afterwards, re-launch the web application in your browser.
+To permanently add this certificate exception for the Google Chrome web browser:
+	Open the PI Web API URL in Internet Explorer and follow the Internet Explorer-specific steps below.
+	Afterwards, re-launch the web application in your browser.
 
-	To permanenently add this certificate exception for the Mozilla Firefox web browser:
-		After navigating to the PI Web API URL, after being notified that "This Connection is Untrusted", click "Add Exception...", then "Confirm Security Exception."
-		Afterwards, re-launch the web application in your browser.
+To permanenently add this certificate exception for the Mozilla Firefox web browser:
+	After navigating to the PI Web API URL, after being notified that "This Connection is Untrusted", click "Add Exception...", then "Confirm Security Exception."
+	Afterwards, re-launch the web application in your browser.
 
-	To permanenently add this certificate exception for the Microsoft Internet Explorer web browser:
-		After navigating to the PI Web API URL, after being notified that "There is a problem with this website's security certificate":
-			Click the "Continue to this website (not recommended) link.".
-			Click the certificate error icon in the address bar, then click the View Certificates link in the Untrusted Certificate window.
-			In the Certificate window that appears, click Install Certificate.  
-			In the Certificate Import Wizard that appears, click Next, then choose the Place all certificates in the following store option and click Browse.
-			In the Select Certificate Store dialog box that appears, choose Trusted Root Certificate Authorities and click OK.
-			Click Next, then click Finish.  
-			A Security Warning message box should appear confirming the import was successful.  Click Yes.
-			A Certificate Import Wizard message box should appear and confirm that the import was successful; click OK twice and close Internet Explorer.
-			Afterwards, re-launch the web application in your browser.
+To permanenently add this certificate exception for the Microsoft Internet Explorer web browser:
+	After navigating to the PI Web API URL, after being notified that "There is a problem with this website's security certificate":
+	Click the "Continue to this website (not recommended) link.".
+	Click the certificate error icon in the address bar, then click the View Certificates link in the Untrusted Certificate window.
+	In the Certificate window that appears, click Install Certificate.  
+	In the Certificate Import Wizard that appears, click Next, then choose the Place all certificates in the following store option and click Browse.
+	In the Select Certificate Store dialog box that appears, choose Trusted Root Certificate Authorities and click OK.
+	Click Next, then click Finish.  
+	A Security Warning message box should appear confirming the import was successful.  Click Yes.
+	A Certificate Import Wizard message box should appear and confirm that the import was successful; click OK twice and close Internet Explorer.
+	Afterwards, re-launch the web application in your browser.
