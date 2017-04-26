@@ -984,15 +984,15 @@
     <Content Include="Setup\3 PI AF Database Setup\README.txt" />
     <Content Include="Setup\4 PI Web API Configuration\PI Web API Configuration JSON.txt" />
     <Content Include="Setup\4 PI Web API Configuration\README.txt" />
+    <Content Include="Setup\5 App Configuration\README.txt" />
+    <Content Include="Setup\6 Web Browser Configuration\README.txt" />
     <Content Include="Setup\README.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Setup\5 App Configuration\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

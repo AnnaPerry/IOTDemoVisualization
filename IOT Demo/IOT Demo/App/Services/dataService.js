@@ -4,8 +4,10 @@ angular.module('iotdemoApp')
 
     // Here is where you can hard-code in the "type" of asset that is displayed--for example, phone, pump, etc.
     var CONST_FRIENDLY_ASSET_NAME = "Phone";
+    // Below is the PI Web API endpoint URL
+    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
 
-    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/"; // "https://arcadia.osisoft.int/piwebapi/";
+    // Constants for connecting to and querying the target AF database and AF server
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
     var _afdbwebid = '';
