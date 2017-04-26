@@ -1,6 +1,6 @@
 ﻿NOTE 1:
 Sending accelerometer and gyro data requires running this application on a mobile device, and sending proximity and light sensor data requires using this application on a mobile device using the Mozilla Firefox web browser.
-To download and install the Firefox web browser on an Android device, click <b><a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=en">here</a></b>; to do the same for an iOS device, click <b><a href="https://itunes.apple.com/us/app/firefox-web-browser/id989804926?mt=8">here</a></b>.
+To download and install the Firefox web browser on an Android device, click https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=en; to do the same for an iOS device, click https://itunes.apple.com/us/app/firefox-web-browser/id989804926?mt=8.
 
 NOTE 2:
 This application requires that you add a certificate exception to trust the certificates used by the PI Web API AND by this custom app's web page. 
