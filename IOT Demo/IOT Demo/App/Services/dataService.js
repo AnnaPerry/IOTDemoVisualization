@@ -154,7 +154,7 @@ angular.module('iotdemoApp')
         navigator.getBattery().then(function (battery) {
             batteryLevel = battery.level;
             battery.addEventListener('levelchange', function () {
-                batteryLevel = this.level;
+                batteryLevel = 100*this.level;
                 updateSensorValuesDiv();
             });
             console.log("Event listener added for this type of sensor data: " + "battery");
@@ -236,11 +236,11 @@ angular.module('iotdemoApp')
             "X Acceleration:" + currentxAccelerationReading + "<br />" + 
             "Y Acceleration:" + currentyAccelerationReading + "<br />" +
             "Z Acceleration:" + currentzAccelerationReading + "<br />" +
-             + "<br />" +
+             "<br />" +
             "Alpha Orientation:" + currentAlphaOrientationReading + "<br />" +
             "Beta Orientation:" + currentBetaOrientationReading + "<br />" +
             "Gamma Orientation:" + currentGammaOrientationReading + "<br />" +
-             + "<br />" +
+             "<br />" +
             "Battery Level:" + batteryLevel + "<br />" +
             "Proximity Value:" + proximityValue + "<br />" +
             "Ambient Light Level:" + ambientLightLevel;
