@@ -7,6 +7,7 @@
             <ul style="list-style-type:none;padding:0px;">
                 <li style="margin-bottom:10px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw"></span></a></li>
                 <li style="margin-bottom:10px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw"></span></a></li>
+                <li style="margin-bottom:10px;"><a href="" onclick="$('#sensorValuesModal').modal();"> <span class="fa fa-info-circle fa-2x fa-fw"></span></a></li>
             </ul>
         </div>
         <!-- Central container -->
@@ -17,7 +18,23 @@
         </div>
         <!-- Left-side image -->
         <div class="p-2" style="width:30%">
-            <img src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;" />
+            <img src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
         </div>
     </div>
  </div>
+
+    <!-- Pop-up modal notification box (normally hidden) -->
+<div class="modal fade" id="sensorValuesModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Device Sensor Values</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="sensorValuesModalBodyText"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

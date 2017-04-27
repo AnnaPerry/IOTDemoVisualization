@@ -7,6 +7,18 @@ angular.module('iotdemoApp')
     // Below is the PI Web API endpoint URL
     var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
 
+    // Get the gateway name from the URL: everything after the first "//", before the first ":", before the first "/", and trim any "/" remaining
+    var HOST_NAME_FROM_URL = window.location.href
+        .replace("http://", "")
+        .replace("https://", "")
+        .split(":", 1)[0]
+        .split("/")[0]
+        .replace("/", "");
+
+    // Computed PI Web API Base URL
+    var _httpsPIWebAPIUrl_fromURL = "https://" + HOST_NAME_FROM_URL + "/piwebapi/";
+    _httpsPIWebAPIUrl = _httpsPIWebAPIUrl_fromURL;
+
     // Constants for connecting to and querying the target AF database and AF server
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1';
@@ -34,16 +46,19 @@ angular.module('iotdemoApp')
         var dataObj = [];
 
         // Read the current battery level, then
-        $window.navigator.getBattery().then(function (battery) {
-         
+        //$window.navigator.getBattery().then(function (battery) {
+
             // For each of the attributes in the array of attributes that was passed in
             attributes.forEach(function (attribute) {
 
                 // Based on that attributes name, read the correct sensor on the data source device
                 var value;
                 switch (attribute.Name) {
-                    case "Bearing oil health": {
-                        value = 100 * battery.level;
+                    case "Bearing oil health": { // Actually the battery level!
+                        value = batteryLevel;
+                        if (value == null) {
+                            value = 95;
+                        }
                         break;
                     }
                     case "X-axis acceleration": {
@@ -89,7 +104,6 @@ angular.module('iotdemoApp')
                         break;
                     }
                     case "Ambient light level": {
-
                         value = ambientLightLevel;
                         // If there is no light sensor, generate a random reading
                         if (!window.DeviceLightEvent) {
@@ -105,15 +119,21 @@ angular.module('iotdemoApp')
                         }
                         break;
                     }
+                    default: {
+                        value = 0;
+                        break;
+                    }
                 }
                 // Add this new data value as an object to the array of value objects that will be written (at the current time)
                 dataObj.push({ 'WebId': attribute.WebId, 'Value': { 'Timestamp': "*", 'Value': value } });
             });
             // Assemble the URL for writing these new values
             var url = _httpsPIWebAPIUrl + "/streamsets/value";
+            // Update the sensor values div
+            //updateSensorValuesDiv();
             // Send these new values to be written to the PI System
             $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
-        });
+        //});
     };
 
     // ---------------------------------------------------------------------------------------------
@@ -121,10 +141,26 @@ angular.module('iotdemoApp')
     // Event-handing functions for reading local sensors
 
     // Define a function to get the battery level
+    /*
     function getBattery() {
         return navigator.getBattery().then(function (battery) {
             return 100 * battery.level;
         });
+    }
+    */
+
+    // Set up a handler to track the battery
+    if (navigator.getBattery) {
+        navigator.getBattery().then(function (battery) {
+            batteryLevel = battery.level;
+            battery.addEventListener('levelchange', function () {
+                batteryLevel = this.level;
+                updateSensorValuesDiv();
+            });
+            console.log("Event listener added for this type of sensor data: " + "battery");
+        });
+    } else {
+        displayCompatibilityAlert("battery");
     }
 
     // Set up a handler to track motion
@@ -134,8 +170,9 @@ angular.module('iotdemoApp')
             currentxAccelerationReading = event.acceleration.x;
             currentyAccelerationReading = event.acceleration.y;
             currentzAccelerationReading = event.acceleration.z;
-            console.log("Event listener added for this type of sensor data: " + "acceleration");
+            updateSensorValuesDiv();
         }, false);
+        console.log("Event listener added for this type of sensor data: " + "acceleration");
     } else {
         displayCompatibilityAlert("acceleration");
     }
@@ -147,8 +184,9 @@ angular.module('iotdemoApp')
             currentAlphaOrientationReading = event.alpha;
             currentBetaOrientationReading = event.beta;
             currentGammaOrientationReading = event.gamma;
-            console.log("Event listener added for this type of sensor data: " + "orientation");
+            updateSensorValuesDiv();
         }, false);
+        console.log("Event listener added for this type of sensor data: " + "orientation");
     } else {
         displayCompatibilityAlert("orientation");
     }
@@ -158,8 +196,9 @@ angular.module('iotdemoApp')
         window.addEventListener('deviceproximity', function (event) {
             // If a proximity event is detected, save the new proximity value
             proximityValue = event.value;
-            console.log("Event listener added for this type of sensor data: " + "proximity");
+            updateSensorValuesDiv();
         });
+        console.log("Event listener added for this type of sensor data: " + "proximity");
     } else {
         displayCompatibilityAlert("proximity");
     }
@@ -169,8 +208,9 @@ angular.module('iotdemoApp')
         window.addEventListener('devicelight', function (event) {
             // If a light change event is detected, save the new value
             ambientLightLevel = event.value;
-            console.log("Event listener added for this type of sensor data: " + "light");
+            updateSensorValuesDiv();
         });
+        console.log("Event listener added for this type of sensor data: " + "light");
     } else {
         displayCompatibilityAlert("light");
     }
@@ -183,6 +223,29 @@ angular.module('iotdemoApp')
             modalTriggeredAlready = true;
             $("#myModal").modal();
         }
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    // Function that takes all of the current sensor values and displays them in a div
+    function updateSensorValuesDiv() {
+        var outputHTML = "";
+        // Combine all sensor readings into a single div
+        outputHTML = "" + 
+            "X Acceleration:" + currentxAccelerationReading + "<br />" + 
+            "Y Acceleration:" + currentyAccelerationReading + "<br />" +
+            "Z Acceleration:" + currentzAccelerationReading + "<br />" +
+             + "<br />" +
+            "Alpha Orientation:" + currentAlphaOrientationReading + "<br />" +
+            "Beta Orientation:" + currentBetaOrientationReading + "<br />" +
+            "Gamma Orientation:" + currentGammaOrientationReading + "<br />" +
+             + "<br />" +
+            "Battery Level:" + batteryLevel + "<br />" +
+            "Proximity Value:" + proximityValue + "<br />" +
+            "Ambient Light Level:" + ambientLightLevel;
+        // Write this to the div!
+        document.getElementById("sensorValuesModalBodyText").innerHTML = outputHTML;
     }
 
     // ---------------------------------------------------------------------------------------------
