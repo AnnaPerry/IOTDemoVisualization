@@ -233,17 +233,20 @@ angular.module('iotdemoApp')
         var outputHTML = "";
         // Combine all sensor readings into a single div
         outputHTML = "" + 
-            "X Acceleration: " + currentxAccelerationReading + " m/s2<br />" + 
-            "Y Acceleration: " + currentyAccelerationReading + " m/s2<br />" +
-            "Z Acceleration: " + currentzAccelerationReading + " m/s2<br />" +
+            "<b>X Acceleration:</b> " + currentxAccelerationReading + " m/s2<br />" +
+            "<b>Y Acceleration</b>: " + currentyAccelerationReading + " m/s2<br />" +
+            "<b>Z Acceleration</b>: " + currentzAccelerationReading + " m/s2<br />" +
              "<br />" +
-            "Alpha Orientation: " + currentAlphaOrientationReading + " °<br />" +
-            "Beta Orientation: " + currentBetaOrientationReading + " °<br />" +
-            "Gamma Orientation: " + currentGammaOrientationReading + " °<br />" +
-             "<br />" +
-            "Battery Level: " + batteryLevel + " %<br />" +
-            "Proximity Value: " + proximityValue + " cm<br />" +
-            "Ambient Light Level: " + ambientLightLevel + "lux";
+            "<b>Alpha Orientation</b>: " + currentAlphaOrientationReading + " °<br />" +
+            "<b>Beta Orientation</b>: " + currentBetaOrientationReading + " °<br />" +
+            "<b>Gamma Orientation</b>: " + currentGammaOrientationReading + " °<br />" +
+            "<br />" +
+            "<b>Battery Level</b>: " + batteryLevel + " %<br />" +
+            "<b>Proximity Value</b>: " + proximityValue + " cm<br />" +
+            "<b>Ambient Light Level</b>: " + ambientLightLevel + " lux" + 
+            "<br />" +
+            "<br />" +
+            "<i>(Note: 'undefined' signifies that a sensor is not supported by this device and/or browser)</i>";
         // Write this to the div!
         document.getElementById("sensorValuesModalBodyText").innerHTML = outputHTML;
     }
