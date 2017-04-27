@@ -5,7 +5,7 @@ angular.module('iotdemoApp')
     // Here is where you can hard-code in the "type" of asset that is displayed--for example, phone, pump, etc.
     var CONST_FRIENDLY_ASSET_NAME = "Phone";
     // Below is the PI Web API endpoint URL
-    var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
+    var _httpsPIWebAPIUrl = "";
 
     // Get the gateway name from the URL: everything after the first "//", before the first ":", before the first "/", and trim any "/" remaining
     var HOST_NAME_FROM_URL = window.location.href
@@ -17,7 +17,10 @@ angular.module('iotdemoApp')
 
     // Computed PI Web API Base URL
     var _httpsPIWebAPIUrl_fromURL = "https://" + HOST_NAME_FROM_URL + "/piwebapi/";
-    _httpsPIWebAPIUrl = _httpsPIWebAPIUrl_fromURL;
+    // Automatically try to add in the URL if it was left blank
+    if (_httpsPIWebAPIUrl == "") {
+        _httpsPIWebAPIUrl = _httpsPIWebAPIUrl_fromURL;
+    }
 
     // Constants for connecting to and querying the target AF database and AF server
     var _afserver = 'localhost';

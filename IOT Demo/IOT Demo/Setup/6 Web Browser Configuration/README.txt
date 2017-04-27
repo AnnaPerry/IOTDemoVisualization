@@ -15,22 +15,22 @@ For example, if line 8 is
 
 Then your PI Web API endpoint URL is "https://pi4egdemo1/piwebapi/".  Open that URL in a browser on your device.
 
-Once at this site, confirm that you would like to add a certificate exception for the PI Web API in your device browser, then reload this application.  On a mobile device, the exception will persist for 7 days.
+Once at this site, confirm that you would like to add a certificate exception for the this site in your device browser, then reload this application.  On a mobile device, the exception will persist for 7 days.
 
 To temporarily add this certificate exception for the Google Chrome web browser:
-	After navigating to the PI Web API URL, after being notified that "Your connection is not private", click "Advanced", then "Proceed anyway."  
+	After navigating to the site URL, after being notified that "Your connection is not private", click "Advanced", then "Proceed anyway."  
 	Afterwards, re-launch the web application in your browser.
 
 To permanently add this certificate exception for the Google Chrome web browser:
-	Open the PI Web API URL in Internet Explorer and follow the Internet Explorer-specific steps below.
+	Open the site URL in Internet Explorer and follow the Internet Explorer-specific steps below.
 	Afterwards, re-launch the web application in your browser.
 
 To permanenently add this certificate exception for the Mozilla Firefox web browser:
-	After navigating to the PI Web API URL, after being notified that "This Connection is Untrusted", click "Add Exception...", then "Confirm Security Exception."
+	After navigating to the site URL, after being notified that "This Connection is Untrusted", click "Add Exception...", then "Confirm Security Exception."
 	Afterwards, re-launch the web application in your browser.
 
 To permanenently add this certificate exception for the Microsoft Internet Explorer web browser:
-	After navigating to the PI Web API URL, after being notified that "There is a problem with this website's security certificate":
+	After navigating to the site URL, after being notified that "There is a problem with this website's security certificate":
 	Click the "Continue to this website (not recommended) link.".
 	Click the certificate error icon in the address bar, then click the View Certificates link in the Untrusted Certificate window.
 	In the Certificate window that appears, click Install Certificate.  
@@ -40,3 +40,9 @@ To permanenently add this certificate exception for the Microsoft Internet Explo
 	A Security Warning message box should appear confirming the import was successful.  Click Yes.
 	A Certificate Import Wizard message box should appear and confirm that the import was successful; click OK twice and close Internet Explorer.
 	Afterwards, re-launch the web application in your browser.
+
+	NOTE: you will have to also repeat this process for the app URL, which, assuming that your gateway/server name is "yourservername" should be
+
+		https://yourservername:82/
+
+	Repeat the above process to add an exception for this site in addition to the PI Web API.

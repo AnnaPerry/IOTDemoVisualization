@@ -10,7 +10,9 @@ Note: during the import, you may notice an error while processing the Unit-of-Me
 
 Once the import is complete, the next step for you to do is to create all of the needed PI Points; in your new PI AF Database, right-click on the "Elements" root element, and click "Create or Update Data Reference".
 
-The final step is to start all PI AF Analyses that are running on thsi gateway; in PI System Explorer, under Management, select and start all Analyses.
+Next, you'll hae to update permissions on a certain group of PI AF Elements, to allow the app to write to them.  Specifically, right-click on the AF Element named "zzz Data Generation", and select the "Security..." option.  In the "Items to Configure" pane, click to select the element "zzz Data Generation", then, under "Identities", click "World" to select the World identity, then, under the "Permissions for World" area, under the "Allow" column, click "All" to grant World all permissions for this element and its children.  Finally, under "Child Permissions", make sure that "Update child permissions for modified identities", then click "OK".
+
+The next step is to start all PI AF Analyses that are running on thsi gateway; in PI System Explorer, under Management, select and start all Analyses.
 
 As the last step, set up an Alias for your PI AF Server: add the alias "localhost".  To do this, in PI System Explorer, click File > Server Properties, then under "Aliases", click the yellow "Add Alias" button, and enter in the new alias name
 
