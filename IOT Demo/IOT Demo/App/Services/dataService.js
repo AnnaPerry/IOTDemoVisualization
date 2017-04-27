@@ -152,9 +152,9 @@ angular.module('iotdemoApp')
     // Set up a handler to track the battery
     if (navigator.getBattery) {
         navigator.getBattery().then(function (battery) {
-            batteryLevel = battery.level;
+            batteryLevel = 100 * battery.level;
             battery.addEventListener('levelchange', function () {
-                batteryLevel = 100*this.level;
+                batteryLevel = 100 * this.level;
                 updateSensorValuesDiv();
             });
             console.log("Event listener added for this type of sensor data: " + "battery");
@@ -233,17 +233,17 @@ angular.module('iotdemoApp')
         var outputHTML = "";
         // Combine all sensor readings into a single div
         outputHTML = "" + 
-            "X Acceleration:" + currentxAccelerationReading + "<br />" + 
-            "Y Acceleration:" + currentyAccelerationReading + "<br />" +
-            "Z Acceleration:" + currentzAccelerationReading + "<br />" +
+            "X Acceleration: " + currentxAccelerationReading + " m/s2<br />" + 
+            "Y Acceleration: " + currentyAccelerationReading + " m/s2<br />" +
+            "Z Acceleration: " + currentzAccelerationReading + " m/s2<br />" +
              "<br />" +
-            "Alpha Orientation:" + currentAlphaOrientationReading + "<br />" +
-            "Beta Orientation:" + currentBetaOrientationReading + "<br />" +
-            "Gamma Orientation:" + currentGammaOrientationReading + "<br />" +
+            "Alpha Orientation: " + currentAlphaOrientationReading + " °<br />" +
+            "Beta Orientation: " + currentBetaOrientationReading + " °<br />" +
+            "Gamma Orientation: " + currentGammaOrientationReading + " °<br />" +
              "<br />" +
-            "Battery Level:" + batteryLevel + "<br />" +
-            "Proximity Value:" + proximityValue + "<br />" +
-            "Ambient Light Level:" + ambientLightLevel;
+            "Battery Level: " + batteryLevel + " %<br />" +
+            "Proximity Value: " + proximityValue + " cm<br />" +
+            "Ambient Light Level: " + ambientLightLevel + "lux";
         // Write this to the div!
         document.getElementById("sensorValuesModalBodyText").innerHTML = outputHTML;
     }
