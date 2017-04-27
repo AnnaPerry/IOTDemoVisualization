@@ -244,7 +244,7 @@ angular.module('iotdemoApp')
             "<b>Ambient Light Level</b>: " + ambientLightLevel + " lux" + 
             "<br />" +
             "<br />" +
-            "<i>(Note: 'undefined' signifies that a sensor is not supported by this device and/or browser)</i>";
+            "<i>(Note: 'undefined' or 'null' signifies that a sensor is not supported by this device and/or browser; simulated data will be generated for such sensors.)</i>";
         // Write this to the div!
         document.getElementById("sensorValuesModalBodyText").innerHTML = outputHTML;
     }
