@@ -6,7 +6,7 @@
   "CorsHeaders": "*",
   "CorsMethods": "*",
   "CorsOrigins": "*",
-  "CorsSupportsCredentials": true,
+  "CorsSupportsCredentials": false,
   "DisableWrites": false,
   "IgnoreCacheControlForBulkRequests": true,
   "SearchBoosts": [
