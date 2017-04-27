@@ -129,8 +129,6 @@ angular.module('iotdemoApp')
             });
             // Assemble the URL for writing these new values
             var url = _httpsPIWebAPIUrl + "/streamsets/value";
-            // Update the sensor values div
-            //updateSensorValuesDiv();
             // Send these new values to be written to the PI System
             $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
         //});
@@ -250,6 +248,8 @@ angular.module('iotdemoApp')
         // Write this to the div!
         document.getElementById("sensorValuesModalBodyText").innerHTML = outputHTML;
     }
+    // Call this function once, just to update the output box at least once
+    updateSensorValuesDiv();
 
     // ---------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------
