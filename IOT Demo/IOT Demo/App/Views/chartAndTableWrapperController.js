@@ -22,6 +22,11 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
         };
     };
 
+    // If phone data collection is used, show the phone image and help button; else, hide them
+    $scope.showOrHideThisElement = function () {
+        return (dataService.enablePhoneBasedDataCollectionFeatures());
+    }
+
     // The interval timer gets the target AF asset and calls the dataservice to send live data from this device's sensors to the PI System
     $scope.sendDatatoPI = function () {
         stop = $interval(function () {

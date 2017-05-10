@@ -5,6 +5,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
 
+    // Specify whether or not to use multiple chart axes!
+    var USE_MULTIPLE_AXES = true;
 
     var stop;
     $scope.$on('$destroy', function () {
@@ -17,7 +19,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             stop = undefined;
         };
     };
-
 
     var chart;
     var mostRecentDataFromPISystem;
@@ -57,7 +58,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         "valueAxes": [{
             "axisAlpha": 1,
             "position": "left",
-            "axisColor": "white",
+            //"axisColor": "white",
             "fillAlpha": 0.05,
             "inside":true
         }],
@@ -113,12 +114,35 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
         if (!mostRecentDataFromPISystem || !chart) return;
 
+        // Declare empty arrays to hold data, graphs, and axes
         var chartDataArray = [];
         var graphArray = [];
+        var axisArray = []
 
+        // Note! If the number of data items is over 3, turn off multiple axes!
+        if ($scope.attributes.length > 3) {
+            USE_MULTIPLE_AXES = false;
+        }
+
+        // For each attribute...
+        var axisNumber = 0;
         $scope.attributes.forEach(function (attribute) {
             if (!attribute.Selected) return;
 
+            // Create a new value axis
+            var newValueAxis = {
+                "id": attribute.Name,
+                "axisAlpha": 1,
+                "position": "left",
+                "axisColor": "white",
+                "color": chartColors[axisNumber],
+                "fillAlpha": 0.05,
+                "inside": true,
+                "labelOffset": axisNumber * 35
+            };
+            axisNumber++;
+
+            // Create a new graph
             var graph = {};
             graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
             graph['bullet'] = "round";
@@ -126,10 +150,16 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             graph['bulletAlpha'] = 0;
             graph['valueField'] = attribute.Name + ' Value';
             graph['title'] = attribute.Name;
+            // Optional: associate this graph with the new axis
+            if (USE_MULTIPLE_AXES == true) {
+                graph['valueAxis'] = attribute.Name;
+            }
 
+            // Add this graph and axis to their respective arrays
             graphArray.push(graph);
+            axisArray.push(newValueAxis);
 
-
+            // Now create the array of data that will actually be plotted!
             _.findWhere(mostRecentDataFromPISystem, { Name: attribute.Name }).Items.forEach(function (dataItem) {
                 if (!dataItem.Good) return;
                 
@@ -154,8 +184,15 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         });
         //chartDataArray = _.sortBy(chartDataArray, 'FormattedTimestamp');
 
+        // Assign the new arrays to the chart object
         chart.dataProvider = chartDataArray;
         chart.graphs = graphArray;
+        //Optional: assign the custom value axes!
+        if (USE_MULTIPLE_AXES == true) {
+            chart.valueAxes = axisArray;
+        }
+
+        // Refresh the chart
         chart.validateData();
         chart.animateAgain();
 

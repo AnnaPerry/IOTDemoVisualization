@@ -124,6 +124,7 @@
     <Content Include="Images\assetSensorImage.png" />
     <Content Include="Images\assetSensorImage_v2.png" />
     <Content Include="Images\GatewayArchitectureSVG.svg" />
+    <Content Include="Images\phase2SensorImage.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

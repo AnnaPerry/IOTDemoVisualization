@@ -7,7 +7,7 @@
             <ul style="list-style-type:none;padding:0px;">
                 <li style="margin-bottom:10px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw"></span></a></li>
                 <li style="margin-bottom:10px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw"></span></a></li>
-                <li style="margin-bottom:10px;"><a href="" onclick="$('#sensorValuesModal').modal();"> <span class="fa fa-info-circle fa-2x fa-fw"></span></a></li>
+                <li ng-show="showOrHideThisElement()" style="margin-bottom:10px;"><a href="" onclick="$('#sensorValuesModal').modal();"> <span class="fa fa-info-circle fa-2x fa-fw"></span></a></li>
             </ul>
         </div>
         <!-- Central container -->
@@ -18,7 +18,8 @@
         </div>
         <!-- Left-side image -->
         <div class="p-2" style="width:30%">
-            <img src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
+            <img ng-show="showOrHideThisElement()" src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
+            <img ng-show="!showOrHideThisElement()" src='../../Images/phase2SensorImage.png' height="100%" width="100%" style="border-radius:4.8px;" />
         </div>
     </div>
  </div>
