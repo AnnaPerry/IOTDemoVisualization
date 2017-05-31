@@ -16,7 +16,7 @@ angular.module('iotdemoApp')
         .replace("/", "");
 
     // Computed PI Web API Base URL
-    //HOST_NAME_FROM_URL = "pi4egdemo7"; // Hard-coded; used for testing only!
+    HOST_NAME_FROM_URL = "pi4egdemo7"; // Hard-coded; used for testing only!
     var _httpsPIWebAPIUrl_fromURL = "https://" + HOST_NAME_FROM_URL + "/piwebapi/";
     // Automatically try to add in the URL if it was left blank
     if (_httpsPIWebAPIUrl == "") {
@@ -119,7 +119,7 @@ angular.module('iotdemoApp')
                 case "Ambient light level": {
                     value = ambientLightLevel;
                     // If there is no light sensor, generate a random reading
-                    if (!window.DeviceLightEvent) {
+                    if (!window.DeviceLightEvent || (value==null)) {
                         value = Math.random() * 300;
                     }
                     break;
@@ -127,7 +127,7 @@ angular.module('iotdemoApp')
                 case "Proximity sensor reading": {
                     value = proximityValue;
                     // If there is no proximity sensor, generate a random reading
-                    if (!window.DeviceProximityEvent) {
+                    if (!window.DeviceProximityEvent || (value==null)) {
                         value = Math.random() * 50;
                     }
                     break;
