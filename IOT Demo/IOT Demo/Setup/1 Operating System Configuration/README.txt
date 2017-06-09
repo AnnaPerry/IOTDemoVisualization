@@ -6,18 +6,14 @@ To see the list of currently installed features, from an elevated (Administrator
 
 NOTE: this app has been developed to run on Windows 10 and Windows 10 IoT; it has also been observed to run successfully on Windows Server 2012 R2 and higher.
 
-Next, in Windows Control Panel, under Firewall, add a firewall exception (across all regions and domains) for TCP port 82.
+Next, in Windows Control Panel, under Firewall, add a firewall exception (across all regions and domains) for TCP port 443.
 
-Once the required components have been installed, under C:\inetpub, create a new folder called "WebApp" in C:\inetpub to hold the files for this application.
+Once the required components have been installed, under C:\inetpub, navigate to the wwwroot folder.
 
-Into that new folder, C:\inetpub\WebApp, copy and paste all files within the GitHub IOT Demo folder (https://github.com/AnnaPerry/IOTDemoVisualization/tree/master/IOT%20Demo/IOT%20Demo).
+Into that folder, C:\inetpub\wwwroot, copy and paste all files within the GitHub IOT Demo folder https://github.com/AnnaPerry/IOTDemoVisualization/tree/master/IOT%20Demo/IOT%20Demo).  (Note: consult the screenshot "Files added to the wwwroot folder" to see what the wwwroot folder should look like after you've copied all of the required files).
 
-As the next to last step, in the Windows IIS Manager application, create a new Web Site named "WebApp" (see https://support.microsoft.com/en-us/help/323972/how-to-set-up-your-first-iis-web-site); in the "Add Website" dialog:
+As the next to last step, in the Windows IIS Manager application, select your Default Web Site and right-click on it to edit its bindings (see the included screenshot "Adding the HTTPS Binding to the Default Web Site" for details):
 
-	Set the "Site name" to be "WebApp"
-	
-	Under "Content Directory", select the path to the folder that you just created, C:\inetpub\WebApp, as the folder that contains this Web Site's documents.
+Add a new binding of type "https", select the Port to be 443, then below, as the SSL Certificate, select the "OSIsoft Self-Signed Certificate."
 
-	Under the "Binding" section, select the binding type of "https", select the Port to be 82, then below, as the SSL Certificate, select the "OSIsoft Self-Signed Certificate."
-
-	Leave all other options at their defaults, then click "OK" to create your site!
+Leave all other options at their defaults, then click "OK".

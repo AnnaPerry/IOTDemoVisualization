@@ -27,4 +27,4 @@
   "SearchScanInterval": 180
 }
 
-Note: in the PI Web API 2017, turn off cross-origin scripting (CS) attacks prevention as well!
+Note: in the PI Web API 2017, turn off cross-origin scripting (CS) attacks prevention as well! (Set the EnableCSRFDefense attribute to 'false').

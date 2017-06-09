@@ -1,3 +1,5 @@
+Note: for a screenshot of the required roles and features that should be added, see the screenshots "Required roles and features on Windows 10" 1 and 2.
+
 IIS-ASP                                              
 IIS-ASPNET                                           
 IIS-ASPNET45                                         

@@ -7,13 +7,9 @@ NOTE 2:
 
 This application requires that you add a certificate exception to trust the certificates used by the PI Web API AND by this custom app's web page. 
 
-On the device where you'd like to visit this application, please visit the PI Web API endpoint.  That endpoint is listed on line 8 of the file "dataService.js", located in the App\Services folder.
+On the device where you'd like to visit this application, please visit the app, which should be at the URL "https://<your gateway name>" (for example, https://gateway4).
 
-For example, if line 8 is
-
-	var _httpsPIWebAPIUrl = "https://pi4egdemo1/piwebapi/";
-
-Then your PI Web API endpoint URL is "https://pi4egdemo1/piwebapi/".  Open that URL in a browser on your device.
+Open that URL in a browser on your device.
 
 Once at this site, confirm that you would like to add a certificate exception for the this site in your device browser, then reload this application.  On a mobile device, the exception will persist for 7 days.
 
@@ -40,9 +36,3 @@ To permanenently add this certificate exception for the Microsoft Internet Explo
 	A Security Warning message box should appear confirming the import was successful.  Click Yes.
 	A Certificate Import Wizard message box should appear and confirm that the import was successful; click OK twice and close Internet Explorer.
 	Afterwards, re-launch the web application in your browser.
-
-	NOTE: you will have to also repeat this process for the app URL, which, assuming that your gateway/server name is "yourservername" should be
-
-		https://yourservername:82/
-
-	Repeat the above process to add an exception for this site in addition to the PI Web API.
