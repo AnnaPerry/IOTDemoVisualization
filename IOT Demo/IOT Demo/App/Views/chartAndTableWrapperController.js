@@ -29,10 +29,13 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 
     // The interval timer gets the target AF asset and calls the dataservice to send live data from this device's sensors to the PI System
     $scope.sendDatatoPI = function () {
-        stop = $interval(function () {
-            var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
-            dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
-        }, 3000);
+		// Only do this, though, if the current element is asset 1 through 5! Otherwise, don't send data!
+		if ( ($stateParams.assetName).substring(0,6) == "Asset ") {
+			stop = $interval(function () {
+				var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
+				dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
+			}, 3000);
+		}
     };
 
 }]);
