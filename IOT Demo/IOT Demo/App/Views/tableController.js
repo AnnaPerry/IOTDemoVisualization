@@ -1,7 +1,8 @@
 ﻿'use strict';
 app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams', 'dataService', function ($scope, $http, $interval,$stateParams, dataService) {
 
-    var afTemplate = 'Asset Template';
+    //var afTemplate = 'Asset Template';
+	var afTemplate = ''; // Template name is no longer needed; now searching is done by name, not by template!	
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Snapshot';
 

@@ -280,10 +280,17 @@ angular.module('iotdemoApp')
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
     // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
     function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
-        if (!attributeCategory) {
-            return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
-        }
-        return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
+        if (elementTemplate && (elementTemplate != '')) {
+			if (!attributeCategory) {
+				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
+			}
+			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
+		} else {
+			if (!attributeCategory) {
+				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter;
+			}
+			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;			
+		}
     };
 
     // Returns a properly formatted multi-attribute URL given a URL prefix and a collection of additional attributes
