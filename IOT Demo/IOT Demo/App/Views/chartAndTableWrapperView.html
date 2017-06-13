@@ -2,24 +2,24 @@
     <canvas id="debugCanvas"></canvas>
     <div id="container" ng-init="init()"></div>
     <div class="d-flex flex-row-reverse el-inherit-size">
-        <!-- Right-side menu bar -->
-        <div class="p-2 el-z">
-            <ul style="list-style-type:none;padding:0px;">
-                <li style="margin-bottom:10px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw"></span></a></li>
-                <li style="margin-bottom:10px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw"></span></a></li>
-                <li ng-show="showOrHideThisElement()" style="margin-bottom:10px;"><a href="" onclick="$('#sensorValuesModal').modal();"> <span class="fa fa-info-circle fa-2x fa-fw"></span></a></li>
-            </ul>
-        </div>
         <!-- Central container -->
-        <div class="p-2 el-z" style="width:70%">
+        <div class="p-2 el-z" style="margin-top:10px;" ng-style="{ 'width': chartAndTableWidth }">
             <div class="jumbotron " style="margin:0px;padding:32px;">
                 <div ui-view style="height:inherit"></div>
             </div>
         </div>
-        <!-- Left-side image -->
-        <div class="p-2" style="width:30%">
-            <img ng-show="showOrHideThisElement()" src='../../Images/assetSensorImage.png' height="100%" width="100%" style="border-radius:4.8px;"/>
-            <img ng-show="!showOrHideThisElement()" src='../../Images/phase2SensorImage.png' height="100%" width="100%" style="border-radius:4.8px;" />
+        <!-- Data source image -->
+        <div class="p-2" style="margin-top:10px; width:30%; padding-right:0px !important;" ng-show="showImageDiv()">
+			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="border-radius:4.8px;" />
         </div>
+        <!-- Side menu bar -->
+        <div class="p-2 el-z" style="margin-top:0px;background-color:#606060">
+            <ul style="list-style-type:none;padding:0px;">
+				<li style="margin-top:20px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw" style="color:white !important"></span></a></li>
+                <li style="margin-top:20px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw" style="color:white !important"></span></a></li>
+				<li style="margin-top:20px;"><a ui-sref='assetoverview'> <span class="fa fa-exchange fa-2x fa-fw" style="color:white !important"></span></a></li>
+				<li ng-show="getAssetType() == 'PhoneSensor'" style="margin-top:20px;"><a href="" onclick="$('#sensorValuesModal').modal();"><span class="fa fa-info-circle fa-2x fa-fw" style="color:white !important"></span></a></li>
+            </ul>
+        </div>		
     </div>
  </div>

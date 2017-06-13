@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.6.7801" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-04-26T15:39:03.6002061Z" id="cb641e9c-948e-4a84-a3c2-348d790b6016" ParentKey="57d3463c-df5f-4ec6-9ed2-b5b11bf712b1" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{57d3463c-df5f-4ec6-9ed2-b5b11bf712b1}\{cb641e9c-948e-4a84-a3c2-348d790b6016}*localhost\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.0.8065" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-06-13T23:17:15.2151481Z" id="bda3c331-3e59-4ee9-87a5-e858c3d6f938" ParentKey="d9e82ada-b695-4c95-bffd-0e8ab1798ba5" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="159 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{d9e82ada-b695-4c95-bffd-0e8ab1798ba5}\{bda3c331-3e59-4ee9-87a5-e858c3d6f938}*localhost\Asset Framework DB 1">
   <UOMDatabase>
-    <Name>UOMDatabase</Name>
+    <id>7b0faa35-160d-45ff-83a5-8eff4229515a</id>
     <UOMClass>
       <Name>Acceleration</Name>
       <CanonicalUOM>Gs</CanonicalUOM>
@@ -499,13 +499,6 @@
       <Class>Length</Class>
     </UOM>
     <UOM>
-      <Name>foot</Name>
-      <Abbreviation>ft</Abbreviation>
-      <RefFactor>12</RefFactor>
-      <RefUOM>inch</RefUOM>
-      <Class>Length</Class>
-    </UOM>
-    <UOM>
       <Name>International nautical mile</Name>
       <Abbreviation>nmi</Abbreviation>
       <RefFactor>1852</RefFactor>
@@ -520,17 +513,24 @@
       <Class>Length</Class>
     </UOM>
     <UOM>
-      <Name>mile</Name>
-      <Abbreviation>mi</Abbreviation>
-      <RefFactor>63360</RefFactor>
-      <RefUOM>inch</RefUOM>
-      <Class>Length</Class>
-    </UOM>
-    <UOM>
       <Name>millimeter</Name>
       <Abbreviation>mm</Abbreviation>
       <RefFactor>0.001</RefFactor>
       <RefUOM>meter</RefUOM>
+      <Class>Length</Class>
+    </UOM>
+    <UOM>
+      <Name>foot</Name>
+      <Abbreviation>ft</Abbreviation>
+      <RefFactor>12</RefFactor>
+      <RefUOM>inch</RefUOM>
+      <Class>Length</Class>
+    </UOM>
+    <UOM>
+      <Name>mile</Name>
+      <Abbreviation>mi</Abbreviation>
+      <RefFactor>63360</RefFactor>
+      <RefUOM>inch</RefUOM>
       <Class>Length</Class>
     </UOM>
     <UOM>
@@ -574,6 +574,20 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
+      <Name>square mile</Name>
+      <Abbreviation>mi2</Abbreviation>
+      <RefFactor>27878400</RefFactor>
+      <RefUOM>square foot</RefUOM>
+      <Class>Area</Class>
+    </UOM>
+    <UOM>
+      <Name>square yard</Name>
+      <Abbreviation>yd2</Abbreviation>
+      <RefFactor>9</RefFactor>
+      <RefUOM>square foot</RefUOM>
+      <Class>Area</Class>
+    </UOM>
+    <UOM>
       <Name>hectare</Name>
       <Abbreviation>ha</Abbreviation>
       <RefFactor>10000</RefFactor>
@@ -595,13 +609,6 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
-      <Name>square mile</Name>
-      <Abbreviation>mi2</Abbreviation>
-      <RefFactor>27878400</RefFactor>
-      <RefUOM>square foot</RefUOM>
-      <Class>Area</Class>
-    </UOM>
-    <UOM>
       <Name>square millimeter</Name>
       <Abbreviation>mm2</Abbreviation>
       <RefFactor>1E-06</RefFactor>
@@ -609,22 +616,8 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
-      <Name>square yard</Name>
-      <Abbreviation>yd2</Abbreviation>
-      <RefFactor>9</RefFactor>
-      <RefUOM>square foot</RefUOM>
-      <Class>Area</Class>
-    </UOM>
-    <UOM>
       <Name>kilogram</Name>
       <Abbreviation>kg</Abbreviation>
-      <Class>Mass</Class>
-    </UOM>
-    <UOM>
-      <Name>gram</Name>
-      <Abbreviation>g</Abbreviation>
-      <RefFactor>0.001</RefFactor>
-      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -639,13 +632,6 @@
       <Abbreviation>lton</Abbreviation>
       <RefFactor>2240</RefFactor>
       <RefUOM>pound</RefUOM>
-      <Class>Mass</Class>
-    </UOM>
-    <UOM>
-      <Name>milligram</Name>
-      <Abbreviation>mg</Abbreviation>
-      <RefFactor>1E-06</RefFactor>
-      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -681,6 +667,20 @@
       <Abbreviation>ton</Abbreviation>
       <RefFactor>2000</RefFactor>
       <RefUOM>pound</RefUOM>
+      <Class>Mass</Class>
+    </UOM>
+    <UOM>
+      <Name>gram</Name>
+      <Abbreviation>g</Abbreviation>
+      <RefFactor>0.001</RefFactor>
+      <RefUOM>kilogram</RefUOM>
+      <Class>Mass</Class>
+    </UOM>
+    <UOM>
+      <Name>milligram</Name>
+      <Abbreviation>mg</Abbreviation>
+      <RefFactor>1E-06</RefFactor>
+      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -778,16 +778,23 @@
       <Class>Electric Potential</Class>
     </UOM>
     <UOM>
+      <Name>megavolt</Name>
+      <Abbreviation>MV</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>volt</RefUOM>
+      <Class>Electric Potential</Class>
+    </UOM>
+    <UOM>
       <Name>kilovolt</Name>
-      <Abbreviation>KV</Abbreviation>
+      <Abbreviation>kV</Abbreviation>
       <RefFactor>1000</RefFactor>
       <RefUOM>volt</RefUOM>
       <Class>Electric Potential</Class>
     </UOM>
     <UOM>
-      <Name>megavolt</Name>
-      <Abbreviation>MV</Abbreviation>
-      <RefFactor>1000000</RefFactor>
+      <Name>millivolts</Name>
+      <Abbreviation>millivolts</Abbreviation>
+      <RefFactor>0.001</RefFactor>
       <RefUOM>volt</RefUOM>
       <Class>Electric Potential</Class>
     </UOM>
@@ -799,6 +806,27 @@
     <UOM>
       <Name>joule</Name>
       <Abbreviation>J</Abbreviation>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
+      <Name>gigawatt hour</Name>
+      <Abbreviation>GWh</Abbreviation>
+      <RefFactor>3600000000000</RefFactor>
+      <RefUOM>joule</RefUOM>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
+      <Name>megawatt hour</Name>
+      <Abbreviation>MWh</Abbreviation>
+      <RefFactor>3600000000</RefFactor>
+      <RefUOM>joule</RefUOM>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
+      <Name>watt hour</Name>
+      <Abbreviation>Wh</Abbreviation>
+      <RefFactor>3600</RefFactor>
+      <RefUOM>joule</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -823,20 +851,6 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>gigawatt hour</Name>
-      <Abbreviation>GWh</Abbreviation>
-      <RefFactor>3600000000000</RefFactor>
-      <RefUOM>joule</RefUOM>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
-      <Name>kilocalorie</Name>
-      <Abbreviation>kcal</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>calorie</RefUOM>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
       <Name>kilojoule</Name>
       <Abbreviation>kJ</Abbreviation>
       <RefFactor>1000</RefFactor>
@@ -858,17 +872,16 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>megawatt hour</Name>
-      <Abbreviation>MWh</Abbreviation>
-      <RefFactor>3600000000</RefFactor>
+      <Name>watt second</Name>
+      <Abbreviation>Ws</Abbreviation>
       <RefUOM>joule</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>million British thermal unit</Name>
-      <Abbreviation>MM Btu</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>British thermal unit</RefUOM>
+      <Name>kilocalorie</Name>
+      <Abbreviation>kcal</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>calorie</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -879,16 +892,10 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>watt hour</Name>
-      <Abbreviation>Wh</Abbreviation>
-      <RefFactor>3600</RefFactor>
-      <RefUOM>joule</RefUOM>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
-      <Name>watt second</Name>
-      <Abbreviation>Ws</Abbreviation>
-      <RefUOM>joule</RefUOM>
+      <Name>million British thermal unit</Name>
+      <Abbreviation>MM Btu</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>British thermal unit</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -922,15 +929,15 @@
       <Class>Entropy, Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per degree Fahrenheit</Name>
-      <Abbreviation>Btu/°F</Abbreviation>
+      <Name>British thermal unit per degree Rankine</Name>
+      <Abbreviation>Btu/°R</Abbreviation>
       <RefFactor>1899.100534716</RefFactor>
       <RefUOM>joule per kelvin</RefUOM>
       <Class>Entropy, Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per degree Rankine</Name>
-      <Abbreviation>Btu/°R</Abbreviation>
+      <Name>British thermal unit per degree Fahrenheit</Name>
+      <Abbreviation>Btu/°F</Abbreviation>
       <RefFactor>1899.100534716</RefFactor>
       <RefUOM>joule per kelvin</RefUOM>
       <Class>Entropy, Heat Capacity</Class>
@@ -989,13 +996,6 @@
       <Class>Mass Flow Rate</Class>
     </UOM>
     <UOM>
-      <Name>gram per second</Name>
-      <Abbreviation>g/s</Abbreviation>
-      <RefFactor>0.001</RefFactor>
-      <RefUOM>kilogram per second</RefUOM>
-      <Class>Mass Flow Rate</Class>
-    </UOM>
-    <UOM>
       <Name>pound per second</Name>
       <Abbreviation>lb/s</Abbreviation>
       <RefFactor>0.45359237</RefFactor>
@@ -1028,6 +1028,13 @@
       <Abbreviation>klb/d</Abbreviation>
       <RefFactor>0.0115740740740741</RefFactor>
       <RefUOM>pound per second</RefUOM>
+      <Class>Mass Flow Rate</Class>
+    </UOM>
+    <UOM>
+      <Name>gram per second</Name>
+      <Abbreviation>g/s</Abbreviation>
+      <RefFactor>0.001</RefFactor>
+      <RefUOM>kilogram per second</RefUOM>
       <Class>Mass Flow Rate</Class>
     </UOM>
     <UOM>
@@ -1117,6 +1124,20 @@
       <Class>Power</Class>
     </UOM>
     <UOM>
+      <Name>gigawatt</Name>
+      <Abbreviation>GW</Abbreviation>
+      <RefFactor>1000000000</RefFactor>
+      <RefUOM>watt</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>megawatt</Name>
+      <Abbreviation>MW</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>watt</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
       <Name>British thermal unit per hour</Name>
       <Abbreviation>Btu/h</Abbreviation>
       <RefFactor>0.29307107017222</RefFactor>
@@ -1124,16 +1145,23 @@
       <Class>Power</Class>
     </UOM>
     <UOM>
-      <Name>calorie per second</Name>
-      <Abbreviation>cal/s</Abbreviation>
-      <RefFactor>4.1868</RefFactor>
-      <RefUOM>watt</RefUOM>
+      <Name>million British thermal unit per day</Name>
+      <Abbreviation>MM Btu/d</Abbreviation>
+      <RefFactor>41666.6666666667</RefFactor>
+      <RefUOM>British thermal unit per hour</RefUOM>
       <Class>Power</Class>
     </UOM>
     <UOM>
-      <Name>gigawatt</Name>
-      <Abbreviation>GW</Abbreviation>
-      <RefFactor>1000000000</RefFactor>
+      <Name>million British thermal unit per hour</Name>
+      <Abbreviation>MM Btu/h</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>British thermal unit per hour</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>calorie per second</Name>
+      <Abbreviation>cal/s</Abbreviation>
+      <RefFactor>4.1868</RefFactor>
       <RefUOM>watt</RefUOM>
       <Class>Power</Class>
     </UOM>
@@ -1162,27 +1190,6 @@
       <Abbreviation>MJ/h</Abbreviation>
       <RefFactor>277.777777777778</RefFactor>
       <RefUOM>watt</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
-      <Name>megawatt</Name>
-      <Abbreviation>MW</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>watt</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
-      <Name>million British thermal unit per day</Name>
-      <Abbreviation>MM Btu/d</Abbreviation>
-      <RefFactor>41666.6666666667</RefFactor>
-      <RefUOM>British thermal unit per hour</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
-      <Name>million British thermal unit per hour</Name>
-      <Abbreviation>MM Btu/h</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>British thermal unit per hour</RefUOM>
       <Class>Power</Class>
     </UOM>
     <UOM>
@@ -1303,16 +1310,16 @@
       <Class>Specific Energy</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound</Name>
-      <Abbreviation>Btu/lb</Abbreviation>
-      <RefFactor>2326</RefFactor>
+      <Name>joule per gram</Name>
+      <Abbreviation>J/g</Abbreviation>
+      <RefFactor>1000</RefFactor>
       <RefUOM>joule per kilogram</RefUOM>
       <Class>Specific Energy</Class>
     </UOM>
     <UOM>
-      <Name>joule per gram</Name>
-      <Abbreviation>J/g</Abbreviation>
-      <RefFactor>1000</RefFactor>
+      <Name>British thermal unit per pound</Name>
+      <Abbreviation>Btu/lb</Abbreviation>
+      <RefFactor>2326</RefFactor>
       <RefUOM>joule per kilogram</RefUOM>
       <Class>Specific Energy</Class>
     </UOM>
@@ -1343,15 +1350,15 @@
       <Class>Specific Entropy, Specific Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound degree Fahrenheit</Name>
-      <Abbreviation>Btu/(lb °F)</Abbreviation>
+      <Name>British thermal unit per pound degree Rankine</Name>
+      <Abbreviation>Btu/(lb °R)</Abbreviation>
       <RefFactor>4186.8</RefFactor>
       <RefUOM>joule per kilogram kelvin</RefUOM>
       <Class>Specific Entropy, Specific Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound degree Rankine</Name>
-      <Abbreviation>Btu/(lb °R)</Abbreviation>
+      <Name>British thermal unit per pound degree Fahrenheit</Name>
+      <Abbreviation>Btu/(lb °F)</Abbreviation>
       <RefFactor>4186.8</RefFactor>
       <RefUOM>joule per kilogram kelvin</RefUOM>
       <Class>Specific Entropy, Specific Heat Capacity</Class>
@@ -1376,16 +1383,16 @@
       <Class>Specific Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic centimeter per gram</Name>
-      <Abbreviation>cm3/g</Abbreviation>
-      <RefFactor>0.001</RefFactor>
+      <Name>cubic foot per pound</Name>
+      <Abbreviation>ft3/lb</Abbreviation>
+      <RefFactor>0.0624279605761446</RefFactor>
       <RefUOM>cubic meter per kilogram</RefUOM>
       <Class>Specific Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic foot per pound</Name>
-      <Abbreviation>ft3/lb</Abbreviation>
-      <RefFactor>0.0624279605761446</RefFactor>
+      <Name>cubic centimeter per gram</Name>
+      <Abbreviation>cm3/g</Abbreviation>
+      <RefFactor>0.001</RefFactor>
       <RefUOM>cubic meter per kilogram</RefUOM>
       <Class>Specific Volume</Class>
     </UOM>
@@ -1462,20 +1469,6 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic foot</Name>
-      <Abbreviation>ft3</Abbreviation>
-      <RefFactor>0.028316846592</RefFactor>
-      <RefUOM>cubic meter</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>acre foot</Name>
-      <Abbreviation>acre ft</Abbreviation>
-      <RefFactor>43560</RefFactor>
-      <RefUOM>cubic foot</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
       <Name>US gallon</Name>
       <Abbreviation>US gal</Abbreviation>
       <RefFactor>0.003785411784</RefFactor>
@@ -1490,6 +1483,27 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
+      <Name>Imperial gallon</Name>
+      <Abbreviation>Imp gal</Abbreviation>
+      <RefFactor>1.20094992550485</RefFactor>
+      <RefUOM>US gallon</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>million US gallon</Name>
+      <Abbreviation>US Mgal</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>US gallon</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>thousand US gallon</Name>
+      <Abbreviation>US kgal</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>US gallon</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
       <Name>cubic centimeter</Name>
       <Abbreviation>cm3</Abbreviation>
       <RefFactor>1E-06</RefFactor>
@@ -1497,10 +1511,10 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>Imperial gallon</Name>
-      <Abbreviation>Imp gal</Abbreviation>
-      <RefFactor>1.20094992550485</RefFactor>
-      <RefUOM>US gallon</RefUOM>
+      <Name>cubic foot</Name>
+      <Abbreviation>ft3</Abbreviation>
+      <RefFactor>0.028316846592</RefFactor>
+      <RefUOM>cubic meter</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1531,24 +1545,17 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
+      <Name>thousand cubic meter</Name>
+      <Abbreviation>k m3</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>cubic meter</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
       <Name>million barrel</Name>
       <Abbreviation>MMbbl</Abbreviation>
       <RefFactor>1000000</RefFactor>
       <RefUOM>barrel</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>million imperial gallon</Name>
-      <Abbreviation>Imp Mgal</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>Imperial gallon</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>million US gallon</Name>
-      <Abbreviation>US Mgal</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>US gallon</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1559,10 +1566,17 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>thousand cubic meter</Name>
-      <Abbreviation>k m3</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>cubic meter</RefUOM>
+      <Name>acre foot</Name>
+      <Abbreviation>acre ft</Abbreviation>
+      <RefFactor>43560</RefFactor>
+      <RefUOM>cubic foot</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>million imperial gallon</Name>
+      <Abbreviation>Imp Mgal</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>Imperial gallon</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1570,13 +1584,6 @@
       <Abbreviation>Imp kgal</Abbreviation>
       <RefFactor>1000</RefFactor>
       <RefUOM>Imperial gallon</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>thousand US gallon</Name>
-      <Abbreviation>US kgal</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>US gallon</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1710,6 +1717,34 @@
       <InstanceType>Element</InstanceType>
       <AllowElementToExtend>false</AllowElementToExtend>
       <AFAttributeTemplate>
+        <Name>Object Type</Name>
+        <Type>String</Type>
+        <Value type="String">Template</Value>
+        <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAnalysisTemplate>
+        <Name>Calculate Time Until Next Service</Name>
+        <Target>Asset Template</Target>
+        <AFAnalysisRule>
+          <AFPlugIn>PerformanceEquation</AFPlugIn>
+          <ConfigString>HoursUntilService := '{2704622a-752c-40f4-81da-7d8560082263};Hours until next bearing service';&#xD;
+EstimatedServiceTime := '*' + '{2704622a-752c-40f4-81da-7d8560082263};Hours until next bearing service' * 60 * 60;&#xD;
+MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
+          <VariableMapping>EstimatedServiceTime||Approximate date of next bearing service;[GUID]||{a97153d4-0647-4aa9-bd90-41953c56d3ea};MonthOfNextServiceTime||Approximate month of next bearing service;[GUID]||{8fcf8694-dac6-4445-8f5e-dc1eaee5efbb};[GUID]||[UNSET];</VariableMapping>
+        </AFAnalysisRule>
+        <AFTimeRule>
+          <AFPlugIn>Periodic</AFPlugIn>
+          <ConfigString>Frequency=1</ConfigString>
+        </AFTimeRule>
+      </AFAnalysisTemplate>
+    </AFElementTemplate>
+    <AFElementTemplate>
+      <Name>Asset Template - Phone</Name>
+      <BaseTemplate>Asset Template</BaseTemplate>
+      <Type>None</Type>
+      <InstanceType>Element</InstanceType>
+      <AllowElementToExtend>false</AllowElementToExtend>
+      <AFAttributeTemplate>
         <Name>Alpha-axis rotation</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Double</Type>
@@ -1734,7 +1769,7 @@
       <AFAttributeTemplate>
         <Name>Approximate date of next service</Name>
         <Type>DateTime</Type>
-        <Value type="DateTime">0001-01-01 08:00:00Z</Value>
+        <Value type="DateTime">0001-01-01T08:00:00Z</Value>
         <DataReference>Analysis</DataReference>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -1971,7 +2006,7 @@
       </AFAttributeTemplate>
       <AFAnalysisTemplate>
         <Name>Calculate Time Until Next Service</Name>
-        <Target>Asset Template</Target>
+        <Target>Asset Template - Phone</Target>
         <AFAnalysisRule>
           <AFPlugIn>PerformanceEquation</AFPlugIn>
           <ConfigString>HoursUntilService := '{2704622a-752c-40f4-81da-7d8560082263};Hours until next bearing service';&#xD;
@@ -1984,6 +2019,70 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <ConfigString>Frequency=1</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
+    </AFElementTemplate>
+    <AFElementTemplate>
+      <Name>Asset Template - WISE-4012E</Name>
+      <Description>Modbus IoT Device</Description>
+      <BaseTemplate>Asset Template</BaseTemplate>
+      <Type>None</Type>
+      <InstanceType>Element</InstanceType>
+      <AllowElementToExtend>false</AllowElementToExtend>
+      <AFAttributeTemplate>
+        <Name>Analog Input 1</Name>
+        <DefaultUOM>V</DefaultUOM>
+        <Type>Single</Type>
+        <Value type="Single">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=2;excdev=1;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=1;pointsource=MODBUSE;span=5000</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Analog Input 2</Name>
+        <DefaultUOM>V</DefaultUOM>
+        <Type>Single</Type>
+        <Value type="Single">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=2;excdev=1;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=2;pointsource=MODBUSE;span=5000</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Protocol</Name>
+        <Type>String</Type>
+        <Value type="String">Modbus over Ethernet</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Source</Name>
+        <Type>String</Type>
+        <Value type="String">WISE-4012E IoT Module</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Source IP Address</Name>
+        <Type>String</Type>
+        <Value type="String">192.168.0.111</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Digital Input 1</Name>
+        <Type>Int32</Type>
+        <Value type="Int32">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=1;pointsource=MODBUSE;span=0</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Digital Input 2</Name>
+        <Type>Int32</Type>
+        <Value type="Int32">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=2;pointsource=MODBUSE;span=0</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
     </AFElementTemplate>
     <AFElementTemplate>
       <Name>Phone Sensors Template</Name>
@@ -2098,26 +2197,17 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Average Oil Health</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Average Oil Health</Name>
-        <DefaultUOM>%</DefaultUOM>
+        <Name>Average Proximity Reading</Name>
+        <DefaultUOM>cm</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Average Set Point</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Double</Type>
-        <Value type="Double">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway CPU</Name>
@@ -2126,7 +2216,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\Processor Information(_Total)\% Processor Time;location1=1;location4=1;pointsource=#</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway RAM</Name>
@@ -2135,6 +2225,15 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\Memory\% Committed Bytes In Use;location1=1;location4=1;pointsource=#</ConfigString>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Max Z-Axis Acceleration</Name>
+        <DefaultUOM>m/s2</DefaultUOM>
+        <Type>Double</Type>
+        <Value type="Double">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -2143,41 +2242,15 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Minimum Oil Health</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Minimum Oil Health</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Double</Type>
-        <Value type="Double">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Minimum Set Point</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Double</Type>
-        <Value type="Double">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Nearest Maintenance Date</Name>
-        <Type>DateTime</Type>
-        <Value type="DateTime">1970-01-01T00:00:00Z</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
       <AFAnalysisTemplate>
-        <Name>Average Oil Health</Name>
+        <Name>Average Battery Level</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Bearing oil health];Average||Average Oil Health;[GUID]||{e49861b5-e413-43d8-a14f-e5c8426f96c3};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Battery level];Average||Average Battery Level;[GUID]||{dd2c0514-fbac-4e1b-bdfd-80086a808173};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2185,11 +2258,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Average Set Point</Name>
+        <Name>Average Proximity</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Set point];Average||Average Set Point;[GUID]||{6a4476aa-efad-4636-87c9-013561f519ad};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Proximity sensor reading];Average||Average Proximity Reading;[GUID]||{a20816bd-3bc6-4573-8ca0-60f675bfc251};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2197,11 +2270,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Minimum Oil Health</Name>
+        <Name>Max Z-Axis Acceleration</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Bearing oil health];Minimum||Minimum Oil Health;[GUID]||{3394660e-b13c-483a-a450-a272f5f50f81};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Z-axis acceleration];Maximum||Max Z-Axis Acceleration;[GUID]||{df376011-1ed9-4628-855b-0da860819262};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2209,23 +2282,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Minimum Set Point</Name>
+        <Name>Minimum Battery Level</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Set point];Minimum||Minimum Set Point;[GUID]||{ca931636-59c4-4193-9234-d81b98a8c2e4};[GUID]||[UNSET];</VariableMapping>
-        </AFAnalysisRule>
-        <AFTimeRule>
-          <AFPlugIn>Periodic</AFPlugIn>
-          <ConfigString>Frequency=1</ConfigString>
-        </AFTimeRule>
-      </AFAnalysisTemplate>
-      <AFAnalysisTemplate>
-        <Name>Nearest Maintenance Data</Name>
-        <Target>Top-Level Assets Template</Target>
-        <AFAnalysisRule>
-          <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Approximate date of next bearing service];Minimum||Soonest Maintenance Data;[GUID]||{e7daa03d-16fe-40bc-988d-1a9ebc55c040};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Battery level];Minimum||Minimum Battery Level;[GUID]||{9abacbf4-17d8-487b-be50-7d4c67bd702c};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2238,58 +2299,44 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <Template>Top-Level Assets Template</Template>
       <AFAttribute>
         <Name>Average Battery Level</Name>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\Assets.Average Battery Level?70</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
-        <Name>Average Oil Health</Name>
+        <Name>Average Proximity Reading</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Oil Health?54</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttribute>
-      <AFAttribute>
-        <Name>Average Set Point</Name>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Set Point?56</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <ConfigString>\\localhost\Assets.Average Proximity Reading?68</ConfigString>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway CPU</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time?14</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway RAM</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use?116</ConfigString>
+        <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use?15</ConfigString>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+      </AFAttribute>
+      <AFAttribute>
+        <Name>Max Z-Axis Acceleration</Name>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration?69</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Minimum Battery Level</Name>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\Assets.Minimum Battery Level?71</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
-      </AFAttribute>
-      <AFAttribute>
-        <Name>Minimum Oil Health</Name>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Minimum Oil Health;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttribute>
-      <AFAttribute>
-        <Name>Minimum Set Point</Name>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Minimum Set Point?62</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttribute>
-      <AFAttribute>
-        <Name>Nearest Maintenance Date</Name>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Soonest Maintenance Data?55</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 1</Name>
         <Description>Main device A.</Description>
-        <Template>Asset Template</Template>
+        <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
@@ -2368,6 +2415,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Model number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak set point over past 5m</Name>
@@ -2437,7 +2488,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 2</Name>
         <Description>Main device B.</Description>
-        <Template>Asset Template</Template>
+        <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
@@ -2516,6 +2567,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Model number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak set point over past 5m</Name>
@@ -2585,7 +2640,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 3</Name>
         <Description>Backup device A.</Description>
-        <Template>Asset Template</Template>
+        <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
@@ -2664,6 +2719,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Model number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak set point over past 5m</Name>
@@ -2733,7 +2792,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 4</Name>
         <Description>Backup device B.</Description>
-        <Template>Asset Template</Template>
+        <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
@@ -2812,6 +2871,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Model number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak set point over past 5m</Name>
@@ -2881,7 +2944,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 5</Name>
         <Description>Backup device C.</Description>
-        <Template>Asset Template</Template>
+        <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
@@ -2962,6 +3025,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
           <Name>Peak set point over past 5m</Name>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
@@ -3026,42 +3093,91 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           </Target>
         </AFAnalysis>
       </AFElement>
+      <AFElement ReferenceType="Parent-Child">
+        <Name>WISE-4012E 1</Name>
+        <Description>Modbus sensor module.</Description>
+        <Template>Asset Template - WISE-4012E</Template>
+        <AFAttribute>
+          <Name>Analog Input 1</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\CDT158?3</ConfigString>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Analog Input 2</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\BA:TEMP.1?6</ConfigString>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Data Protocol</Name>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Data Source</Name>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Data Source IP Address</Name>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Digital Input 1</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\BA:ACTIVE.1?9</ConfigString>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Digital Input 2</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\BA:PHASE.1?10</ConfigString>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAttribute>
+          <Name>Object Type</Name>
+          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
+        </AFAttribute>
+        <AFAnalysis>
+          <Name>Calculate Time Until Next Service</Name>
+          <Template>Calculate Time Until Next Service</Template>
+          <Status>Enabled</Status>
+          <Target>
+            <AFElementRef>Assets\WISE-4012E 1</AFElementRef>
+          </Target>
+        </AFAnalysis>
+      </AFElement>
       <AFAnalysis>
-        <Name>Average Oil Health</Name>
-        <Template>Average Oil Health</Template>
+        <Name>Average Battery Level</Name>
+        <Template>Average Battery Level</Template>
         <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Average Set Point</Name>
-        <Template>Average Set Point</Template>
+        <Name>Average Proximity</Name>
+        <Template>Average Proximity</Template>
         <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Minimum Oil Health</Name>
-        <Template>Minimum Oil Health</Template>
+        <Name>Max Z-Axis Acceleration</Name>
+        <Template>Max Z-Axis Acceleration</Template>
         <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Minimum Set Point</Name>
-        <Template>Minimum Set Point</Template>
+        <Name>Minimum Battery Level</Name>
+        <Template>Minimum Battery Level</Template>
         <Status>Enabled</Status>
-        <Target>
-          <AFElementRef>Assets</AFElementRef>
-        </Target>
-      </AFAnalysis>
-      <AFAnalysis>
-        <Name>Nearest Maintenance Data</Name>
-        <Template>Nearest Maintenance Data</Template>
-        <Status>Error</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
@@ -3075,52 +3191,62 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation?73;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation?18;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level?63;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level?19;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Bearing oil health?20;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation?74;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation?21;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation?75;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation?22;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading?64;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading?23;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Set point</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Set point?24;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.X-axis acceleration?25;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Y-axis acceleration?26;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Z-axis acceleration?27;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3130,52 +3256,62 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Alpha-axis rotation?76;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Alpha-axis rotation?28;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level?65;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level?29;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Bearing oil health?30;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation?77;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation?31;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Gamma-axis rotation?78;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Gamma-axis rotation?32;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading?66;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading?33;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Set point</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Set point?34;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.X-axis acceleration?35;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Y-axis acceleration?36;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Z-axis acceleration?37;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3185,52 +3321,62 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Alpha-axis rotation?79;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Alpha-axis rotation?38;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level?67;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level?39;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Bearing oil health?40;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation?80;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation?41;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Gamma-axis rotation?81;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Gamma-axis rotation?42;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading?68;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading?43;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Set point</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Set point?44;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.X-axis acceleration?45;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Y-axis acceleration?46;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Z-axis acceleration?47;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3240,52 +3386,62 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Alpha-axis rotation?82;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Alpha-axis rotation?48;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Ambient light level?69;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Ambient light level?49;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Bearing oil health?50;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation?83;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation?51;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Gamma-axis rotation?84;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Gamma-axis rotation?52;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading?70;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading?53;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Set point</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Set point?54;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.X-axis acceleration?55;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Y-axis acceleration?56;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Z-axis acceleration?57;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3295,52 +3451,62 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Alpha-axis rotation?85;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 5 Sensors.Alpha-axis rotation?58;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Ambient light level?71;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 5 Sensors.Ambient light level?59;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 5 Sensors.Bearing oil health?60;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Beta-axis rotation?86;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 5 Sensors.Beta-axis rotation?61;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Gamma-axis rotation?87;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 5 Sensors.Gamma-axis rotation?62;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Proximity sensor reading?72;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 5 Sensors.Proximity sensor reading?63;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Set point</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 5 Sensors.Set point?64;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 5 Sensors.X-axis acceleration?65;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 5 Sensors.Y-axis acceleration?66;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 5 Sensors.Z-axis acceleration?67;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>

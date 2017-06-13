@@ -5,7 +5,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
 
-    // Specify whether or not to use multiple chart axes!
+    // Specify the default of whether or not to use multiple chart axes!  Note: this is also set later...
     var USE_MULTIPLE_AXES = true;
 
     var stop;
@@ -19,24 +19,31 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             stop = undefined;
         };
     };
+	
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
+	// Global variables for storing the chart object AND the most recently received data from the PI System
     var chart;
     var mostRecentDataFromPISystem;
 
+	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
-            dataService.getPloValues(attributes).then(function (response) {
+            dataService.getInterpolatedValues(attributes).then(function (response) {
+			//dataService.getPloValues(attributes).then(function (response) {
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
             });
 
             stop = $interval(function () {
-                dataService.getPloValues(attributes).then(function (response) {
+                dataService.getInterpolatedValues(attributes).then(function (response) {
+				//dataService.getPloValues(attributes).then(function (response) {
                     mostRecentDataFromPISystem = response.data.Items;
                     updateChartData();
                 });
-            }, 5000);
+            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
         });
     };
 
@@ -119,8 +126,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         var graphArray = [];
         var axisArray = []
 
-        // Note! If the number of data items is over 3, turn off multiple axes!
-        if ($scope.attributes.length > 3) {
+        // Note! If the number of data items is over 4, turn off multiple axes!
+        if ($scope.attributes.length > 4) {
             USE_MULTIPLE_AXES = false;
         }
 

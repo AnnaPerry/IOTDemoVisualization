@@ -16,7 +16,7 @@ angular.module('iotdemoApp')
         .replace("/", "");
 
     // Computed PI Web API Base URL
-    HOST_NAME_FROM_URL = "pi4egdemo7"; // Hard-coded; used for testing only!
+    //HOST_NAME_FROM_URL = "pi4egdemo7"; // Hard-coded; used for testing only!
     var _httpsPIWebAPIUrl_fromURL = "https://" + HOST_NAME_FROM_URL + "/piwebapi/";
     // Automatically try to add in the URL if it was left blank
     if (_httpsPIWebAPIUrl == "") {
@@ -119,7 +119,7 @@ angular.module('iotdemoApp')
                 case "Ambient light level": {
                     value = ambientLightLevel;
                     // If there is no light sensor, generate a random reading
-                    if (!window.DeviceLightEvent || (value==null)) {
+                    if (!window.DeviceLightEvent || value == null) {
                         value = Math.random() * 300;
                     }
                     break;
@@ -127,7 +127,7 @@ angular.module('iotdemoApp')
                 case "Proximity sensor reading": {
                     value = proximityValue;
                     // If there is no proximity sensor, generate a random reading
-                    if (!window.DeviceProximityEvent || (value==null)) {
+                    if (!window.DeviceProximityEvent || value == null) {
                         value = Math.random() * 50;
                     }
                     break;
@@ -137,6 +137,11 @@ angular.module('iotdemoApp')
                     break;
                 }
             }
+			// Last-ditch error handler
+			if (value == null)
+			{
+				value = 0;
+			}
             // Add this new data value as an object to the array of value objects that will be written (at the current time)
             dataObj.push({ 'WebId': attribute.WebId, 'Value': { 'Timestamp': "*", 'Value': value } });
         });
@@ -159,9 +164,9 @@ angular.module('iotdemoApp')
         });
     }
     */
-        if (SEND_DATA_TO_PI_SYSTEM) {
+    if (SEND_DATA_TO_PI_SYSTEM) {
         // Set up a handler to track the battery
-        if (navigator.getBattery) {
+        try {
             navigator.getBattery().then(function (battery) {
                 batteryLevel = 100 * battery.level;
                 battery.addEventListener('levelchange', function () {
@@ -170,7 +175,7 @@ angular.module('iotdemoApp')
                 });
                 console.log("Event listener added for this type of sensor data: " + "battery");
             });
-        } else {
+        } catch(err) {
             displayCompatibilityAlert("battery");
         }
 
@@ -225,7 +230,9 @@ angular.module('iotdemoApp')
         } else {
             displayCompatibilityAlert("light");
         }
-    }
+    } else {
+		console.log("Data streaming disabled!");
+	}
 
     // Helper function that toggles the compatibility alert if a sensor isn't supported
     function displayCompatibilityAlert(sensorType) {
@@ -303,7 +310,7 @@ angular.module('iotdemoApp')
     // Functions and objects accessible by the service
     return {
         enablePhoneBasedDataCollectionFeatures: function () {
-            return SEND_DATA_TO_PI_SYSTEM;
+            return ( SEND_DATA_TO_PI_SYSTEM );
         },
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
@@ -352,6 +359,13 @@ angular.module('iotdemoApp')
                 return response;
             });        
         },
+        // Return an array of arrays of interpolated values for a certain array of attributes
+        getInterpolatedValues : function (attributes) {
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated?startTime=' + '*-2m' + '&endTime=' + '*' + '&interval=' + '1s' + '&', attributes);
+            return $http.get(url).then(function (response) {
+                return response;
+            });        
+        },		
         // Returns the correct string for the name of the AF asset, including the asset number
         getTargetAssetElementName: function (assetName) {
             var assetidNumber = assetName.match(/[0-9]+/i)[0];

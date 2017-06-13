@@ -1,4 +1,5 @@
-﻿<div class="container-fluid el-inherit-size" style="padding-bottom: 50px;" ng-init="init()">
+﻿
+<div class="container-fluid el-inherit-size" ng-init="init()" style="padding-top:30px;padding-bottom:20px;">
     <div class="card-deck el-inherit-size">
         <div class="card">
             <div class="card-header">
@@ -7,11 +8,9 @@
             <div class="card-block" style="padding:0px;">
                 <div id="crazyGaugeDiv" ng-init="makeCrazyGauge()" style="min-height:220px; max-height:600px; background-color:white"></div>
             </div>
+			 <div class="card-footer" style="text-align:center">
+                <a class="nav-link" ui-sref="assetoverview"><i style="color:#292b2c" class="fa fa-chevron-down fa-2x"></i></a>
+            </div>
         </div>
     </div>
 </div>
-<nav class="navbar navbar-inverse fixed-bottom">
-    <ul class="nav navbar-nav text-center">
-        <li class="nav-item"><a class="nav-link" ui-sref="assetoverview"><i style="color:#292b2c" class="fa fa-chevron-down fa-2x"></i></a></li>
-    </ul>
-</nav>

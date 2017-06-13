@@ -2,11 +2,14 @@
 app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams', 'dataService', function ($scope, $http, $interval,$stateParams, dataService) {
 
     //var afTemplate = 'Asset Template';
-	var afTemplate = ''; // Template name is no longer needed; now searching is done by name, not by template!	
+	var afTemplate = '';
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Snapshot';
 
     var stop;
+
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
     $scope.init = function () {
 
@@ -19,7 +22,7 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
                 dataService.getSnapshots(attributes).then(function (response) {
                     $scope.dataArray = response.data.Items;
                 });
-            }, 5000);
+            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
 
         });
 

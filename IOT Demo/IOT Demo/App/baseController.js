@@ -122,20 +122,4 @@ app.controller('baseController', ['$scope', '$http', 'dataService','$interval', 
 
     };
 
-
-    //$scope.updateProjection = function () {
-    //    console.log({ x: $scope.xRotation, y: $scope.yRotation, z: $scope.zRotation });
-    //    awe.projections.update({
-    //        data: {
-    //            rotation: { x: $scope.xRotation, y: $scope.yRotation, z: $scope.zRotation },
-    //            position: { x: $scope.xPosition, y: $scope.yPosition, z: $scope.zPosition }
-    //        },
-    //        where: {
-    //            id: 'marker_projection1'
-    //        }
-    //    });
-
-    //};
-
-
 }]);
