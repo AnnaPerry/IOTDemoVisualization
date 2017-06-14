@@ -16,6 +16,8 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             dataService.getSnapshots(attributes).then(function (response) {
                 $scope.dataArray = response.data.Items;
+				// Turn off the loading spinner
+				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
             });
 
             stop = $interval(function () {
@@ -25,7 +27,6 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
             }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
 
         });
-
     };
 
     $scope.$on('$destroy', function () {
@@ -38,5 +39,4 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
             stop = undefined;
         };
     };
-
 }]);

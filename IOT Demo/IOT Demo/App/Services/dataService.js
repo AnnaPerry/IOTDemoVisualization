@@ -276,12 +276,23 @@ angular.module('iotdemoApp')
     // ---------------------------------------------------------------------------------------------
     // Functions for interacting with the PI Web API to read and write data
 
+	// Fired when an http request returns an error!
+	function respondToHTTPRequestError(response, attemptedTask) {
+		// Hide the loading spinner
+		document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+		// Set the modal body text to the error
+		console.log(response);
+		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ":<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.";
+		// Open the modal
+		$("#errorMessageModal").modal();
+	}
+	
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
         var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
         return $http.get(url).then(function (response) {
             return response.data.WebId;
-        });
+        }, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
     };
 
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
@@ -316,14 +327,18 @@ angular.module('iotdemoApp')
         getElements: function (elementTemplate) {
             if (_afdbwebid) {
                 var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
-                return $http.get(url).then(function (response) { return response.data.Items });
+                return $http.get(url).then(function (response) { 
+					return response.data.Items;
+					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
             }
             else {
-                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, then launch the query
+                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
                     var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
-                    return $http.get(url).then(function (response) { return response.data.Items });
+                    return $http.get(url).then(function (response) { 
+						return response.data.Items;
+					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
                 });
             }
         },
@@ -333,15 +348,15 @@ angular.module('iotdemoApp')
                 var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
                 return $http.get(url).then(function (response) {
                     return response.data.Items;
-                });
+                }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
             } else {
-                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, then launch the query
+                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
                     var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
                     return $http.get(url).then(function (response) {
                         return response.data.Items;
-                    });
+                    }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
                 });
             }
         },
@@ -350,21 +365,21 @@ angular.module('iotdemoApp')
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
             return $http.get(url).then(function (response) {
                 return response;
-            });                
+            }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               
         },
         // Return an array of arrays of plot values for a certain array of attributes
         getPloValues : function (attributes) {
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
-            });        
+            }, function (response) {respondToHTTPRequestError(response, "requesting plotted data")});      
         },
         // Return an array of arrays of interpolated values for a certain array of attributes
         getInterpolatedValues : function (attributes) {
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated?startTime=' + '*-2m' + '&endTime=' + '*' + '&interval=' + '1s' + '&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
-            });        
+            }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       
         },		
         // Returns the correct string for the name of the AF asset, including the asset number
         getTargetAssetElementName: function (assetName) {
@@ -373,7 +388,7 @@ angular.module('iotdemoApp')
             return 'Phone ' + assetidNumber + ' Sensors';
 
         },
-        // Given a target element template and element name, get its attributes, then send values to those attributes
+        // Given a target element template and element name, get its attributes, and next send values to those attributes
         sendDatatoPI: function (elementTemplate, targetAssetName) {
             // Only send data if it is explicitly allowed!
             if (SEND_DATA_TO_PI_SYSTEM == true) {

@@ -11,7 +11,8 @@ app.controller('assetsController', ['$scope', '$http', '$interval', 'dataService
         dataService.getElements(afAssetTemplate).then(function (assets) {
             $scope.assetArray = assets;
             //console.log(assets);
+			// Turn off the loading spinner
+			document.getElementById("loadingSpinner").style.visibility = "hidden"; 
         });
     }; 
-
 }]);

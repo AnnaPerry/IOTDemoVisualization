@@ -25,6 +25,8 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                 $scope.dataItem4 = dataArray[3];
                 // Update the chart
                 updatecharts();
+				// Turn off the loading spinner
+				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
             });
 			
 			// After the initial get, set up a recurring timer!
@@ -88,7 +90,6 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 
         // Refresh the chart
         crazyGaugeChart.validateNow();
-
     };
 
     var chartColors = ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)", "rgb(156, 128, 110)", "rgb(197, 86, 13)"];

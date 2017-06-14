@@ -35,6 +35,8 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 			//dataService.getPloValues(attributes).then(function (response) {
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
+				// Turn off the loading spinner
+				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
             });
 
             stop = $interval(function () {
