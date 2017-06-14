@@ -14,11 +14,19 @@
         </div>
         <!-- Side menu bar -->
         <div class="p-2 el-z" style="margin-top:0px;background-color:#606060">
-            <ul style="list-style-type:none;padding:0px;">
-				<li style="margin-top:20px;"><a ui-sref=".table"> <span class="fa fa-table fa-2x fa-fw" style="color:white !important"></span></a></li>
-                <li style="margin-top:20px;"><a ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw" style="color:white !important"></span></a></li>
-				<li style="margin-top:20px;"><a ui-sref='assetoverview'> <span class="fa fa-exchange fa-2x fa-fw" style="color:white !important"></span></a></li>
-				<li ng-show="getAssetType() == 'PhoneSensor'" style="margin-top:20px;"><a href="" onclick="$('#sensorValuesModal').modal();"><span class="fa fa-info-circle fa-2x fa-fw" style="color:white !important"></span></a></li>
+            <ul style="list-style-type:none;padding:0px;margin-left:4px;text-align:center;">
+				<li style="margin-top:25px;">
+					<a style="color:white !important" ui-sref=".table"><span class="fa fa-table fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Table</span></a>
+				</li>
+                <li style="margin-top:25px;">
+					<a style="color:white !important" ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Trend</span></a>
+				</li>
+				<li style="margin-top:25px;">
+					<a style="color:white !important" ui-sref='assetoverview'><span class="fa fa-exchange fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Assets</span></a>
+				</li>
+				<li style="margin-top:25px;" ng-show="getAssetType() == 'PhoneSensor'">
+					<a style="color:white !important" href="" onclick="$('#sensorValuesModal').modal();"><span class="fa fa-info-circle fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Info</span></a>
+				</li>
             </ul>
         </div>		
     </div>

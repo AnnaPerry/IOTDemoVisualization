@@ -6,9 +6,14 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
     var assetName = 'Assets';
     var afAttributeCategory = 'KPIs and Rollups';
 
-    var healthChart, setpointChart, crazyGaugeChart;
+	// Define global variables for the chart object and the interval timer
+    var crazyGaugeChart;
     var stop;
 
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
+	
+	// On load, get snapshot values...
     $scope.init = function () {
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             dataService.getSnapshots(attributes).then(function (response) {
@@ -21,7 +26,8 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                 // Update the chart
                 updatecharts();
             });
-
+			
+			// After the initial get, set up a recurring timer!
             stop = $interval(function () {
                 dataService.getSnapshots(attributes).then(function (response) {
                     var dataArray = response.data.Items;
@@ -33,9 +39,7 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                     // Update the chart
                     updatecharts();
                 });
-
-            }, 5000);
-
+            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
         });
     };
 
