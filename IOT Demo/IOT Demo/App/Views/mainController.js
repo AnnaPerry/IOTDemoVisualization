@@ -26,7 +26,7 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
                 // Update the chart
                 updatecharts();
 				// Turn off the loading spinner
-				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+				document.getElementById("loadingSpinner").style.display = "none";
             });
 			
 			// After the initial get, set up a recurring timer!

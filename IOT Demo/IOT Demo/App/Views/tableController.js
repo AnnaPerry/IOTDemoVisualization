@@ -17,7 +17,7 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
             dataService.getSnapshots(attributes).then(function (response) {
                 $scope.dataArray = response.data.Items;
 				// Turn off the loading spinner
-				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+				document.getElementById("loadingSpinner").style.display = "none";
             });
 
             stop = $interval(function () {

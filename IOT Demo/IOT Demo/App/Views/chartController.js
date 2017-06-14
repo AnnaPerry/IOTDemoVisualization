@@ -36,7 +36,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
 				// Turn off the loading spinner
-				document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+				document.getElementById("loadingSpinner").style.display = "none";
             });
 
             stop = $interval(function () {

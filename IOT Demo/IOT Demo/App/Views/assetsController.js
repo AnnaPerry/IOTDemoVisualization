@@ -12,7 +12,7 @@ app.controller('assetsController', ['$scope', '$http', '$interval', 'dataService
             $scope.assetArray = assets;
             //console.log(assets);
 			// Turn off the loading spinner
-			document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+			document.getElementById("loadingSpinner").style.display = "none";
         });
     }; 
 }]);
