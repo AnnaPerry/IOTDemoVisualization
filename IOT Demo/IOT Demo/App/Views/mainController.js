@@ -73,10 +73,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         crazyGaugeChart.axes[0].bands[7].setEndValue($scope.dataItem4.Value.Good ? $scope.dataItem4.Value.Value : 0);
 
         // Update the labels
-        crazyGaugeChart.allLabels[0].text = $scope.dataItem1.Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue + " " + $scope.dataItem1.Value.UnitsAbbreviation;
-        crazyGaugeChart.allLabels[1].text = $scope.dataItem2.Name + ": " + crazyGaugeChart.axes[0].bands[3].endValue + " " + $scope.dataItem2.Value.UnitsAbbreviation;
-        crazyGaugeChart.allLabels[2].text = $scope.dataItem3.Name + ": " + crazyGaugeChart.axes[0].bands[5].endValue + " " + $scope.dataItem3.Value.UnitsAbbreviation;
-        crazyGaugeChart.allLabels[3].text = $scope.dataItem4.Name + ": " + crazyGaugeChart.axes[0].bands[7].endValue + " " + $scope.dataItem4.Value.UnitsAbbreviation;
+        crazyGaugeChart.allLabels[0].text = $scope.dataItem1.Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue.toFixed(3) + " " + $scope.dataItem1.Value.UnitsAbbreviation;
+        crazyGaugeChart.allLabels[1].text = $scope.dataItem2.Name + ": " + crazyGaugeChart.axes[0].bands[3].endValue.toFixed(3) + " " + $scope.dataItem2.Value.UnitsAbbreviation;
+        crazyGaugeChart.allLabels[2].text = $scope.dataItem3.Name + ": " + crazyGaugeChart.axes[0].bands[5].endValue.toFixed(3) + " " + $scope.dataItem3.Value.UnitsAbbreviation;
+        crazyGaugeChart.allLabels[3].text = $scope.dataItem4.Name + ": " + crazyGaugeChart.axes[0].bands[7].endValue.toFixed(3) + " " + $scope.dataItem4.Value.UnitsAbbreviation;
 
         // Loop through all the chart bands as well, and update those based on each data item
         crazyGaugeChart.axes[0].bands[1].balloonText = crazyGaugeChart.allLabels[0].text;
