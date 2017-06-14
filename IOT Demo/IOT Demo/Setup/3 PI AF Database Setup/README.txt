@@ -19,3 +19,5 @@ As the last step, set up an Alias for your PI AF Server: add the alias "localhos
 	localhost
 
 When finished, click "OK", then "OK" once more.  Congratulations; you're finished with the needed PI AF configuration!	
+
+Note: You'll notice that this import actually brings in two additional elements under the "Assets" root element, one (WISE-4012E 1) for a WISE sensor module and one (Phidget Sensor Module 1) for a Phidgets sensor module.  If you don't happen to have these devices connected to your gateway, feel free to either mark them as hidden or delete these two PI AF Elements from your AF Database.  If you do wish to use these devices, consult the additional instructions found in the Phase II folder of this project.
