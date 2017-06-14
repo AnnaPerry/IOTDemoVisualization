@@ -3,7 +3,7 @@
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>Asset Name</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
@@ -13,7 +13,7 @@
                 <th scope="row">{{$index + 1}}</th>
                 <td>{{asset.Name}}</td>
                 <td>{{asset.Description}}</td>
-				<td><a class="btn btn-primary btn-sm" ui-sref="chartAndTableWrapperView.chart({assetName: asset.Name})">View Data</a></td>
+				<td><a class="btn btn-secondary btn-sm" ui-sref="chartAndTableWrapperView.chart({assetName: asset.Name})">View Data</a></td>
 				
             </tr>
         </tbody>
