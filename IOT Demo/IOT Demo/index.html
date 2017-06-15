@@ -30,14 +30,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Compatibility Check</h4>
+                    <h4 class="modal-title">Device and Browser Compatibility</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Your device or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data.  Simulated sensor values will be generated where needed.</p>
-                    <p>Sending accelerometer and gyro data requires running this application on a mobile device, and sending proximity and light sensor data requires using this application on a mobile device using the Mozilla Firefox web browser.</p>
+                    <p>Your device and/or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data.  Simulated sensor values will be generated where needed to mimic a compatible device.</p>
+                    <p>Sending accelerometer and gyro data from your client device to the gateway PI System requires viewing this web application on a mobile device, and specifically, sending proximity and light sensor data requires viewing this application on a mobile device using the Mozilla Firefox web browser.</p>
                     <p>To download and install the Firefox web browser on an Android device, click <b><a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=en">here</a></b>; to do the same for an iOS device, click <b><a href="https://itunes.apple.com/us/app/firefox-web-browser/id989804926?mt=8">here</a></b>.</p>
-                    <p>After installing Firefox, re-launch this web application within the Firefox web browser.</p>
+                    <p>After installing Firefox on your mobile device, re-launch this web application within the Firefox web browser.</p>
+					<p><b>Other data sources that are connected to the IoT gateway (such as WISE and Phidgets units) will still continue to work as expected.</b></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
