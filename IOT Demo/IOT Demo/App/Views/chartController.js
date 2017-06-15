@@ -29,6 +29,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
 	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
+		document.getElementById("loadingSpinner").style.display = "inline";
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
             dataService.getInterpolatedValues(attributes).then(function (response) {

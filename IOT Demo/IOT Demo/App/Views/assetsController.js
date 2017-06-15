@@ -8,6 +8,7 @@ app.controller('assetsController', ['$scope', '$http', '$interval', 'dataService
     $scope.selectedAsset;
 
     $scope.init = function () {
+		document.getElementById("loadingSpinner").style.display = "inline";
         dataService.getElements(afAssetTemplate).then(function (assets) {
             $scope.assetArray = assets;
             //console.log(assets);
