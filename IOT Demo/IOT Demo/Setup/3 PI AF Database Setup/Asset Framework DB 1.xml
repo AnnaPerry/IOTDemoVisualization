@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.5.7759" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-06-14T16:58:01.9979184Z" id="beb2f5e1-c532-4e2e-9645-6ccab31c3b42" ParentKey="38540f06-b96f-47fc-8010-061ab7ba372f" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{38540f06-b96f-47fc-8010-061ab7ba372f}\{beb2f5e1-c532-4e2e-9645-6ccab31c3b42}*localhost\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.5.7759" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-06-15T15:29:34.1229727Z" id="beb2f5e1-c532-4e2e-9645-6ccab31c3b42" ParentKey="38540f06-b96f-47fc-8010-061ab7ba372f" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{38540f06-b96f-47fc-8010-061ab7ba372f}\{beb2f5e1-c532-4e2e-9645-6ccab31c3b42}*localhost\Asset Framework DB 1">
   <UOMDatabase>
-    <id>7b0faa35-160d-45ff-83a5-8eff4229515a</id>
+    <Name>UOMDatabase</Name>
     <UOMClass>
       <Name>Acceleration</Name>
       <CanonicalUOM>meter per second squared</CanonicalUOM>
@@ -511,6 +511,13 @@
       <Class>Length</Class>
     </UOM>
     <UOM>
+      <Name>foot</Name>
+      <Abbreviation>ft</Abbreviation>
+      <RefFactor>12</RefFactor>
+      <RefUOM>inch</RefUOM>
+      <Class>Length</Class>
+    </UOM>
+    <UOM>
       <Name>International nautical mile</Name>
       <Abbreviation>nmi</Abbreviation>
       <RefFactor>1852</RefFactor>
@@ -525,24 +532,17 @@
       <Class>Length</Class>
     </UOM>
     <UOM>
-      <Name>millimeter</Name>
-      <Abbreviation>mm</Abbreviation>
-      <RefFactor>0.001</RefFactor>
-      <RefUOM>meter</RefUOM>
-      <Class>Length</Class>
-    </UOM>
-    <UOM>
-      <Name>foot</Name>
-      <Abbreviation>ft</Abbreviation>
-      <RefFactor>12</RefFactor>
-      <RefUOM>inch</RefUOM>
-      <Class>Length</Class>
-    </UOM>
-    <UOM>
       <Name>mile</Name>
       <Abbreviation>mi</Abbreviation>
       <RefFactor>63360</RefFactor>
       <RefUOM>inch</RefUOM>
+      <Class>Length</Class>
+    </UOM>
+    <UOM>
+      <Name>millimeter</Name>
+      <Abbreviation>mm</Abbreviation>
+      <RefFactor>0.001</RefFactor>
+      <RefUOM>meter</RefUOM>
       <Class>Length</Class>
     </UOM>
     <UOM>
@@ -586,20 +586,6 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
-      <Name>square mile</Name>
-      <Abbreviation>mi2</Abbreviation>
-      <RefFactor>27878400</RefFactor>
-      <RefUOM>square foot</RefUOM>
-      <Class>Area</Class>
-    </UOM>
-    <UOM>
-      <Name>square yard</Name>
-      <Abbreviation>yd2</Abbreviation>
-      <RefFactor>9</RefFactor>
-      <RefUOM>square foot</RefUOM>
-      <Class>Area</Class>
-    </UOM>
-    <UOM>
       <Name>hectare</Name>
       <Abbreviation>ha</Abbreviation>
       <RefFactor>10000</RefFactor>
@@ -621,6 +607,13 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
+      <Name>square mile</Name>
+      <Abbreviation>mi2</Abbreviation>
+      <RefFactor>27878400</RefFactor>
+      <RefUOM>square foot</RefUOM>
+      <Class>Area</Class>
+    </UOM>
+    <UOM>
       <Name>square millimeter</Name>
       <Abbreviation>mm2</Abbreviation>
       <RefFactor>1E-06</RefFactor>
@@ -628,8 +621,22 @@
       <Class>Area</Class>
     </UOM>
     <UOM>
+      <Name>square yard</Name>
+      <Abbreviation>yd2</Abbreviation>
+      <RefFactor>9</RefFactor>
+      <RefUOM>square foot</RefUOM>
+      <Class>Area</Class>
+    </UOM>
+    <UOM>
       <Name>kilogram</Name>
       <Abbreviation>kg</Abbreviation>
+      <Class>Mass</Class>
+    </UOM>
+    <UOM>
+      <Name>gram</Name>
+      <Abbreviation>g</Abbreviation>
+      <RefFactor>0.001</RefFactor>
+      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -644,6 +651,13 @@
       <Abbreviation>lton</Abbreviation>
       <RefFactor>2240</RefFactor>
       <RefUOM>pound</RefUOM>
+      <Class>Mass</Class>
+    </UOM>
+    <UOM>
+      <Name>milligram</Name>
+      <Abbreviation>mg</Abbreviation>
+      <RefFactor>1E-06</RefFactor>
+      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -679,20 +693,6 @@
       <Abbreviation>ton</Abbreviation>
       <RefFactor>2000</RefFactor>
       <RefUOM>pound</RefUOM>
-      <Class>Mass</Class>
-    </UOM>
-    <UOM>
-      <Name>gram</Name>
-      <Abbreviation>g</Abbreviation>
-      <RefFactor>0.001</RefFactor>
-      <RefUOM>kilogram</RefUOM>
-      <Class>Mass</Class>
-    </UOM>
-    <UOM>
-      <Name>milligram</Name>
-      <Abbreviation>mg</Abbreviation>
-      <RefFactor>1E-06</RefFactor>
-      <RefUOM>kilogram</RefUOM>
       <Class>Mass</Class>
     </UOM>
     <UOM>
@@ -790,16 +790,16 @@
       <Class>Electric Potential</Class>
     </UOM>
     <UOM>
-      <Name>megavolt</Name>
-      <Abbreviation>MV</Abbreviation>
-      <RefFactor>1000000</RefFactor>
+      <Name>kilovolt</Name>
+      <Abbreviation>KV</Abbreviation>
+      <RefFactor>1000</RefFactor>
       <RefUOM>volt</RefUOM>
       <Class>Electric Potential</Class>
     </UOM>
     <UOM>
-      <Name>kilovolt</Name>
-      <Abbreviation>KV</Abbreviation>
-      <RefFactor>1000</RefFactor>
+      <Name>megavolt</Name>
+      <Abbreviation>MV</Abbreviation>
+      <RefFactor>1000000</RefFactor>
       <RefUOM>volt</RefUOM>
       <Class>Electric Potential</Class>
     </UOM>
@@ -818,27 +818,6 @@
     <UOM>
       <Name>joule</Name>
       <Abbreviation>J</Abbreviation>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
-      <Name>gigawatt hour</Name>
-      <Abbreviation>GWh</Abbreviation>
-      <RefFactor>3600000000000</RefFactor>
-      <RefUOM>joule</RefUOM>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
-      <Name>megawatt hour</Name>
-      <Abbreviation>MWh</Abbreviation>
-      <RefFactor>3600000000</RefFactor>
-      <RefUOM>joule</RefUOM>
-      <Class>Energy</Class>
-    </UOM>
-    <UOM>
-      <Name>watt hour</Name>
-      <Abbreviation>Wh</Abbreviation>
-      <RefFactor>3600</RefFactor>
-      <RefUOM>joule</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -863,6 +842,20 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
+      <Name>gigawatt hour</Name>
+      <Abbreviation>GWh</Abbreviation>
+      <RefFactor>3600000000000</RefFactor>
+      <RefUOM>joule</RefUOM>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
+      <Name>kilocalorie</Name>
+      <Abbreviation>kcal</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>calorie</RefUOM>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
       <Name>kilojoule</Name>
       <Abbreviation>kJ</Abbreviation>
       <RefFactor>1000</RefFactor>
@@ -884,16 +877,17 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>watt second</Name>
-      <Abbreviation>Ws</Abbreviation>
+      <Name>megawatt hour</Name>
+      <Abbreviation>MWh</Abbreviation>
+      <RefFactor>3600000000</RefFactor>
       <RefUOM>joule</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>kilocalorie</Name>
-      <Abbreviation>kcal</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>calorie</RefUOM>
+      <Name>million British thermal unit</Name>
+      <Abbreviation>MM Btu</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>British thermal unit</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -904,10 +898,16 @@
       <Class>Energy</Class>
     </UOM>
     <UOM>
-      <Name>million British thermal unit</Name>
-      <Abbreviation>MM Btu</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>British thermal unit</RefUOM>
+      <Name>watt hour</Name>
+      <Abbreviation>Wh</Abbreviation>
+      <RefFactor>3600</RefFactor>
+      <RefUOM>joule</RefUOM>
+      <Class>Energy</Class>
+    </UOM>
+    <UOM>
+      <Name>watt second</Name>
+      <Abbreviation>Ws</Abbreviation>
+      <RefUOM>joule</RefUOM>
       <Class>Energy</Class>
     </UOM>
     <UOM>
@@ -941,15 +941,15 @@
       <Class>Entropy, Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per degree Rankine</Name>
-      <Abbreviation>Btu/°R</Abbreviation>
+      <Name>British thermal unit per degree Fahrenheit</Name>
+      <Abbreviation>Btu/°F</Abbreviation>
       <RefFactor>1899.100534716</RefFactor>
       <RefUOM>joule per kelvin</RefUOM>
       <Class>Entropy, Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per degree Fahrenheit</Name>
-      <Abbreviation>Btu/°F</Abbreviation>
+      <Name>British thermal unit per degree Rankine</Name>
+      <Abbreviation>Btu/°R</Abbreviation>
       <RefFactor>1899.100534716</RefFactor>
       <RefUOM>joule per kelvin</RefUOM>
       <Class>Entropy, Heat Capacity</Class>
@@ -1020,6 +1020,13 @@
       <Class>Mass Flow Rate</Class>
     </UOM>
     <UOM>
+      <Name>gram per second</Name>
+      <Abbreviation>g/s</Abbreviation>
+      <RefFactor>0.001</RefFactor>
+      <RefUOM>kilogram per second</RefUOM>
+      <Class>Mass Flow Rate</Class>
+    </UOM>
+    <UOM>
       <Name>pound per second</Name>
       <Abbreviation>lb/s</Abbreviation>
       <RefFactor>0.45359237</RefFactor>
@@ -1052,13 +1059,6 @@
       <Abbreviation>klb/d</Abbreviation>
       <RefFactor>0.0115740740740741</RefFactor>
       <RefUOM>pound per second</RefUOM>
-      <Class>Mass Flow Rate</Class>
-    </UOM>
-    <UOM>
-      <Name>gram per second</Name>
-      <Abbreviation>g/s</Abbreviation>
-      <RefFactor>0.001</RefFactor>
-      <RefUOM>kilogram per second</RefUOM>
       <Class>Mass Flow Rate</Class>
     </UOM>
     <UOM>
@@ -1148,20 +1148,6 @@
       <Class>Power</Class>
     </UOM>
     <UOM>
-      <Name>gigawatt</Name>
-      <Abbreviation>GW</Abbreviation>
-      <RefFactor>1000000000</RefFactor>
-      <RefUOM>watt</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
-      <Name>megawatt</Name>
-      <Abbreviation>MW</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>watt</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
       <Name>British thermal unit per hour</Name>
       <Abbreviation>Btu/h</Abbreviation>
       <RefFactor>0.29307107017222</RefFactor>
@@ -1169,23 +1155,16 @@
       <Class>Power</Class>
     </UOM>
     <UOM>
-      <Name>million British thermal unit per day</Name>
-      <Abbreviation>MM Btu/d</Abbreviation>
-      <RefFactor>41666.6666666667</RefFactor>
-      <RefUOM>British thermal unit per hour</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
-      <Name>million British thermal unit per hour</Name>
-      <Abbreviation>MM Btu/h</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>British thermal unit per hour</RefUOM>
-      <Class>Power</Class>
-    </UOM>
-    <UOM>
       <Name>calorie per second</Name>
       <Abbreviation>cal/s</Abbreviation>
       <RefFactor>4.1868</RefFactor>
+      <RefUOM>watt</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>gigawatt</Name>
+      <Abbreviation>GW</Abbreviation>
+      <RefFactor>1000000000</RefFactor>
       <RefUOM>watt</RefUOM>
       <Class>Power</Class>
     </UOM>
@@ -1214,6 +1193,27 @@
       <Abbreviation>MJ/h</Abbreviation>
       <RefFactor>277.777777777778</RefFactor>
       <RefUOM>watt</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>megawatt</Name>
+      <Abbreviation>MW</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>watt</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>million British thermal unit per day</Name>
+      <Abbreviation>MM Btu/d</Abbreviation>
+      <RefFactor>41666.6666666667</RefFactor>
+      <RefUOM>British thermal unit per hour</RefUOM>
+      <Class>Power</Class>
+    </UOM>
+    <UOM>
+      <Name>million British thermal unit per hour</Name>
+      <Abbreviation>MM Btu/h</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>British thermal unit per hour</RefUOM>
       <Class>Power</Class>
     </UOM>
     <UOM>
@@ -1334,16 +1334,16 @@
       <Class>Specific Energy</Class>
     </UOM>
     <UOM>
-      <Name>joule per gram</Name>
-      <Abbreviation>J/g</Abbreviation>
-      <RefFactor>1000</RefFactor>
+      <Name>British thermal unit per pound</Name>
+      <Abbreviation>Btu/lb</Abbreviation>
+      <RefFactor>2326</RefFactor>
       <RefUOM>joule per kilogram</RefUOM>
       <Class>Specific Energy</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound</Name>
-      <Abbreviation>Btu/lb</Abbreviation>
-      <RefFactor>2326</RefFactor>
+      <Name>joule per gram</Name>
+      <Abbreviation>J/g</Abbreviation>
+      <RefFactor>1000</RefFactor>
       <RefUOM>joule per kilogram</RefUOM>
       <Class>Specific Energy</Class>
     </UOM>
@@ -1374,15 +1374,15 @@
       <Class>Specific Entropy, Specific Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound degree Rankine</Name>
-      <Abbreviation>Btu/(lb °R)</Abbreviation>
+      <Name>British thermal unit per pound degree Fahrenheit</Name>
+      <Abbreviation>Btu/(lb °F)</Abbreviation>
       <RefFactor>4186.8</RefFactor>
       <RefUOM>joule per kilogram kelvin</RefUOM>
       <Class>Specific Entropy, Specific Heat Capacity</Class>
     </UOM>
     <UOM>
-      <Name>British thermal unit per pound degree Fahrenheit</Name>
-      <Abbreviation>Btu/(lb °F)</Abbreviation>
+      <Name>British thermal unit per pound degree Rankine</Name>
+      <Abbreviation>Btu/(lb °R)</Abbreviation>
       <RefFactor>4186.8</RefFactor>
       <RefUOM>joule per kilogram kelvin</RefUOM>
       <Class>Specific Entropy, Specific Heat Capacity</Class>
@@ -1407,16 +1407,16 @@
       <Class>Specific Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic foot per pound</Name>
-      <Abbreviation>ft3/lb</Abbreviation>
-      <RefFactor>0.0624279605761446</RefFactor>
+      <Name>cubic centimeter per gram</Name>
+      <Abbreviation>cm3/g</Abbreviation>
+      <RefFactor>0.001</RefFactor>
       <RefUOM>cubic meter per kilogram</RefUOM>
       <Class>Specific Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic centimeter per gram</Name>
-      <Abbreviation>cm3/g</Abbreviation>
-      <RefFactor>0.001</RefFactor>
+      <Name>cubic foot per pound</Name>
+      <Abbreviation>ft3/lb</Abbreviation>
+      <RefFactor>0.0624279605761446</RefFactor>
       <RefUOM>cubic meter per kilogram</RefUOM>
       <Class>Specific Volume</Class>
     </UOM>
@@ -1493,6 +1493,20 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
+      <Name>cubic foot</Name>
+      <Abbreviation>ft3</Abbreviation>
+      <RefFactor>0.028316846592</RefFactor>
+      <RefUOM>cubic meter</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>acre foot</Name>
+      <Abbreviation>acre ft</Abbreviation>
+      <RefFactor>43560</RefFactor>
+      <RefUOM>cubic foot</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
       <Name>US gallon</Name>
       <Abbreviation>US gal</Abbreviation>
       <RefFactor>0.003785411784</RefFactor>
@@ -1507,27 +1521,6 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>Imperial gallon</Name>
-      <Abbreviation>Imp gal</Abbreviation>
-      <RefFactor>1.20094992550485</RefFactor>
-      <RefUOM>US gallon</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>million US gallon</Name>
-      <Abbreviation>US Mgal</Abbreviation>
-      <RefFactor>1000000</RefFactor>
-      <RefUOM>US gallon</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>thousand US gallon</Name>
-      <Abbreviation>US kgal</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>US gallon</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
       <Name>cubic centimeter</Name>
       <Abbreviation>cm3</Abbreviation>
       <RefFactor>1E-06</RefFactor>
@@ -1535,10 +1528,10 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>cubic foot</Name>
-      <Abbreviation>ft3</Abbreviation>
-      <RefFactor>0.028316846592</RefFactor>
-      <RefUOM>cubic meter</RefUOM>
+      <Name>Imperial gallon</Name>
+      <Abbreviation>Imp gal</Abbreviation>
+      <RefFactor>1.20094992550485</RefFactor>
+      <RefUOM>US gallon</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1569,31 +1562,10 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
-      <Name>thousand cubic meter</Name>
-      <Abbreviation>k m3</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>cubic meter</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
       <Name>million barrel</Name>
       <Abbreviation>MMbbl</Abbreviation>
       <RefFactor>1000000</RefFactor>
       <RefUOM>barrel</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>thousand barrel</Name>
-      <Abbreviation>kbbl</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>barrel</RefUOM>
-      <Class>Volume</Class>
-    </UOM>
-    <UOM>
-      <Name>acre foot</Name>
-      <Abbreviation>acre ft</Abbreviation>
-      <RefFactor>43560</RefFactor>
-      <RefUOM>cubic foot</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1604,10 +1576,38 @@
       <Class>Volume</Class>
     </UOM>
     <UOM>
+      <Name>million US gallon</Name>
+      <Abbreviation>US Mgal</Abbreviation>
+      <RefFactor>1000000</RefFactor>
+      <RefUOM>US gallon</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>thousand barrel</Name>
+      <Abbreviation>kbbl</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>barrel</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>thousand cubic meter</Name>
+      <Abbreviation>k m3</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>cubic meter</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
       <Name>thousand imperial gallon</Name>
       <Abbreviation>Imp kgal</Abbreviation>
       <RefFactor>1000</RefFactor>
       <RefUOM>Imperial gallon</RefUOM>
+      <Class>Volume</Class>
+    </UOM>
+    <UOM>
+      <Name>thousand US gallon</Name>
+      <Abbreviation>US kgal</Abbreviation>
+      <RefFactor>1000</RefFactor>
+      <RefUOM>US gallon</RefUOM>
       <Class>Volume</Class>
     </UOM>
     <UOM>
@@ -1769,7 +1769,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\\PhidgetInterfaceKit.Sensor0</ConfigString>
+        <ConfigString>\\localhost\PhidgetInterfaceKit.Sensor0</ConfigString>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
@@ -1921,9 +1921,7 @@
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Bearing oil health</ConfigString>
-        <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Bearing oil health</Name>
@@ -2201,7 +2199,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-        <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Beta-axis rotation</Name>
@@ -2500,9 +2498,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
@@ -2652,9 +2648,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
@@ -2804,9 +2798,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
@@ -2956,9 +2948,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
@@ -3108,9 +3098,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
         <AFAttribute>
           <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Bearing oil health</Name>
@@ -3357,7 +3345,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Bearing oil health</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 1 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
@@ -3422,7 +3410,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Bearing oil health</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 2 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
@@ -3487,7 +3475,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Bearing oil health</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 3 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
@@ -3552,7 +3540,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Bearing oil health</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 4 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
@@ -3617,7 +3605,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <Name>Bearing oil health</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 5 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Health</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
