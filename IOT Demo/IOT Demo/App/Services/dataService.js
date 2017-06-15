@@ -166,6 +166,8 @@ angular.module('iotdemoApp')
     */
     if (SEND_DATA_TO_PI_SYSTEM) {
         // Set up a handler to track the battery
+		/*
+		// Battery is no longer available after recent changes to Firefox!
         try {
             navigator.getBattery().then(function (battery) {
                 batteryLevel = 100 * battery.level;
@@ -178,6 +180,7 @@ angular.module('iotdemoApp')
         } catch(err) {
             displayCompatibilityAlert("battery");
         }
+		*/
 
         // Set up a handler to track motion
         if (window.DeviceMotionEvent) {
@@ -260,7 +263,7 @@ angular.module('iotdemoApp')
             "<b>Beta Orientation</b>: " + currentBetaOrientationReading + " °<br />" +
             "<b>Gamma Orientation</b>: " + currentGammaOrientationReading + " °<br />" +
             "<br />" +
-            "<b>Battery Level</b>: " + batteryLevel + " %<br />" +
+            //"<b>Battery Level</b>: " + batteryLevel + " %<br />" + // Battery is no longer available after recent changes to Firefox!
             "<b>Proximity Value</b>: " + proximityValue + " cm<br />" +
             "<b>Ambient Light Level</b>: " + ambientLightLevel + " lux" + 
             "<br />" +

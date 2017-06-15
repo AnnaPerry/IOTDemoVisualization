@@ -34,7 +34,7 @@
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
-     inkscape:window-x="1911"
+     inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1" />
   <metadata
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -126,15 +126,10 @@
          x="199.52365"
          y="217.65862"
          style="font-size:4.10242796px;stroke-width:0.15384103"
-         id="tspan3744">Battery sensor</tspan><tspan
-         sodipodi:role="line"
-         x="199.52365"
-         y="225.35066"
-         style="font-size:4.10242796px;stroke-width:0.15384103"
          id="tspan3746">Proximity sensor</tspan><tspan
          sodipodi:role="line"
          x="199.52365"
-         y="233.04272"
+         y="225.35066"
          style="font-size:4.10242796px;stroke-width:0.15384103"
          id="tspan3748">Light sensor</tspan></text>
     <text
