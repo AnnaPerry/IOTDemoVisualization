@@ -285,7 +285,7 @@ angular.module('iotdemoApp')
 		document.getElementById("loadingSpinner").style.visibility = "hidden"; 
 		// Set the modal body text to the error
 		console.log(response);
-		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ":<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.";
+		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ":<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
 		// Open the modal
 		$("#errorMessageModal").modal();
 	}

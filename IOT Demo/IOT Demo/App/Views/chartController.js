@@ -63,7 +63,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         "marginTop": 10,
         "marginBottom": 55,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        "backgroundColor": "#303030",
+        "backgroundColor": "#2e2e2e",
         "backgroundAlpha": 1,
         "valueAxes": [{
             "axisAlpha": 1,
@@ -79,13 +79,15 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "categoryBalloonColor": "#202020"
         },
         "legend": {
-            "useGraphSettings": false,
+            "useGraphSettings": true,
             "labelText": "[[title]]",
             "valueText": "",
-            "fontSize": 9,
+            "fontSize": 10,
             "equalWidths": false,
-            "markerSize": 9,
-            "color": "white",
+			"markerLabelGap":0,
+            "markerSize": 0,
+            //"color": "white",
+			"useMarkerColorForLabels":true,
             "autoMargins": false,
             "marginTop": 0,
             "marginBottom": 5,
