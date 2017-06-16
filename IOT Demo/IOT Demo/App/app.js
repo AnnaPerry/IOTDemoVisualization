@@ -46,4 +46,10 @@ var app = angular.module('iotdemoApp', ['ui.router'])
             templateUrl: 'App/Views/tableView.html',
             controller: 'tableController'
         })
+        .state({
+            name: 'chartAndTableWrapperView.gauges',
+            url: '/gauges/',
+            templateUrl: 'App/Views/gaugesView.html',
+            controller: 'gaugesController'
+        })		
 }]);
