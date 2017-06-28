@@ -78,14 +78,14 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"labelsEnabled":true
         }],
         "graphs": [{
-			"balloonText": "[[category]]: [[value]]",
+			"balloonText": "[[category]]\n[[valueFormatted]]",
 			"labelText": "[[category]]\n[[valueFormatted]]",
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"type": "column",
 			"valueField": "value",
 			"colorField":"color"
-		}],
+		}],/*
         "chartCursor": {
             "cursorAlpha": 0,
             "cursorColor": "white",
@@ -95,7 +95,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"valueLineEnabled": true,
 			"valueLineBalloonEnabled":true,
 			"valueBalloonsEnabled":true
-        },
+        },*/
         "categoryField": "name",
         "categoryAxis": {
             "axisAlpha": 0,
@@ -104,7 +104,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"labelsEnabled":false
         },
         "zoomOutButtonImage": "",
-        "creditsPosition": "bottom-right",
+        "creditsPosition": "top-right",
         "colors": chartColors
     };
 
@@ -136,7 +136,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 		
 		for (var i = 0; i < mostRecentDataFromPISystem.length; i++) {
 			var dataObject = {
-				"name": mostRecentDataFromPISystem[i].Name,
+				"name": mostRecentDataFromPISystem[i].Name.replace(" ","\n").replace("-","-\n"),
 				"value": mostRecentDataFromPISystem[i].Value.Value,
 				"valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(3),
 				"timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,

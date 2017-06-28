@@ -72,12 +72,12 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "fillAlpha": 0.05,
             "inside":true
         }],
-        "graphs": [],
+        "graphs": [], /*
         "chartCursor": {
             "cursorAlpha": 1,
             "cursorColor": "white",
             "categoryBalloonColor": "#202020"
-        },
+        }, */
         "legend": {
             "useGraphSettings": true,
             "labelText": "[[title]]",
@@ -105,7 +105,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             "axisColor": "white"
         },
         "zoomOutButtonImage": "",
-        "creditsPosition": "bottom-right",
+        "creditsPosition": "top-right",
         "colors": chartColors
     };
 
