@@ -78,8 +78,8 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"labelsEnabled":true
         }],
         "graphs": [{
-			"balloonText": "[[category]]\n[[valueFormatted]]",
-			"labelText": "[[category]]\n[[valueFormatted]]",
+			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
+			"labelText": "[[category]]\n[[valueFormatted]][[units]]",
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"type": "column",
@@ -138,9 +138,10 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			var dataObject = {
 				"name": mostRecentDataFromPISystem[i].Name.replace(" ","\n").replace("-","-\n"),
 				"value": mostRecentDataFromPISystem[i].Value.Value,
-				"valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(3),
+				"valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
 				"timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
-				"color": chartColors[i]
+				"color": chartColors[i],
+				"units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
 			};
 			chartDataArray.push(dataObject);
 		}
