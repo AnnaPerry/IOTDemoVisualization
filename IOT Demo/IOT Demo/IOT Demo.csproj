@@ -104,6 +104,7 @@
     <Content Include="App\Views\chartAndTableWrapperController.js" />
     <Content Include="App\Views\assetsController.js" />
     <Content Include="App\Views\assetsView.html" />
+    <Content Include="App\Views\gaugesView.html" />
     <Content Include="App\Views\gettingStartedView.html" />
     <Content Include="App\Views\mainController.js" />
     <Content Include="App\Views\mainView.html" />
@@ -121,10 +122,18 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
-    <Content Include="Images\assetSensorImage.png" />
-    <Content Include="Images\assetSensorImage_v2.png" />
     <Content Include="Images\GatewayArchitectureSVG.svg" />
-    <Content Include="Images\phase2SensorImage.png" />
+    <Content Include="Images\PhidgetImage.png" />
+    <Content Include="Images\PhoneSensorImage.png" />
+    <Content Include="Images\Slide %281%29.png" />
+    <Content Include="Images\Slide %282%29.png" />
+    <Content Include="Images\Slide %283%29.png" />
+    <Content Include="Images\Slide %284%29.png" />
+    <Content Include="Images\Slide %285%29.png" />
+    <Content Include="Images\Slide %286%29.png" />
+    <Content Include="Images\Slide %287%29.png" />
+    <Content Include="Images\Slide %288%29.png" />
+    <Content Include="Images\WISEImage.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
