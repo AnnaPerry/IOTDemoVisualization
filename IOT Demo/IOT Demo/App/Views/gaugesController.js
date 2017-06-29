@@ -59,49 +59,37 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 
     var chartDef = {
         "type": "serial",
+		"fontSize": 13,
         "dataProvider": [],
         "color": "white",
-        "autoMargins": false,
+        "autoMargins": true, /*
+		"autoResize": false,
         "marginLeft": 40,
-        "marginRight": 30,
-        "marginTop": 30,
-        "marginBottom": 30,
+        "marginRight": 10,
+        "marginTop": 20,
+        "marginBottom": 50, */
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
         "backgroundColor": "#303030",
         "backgroundAlpha": 1,
         "valueAxes": [{
-            "axisAlpha": 1,
-            "position": "left",
             "axisColor": "white",
             "fillAlpha": 0,
-            "inside":false,
-			"labelsEnabled":true
+			"fontSize": 10
         }],
         "graphs": [{
 			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
-			"labelText": "[[category]]\n[[valueFormatted]][[units]]",
+			"labelText": "[[valueFormatted]][[units]]",
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"type": "column",
 			"valueField": "value",
 			"colorField":"color"
-		}],/*
-        "chartCursor": {
-            "cursorAlpha": 0,
-            "cursorColor": "white",
-			"categoryBalloonEnabled":false,
-			"categoryBalloonColor": "#202020",
-            "valueBalloonColor": "#202020",
-			"valueLineEnabled": true,
-			"valueLineBalloonEnabled":true,
-			"valueBalloonsEnabled":true
-        },*/
+		}],
         "categoryField": "name",
         "categoryAxis": {
-            "axisAlpha": 0,
+			"axisColor": "white",
             "gridAlpha": 0,
-
-			"labelsEnabled":false
+			"labelsEnabled":true
         },
         "zoomOutButtonImage": "",
         "creditsPosition": "top-right",

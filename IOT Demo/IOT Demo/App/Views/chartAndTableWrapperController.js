@@ -37,7 +37,14 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			return '100%';
 		}		
 	};
-	
+	/*
+	// Shows and hides the images and chart!
+	$scope.toggleImageAndChartButtonStatusPressed = false;
+	$scope.toggleImageAndChart = function() {
+		console.log("New status of the button: ", $scope.toggleImageAndChartButtonStatusPressed);
+		$scope.toggleImageAndChartButtonStatusPressed = !$scope.toggleImageAndChartButtonStatusPressed;
+	};
+	*/
 	// Get the asset type! Used to set image files and show or hide certain buttons
 	$scope.getAssetType = function () {
 		var imageSource = 'PhoneSensor';
