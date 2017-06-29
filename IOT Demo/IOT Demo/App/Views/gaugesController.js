@@ -29,7 +29,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 	
 	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
-		document.getElementById("loadingSpinner").style.display = "inline";
+		document.getElementById("loadingSpinner2").style.display = "inline";
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
             dataService.getSnapshots(attributes).then(function (response) {
@@ -37,7 +37,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
 				// Turn off the loading spinner
-				document.getElementById("loadingSpinner").style.display = "none";
+				document.getElementById("loadingSpinner2").style.display = "none";
 				// Show the "shake me!" modal for phone-based assets!
 				if (assetName.substring(0,6) == "Asset ") { 
 					$("#shakeMeModal").modal();

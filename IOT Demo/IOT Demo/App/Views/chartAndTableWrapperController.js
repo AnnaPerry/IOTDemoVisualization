@@ -5,6 +5,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
     var attributeCategory = '*';
 
     $scope.init = function () {
+		// Hide the top navbar; we'll replace it with a new one!
+		document.getElementById("mainNavbarContainer").style.display = "none";
     };
 
 

@@ -15,7 +15,11 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 	
 	// On load, get snapshot values...
     $scope.init = function () {
+		// Show the top navbar
+		document.getElementById("mainNavbarContainer").style.display = "block";
+		// Show the loading spinner
 		document.getElementById("loadingSpinner").style.display = "inline";
+		// Get attributes, then snapshot values, for the top-level element
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             dataService.getSnapshots(attributes).then(function (response) {
                 var dataArray = response.data.Items;

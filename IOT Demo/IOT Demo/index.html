@@ -11,7 +11,7 @@
 <body ng-app="iotdemoApp">
 
     <!-- Navigation bar -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="mainNavbarContainer">
         <nav class="navbar navbar-inverse fixed-top bg-inverse" style="background-color:#091d3a !important;display:inline !important;padding-bottom:13px;text-align:center;height:44px;">
             <ul class="nav navbar-nav navbar-toggler-left" style="display:inline;">
                 <li class="nav-item" style="display:inline"><a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><i class="fa fa-home" style="margin-right:8px"></i>Rollup Analytics</a></li>
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>	
-
+	
     <!-- Load general-purpose bootstrap and other helper libraries -->
     <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="Scripts/angular.js"></script>
@@ -118,9 +118,10 @@
     <script src="App/Views/tableController.js"></script>
     <script src="App/Views/chartController.js"></script>
 	<script src="App/Views/gaugesController.js"></script>
+	<script src="App/Views/gettingStartedController.js"></script>
     <script src="App/Services/dataService.js"></script>
 
-    <!-- Load needed scripts -->
+	<!-- Load needed scripts -->
 	<script>
 		// Check for portrait mode!
 		if (window.innerWidth < window.innerHeight) {
@@ -129,6 +130,6 @@
 		} else {
 			// In this case, you're in landscape mode--so you're alright!
 		}		
-	</script>	
+	</script>
 </body>
 </html>
