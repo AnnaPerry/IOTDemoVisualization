@@ -79,8 +79,24 @@
             </div>
         </div>
     </div>
-	
-    <!-- Load needed scripts -->
+
+    <!-- Pop-up modal notification box for orientation messages (normally hidden) -->
+    <div class="modal fade" id="orientationMessageModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:orange">
+                    <h4 class="modal-title">Orientation Check!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" id="">
+					Hello!  It appears that you are holding your device in portrait (vertical) orientation.  This app is designed to be best viewed in landscape (horizontal) orientation; please rotate your device 90 degrees into landscape mode to ensure the best experience.
+				</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>	
 
     <!-- Load general-purpose bootstrap and other helper libraries -->
     <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
@@ -103,5 +119,16 @@
     <script src="App/Views/chartController.js"></script>
 	<script src="App/Views/gaugesController.js"></script>
     <script src="App/Services/dataService.js"></script>
+
+    <!-- Load needed scripts -->
+	<script>
+		// Check for portrait mode!
+		if (window.innerWidth < window.innerHeight) {
+			// In this case, since the screen is taller than it is wide, then show the warning modal!
+			$("#orientationMessageModal").modal();
+		} else {
+			// In this case, you're in landscape mode--so you're alright!
+		}		
+	</script>	
 </body>
 </html>
