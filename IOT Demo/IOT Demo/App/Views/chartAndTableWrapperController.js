@@ -32,7 +32,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 	// If the screen is wider than it is tall, make the chart dive 70% wide; otherwise, make it 100% wide!
 	$scope.chartAndTableWidth = function () {
 		if (window.innerWidth > window.innerHeight) {
-			return '70%';
+			return '72%';
 		} else {
 			return '100%';
 		}		

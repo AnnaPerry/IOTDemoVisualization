@@ -76,3 +76,14 @@ html, body {
         padding-top:65px;
     }
 }
+
+.modal-dialog {
+	width:90% !important;
+	max-width:90% !important;
+	font-size:14px !important;
+	margin-bottom:0px;
+}
+
+.carousel-indicators {
+	bottom: -7px !important;
+}

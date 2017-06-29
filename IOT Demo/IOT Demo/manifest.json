@@ -1,0 +1,12 @@
+{
+  "short_name": "IoT Demonstration",
+  "name":"IoT Demonstration",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "type": "image/png"
+    }
+  ],
+  "display": "fullscreen",
+  "orientation": "landscape"
+}

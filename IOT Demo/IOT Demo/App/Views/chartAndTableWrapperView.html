@@ -5,7 +5,7 @@
 			<li class="nav-item" style="display:inline"><a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><i class="fa fa-home" style="margin-right:8px"></i>Rollup Analytics</a></li>
 		</ul>
 		
-		<ul class="nav navbar-nav" style="display:inline;font-size:14px">
+		<ul class="nav navbar-nav" style="display:inline;font-size:16px">
 			<li class="nav-item" style="display:inline;">
 				<a class="btn btn-primary btn-sm" style="background-color:#2a3e5d" ui-sref='.gauges'><span class="fa fa-bar-chart fa-fw" style="margin-right:4px;"></span><span>Bars</span></a>
 			</li>
@@ -36,10 +36,10 @@
 <div ng-init="sendDatatoPI()" class="el-inherit-size">
     <!-- <canvas id="debugCanvas"></canvas> -->
     <!-- <div id="container" ng-init="init()"></div> -->
-    <div class="d-flex flex-row-reverse el-inherit-size">
+    <div class="d-flex flex-row-reverse el-inherit-size" style="padding:0px";>
         <!-- Central container -->
-        <div class="p-2 el-z" style="margin-top:10px;" ng-style="{ 'width': chartAndTableWidth }">
-            <div class="jumbotron " style="margin:0px;padding:0px;">
+        <div class="p-2 el-z" style="margin-top:10px;padding-left:0px !important; padding-right:0px !important;" ng-style="{ 'width': chartAndTableWidth }">
+            <div class="jumbotron " style="margin:0px;padding:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
                 <div ui-view style="height:100%"></div>
             </div>
         </div>
@@ -49,8 +49,8 @@
 		</div>
 		-->
         <!-- Data source image -->
-		<div class="p-2" style="margin-top:10px; width:30%; padding-right:0px !important;" ng-show="showImageDiv()">
-			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="border-radius:4.8px;display:inline;" />
+		<div class="p-2" style="margin-top:10px; width:28%; padding-right:8px !important;padding-left:0px !important;" ng-show="showImageDiv()">
+			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style=";display:inline;border-top-right-radius:4.8px;border-bottom-right-radius:4.8px;" />
         </div>
         <!-- Side menu bar -->
 		<!--		
