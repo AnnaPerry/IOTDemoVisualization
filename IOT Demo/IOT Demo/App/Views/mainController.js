@@ -102,7 +102,8 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
     var crazyGaugeChartDef = {
         "type": "gauge",
         "theme": "dark",
-        "creditsPosition": "bottom-right",
+        "creditsPosition": "top-right",
+		"fontSize": 13,
         "axes": [{
             "axisAlpha": 1,
             "tickAlpha": 1,

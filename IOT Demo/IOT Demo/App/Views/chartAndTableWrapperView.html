@@ -33,13 +33,13 @@
 	</nav>
 </div>
 
-<div ng-init="sendDatatoPI()" class="el-inherit-size">
+<div ng-init="sendDatatoPI()" class="el-inherit-size" style="padding:0px;">
     <!-- <canvas id="debugCanvas"></canvas> -->
     <!-- <div id="container" ng-init="init()"></div> -->
     <div class="d-flex flex-row-reverse el-inherit-size" style="padding:0px";>
         <!-- Central container -->
-        <div class="p-2 el-z" style="margin-top:10px;padding-left:0px !important; padding-right:0px !important;" ng-style="{ 'width': chartAndTableWidth }">
-            <div class="jumbotron " style="margin:0px;padding:0px;border-top-right-radius:0px;border-bottom-right-radius:0px;">
+        <div class="p-2 el-z" style="margin:0px;padding:0px !important;" ng-style="{ 'width': chartAndTableWidth }">
+            <div class="jumbotron " style="margin:0px;padding:0px;border-radius:0px;">
                 <div ui-view style="height:100%"></div>
             </div>
         </div>
@@ -49,8 +49,8 @@
 		</div>
 		-->
         <!-- Data source image -->
-		<div class="p-2" style="margin-top:10px; width:28%; padding-right:8px !important;padding-left:0px !important;" ng-show="showImageDiv()">
-			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style=";display:inline;border-top-right-radius:4.8px;border-bottom-right-radius:4.8px;" />
+		<div class="p-2" style="margin:0px; width:28%; padding:0px !important;" ng-show="showImageDiv()">
+			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="display:inline;" />
         </div>
         <!-- Side menu bar -->
 		<!--		
@@ -76,7 +76,7 @@
 		-->		
     </div>
 	
-	    <!-- Pop-up modal for instructions -->
+	<!-- Pop-up modal for instructions -->
     <div class="modal fade" id="shakeMeModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -93,5 +93,4 @@
             </div>
         </div>
     </div>
-	
  </div>
