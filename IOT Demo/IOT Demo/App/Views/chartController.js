@@ -68,16 +68,10 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         "valueAxes": [{
             "axisAlpha": 1,
             "position": "left",
-            //"axisColor": "white",
             "fillAlpha": 0.05,
             "inside":true
         }],
-        "graphs": [],/*
-        "chartCursor": {
-            "cursorAlpha": 1,
-            "cursorColor": "white",
-            "categoryBalloonColor": "#202020"
-        },*/
+        "graphs": [],
         "legend": {
             "useGraphSettings": true,
             "labelText": "[[title]]",

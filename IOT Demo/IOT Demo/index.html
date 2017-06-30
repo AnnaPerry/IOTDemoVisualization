@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="manifest" href="manifest.json">
     <meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/font-awesome.css" rel="stylesheet" />
@@ -13,22 +12,32 @@
 </head>
 <body ng-app="iotdemoApp">
 
+	<!-- Load jquery first -->
+    <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
+	
     <!-- Navigation bar -->
     <div class="container-fluid" id="mainNavbarContainer">
-        <nav class="navbar navbar-inverse fixed-top bg-inverse" style="background-color:#091d3a !important;display:inline !important;padding-bottom:13px;text-align:center;height:44px;">
-            <ul class="nav navbar-nav navbar-toggler-left" style="display:inline;">
-                <li class="nav-item" style="display:inline"><a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><i class="fa fa-home" style="margin-right:8px"></i>Rollup Analytics</a></li>
-            </ul>
-			<i id="loadingSpinner" class="fa fa-spinner fa-spin fa-fw" style="margin-left:10px;color:white !important;"></i>
-            <ul class="nav navbar-nav navbar-toggler-right" style="display:inline;padding-right:0px;">
-                <li class="nav-item" style="display:inline"><a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" href="/#/gettingstarted"><i class="fa fa-question-circle-o" style="margin-right:8px"></i>Getting Started</a></li>
-            </ul>
+        <nav class="navbar navbar-inverse fixed-top bg-inverse" style="background-color:#091d3a !important;display:inline !important;padding-bottom:13px;text-align:center;height:44px;font-size:16px;color:white">
+            
+			<ul class="nav navbar-nav navbar-toggler-left" style="display:inline;">
+				<li class="nav-item" style="display:inline">
+					<a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><span class="fa fa-bullseye" style="margin-right:4px"></span>Asset Dashboard</a>
+				</li>
+			</ul>
+			
+			<i id="loadingSpinner" class="fa fa-spinner fa-spin fa-fw" style="margin-left:10px;"></i>
+			
+			<ul class="nav navbar-nav navbar-toggler-right" style="display:inline;padding-right:0px;">
+				<li class="nav-item" style="display:inline">
+					<a class="btn btn-primary btn-sm" style=";background-color:#091d3a" href="/#/gettingstarted"><span class="fa fa-question-circle-o" style="margin-right:4px"></span>Getting Started</a>
+				</li>
+			</ul>
+			
         </nav>
     </div>
 
     <!-- Main container -->
-	
-    <div class="container maincontainer" ui-view style="padding-top:40px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important"></div>
+    <div class="container maincontainer" ui-view style="padding-top:50px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important"></div>
 
     <!-- Pop-up modal notification box (normally hidden) -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -39,7 +48,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Your device and/or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data.  Simulated sensor values will be generated where needed to mimic a compatible device.</p>
+                    <p>Your device and/or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data (to perform a sensor health check, click <b><a href="" onclick="$('#sensorValuesModal').modal()">here</a></b>).  Simulated sensor values will be generated where needed to mimic a compatible device.</p>
                     <p>Sending accelerometer and gyro data from your client device to the gateway PI System requires viewing this web application on a mobile device, and specifically, sending proximity and light sensor data requires viewing this application on a mobile device using the Mozilla Firefox web browser.</p>
                     <p>To download and install the Firefox web browser on an Android device, click <b><a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=en">here</a></b>; to do the same for an iOS device, click <b><a href="https://itunes.apple.com/us/app/firefox-web-browser/id989804926?mt=8">here</a></b>.</p>
                     <p>After installing Firefox on your mobile device, re-launch this web application within the Firefox web browser.</p>
@@ -57,7 +66,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:lightblue">
-                    <h4 class="modal-title">Raw Device Sensor Values</h4>
+                    <h4 class="modal-title">Sensor Health Check</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body" id="sensorValuesModalBodyText"></div>
@@ -93,8 +102,26 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body" id="">
-					Hello!  It appears that you are holding your device in portrait (vertical) orientation.  This app is designed to be best viewed in landscape (horizontal) orientation; please rotate your device 90 degrees into landscape mode to ensure the best experience.
+					Hello!  It appears that you are holding your device in portrait (vertical) orientation.  This app is designed to be best viewed in landscape (horizontal) orientation; please rotate your device 90 degrees into landscape mode--and then refresh this web page--to ensure the best experience.
 				</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>	
+
+    <!-- Pop-up modal notification box (normally hidden) -->
+    <div class="modal fade" id="fullScreenModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:yellow">
+                    <h4 class="modal-title">Full Screen Check</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    This app was built to run in full-screen mode.  Click <b><a href="" onclick="turnOnFullScreen()">here</a></b> to turn on full-screen mode.
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -103,7 +130,6 @@
     </div>	
 	
     <!-- Load general-purpose bootstrap and other helper libraries -->
-    <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="Scripts/angular.js"></script>
     <script type="text/javascript" src="Scripts/angular-ui-router.js"></script>    
     <script type="text/javascript" src="Scripts/tether.js"></script>
@@ -133,7 +159,18 @@
 			$("#orientationMessageModal").modal();
 		} else {
 			// In this case, you're in landscape mode--so you're alright!
-		}		
+		}	
+		// Show the full screen modal message!
+		$("#fullScreenModal").modal();		
+		// Allow making the window fullscreen!
+		// See https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
+		function turnOnFullScreen() {
+			var doc = window.document;
+			var docEl = doc.documentElement;
+			var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+			console.log("Turning on full screen mode...");
+			requestFullScreen.call(docEl);
+		}
 	</script>
 </body>
 </html>

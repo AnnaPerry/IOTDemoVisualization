@@ -62,12 +62,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 		"fontSize": 13,
         "dataProvider": [],
         "color": "white",
-        "autoMargins": true, /*
-		"autoResize": false,
-        "marginLeft": 40,
-        "marginRight": 10,
-        "marginTop": 20,
-        "marginBottom": 50, */
+        "autoMargins": true,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
         "backgroundColor": "#303030",
         "backgroundAlpha": 1,

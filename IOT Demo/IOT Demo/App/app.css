@@ -1,89 +1,39 @@
-﻿#container {
-    position: absolute;
-    padding:0;
-    height:100%;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    overflow: hidden;
-    z-index: 10;
-}
-
-#debugCanvas {
-    position: absolute;
-    z-index: 999;
-    opacity: 0.5;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-strong {
-    color:dimgray;
-    font-weight:bold;
-    font-size:xx-large;
+﻿.maincontainer {
+    height:inherit;
+    width:inherit;
+    padding-top:85px;
 }
 
 html, body {
     background-color:#e9eaed;
     height:100%
 }
-
-.el-z {
-    z-index:11;
-}
-
-.maincontainer {
-    height:inherit;
-    width:inherit;
-    padding-top:85px;
-}
-
 .el-inherit-size {
     height:inherit;
     width:inherit;
 }
-
-.center-horizontal {
-  position: absolute;
-  left:50%;
+.el-z {
+    z-index:11;
 }
-.bottom-vertical {
-    position: absolute;
-    top: 90%;
-}
-
-.btn-primary {
-    border-color: darkgray;
-}
-
 .jumbotron {
     opacity:0.7;
     background-color:darkgray;
     height: 100%;
     overflow:auto;
 }
-
-.btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
-    border-color: darkgray;
-}
-
-@media (max-height: 450px) {
-    .maincontainer {
-        height:inherit;
-        width:inherit;
-        padding-top:65px;
-    }
-}
-
 .modal-dialog {
 	width:90% !important;
 	max-width:90% !important;
 	font-size:14px !important;
 	margin-bottom:0px;
 }
-
 .carousel-indicators {
 	bottom: -7px !important;
+}
+.btn {
+	border-color:darkgray;
+}
+.btn-custom-1 {
+}
+.btn-custom-2 {
 }

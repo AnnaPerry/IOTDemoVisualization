@@ -9,7 +9,6 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 		document.getElementById("mainNavbarContainer").style.display = "none";
     };
 
-
     // When this scope is closed, stop the recurring interval timer
     var stop;
     $scope.$on('$destroy', function () {
@@ -27,7 +26,13 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 	// Dynamically set widths for image and data div
 	$scope.showImageDiv = function () {
 		// If the screen is wider than it is tall, the image should appear; otherwise, it should not!
-		return (window.innerWidth > window.innerHeight);
+		if (window.innerWidth > window.innerHeight) {
+			document.getElementById('dataVisualizationWrapper').style.width = '72%';
+			return true;
+		} else {
+			document.getElementById('dataVisualizationWrapper').style.width = '100%';
+			return false;
+		}	
 	};	
 	// If the screen is wider than it is tall, make the chart dive 70% wide; otherwise, make it 100% wide!
 	$scope.chartAndTableWidth = function () {
@@ -37,14 +42,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			return '100%';
 		}		
 	};
-	/*
-	// Shows and hides the images and chart!
-	$scope.toggleImageAndChartButtonStatusPressed = false;
-	$scope.toggleImageAndChart = function() {
-		console.log("New status of the button: ", $scope.toggleImageAndChartButtonStatusPressed);
-		$scope.toggleImageAndChartButtonStatusPressed = !$scope.toggleImageAndChartButtonStatusPressed;
-	};
-	*/
+
 	// Get the asset type! Used to set image files and show or hide certain buttons
 	$scope.getAssetType = function () {
 		var imageSource = 'PhoneSensor';
@@ -60,8 +58,6 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 		else if ( ($stateParams.assetName).substring(0,7) == "Phidget") {
 			imageSource = 'Phidget';
 		}		
-		// By default, return the standard phone image
-		//console.log("Image source: " + imageSource);
 		return imageSource;
 	};
 
