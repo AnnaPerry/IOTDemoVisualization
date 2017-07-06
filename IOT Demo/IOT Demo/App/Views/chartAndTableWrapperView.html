@@ -45,7 +45,7 @@
     <div class="d-flex flex-row-reverse el-inherit-size" style="padding:0px";>
 	
         <!-- Central container -->
-        <div class="p-2 el-z" style="margin:0px; width:72%; padding:0px !important;" id="dataVisualizationWrapper" >
+        <div class="p-2 el-z" style="height:100%;margin:0px; width:72%; padding:0px !important;" id="dataVisualizationWrapper" >
             <div class="jumbotron " style="margin:0px;padding:0px;border-radius:0px;">
                 <div ui-view style="height:100%"></div>
             </div>
@@ -58,7 +58,7 @@
 		-->
 		
         <!-- Data source image -->
-		<div class="p-2" style="margin-right:4px; width:28%; padding:0px !important;" ng-show="showImageDiv()">
+		<div class="p-2" style="height:100%;margin-right:4px; width:28%; padding:0px !important;" ng-show="showImageDiv()">
 			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="display:inline;" />
         </div>
 		
