@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.5.7759" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-06-15T15:29:34.1229727Z" id="beb2f5e1-c532-4e2e-9645-6ccab31c3b42" ParentKey="38540f06-b96f-47fc-8010-061ab7ba372f" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{38540f06-b96f-47fc-8010-061ab7ba372f}\{beb2f5e1-c532-4e2e-9645-6ccab31c3b42}*localhost\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.5.7759" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-07-07T22:29:01.6389473Z" id="beb2f5e1-c532-4e2e-9645-6ccab31c3b42" ParentKey="38540f06-b96f-47fc-8010-061ab7ba372f" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{38540f06-b96f-47fc-8010-061ab7ba372f}\{beb2f5e1-c532-4e2e-9645-6ccab31c3b42}*localhost\Asset Framework DB 1">
   <UOMDatabase>
     <Name>UOMDatabase</Name>
     <UOMClass>
@@ -1832,40 +1832,15 @@
       <InstanceType>Element</InstanceType>
       <AllowElementToExtend>false</AllowElementToExtend>
       <AFAttributeTemplate>
-        <Name>Alpha-axis rotation</Name>
+        <Name>Alpha spin</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Alpha-axis rotation</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Ambient light level</Name>
-        <DefaultUOM>lx</DefaultUOM>
-        <Type>Double</Type>
-        <Value type="Double">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
-        <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Approximate date of next service</Name>
-        <Type>DateTime</Type>
-        <Value type="DateTime">0001-01-01T08:00:00Z</Value>
-        <DataReference>Analysis</DataReference>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Approximate month of next service</Name>
-        <Type>Int32</Type>
-        <Value type="Int32">0</Value>
-        <DataReference>Analysis</DataReference>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Asset Number</Name>
@@ -1877,20 +1852,12 @@
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Avg. set point over past 5m</Name>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>|Set point;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
         <Name>Avg. X-axis acceleration over past 5m</Name>
         <DefaultUOM>Gs</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|X-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|X-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -1900,7 +1867,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Y-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|Y-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -1910,68 +1877,42 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Z-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|Z-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Battery level</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Bearing oil health</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Bearing oil health</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Beta-axis rotation</Name>
+        <Name>Beta spin</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Beta-axis rotation</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Engineer scheduled for next service</Name>
-        <Description>Looked up based on the service month</Description>
-        <Type>String</Type>
-        <Value type="String"></Value>
-        <DataReference>Table Lookup</DataReference>
-        <ConfigString>SELECT Engineer FROM [Engineer Schedule] WHERE [Month Number] = @[Approximate month of next service];RWM=Y. Wallace;RWN=Y. Wallace</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Gamma-axis rotation</Name>
+        <Name>Gamma spin</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Gamma-axis rotation</ConfigString>
         <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Hours until next service</Name>
-        <Description>Calculated based on oil health</Description>
-        <DefaultUOM>h</DefaultUOM>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>Formula</DataReference>
-        <ConfigString>A=Bearing oil health;[A * 2.34 * 10]</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <Name>Light</Name>
+        <DefaultUOM>lx</DefaultUOM>
+        <Type>Double</Type>
+        <Value type="Double">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Ambient light level</ConfigString>
+        <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Model number</Name>
@@ -1982,20 +1923,12 @@
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Peak set point over past 5m</Name>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>|Set point;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
         <Name>Peak X-axis acceleration over past 5m</Name>
         <DefaultUOM>Gs</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|X-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|X-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2005,7 +1938,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Y-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|Y-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2015,38 +1948,20 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>|Z-axis acceleration;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
+        <ConfigString>|Z-axis;TimeMethod=TimeRangeOverride;RelativeTime=-5m;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
         <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Phone for Engineer scheduled for next service</Name>
-        <Description>Looked up based on the service month</Description>
-        <Type>String</Type>
-        <Value type="String"></Value>
-        <DataReference>Table Lookup</DataReference>
-        <ConfigString>SELECT [Engineer Phone Number] FROM [Engineer Schedule] WHERE [Month Number] = @[Approximate month of next service] ORDER BY Engineer Phone Number;RWM=510-674-7638;RWN=510-674-7638</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Proximity sensor reading</Name>
+        <Name>Proximity</Name>
         <DefaultUOM>cm</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Proximity sensor reading</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Set point</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Type</Name>
@@ -2057,53 +1972,38 @@
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>X-axis acceleration</Name>
+        <Name>X-axis</Name>
         <DefaultUOM>Gs</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.X-axis acceleration;UOM=m/s2</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Y-axis acceleration</Name>
+        <Name>Y-axis</Name>
         <DefaultUOM>Gs</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Y-axis acceleration;UOM=m/s2</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Z-axis acceleration</Name>
+        <Name>Z-axis</Name>
         <DefaultUOM>Gs</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.%Attribute%</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Z-axis acceleration;UOM=m/s2</ConfigString>
         <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
-      <AFAnalysisTemplate>
-        <Name>Calculate Time Until Next Service</Name>
-        <Target>Asset Template - Phone</Target>
-        <AFAnalysisRule>
-          <AFPlugIn>PerformanceEquation</AFPlugIn>
-          <ConfigString>HoursUntilService := '{2704622a-752c-40f4-81da-7d8560082263};Hours until next bearing service';&#xD;
-EstimatedServiceTime := '*' + '{2704622a-752c-40f4-81da-7d8560082263};Hours until next bearing service' * 60 * 60;&#xD;
-MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
-          <VariableMapping>EstimatedServiceTime||Approximate date of next bearing service;[GUID]||{a97153d4-0647-4aa9-bd90-41953c56d3ea};MonthOfNextServiceTime||Approximate month of next bearing service;[GUID]||{8fcf8694-dac6-4445-8f5e-dc1eaee5efbb};[GUID]||[UNSET];</VariableMapping>
-        </AFAnalysisRule>
-        <AFTimeRule>
-          <AFPlugIn>Periodic</AFPlugIn>
-          <ConfigString>Frequency=1</ConfigString>
-        </AFTimeRule>
-      </AFAnalysisTemplate>
     </AFElementTemplate>
     <AFElementTemplate>
       <Name>Asset Template - WISE-4012E</Name>
@@ -2193,15 +2093,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Bearing oil health</Name>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Double</Type>
-        <Value type="Double">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
         <Name>Beta-axis rotation</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Double</Type>
@@ -2227,17 +2118,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-      </AFAttributeTemplate>
-      <AFAttributeTemplate>
-        <Name>Set point</Name>
-        <IsHidden>true</IsHidden>
-        <DefaultUOM>%</DefaultUOM>
-        <Type>Single</Type>
-        <Value type="Single">0</Value>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;ReadOnly=False;pointtype=Float32;compressing=0;excdev=0;excdevpercent=0</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>X-axis acceleration</Name>
@@ -2277,8 +2157,8 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Value type="AFElement">Assets</Value>
       </AFExtendedProperty>
       <AFAttributeTemplate>
-        <Name>Average Battery Level</Name>
-        <DefaultUOM>%</DefaultUOM>
+        <Name>Average Alpha Spin</Name>
+        <DefaultUOM>°</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -2286,7 +2166,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Average Proximity Reading</Name>
+        <Name>Average Proximity</Name>
         <DefaultUOM>cm</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
@@ -2340,8 +2220,8 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
-        <Name>Minimum Battery Level</Name>
-        <DefaultUOM>%</DefaultUOM>
+        <Name>Minimum Light Level</Name>
+        <DefaultUOM>lx</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -2349,11 +2229,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAnalysisTemplate>
-        <Name>Average Battery Level</Name>
+        <Name>Average Proximity</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Battery level];Average||Average Battery Level;[GUID]||{dd2c0514-fbac-4e1b-bdfd-80086a808173};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Proximity];Average||Average Proximity Reading;[GUID]||{f02e24ff-6dd4-4e91-b450-3a663d5d33ea};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2361,11 +2241,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Average Proximity</Name>
+        <Name>Avg Alpha Spin</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Proximity sensor reading];Average||Average Proximity Reading;[GUID]||{a20816bd-3bc6-4573-8ca0-60f675bfc251};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Alpha spin];Average||Avgerage Alpha Spin;[GUID]||{5bc00d6a-c6eb-4e84-910d-c31f2d893237};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2377,7 +2257,7 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Z-axis acceleration];Maximum||Max Z-Axis Acceleration;[GUID]||{df376011-1ed9-4628-855b-0da860819262};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Z-axis];Maximum||Max Z-Axis Acceleration;[GUID]||{60d9d448-43e1-4acd-9e6e-0a7a9c344ece};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2385,11 +2265,11 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Minimum Battery Level</Name>
+        <Name>Minimum Light Level</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Battery level];Minimum||Minimum Battery Level;[GUID]||{9abacbf4-17d8-487b-be50-7d4c67bd702c};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Light];Minimum||Minimum Light Level;[GUID]||{18f70a95-c638-45fd-bf3d-af717bf2984c};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2401,15 +2281,15 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <Name>Assets</Name>
       <Template>Top-Level Assets Template</Template>
       <AFAttribute>
-        <Name>Average Battery Level</Name>
+        <Name>Average Alpha Spin</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Battery Level</ConfigString>
+        <ConfigString>\\localhost\Assets.Average Alpha Spin?94</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
-        <Name>Average Proximity Reading</Name>
+        <Name>Average Proximity</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Proximity Reading</ConfigString>
+        <ConfigString>\\localhost\Assets.Average Proximity?90</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
@@ -2439,13 +2319,13 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFAttribute>
         <Name>Max Z-Axis Acceleration</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration</ConfigString>
+        <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration?92</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
-        <Name>Minimum Battery Level</Name>
+        <Name>Minimum Light Level</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Minimum Battery Level</ConfigString>
+        <ConfigString>\\localhost\Assets.Minimum Light Level?93</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFElement ReferenceType="Parent-Child">
@@ -2453,33 +2333,15 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <Description>Main device A.</Description>
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
+          <Name>Alpha spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Ambient light level</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate date of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate month of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Asset Number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Avg. X-axis acceleration over past 5m</Name>
@@ -2497,32 +2359,22 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
+          <Name>Beta spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
+          <Name>Gamma spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Hours until next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+          <Name>Light</Name>
+          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Model number</Name>
@@ -2532,10 +2384,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Object Type</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak X-axis acceleration over past 5m</Name>
@@ -2553,18 +2401,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Phone for Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
+          <Name>Proximity</Name>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Type</Name>
@@ -2572,64 +2412,38 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>X-axis acceleration</Name>
+          <Name>X-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Y-axis acceleration</Name>
+          <Name>Y-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Z-axis acceleration</Name>
+          <Name>Z-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
-        <AFAnalysis>
-          <Name>Calculate Time Until Next Service</Name>
-          <Template>Calculate Time Until Next Service</Template>
-          <Status>Error</Status>
-          <Target>
-            <AFElementRef>Assets\Asset 1</AFElementRef>
-          </Target>
-        </AFAnalysis>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 2</Name>
         <Description>Main device B.</Description>
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
+          <Name>Alpha spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Ambient light level</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate date of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate month of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Asset Number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Avg. X-axis acceleration over past 5m</Name>
@@ -2647,32 +2461,22 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
+          <Name>Beta spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
+          <Name>Gamma spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Hours until next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+          <Name>Light</Name>
+          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Model number</Name>
@@ -2682,10 +2486,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Object Type</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak X-axis acceleration over past 5m</Name>
@@ -2703,18 +2503,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Phone for Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
+          <Name>Proximity</Name>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Type</Name>
@@ -2722,64 +2514,38 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>X-axis acceleration</Name>
+          <Name>X-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Y-axis acceleration</Name>
+          <Name>Y-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Z-axis acceleration</Name>
+          <Name>Z-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
-        <AFAnalysis>
-          <Name>Calculate Time Until Next Service</Name>
-          <Template>Calculate Time Until Next Service</Template>
-          <Status>Error</Status>
-          <Target>
-            <AFElementRef>Assets\Asset 2</AFElementRef>
-          </Target>
-        </AFAnalysis>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 3</Name>
         <Description>Backup device A.</Description>
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
+          <Name>Alpha spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Ambient light level</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate date of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate month of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Asset Number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Avg. X-axis acceleration over past 5m</Name>
@@ -2797,32 +2563,22 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
+          <Name>Beta spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
+          <Name>Gamma spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Hours until next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+          <Name>Light</Name>
+          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Model number</Name>
@@ -2832,10 +2588,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Object Type</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak X-axis acceleration over past 5m</Name>
@@ -2853,18 +2605,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Phone for Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
+          <Name>Proximity</Name>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Type</Name>
@@ -2872,64 +2616,38 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>X-axis acceleration</Name>
+          <Name>X-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Y-axis acceleration</Name>
+          <Name>Y-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Z-axis acceleration</Name>
+          <Name>Z-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
-        <AFAnalysis>
-          <Name>Calculate Time Until Next Service</Name>
-          <Template>Calculate Time Until Next Service</Template>
-          <Status>Error</Status>
-          <Target>
-            <AFElementRef>Assets\Asset 3</AFElementRef>
-          </Target>
-        </AFAnalysis>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 4</Name>
         <Description>Backup device B.</Description>
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
+          <Name>Alpha spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Ambient light level</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate date of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate month of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Asset Number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Avg. X-axis acceleration over past 5m</Name>
@@ -2947,32 +2665,22 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
+          <Name>Beta spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
+          <Name>Gamma spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Hours until next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+          <Name>Light</Name>
+          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Model number</Name>
@@ -2982,10 +2690,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Object Type</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak X-axis acceleration over past 5m</Name>
@@ -3003,18 +2707,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Phone for Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
+          <Name>Proximity</Name>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Type</Name>
@@ -3022,64 +2718,38 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>X-axis acceleration</Name>
+          <Name>X-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Y-axis acceleration</Name>
+          <Name>Y-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Z-axis acceleration</Name>
+          <Name>Z-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
-        <AFAnalysis>
-          <Name>Calculate Time Until Next Service</Name>
-          <Template>Calculate Time Until Next Service</Template>
-          <Status>Error</Status>
-          <Target>
-            <AFElementRef>Assets\Asset 4</AFElementRef>
-          </Target>
-        </AFAnalysis>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 5</Name>
         <Description>Backup device C.</Description>
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
+          <Name>Alpha spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Ambient light level</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate date of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Approximate month of next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Asset Number</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Avg. X-axis acceleration over past 5m</Name>
@@ -3097,32 +2767,22 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Battery level</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
+          <Name>Beta spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
+          <Name>Gamma spin</Name>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Hours until next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+          <Name>Light</Name>
+          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Model number</Name>
@@ -3132,10 +2792,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         <AFAttribute>
           <Name>Object Type</Name>
           <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak set point over past 5m</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Peak X-axis acceleration over past 5m</Name>
@@ -3153,18 +2809,10 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Phone for Engineer scheduled for next service</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
+          <Name>Proximity</Name>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Type</Name>
@@ -3172,31 +2820,23 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>X-axis acceleration</Name>
+          <Name>X-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Y-axis acceleration</Name>
+          <Name>Y-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Z-axis acceleration</Name>
+          <Name>Z-axis</Name>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
-        <AFAnalysis>
-          <Name>Calculate Time Until Next Service</Name>
-          <Template>Calculate Time Until Next Service</Template>
-          <Status>Error</Status>
-          <Target>
-            <AFElementRef>Assets\Asset 5</AFElementRef>
-          </Target>
-        </AFAnalysis>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>Phidget Sensor Module 1</Name>
@@ -3292,17 +2932,17 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
         </AFAttribute>
       </AFElement>
       <AFAnalysis>
-        <Name>Average Battery Level</Name>
-        <Template>Average Battery Level</Template>
-        <Status>Error</Status>
+        <Name>Average Proximity</Name>
+        <Template>Average Proximity</Template>
+        <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Average Proximity</Name>
-        <Template>Average Proximity</Template>
-        <Status>Error</Status>
+        <Name>Avg Alpha Spin</Name>
+        <Template>Avg Alpha Spin</Template>
+        <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
@@ -3310,15 +2950,15 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
       <AFAnalysis>
         <Name>Max Z-Axis Acceleration</Name>
         <Template>Max Z-Axis Acceleration</Template>
-        <Status>Error</Status>
+        <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Minimum Battery Level</Name>
-        <Template>Minimum Battery Level</Template>
-        <Status>Error</Status>
+        <Name>Minimum Light Level</Name>
+        <Template>Minimum Light Level</Template>
+        <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
         </Target>
@@ -3342,12 +2982,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
@@ -3364,13 +2998,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Set point;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
@@ -3407,12 +3034,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
@@ -3429,13 +3050,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Set point;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
@@ -3472,12 +3086,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
@@ -3494,13 +3102,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Set point;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
@@ -3537,12 +3138,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
@@ -3559,13 +3154,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Set point;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
@@ -3602,12 +3190,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
-          <Name>Bearing oil health</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Bearing oil health;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 5 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
@@ -3624,13 +3206,6 @@ MonthOfNextServiceTime := Month(EstimatedServiceTime);</ConfigString>
           <DataReference>PI Point</DataReference>
           <ConfigString>\\localhost\Phone 5 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Set point</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Set point;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Set Points</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
