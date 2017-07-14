@@ -33,7 +33,7 @@ html, body {
 .btn {
 	border-color:darkgray;
 }
-.btn-custom-1 {
-}
-.btn-custom-2 {
+.carousel-caption {
+	background-color: rgba(59,56,56, 0.9);
+	
 }
