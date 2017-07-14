@@ -286,8 +286,12 @@ angular.module('iotdemoApp')
 		// Set the modal body text to the error
 		console.log(response);
 		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ":<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
-		// Open the modal
-		$("#errorMessageModal").modal();
+		// Open the modal, but only if it's not already open!
+		if (!$('#errorMessageModal').is(':visible')) {
+			$("#errorMessageModal").modal();
+		} else {
+			console.log("Tried to open error modal, but it is already open.");
+		}
 	}
 	
     // Returns the webId of a particular AF database, based on the hard-coded AF database name

@@ -27,9 +27,6 @@ html, body {
 	font-size:14px !important;
 	margin-bottom:0px;
 }
-.carousel-indicators {
-	bottom: -7px !important;
-}
 .btn {
 	border-color:darkgray;
 }
