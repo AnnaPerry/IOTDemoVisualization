@@ -39,7 +39,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 				// Turn off the loading spinner
 				document.getElementById("loadingSpinner2").style.display = "none";
 				// Show the "shake me!" modal for phone-based assets!
-				if (assetName.substring(0,6) == "Asset ") { 
+				if (dataService.isFirstTimeThisPageHasLoaded() && (assetName.substring(0,6) == "Asset ")) { 
 					$("#shakeMeModal").modal();
 				}
             });

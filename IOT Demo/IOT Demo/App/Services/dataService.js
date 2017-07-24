@@ -325,10 +325,22 @@ angular.module('iotdemoApp')
         return url;
     };
 
+	// Variable to for tracking if a page has loaded before
+	var isFirstTimeThisPageHasLoadedFlag = true;
+	
     // Functions and objects accessible by the service
     return {
         enablePhoneBasedDataCollectionFeatures: function () {
             return ( SEND_DATA_TO_PI_SYSTEM );
+        },
+		// Tracks how often any given page loads
+		isFirstTimeThisPageHasLoaded: function () {
+            if (isFirstTimeThisPageHasLoadedFlag == true) {
+				isFirstTimeThisPageHasLoadedFlag = false; 
+				return true;
+			} else {
+				return false;
+			}				
         },
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
