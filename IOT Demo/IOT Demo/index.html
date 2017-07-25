@@ -40,7 +40,7 @@
     <div class="container maincontainer" ui-view style="padding-top:50px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important"></div>
 
     <!-- Pop-up modal notification box (normally hidden) -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" id="compatibilityCheckModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color:pink">
@@ -48,12 +48,15 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Your device and/or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data (to perform a sensor health check, click <b><a href="" onclick="$('#sensorValuesModal').modal()">here</a></b>).  Simulated sensor values will be generated where needed to mimic a compatible device.</p>
-                    <p>This app was designed to be viewed in the Mozilla Firefox web browser.</p>
-                    <p>To download and install the Firefox web browser on an Android device, click <b><a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=en">here</a></b>; to do the same for an iOS device, click <b><a href="https://itunes.apple.com/us/app/firefox-web-browser/id989804926?mt=8">here</a></b>.</p>
-                    <p>After installing Firefox on your mobile device, re-launch this web application within the Firefox web browser.</p>
-					<p><b>Other data sources that are connected to the IoT gateway (such as WISE and Phidgets units) will still continue to work as expected.</b></p>
-                </div>
+					<div id="compatibilityCheckModalBodyText">
+						Your device and/or browser does not fully support gathering device-level proximity sensor, light sensor, accelerometer, and/or gyro data (to perform a sensor health check, click <b><a href="" onclick="$('#sensorValuesModal').modal()">here</a></b>).  Simulated sensor values will be generated where needed to mimic a compatible device.
+					</div>
+					<br/>
+					<div>
+						<p><b>NOTE:</b> this app was designed to be viewed in the Firefox web browser.  To download and install the Firefox web browser, click <b><a href="https://www.mozilla.org/en-US/firefox/new/?scene=2">here</a></b>. After installing Firefox on your mobile device, re-launch this web application within the Firefox web browser.</p>
+						<p><b>Other data sources that are connected to the IoT gateway (such as WISE and Phidgets units) will still continue to work as expected.</b></p>
+					</div>	
+				</div>			
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -93,6 +96,24 @@
         </div>
     </div>
 
+    <!-- Pop-up modal notification box (normally hidden) -->
+    <div class="modal fade" id="fullScreenModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:yellow">
+                    <h4 class="modal-title">Full-screen Check</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    This app was designed to run in full-screen mode.  Click <b><a href="" onclick="turnOnFullScreen()">here</a></b> to turn on full-screen mode.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Pop-up modal notification box for orientation messages (normally hidden) -->
     <div class="modal fade" id="orientationMessageModal" role="dialog">
         <div class="modal-dialog">
@@ -109,25 +130,7 @@
                 </div>
             </div>
         </div>
-    </div>	
-
-    <!-- Pop-up modal notification box (normally hidden) -->
-    <div class="modal fade" id="fullScreenModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:yellow">
-                    <h4 class="modal-title">Full Screen Check</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    This app was designed to run in full-screen mode.  Click <b><a href="" onclick="turnOnFullScreen()">here</a></b> to turn on full-screen mode.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>	
+    </div>		
 	
     <!-- Load general-purpose bootstrap and other helper libraries -->
     <script type="text/javascript" src="Scripts/angular.js"></script>
@@ -165,11 +168,20 @@
 		// Allow making the window fullscreen!
 		// See https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
 		function turnOnFullScreen() {
-			var doc = window.document;
-			var docEl = doc.documentElement;
-			var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
 			console.log("Turning on full screen mode...");
-			requestFullScreen.call(docEl);
+			var docElm = document.documentElement;
+			if (docElm.requestFullscreen) {
+				docElm.requestFullscreen();
+			}
+			else if (docElm.mozRequestFullScreen) {
+				docElm.mozRequestFullScreen();
+			}
+			else if (docElm.webkitRequestFullScreen) {
+				docElm.webkitRequestFullScreen();
+			}
+			else if (docElm.msRequestFullscreen) {
+				docElm.msRequestFullscreen();
+			}
 		}
 	</script>
 </body>

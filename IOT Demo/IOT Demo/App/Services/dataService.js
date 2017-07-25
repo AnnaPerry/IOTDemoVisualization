@@ -243,7 +243,22 @@ angular.module('iotdemoApp')
         // Fire a notification if it hasn't been done yet
         if (!modalTriggeredAlready && SEND_DATA_TO_PI_SYSTEM) {
             modalTriggeredAlready = true;
-            $("#myModal").modal();
+			var outputHTML = "Your device and/or browser does not support reading the following sensor types:<br/>";
+			var incompatibleSensors = "";
+			if (!currentxAccelerationReading) incompatibleSensors += ", x-acceleration";
+			if (!currentyAccelerationReading) incompatibleSensors += ", y-acceleration";
+			if (!currentzAccelerationReading) incompatibleSensors += ", z-acceleration";
+			if (!currentAlphaOrientationReading) incompatibleSensors += ", alpha-orientation";
+			if (!currentBetaOrientationReading) incompatibleSensors += ", beta-orientation";
+			if (!currentGammaOrientationReading) incompatibleSensors += ", gamma-orientation";
+			if (!proximityValue) incompatibleSensors += ", proximity";
+			if (!ambientLightLevel) incompatibleSensors += ", light";
+			// Trim the first comma
+			incompatibleSensors = incompatibleSensors.substr(2);
+			outputHTML += incompatibleSensors;
+			outputHTML += "<br/>Simulated sensor values will be generated for these sensors to mimic a compatible device.";
+			document.getElementById("compatibilityCheckModalBodyText").innerHTML = outputHTML;
+            $("#compatibilityCheckModal").modal();
         }
     }
 
