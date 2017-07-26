@@ -62,10 +62,10 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 		"fontSize": 13,
         "dataProvider": [],
         "color": "white",
-        "autoMargins": true,
-        "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        "backgroundColor": "#303030",
-        "backgroundAlpha": 1,
+        //"autoMargins": true,
+        //"dataDateFormat": "YYYY-MM-DD HH:NN:SS",
+        //"backgroundColor": "#303030",
+        //"backgroundAlpha": 1,
         "valueAxes": [{
             "axisColor": "white",
             "fillAlpha": 0,
@@ -73,12 +73,20 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         }],
         "graphs": [{
 			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
-			"labelText": "[[valueFormatted]][[units]]",
+			"labelText": "[[valueFormatted]]\n[[units]]",
+			/*
+			"labelFunction": function (dataItem, text) { 
+				console.log(dataItem);
+				return "a";
+			},
+			*/
+			
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"type": "column",
 			"valueField": "value",
-			"colorField":"color"
+			"colorField": "color",
+			"fontSize": 12
 		}],
         "categoryField": "name",
         "categoryAxis": {
