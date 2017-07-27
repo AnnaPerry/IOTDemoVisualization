@@ -62,10 +62,6 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 		"fontSize": 13,
         "dataProvider": [],
         "color": "white",
-        //"autoMargins": true,
-        //"dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        //"backgroundColor": "#303030",
-        //"backgroundAlpha": 1,
         "valueAxes": [{
             "axisColor": "white",
             "fillAlpha": 0,
@@ -74,19 +70,13 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         "graphs": [{
 			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
 			"labelText": "[[valueFormatted]]\n[[units]]",
-			/*
-			"labelFunction": function (dataItem, text) { 
-				console.log(dataItem);
-				return "a";
-			},
-			*/
-			
 			"fillAlphas": 1,
 			"lineAlpha": 0,
 			"type": "column",
 			"valueField": "value",
 			"colorField": "color",
-			"fontSize": 12
+            "fontSize": 12,
+            "showAllValueLabels": true
 		}],
         "categoryField": "name",
         "categoryAxis": {
@@ -124,8 +114,11 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         if ($scope.attributes.length > 4) {
             USE_MULTIPLE_AXES = false;
         }
-		
+        
+        // For each attribute...
+        var axisNumber = 0;
 		for (var i = 0; i < mostRecentDataFromPISystem.length; i++) {
+
 			var dataObject = {
 				"name": mostRecentDataFromPISystem[i].Name.replace(" ","\n").replace("-","-\n"),
 				"value": mostRecentDataFromPISystem[i].Value.Value,
