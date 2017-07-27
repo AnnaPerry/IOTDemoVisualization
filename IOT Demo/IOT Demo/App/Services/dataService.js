@@ -186,9 +186,16 @@ angular.module('iotdemoApp')
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', function (event) {
                 // Get the current acceleration values in 3 axes (measured in meters per second squared)
+                /*
+                // Excludes gravity
                 currentxAccelerationReading = event.acceleration.x;
                 currentyAccelerationReading = event.acceleration.y;
                 currentzAccelerationReading = event.acceleration.z;
+                */
+                // Below includes gravity, so Z will almost always be equal to 1 G equivalent
+                currentxAccelerationReading = event.accelerationIncludingGravity.x;
+                currentyAccelerationReading = event.accelerationIncludingGravity.y;
+                currentzAccelerationReading = event.accelerationIncludingGravity.z;
                 updateSensorValuesDiv();
             }, false);
             console.log("Event listener added for this type of sensor data: " + "acceleration");
