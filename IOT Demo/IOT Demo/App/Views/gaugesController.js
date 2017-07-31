@@ -5,9 +5,6 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
 
-	// Specify the default of whether or not to use multiple chart axes!  Note: this is also set later...
-    var USE_MULTIPLE_AXES = true;
-	
     var stop;
 	$scope.$on('$destroy', function () {
         stopInt();
@@ -59,15 +56,46 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 
     var chartDef = {
         "type": "serial",
-		"fontSize": 13,
+        "fontSize": 13,
         "dataProvider": [],
         "color": "white",
         "valueAxes": [{
+            "id": "a1",
             "axisColor": "white",
             "fillAlpha": 0,
-			"fontSize": 10
-        }],
+            "fontSize": 10,
+            //"maximum": 360
+			"tickLength": 3
+        }, {
+            "id": "a2",
+            "axisColor": "white",
+            "fillAlpha": 0,
+            "fontSize": 10,
+            //"maximum": 100
+			"tickLength": 3
+            }],
+/*
+        "valueAxesSettings": {
+            "axisThickness": 2,
+            "gridAlpha": 0,
+            "axisAlpha": 1,
+            "inside": false
+        },
+*/
         "graphs": [{
+            "id": "g1",
+			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
+			"labelText": "[[valueFormatted]]\n[[units]]",
+			"fillAlphas": 1,
+			"lineAlpha": 0,
+			"type": "column",
+			"valueField": "rotation",
+			"colorField": "color",
+            "fontSize": 12,
+            "showAllValueLabels": true,
+            "valueAxis": "a1"
+        }, {
+			"id": "g2",
 			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
 			"labelText": "[[valueFormatted]]\n[[units]]",
 			"fillAlphas": 1,
@@ -75,14 +103,18 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"type": "column",
 			"valueField": "value",
 			"colorField": "color",
-            "fontSize": 12,
-            "showAllValueLabels": true
-		}],
+			"fontSize": 12,
+			"showAllValueLabels": true,
+			"valueAxis": "a2"
+        }
+
+        ],
         "categoryField": "name",
         "categoryAxis": {
 			"axisColor": "white",
             "gridAlpha": 0,
-			"labelsEnabled":true
+			"labelsEnabled":true,
+			"tickLength": 0
         },
         "zoomOutButtonImage": "",
         "creditsPosition": "top-right",
@@ -108,31 +140,55 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         // Declare empty arrays to hold data, graphs, and axes
         var chartDataArray = [];
         var graphArray = [];
-        var axisArray = []
-
-        // Note! If the number of data items is over 4, turn off multiple axes!
-        if ($scope.attributes.length > 4) {
-            USE_MULTIPLE_AXES = false;
-        }
-        
+        var axisArray = [];
+       
         // For each attribute...
         var axisNumber = 0;
-		for (var i = 0; i < mostRecentDataFromPISystem.length; i++) {
+        for (var i = 0; i < mostRecentDataFromPISystem.length; i++) {
+            //console.log(mostRecentDataFromPISystem);
+            //console.log(mostRecentDataFromPISystem[i].Name)
 
-			var dataObject = {
-				"name": mostRecentDataFromPISystem[i].Name.replace(" ","\n").replace("-","-\n"),
-				"value": mostRecentDataFromPISystem[i].Value.Value,
-				"valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
-				"timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
-				"color": chartColors[i],
-				"units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
-			};
-			chartDataArray.push(dataObject);
+            //declare storage for data to be put on chart 
+            var dataObject = {};
+
+            //check to see if we are looking at a spin reading 
+            if (mostRecentDataFromPISystem[i].Name.includes("spin")) {           
+                //if it is a spin reading -- add this to the rotation axis
+                dataObject = {
+                    "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
+                    "rotation": mostRecentDataFromPISystem[i].Value.Value,
+                    "valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
+                    "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
+                    "color": chartColors[i],
+                    "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
+                };
+				
+				// Update the second value axis position!
+				if (chart.categoryAxis.allLabels) {					
+					chart.valueAxes[1].offset = ( 0.5*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
+				}
+				
+            }
+
+            //if it is not a spin reading -- add this to the other axis
+            else {
+                dataObject = {
+                    "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
+                    "value": mostRecentDataFromPISystem[i].Value.Value,
+                    "valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
+                    "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
+                    "color": chartColors[i],
+                    "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
+                };
+            }
+
+            chartDataArray.push(dataObject);
+            //console.log(dataObject);
 		}
 		
         // Assign the new arrays to the chart object
         chart.dataProvider = chartDataArray;
-
+		
 		//console.log(chartDataArray);
         // Refresh the chart
         chart.validateData();
