@@ -104,6 +104,7 @@
     <Content Include="App\Views\chartAndTableWrapperController.js" />
     <Content Include="App\Views\assetsController.js" />
     <Content Include="App\Views\assetsView.html" />
+    <Content Include="App\Views\gaugesController.js" />
     <Content Include="App\Views\gaugesView.html" />
     <Content Include="App\Views\gettingStartedView.html" />
     <Content Include="App\Views\mainController.js" />
