@@ -72,7 +72,8 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
             "fillAlpha": 0,
             "fontSize": 10,
             //"maximum": 100
-			"tickLength": 3
+			"tickLength": 0,
+			"labelsEnabled": false
             }],
 /*
         "valueAxesSettings": {
@@ -164,8 +165,10 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
                 };
 				
 				// Update the second value axis position!
-				if (chart.categoryAxis.allLabels) {					
-					chart.valueAxes[1].offset = ( 0.5*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
+				if (chart.categoryAxis.allLabels) {	
+					chart.valueAxes[1].labelsEnabled = true;
+					chart.valueAxes[1].tickLength = 3;
+					chart.valueAxes[1].offset = ( (2/3)*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
 				}
 				
             }
