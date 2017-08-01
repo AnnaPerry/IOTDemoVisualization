@@ -40,4 +40,4 @@ Install this second, and accept and install all components and defaults EXCEPT f
 3. PI Data Archive (version 2017 SP1 or the most recent version). 
 Install this last; you'll need a license file to complete the installation (contact OSIsoft to obtain one).  During the installation, accept all of the default installation options.
 
-After these three pieces of software have been successfully installed, Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator, which will download the rest of the needed files for this demonstration and properly configure the host PC.
+After these three pieces of software have been successfully installed, run the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator, which will download the rest of the needed files for this demonstration and properly configure the host PC.
