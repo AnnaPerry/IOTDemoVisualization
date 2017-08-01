@@ -18,6 +18,12 @@
 Operating System:
 Windows 10
 
+Minimum Hardware Specifications:
+Dual-core processor, 2 GB RAM, 8 GB free disk space
+
+Ideal Specifications:
+Quad-core processor, 8 GB RAM, 16 GB free disk space, SSD storage
+
 Software Prerequisites:
 This demonstration can be installed by running the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator (download it first, by itself, to the target gateway using this link: https://raw.githubusercontent.com/AnnaPerry/IOTDemoVisualization/master/Install-EdgeGatewayDemo_RunAsAdministrator.ps1); however, prior to running that installation script, three files must be downloaded from the OSIsoft Technical Support Web site (https://techsupport.osisoft.com/):
 
