@@ -152,13 +152,22 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
             //declare storage for data to be put on chart 
             var dataObject = {};
 
+			// Format the value!
+			var formattedValue = 0;
+			try {
+				formattedValue = mostRecentDataFromPISystem[i].Value.Value.toFixed(1);
+			}
+			catch(err) {
+				console.log("Error while trying to parse vales for the gauge: ", err.message);
+			}
+			
             //check to see if we are looking at a spin reading 
-            if (mostRecentDataFromPISystem[i].Name.includes("spin")) {           
+            if (mostRecentDataFromPISystem[i].Name.indexOf("spin") != -1) {           
                 //if it is a spin reading -- add this to the rotation axis
                 dataObject = {
                     "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
                     "rotation": mostRecentDataFromPISystem[i].Value.Value,
-                    "valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
+                    "valueFormatted": formattedValue,
                     "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
                     "color": chartColors[i],
                     "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
@@ -178,7 +187,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
                 dataObject = {
                     "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
                     "value": mostRecentDataFromPISystem[i].Value.Value,
-                    "valueFormatted": mostRecentDataFromPISystem[i].Value.Value.toFixed(1),
+                    "valueFormatted": formattedValue,
                     "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
                     "color": chartColors[i],
                     "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation

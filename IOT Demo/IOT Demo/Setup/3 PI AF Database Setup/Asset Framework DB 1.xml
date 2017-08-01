@@ -790,13 +790,6 @@
       <Class>Electric Potential</Class>
     </UOM>
     <UOM>
-      <Name>kilovolt</Name>
-      <Abbreviation>KV</Abbreviation>
-      <RefFactor>1000</RefFactor>
-      <RefUOM>volt</RefUOM>
-      <Class>Electric Potential</Class>
-    </UOM>
-    <UOM>
       <Name>megavolt</Name>
       <Abbreviation>MV</Abbreviation>
       <RefFactor>1000000</RefFactor>
