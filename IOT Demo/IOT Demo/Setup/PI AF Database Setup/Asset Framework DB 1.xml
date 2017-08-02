@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.8.5.7759" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-07-07T22:29:01.6389473Z" id="beb2f5e1-c532-4e2e-9645-6ccab31c3b42" ParentKey="38540f06-b96f-47fc-8010-061ab7ba372f" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="154 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{38540f06-b96f-47fc-8010-061ab7ba372f}\{beb2f5e1-c532-4e2e-9645-6ccab31c3b42}*localhost\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-08-02T21:08:53.3170499Z" id="2720591b-4006-49be-89be-a0dd8dc5f71d" ParentKey="01fe4c57-3d9d-4e86-80af-f3ee08db8a04" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="155 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{01fe4c57-3d9d-4e86-80af-f3ee08db8a04}\{2720591b-4006-49be-89be-a0dd8dc5f71d}*localhost\Asset Framework DB 1">
   <UOMDatabase>
     <Name>UOMDatabase</Name>
     <UOMClass>
@@ -1711,29 +1711,6 @@
     <AFAttributeCategory>
       <Name>Timeseries</Name>
     </AFAttributeCategory>
-    <AFTable>
-      <Name>Engineer Schedule</Name>
-      <ExternalPersist>false</ExternalPersist>
-      <Schema>
-<xs:schema id="Engineer_x0020_ScheduleDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-  <xs:element name="Engineer_x0020_ScheduleDataSet" msdata:IsDataSet="true" msdata:Locale="">
-    <xs:complexType>
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Engineer_x0020_Schedule">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Month_x0020_Number" type="xs:int" default="0" minOccurs="0" />
-              <xs:element name="Engineer" type="xs:string" minOccurs="0" />
-              <xs:element name="Engineer_x0020_Phone_x0020_Number" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-</xs:schema></Schema>
-      <DataTable><Engineer_x0020_ScheduleDataSet><Engineer_x0020_Schedule><Month_x0020_Number>0</Month_x0020_Number><Engineer>R. Thul</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7701</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>1</Month_x0020_Number><Engineer>C. Horn</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7702</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>2</Month_x0020_Number><Engineer>T. Lobi</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7703</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>3</Month_x0020_Number><Engineer>O. Ramis</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7704</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>4</Month_x0020_Number><Engineer>J. Fel</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7705</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>5</Month_x0020_Number><Engineer>K. Durron</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7706</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>6</Month_x0020_Number><Engineer>K. Hamner</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7707</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>7</Month_x0020_Number><Engineer>R. Thul</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7701</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>8</Month_x0020_Number><Engineer>C. Horn</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7702</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>9</Month_x0020_Number><Engineer>T. Lobi</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7703</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>10</Month_x0020_Number><Engineer>O. Ramis</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7704</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>11</Month_x0020_Number><Engineer>J. Fel</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7705</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule><Engineer_x0020_Schedule><Month_x0020_Number>12</Month_x0020_Number><Engineer>K. Durron</Engineer><Engineer_x0020_Phone_x0020_Number>782-792-7706</Engineer_x0020_Phone_x0020_Number></Engineer_x0020_Schedule></Engineer_x0020_ScheduleDataSet></DataTable>
-    </AFTable>
     <AFElementTemplate>
       <Name>Asset Template</Name>
       <Type>None</Type>
@@ -2011,7 +1988,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=2;excdev=1;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=1;pointsource=MODBUSE;span=5000</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=1;pointsource=MODBUSE;span=5000</ConfigString>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2021,7 +1998,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=2;excdev=1;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=2;pointsource=MODBUSE;span=5000</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=103;location4=1;location5=2;pointsource=MODBUSE;span=5000</ConfigString>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2048,7 +2025,7 @@
         <Type>Int32</Type>
         <Value type="Int32">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=1;pointsource=MODBUSE;span=10</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=1;pointsource=MODBUSE;span=10</ConfigString>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2057,7 +2034,71 @@
         <Type>Int32</Type>
         <Value type="Int32">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=2;pointsource=MODBUSE;span=10</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%.%ID%;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;instrumenttag=%@Data Source IP Address%;location1=1;location2=1;location3=101;location4=1;location5=2;pointsource=MODBUSE;span=10</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+    </AFElementTemplate>
+    <AFElementTemplate>
+      <Name>Asset Template - WISE-4012E simulator</Name>
+      <Description>Modbus IoT Device</Description>
+      <BaseTemplate>Asset Template</BaseTemplate>
+      <Type>None</Type>
+      <InstanceType>Element</InstanceType>
+      <AllowElementToExtend>false</AllowElementToExtend>
+      <AFAttributeTemplate>
+        <Name>Analog Input 1</Name>
+        <DefaultUOM>V</DefaultUOM>
+        <Type>Single</Type>
+        <Value type="Single">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.simulated;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;location1=1;location4=1;location5=2;pointsource=R;span=5000</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Analog Input 2</Name>
+        <DefaultUOM>V</DefaultUOM>
+        <Type>Single</Type>
+        <Value type="Single">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.simulated;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;location1=1;location4=1;location5=2;pointsource=R;span=5000</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Protocol</Name>
+        <Type>String</Type>
+        <Value type="String">Modbus over Ethernet</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Source</Name>
+        <Type>String</Type>
+        <Value type="String">WISE-4012E IoT Module</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Data Source IP Address</Name>
+        <Type>String</Type>
+        <Value type="String">192.168.0.111</Value>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Digital Input 1</Name>
+        <Type>Int32</Type>
+        <Value type="Int32">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.simulated;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;location1=1;location4=1;location5=2;pointsource=R;span=1</ConfigString>
+        <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+      </AFAttributeTemplate>
+      <AFAttributeTemplate>
+        <Name>Digital Input 2</Name>
+        <Type>Int32</Type>
+        <Value type="Int32">0</Value>
+        <DataReference>PI Point</DataReference>
+        <ConfigString>\\localhost\%Element%.%Attribute%.simulated;UOM=millivolts;ptclassname=classic;pointtype=Float32;compdev=0;compdevpercent=0;excdev=0;excdevpercent=0;location1=1;location4=1;location5=2;pointsource=R;span=1</ConfigString>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
       </AFAttributeTemplate>
@@ -2276,49 +2317,49 @@
       <AFAttribute>
         <Name>Average Alpha Spin</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Alpha Spin?94</ConfigString>
+        <ConfigString>\\localhost\Assets.Average Alpha Spin?20</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Average Proximity</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Average Proximity?90</ConfigString>
+        <ConfigString>\\localhost\Assets.Average Proximity?21</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway C Drive Space</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\localhost_LogicalDisk(C:)_% Free Space?84</ConfigString>
+        <ConfigString>\\localhost\localhost_LogicalDisk(C:)_% Free Space?22</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway CPU</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time</ConfigString>
+        <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time?23</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway Disk Time</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\localhost_LogicalDisk(_Total)_% Disk Time?85</ConfigString>
+        <ConfigString>\\localhost\localhost_LogicalDisk(_Total)_% Disk Time?24</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway RAM</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use</ConfigString>
+        <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use?25</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Max Z-Axis Acceleration</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration?92</ConfigString>
+        <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration?14</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Minimum Light Level</Name>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Minimum Light Level?93</ConfigString>
+        <ConfigString>\\localhost\Assets.Minimum Light Level?15</ConfigString>
         <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFElement ReferenceType="Parent-Child">
@@ -2327,6 +2368,8 @@
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation?26</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2353,18 +2396,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Beta spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation?28</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation?29</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level?27</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2395,6 +2444,8 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading?30</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2406,18 +2457,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.X-axis acceleration?31;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Y-axis acceleration?32;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 1 Sensors.Z-axis acceleration?33;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2429,6 +2486,8 @@
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Alpha-axis rotation?34</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2455,18 +2514,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Beta spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation?36</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Gamma-axis rotation?37</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level?35</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2497,6 +2562,8 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading?38</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2508,18 +2575,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.X-axis acceleration?39;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Y-axis acceleration?40;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 2 Sensors.Z-axis acceleration?41;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2531,6 +2604,8 @@
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Alpha-axis rotation?42</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2557,18 +2632,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Beta spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation?44</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Gamma-axis rotation?45</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level?43</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2599,6 +2680,8 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading?46</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2610,18 +2693,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.X-axis acceleration?47;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Y-axis acceleration?48;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 3 Sensors.Z-axis acceleration?49;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2633,6 +2722,8 @@
         <Template>Asset Template - Phone</Template>
         <AFAttribute>
           <Name>Alpha spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Alpha-axis rotation?50</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2659,18 +2750,24 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Beta spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation?52</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma spin</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Gamma-axis rotation?53</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Ambient light level?51</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2701,6 +2798,8 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading?54</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2712,183 +2811,44 @@
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.X-axis acceleration?55;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Y-axis acceleration?56;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis</Name>
+          <DataReference>PI Point</DataReference>
+          <ConfigString>\\localhost\Phone 4 Sensors.Z-axis acceleration?57;UOM=m/s2</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-      </AFElement>
-      <AFElement ReferenceType="Parent-Child">
-        <Name>Asset 5</Name>
-        <Description>Backup device C.</Description>
-        <Template>Asset Template - Phone</Template>
-        <AFAttribute>
-          <Name>Alpha spin</Name>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Asset Number</Name>
-          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. X-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. Y-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Avg. Z-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Averages</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta spin</Name>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma spin</Name>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Light</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Model number</Name>
-          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Object Type</Name>
-          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak X-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak Y-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Peak Z-axis acceleration over past 5m</Name>
-          <AFAttributeCategoryRef>Calculations - Peaks</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity</Name>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Type</Name>
-          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>X-axis</Name>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Y-axis</Name>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Z-axis</Name>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-      </AFElement>
-      <AFElement ReferenceType="Parent-Child">
-        <Name>Phidget Sensor Module 1</Name>
-        <Description>2/2/2 Kit</Description>
-        <Template>Asset Template - Phidget 2/2/2 Kit</Template>
-        <AFAttribute>
-          <Name>Object Type</Name>
-          <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Raw Sensor Value 0</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Raw Sensor Value 1</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 0 (Voltage)</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 0 Conversion Formula</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 0 Target Units</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 1 (Magnetic Flux Density)</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-          <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 1 Conversion Formula</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Sensor 1 Target Units</Name>
-          <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
       <AFElement ReferenceType="Parent-Child">
         <Name>WISE-4012E 1</Name>
         <Description>Modbus sensor module.</Description>
-        <Template>Asset Template - WISE-4012E</Template>
+        <Template>Asset Template - WISE-4012E simulator</Template>
         <AFAttribute>
           <Name>Analog Input 1</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\WISE-4012E 1.Analog Input 1.17267ff6-d641-505e-3eba-d6b5124a37e7?86;UOM=millivolts</ConfigString>
+          <ConfigString>\\localhost\WISE-4012E 1.Analog Input 1.simulated?70;UOM=millivolts</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Analog Input 2</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\WISE-4012E 1.Analog Input 2.cf3b578e-7e4c-57f7-13aa-9e87939e2cc8?87;UOM=millivolts</ConfigString>
+          <ConfigString>\\localhost\WISE-4012E 1.Analog Input 2.simulated?71;UOM=millivolts</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
@@ -2902,20 +2862,19 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Data Source IP Address</Name>
-          <Value type="String">192.168.1.146</Value>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Digital Input 1</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\WISE-4012E 1.Digital Input 1.ae459ffa-d343-591b-3c44-1926d3b4d19a?88</ConfigString>
+          <ConfigString>\\localhost\WISE-4012E 1.Digital Input 1.simulated?72;UOM=millivolts</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Digital Input 2</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\WISE-4012E 1.Digital Input 2.d939fa65-d8c8-5455-2fa4-562e90c718be?89</ConfigString>
+          <ConfigString>\\localhost\WISE-4012E 1.Digital Input 2.simulated?73;UOM=millivolts</ConfigString>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
         </AFAttribute>
@@ -2965,49 +2924,49 @@
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Alpha-axis rotation?26;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level?27;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Beta-axis rotation?28;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Gamma-axis rotation?29;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Proximity sensor reading?30;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.X-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.X-axis acceleration?31;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Y-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Y-axis acceleration?32;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Z-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 1 Sensors.Z-axis acceleration?33;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3017,49 +2976,49 @@
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Alpha-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Alpha-axis rotation?34;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level?35;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Beta-axis rotation?36;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Gamma-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Gamma-axis rotation?37;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Proximity sensor reading?38;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.X-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.X-axis acceleration?39;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Y-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Y-axis acceleration?40;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Z-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 2 Sensors.Z-axis acceleration?41;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3069,49 +3028,49 @@
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Alpha-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Alpha-axis rotation?42;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level?43;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Beta-axis rotation?44;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Gamma-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Gamma-axis rotation?45;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Proximity sensor reading?46;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.X-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.X-axis acceleration?47;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Y-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Y-axis acceleration?48;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Z-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 3 Sensors.Z-axis acceleration?49;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>
@@ -3121,101 +3080,49 @@
         <AFAttribute>
           <Name>Alpha-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Alpha-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Alpha-axis rotation?50;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Ambient light level</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Ambient light level;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Ambient light level?51;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Beta-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Beta-axis rotation?52;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Gamma-axis rotation</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Gamma-axis rotation;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Gamma-axis rotation?53;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Proximity sensor reading</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Proximity sensor reading?54;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>X-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.X-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.X-axis acceleration?55;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Y-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Y-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Y-axis acceleration?56;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
         <AFAttribute>
           <Name>Z-axis acceleration</Name>
           <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 4 Sensors.Z-axis acceleration;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-      </AFElement>
-      <AFElement ReferenceType="Parent-Child">
-        <Name>Phone 5 Sensors</Name>
-        <Template>Phone Sensors Template</Template>
-        <AFAttribute>
-          <Name>Alpha-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Alpha-axis rotation;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Ambient light level</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Ambient light level;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Beta-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Beta-axis rotation;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Gamma-axis rotation</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Gamma-axis rotation;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Orientation</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Proximity sensor reading</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Proximity sensor reading;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>X-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.X-axis acceleration;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Y-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Y-axis acceleration;ReadOnly=False</ConfigString>
-          <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
-        </AFAttribute>
-        <AFAttribute>
-          <Name>Z-axis acceleration</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 5 Sensors.Z-axis acceleration;ReadOnly=False</ConfigString>
+          <ConfigString>\\localhost\Phone 4 Sensors.Z-axis acceleration?57;ReadOnly=False</ConfigString>
           <AFAttributeCategoryRef>Acceleration</AFAttributeCategoryRef>
         </AFAttribute>
       </AFElement>

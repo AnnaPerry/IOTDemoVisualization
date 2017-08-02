@@ -1,1 +1,0 @@
-netsh wlan set hostednetwork mode=allow ssid=gatewaynetwork key=osisoftiot

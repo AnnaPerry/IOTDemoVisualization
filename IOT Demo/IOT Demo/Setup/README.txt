@@ -1,1 +1,0 @@
-Each of the folders in this directory contain configuration files and instructions on what do to with them; prior to using this application, make sure that you've completed all of the specified configuration steps in numerical order, following the number prepended to each folder name.  For more details, see the individual Readme files in each of the setup sub-folders.
