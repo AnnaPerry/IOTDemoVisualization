@@ -1,3 +1,1 @@
-Welcome!  If this is your first time installing this application, look in the "Setup" folder for instructions about all of the needed software installation and configuration steps that are needed to run this app on a fresh machine.
-
-Once the app has been properly set up, direct users to click on the "Getting Started" button in the top-right-hand corner of the app, which will take them to a page that describes the data flow through the application, so that they can better understand the applications' features and workflow.
+Welcome!  Once the app has been properly set up (see the root directory for installation instructions), direct users to click on the "Getting Started" button in the top-right-hand corner of the app, which will take them to a page that describes the data flow through the application, so that they can better understand the applications' features and workflow.
