@@ -65,11 +65,17 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
     $scope.sendDatatoPI = function () {
 		// Only do this, though, if the current element is asset 1 through 5! Otherwise, don't send data!
 		if ( ($stateParams.assetName).substring(0,6) == "Asset ") {
-			console.log("Current AF Element is a phone-based element; will start streaming data!");
-			stop = $interval(function () {
-				var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
-				dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
-			}, 3000);
+			// NEW! Check to see if the target asset name does NOT contain "Read Only"
+			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
+				console.log("Current AF Element is a phone-based element; will start streaming data!");
+				stop = $interval(function () {
+					var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
+					dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
+				}, 3000);
+			} else {
+				console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");
+				$("#readOnlyModal").modal();
+			}
 		} else {
 			console.log("Current AF Element does not use a phone-based data source; device sensor data will not be streamed.");
 		}

@@ -32,12 +32,7 @@ angular.module('iotdemoApp')
 
     // Constant for turning on or off sending data to the PI System
     var SEND_DATA_TO_PI_SYSTEM = true;
-    // If the target AF database is something other than the default, turn off sending data!
-    if (_afdb != 'Asset Framework DB 1') {
-        SEND_DATA_TO_PI_SYSTEM = false;
-    }
-
-    
+     
     
     // Global variable to detect if an incompatible device is used
     var modalTriggeredAlready = false;
@@ -307,7 +302,7 @@ angular.module('iotdemoApp')
 		document.getElementById("loadingSpinner").style.visibility = "hidden"; 
 		// Set the modal body text to the error
 		console.log(response);
-		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ":<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
+		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ".<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
 		// Open the modal, but only if it's not already open!
 		if (!$('#errorMessageModal').is(':visible')) {
 			$("#errorMessageModal").modal();
@@ -424,7 +419,9 @@ angular.module('iotdemoApp')
         },		
         // Returns the correct string for the name of the AF asset, including the asset number
         getTargetAssetElementName: function (assetName) {
-            var assetidNumber = assetName.match(/[0-9]+/i)[0];
+			// NEW! Replace the read-only suffix if it exists
+			var cleanedAssetName = assetName.replace(" (Read only)","");
+            var assetidNumber = cleanedAssetName.match(/[0-9]+/i)[0];
             // All of the target assets start with "Phone" and end with "Sensors"; insert in the middle the asset id #
             return 'Phone ' + assetidNumber + ' Sensors';
 

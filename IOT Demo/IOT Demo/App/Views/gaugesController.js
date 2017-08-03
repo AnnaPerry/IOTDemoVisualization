@@ -37,7 +37,10 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 				document.getElementById("loadingSpinner2").style.display = "none";
 				// Show the "shake me!" modal for phone-based assets!
 				if (dataService.isFirstTimeThisPageHasLoaded() && (assetName.substring(0,6) == "Asset ")) { 
-					$("#shakeMeModal").modal();
+					// NEW: check to make sure this isn't a read-only asset!
+					if (assetName.toLowerCase().indexOf("read only") == -1) {
+						$("#shakeMeModal").modal();
+					}
 				}
             });
 
