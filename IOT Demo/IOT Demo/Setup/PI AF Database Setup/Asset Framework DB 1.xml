@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="EDGEGATEWAY" Database="Asset Framework DB 1" Description="" Created="2017-08-04T17:18:31.8209611Z" id="2720591b-4006-49be-89be-a0dd8dc5f71d" ParentKey="01fe4c57-3d9d-4e86-80af-f3ee08db8a04" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="155 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{01fe4c57-3d9d-4e86-80af-f3ee08db8a04}\{2720591b-4006-49be-89be-a0dd8dc5f71d}*EDGEGATEWAY\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="localhost" Database="Asset Framework DB 1" Description="" Created="2017-08-04T17:18:31.8209611Z" id="2720591b-4006-49be-89be-a0dd8dc5f71d" ParentKey="01fe4c57-3d9d-4e86-80af-f3ee08db8a04" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="155 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{01fe4c57-3d9d-4e86-80af-f3ee08db8a04}\{2720591b-4006-49be-89be-a0dd8dc5f71d}*localhost\Asset Framework DB 1">
   <UOMDatabase>
     <Name>UOMDatabase</Name>
     <UOMClass>
@@ -1886,7 +1886,7 @@
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\EDGEGATEWAY\Phone %@Asset Number% Sensors.Ambient light level;UOM=lx</ConfigString>
+        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Ambient light level;UOM=lx</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2266,7 +2266,7 @@
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\EDGEGATEWAY\%Element%.%Attribute%;UOM=lx;pointtype=Float32</ConfigString>
+        <ConfigString>\\localhost\%Element%.%Attribute%;UOM=lx;pointtype=Float32</ConfigString>
         <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAnalysisTemplate>
