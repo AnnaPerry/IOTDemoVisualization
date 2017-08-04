@@ -50,11 +50,11 @@ angular.module('iotdemoApp')
 
     // Actually writes data for a certain group of attributes
     function sendCurrentReadings(attributes) {
+		// Assume each sensor is supported, but if one isn't, log that!
+		var incompatibleSensors = "";
+		
         // Define global variable to hold all of the new values
         var dataObj = [];
-
-        // Read the current battery level, then
-        //$window.navigator.getBattery().then(function (battery) {
 
         // For each of the attributes in the array of attributes that was passed in
         attributes.forEach(function (attribute) {
@@ -62,68 +62,75 @@ angular.module('iotdemoApp')
             // Based on that attributes name, read the correct sensor on the data source device
             var value;
             switch (attribute.Name) {
-                case "Bearing oil health": { // Actually the battery level!
-                    value = batteryLevel;
-                    if (value == null) {
-                        value = 95;
-                    }
-                    break;
-                }
                 case "X-axis acceleration": {
                     value = currentxAccelerationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						incompatibleSensors += ", x-acceleration";
                     }
                     break;
                 }
                 case "Y-axis acceleration": {
                     value = currentyAccelerationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						incompatibleSensors += ", y-acceleration";
                     }
                     break;
                 }
                 case "Z-axis acceleration": {
                     value = currentzAccelerationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						incompatibleSensors += ", z-acceleration";
                     }
                     break;
                 }
                 case "Alpha-axis rotation": {
                     value = currentAlphaOrientationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						incompatibleSensors += ", alpha-orientation";
                     }
                     break;
                 }
                 case "Beta-axis rotation": {
                     value = currentBetaOrientationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						incompatibleSensors += ", beta-orientation";
                     }
                     break;
                 }
                 case "Gamma-axis rotation": {
                     value = currentGammaOrientationReading;
+					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						incompatibleSensors += ", gamma-orientation";
                     }
                     break;
                 }
                 case "Ambient light level": {
                     value = ambientLightLevel;
-                    // If there is no light sensor, generate a random reading
+                    // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceLightEvent || value == null) {
-                        value = Math.random() * 300;
+                        value = Math.random() * 100;
+						incompatibleSensors += ", light";
                     }
                     break;
                 }
                 case "Proximity sensor reading": {
                     value = proximityValue;
-                    // If there is no proximity sensor, generate a random reading
+                    // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceProximityEvent || value == null) {
                         value = Math.random() * 50;
+						incompatibleSensors += ", proximity";
                     }
                     break;
                 }
@@ -133,8 +140,7 @@ angular.module('iotdemoApp')
                 }
             }
 			// Last-ditch error handler
-			if (value == null)
-			{
+			if (value == null) {
 				value = 0;
 			}
             // Add this new data value as an object to the array of value objects that will be written (at the current time)
@@ -144,38 +150,18 @@ angular.module('iotdemoApp')
         var url = _httpsPIWebAPIUrl + "/streamsets/value";
         // Send these new values to be written to the PI System
         $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
-        //});
+
+		// Check if an incompatibility was detected; if so, trigger the alert!
+		if (incompatibleSensors !== "") {
+			displayCompatibilityAlert(incompatibleSensors);
+		}
     };
 
     // ---------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------
     // Event-handing functions for reading local sensors
 
-    // Define a function to get the battery level
-    /*
-    function getBattery() {
-        return navigator.getBattery().then(function (battery) {
-            return 100 * battery.level;
-        });
-    }
-    */
     if (SEND_DATA_TO_PI_SYSTEM) {
-        // Set up a handler to track the battery
-		/*
-		// Battery is no longer available after recent changes to Firefox!
-        try {
-            navigator.getBattery().then(function (battery) {
-                batteryLevel = 100 * battery.level;
-                battery.addEventListener('levelchange', function () {
-                    batteryLevel = 100 * this.level;
-                    updateSensorValuesDiv();
-                });
-                console.log("Event listener added for this type of sensor data: " + "battery");
-            });
-        } catch(err) {
-            displayCompatibilityAlert("battery");
-        }
-		*/
 
         // Set up a handler to track motion
         if (window.DeviceMotionEvent) {
@@ -193,9 +179,9 @@ angular.module('iotdemoApp')
                 currentzAccelerationReading = event.accelerationIncludingGravity.z;
                 updateSensorValuesDiv();
             }, false);
-            console.log("Event listener added for this type of sensor data: " + "acceleration");
+            logCompatibility("acceleration", false);
         } else {
-            displayCompatibilityAlert("acceleration");
+            logCompatibility("acceleration", false);
         }
 
         // Set up a handler to track orientation
@@ -207,9 +193,9 @@ angular.module('iotdemoApp')
                 currentGammaOrientationReading = event.gamma;
                 updateSensorValuesDiv();
             }, false);
-            console.log("Event listener added for this type of sensor data: " + "orientation");
+            logCompatibility("orientation", true);
         } else {
-            displayCompatibilityAlert("orientation");
+            logCompatibility("orientation", false);
         }
 
         // Also set up handlers for tracking proximity 
@@ -219,45 +205,43 @@ angular.module('iotdemoApp')
                 proximityValue = event.value;
                 updateSensorValuesDiv();
             });
-            console.log("Event listener added for this type of sensor data: " + "proximity");
+            logCompatibility("proximity", true);
         } else {
-            displayCompatibilityAlert("proximity");
+            logCompatibility("proximity", false);
         }
 
-        // Check if the light sensor is supported!
+        // Also set up handlers for tracking light
         if (window.DeviceLightEvent) {
             window.addEventListener('devicelight', function (event) {
                 // If a light change event is detected, save the new value
                 ambientLightLevel = event.value;
                 updateSensorValuesDiv();
             });
-            console.log("Event listener added for this type of sensor data: " + "light");
+            logCompatibility("light", true);
         } else {
-            displayCompatibilityAlert("light");
+            logCompatibility("light", false);
         }
     } else {
 		console.log("Data streaming disabled!");
 	}
 
-    // Helper function that toggles the compatibility alert if a sensor isn't supported
-    function displayCompatibilityAlert(sensorType) {
-        console.log("Notification: this browser and/or device is unable to generate data for the following sensor type: " + sensorType + "; simulated data will be generated for this sensor.");
+    // Helper function that logs the compatibility for each sensor
+    function logCompatibility(sensorType, supported) {
+		if (supported == true) {
+			console.log("Event listener added for this type of sensor data: " + sensorType);
+		} else {
+			console.log("Notification: this browser and/or device is unable to generate data for the following sensor type: " + sensorType + "; simulated data will be generated for this sensor.");
+		}
+	}
+	
+	// Helper function that toggles the compatibility alert if a sensor isn't supported
+	function displayCompatibilityAlert(incompatibleSensors) {
         // Fire a notification if it hasn't been done yet
         if (!modalTriggeredAlready && SEND_DATA_TO_PI_SYSTEM) {
             modalTriggeredAlready = true;
 			var outputHTML = "Your device and/or browser does not support reading the following sensor types:<br/>";
-			var incompatibleSensors = "";
-			if (!currentxAccelerationReading) incompatibleSensors += ", x-acceleration";
-			if (!currentyAccelerationReading) incompatibleSensors += ", y-acceleration";
-			if (!currentzAccelerationReading) incompatibleSensors += ", z-acceleration";
-			if (!currentAlphaOrientationReading) incompatibleSensors += ", alpha-orientation";
-			if (!currentBetaOrientationReading) incompatibleSensors += ", beta-orientation";
-			if (!currentGammaOrientationReading) incompatibleSensors += ", gamma-orientation";
-			if (!proximityValue) incompatibleSensors += ", proximity";
-			if (!ambientLightLevel) incompatibleSensors += ", light";
 			// Trim the first comma
-			incompatibleSensors = incompatibleSensors.substr(2);
-			outputHTML += incompatibleSensors;
+			outputHTML += (incompatibleSensors.substr(2));
 			outputHTML += "<br/>Simulated sensor values will be generated for these sensors to mimic a compatible device.";
 			document.getElementById("compatibilityCheckModalBodyText").innerHTML = outputHTML;
             $("#compatibilityCheckModal").modal();

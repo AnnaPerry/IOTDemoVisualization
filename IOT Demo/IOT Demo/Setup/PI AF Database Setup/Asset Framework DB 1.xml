@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="EDGEGATEWAY" Database="Asset Framework DB 1" Description="" Created="2017-08-03T17:30:48.5368539Z" id="2720591b-4006-49be-89be-a0dd8dc5f71d" ParentKey="01fe4c57-3d9d-4e86-80af-f3ee08db8a04" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="155 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{01fe4c57-3d9d-4e86-80af-f3ee08db8a04}\{2720591b-4006-49be-89be-a0dd8dc5f71d}*EDGEGATEWAY\Asset Framework DB 1">
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="EDGEGATEWAY" Database="Asset Framework DB 1" Description="" Created="2017-08-04T17:18:31.8209611Z" id="2720591b-4006-49be-89be-a0dd8dc5f71d" ParentKey="01fe4c57-3d9d-4e86-80af-f3ee08db8a04" ExportedObject="Asset Framework DB 1" ExportedType="AFDatabase" Identity="Database" PIPersist="155 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{01fe4c57-3d9d-4e86-80af-f3ee08db8a04}\{2720591b-4006-49be-89be-a0dd8dc5f71d}*EDGEGATEWAY\Asset Framework DB 1">
   <UOMDatabase>
     <Name>UOMDatabase</Name>
     <UOMClass>
@@ -991,6 +991,13 @@
       <Class>Illuminance</Class>
     </UOM>
     <UOM>
+      <Name>foot-candle</Name>
+      <Abbreviation>ft-c</Abbreviation>
+      <RefFactor>10.764</RefFactor>
+      <RefUOM>lux</RefUOM>
+      <Class>Illuminance</Class>
+    </UOM>
+    <UOM>
       <Name>candela</Name>
       <Abbreviation>cd</Abbreviation>
       <Class>Luminous Intensity</Class>
@@ -1823,7 +1830,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Avg. X-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1833,7 +1840,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Avg. Y-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1843,7 +1850,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Avg. Z-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1875,11 +1882,11 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Light</Name>
-        <DefaultUOM>lx</DefaultUOM>
+        <DefaultUOM>ft-c</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Phone %@Asset Number% Sensors.Ambient light level</ConfigString>
+        <ConfigString>\\EDGEGATEWAY\Phone %@Asset Number% Sensors.Ambient light level;UOM=lx</ConfigString>
         <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
         <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -1894,7 +1901,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Peak X-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1904,7 +1911,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Peak Y-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1914,7 +1921,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Peak Z-axis acceleration over past 5m</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1943,7 +1950,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>X-axis</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1954,7 +1961,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Y-axis</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
@@ -1965,7 +1972,7 @@
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Z-axis</Name>
-        <DefaultUOM>Gs</DefaultUOM>
+        <DefaultUOM>m/s2</DefaultUOM>
         <Type>Double</Type>
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
@@ -2191,13 +2198,13 @@
         <Value type="AFElement">Assets</Value>
       </AFExtendedProperty>
       <AFAttributeTemplate>
-        <Name>Average Alpha Spin</Name>
+        <Name>Average Beta Spin</Name>
         <DefaultUOM>°</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Average Proximity</Name>
@@ -2206,7 +2213,7 @@
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway C Drive Space</Name>
@@ -2215,7 +2222,7 @@
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_LogicalDisk(C:)_% Free Space;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\LogicalDisk(C:)\% Free Space;location1=1;location4=1;pointsource=#</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway CPU</Name>
@@ -2224,7 +2231,7 @@
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\Processor Information(_Total)\% Processor Time;location1=1;location4=1;pointsource=#</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway Disk Time</Name>
@@ -2233,7 +2240,7 @@
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_LogicalDisk(_Total)_% Disk Time;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\LogicalDisk(_Total)\% Disk Time;location1=1;location4=1;pointsource=#</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Gateway RAM</Name>
@@ -2242,7 +2249,7 @@
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use;ptclassname=classic;pointtype=Float32;engunits=%;exdesc=\\localhost\Memory\% Committed Bytes In Use;location1=1;location4=1;pointsource=#</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Max Z-Axis Acceleration</Name>
@@ -2251,23 +2258,23 @@
         <Value type="Double">0</Value>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAttributeTemplate>
         <Name>Minimum Light Level</Name>
-        <DefaultUOM>lx</DefaultUOM>
+        <DefaultUOM>ft-c</DefaultUOM>
         <Type>Single</Type>
         <Value type="Single">0</Value>
         <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\%Element%.%Attribute%;pointtype=Float32</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <ConfigString>\\EDGEGATEWAY\%Element%.%Attribute%;UOM=lx;pointtype=Float32</ConfigString>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttributeTemplate>
       <AFAnalysisTemplate>
         <Name>Average Proximity</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Proximity];Average||Average Proximity Reading;[GUID]||{f02e24ff-6dd4-4e91-b450-3a663d5d33ea};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Proximity];Average||Average Proximity;[GUID]||{0292acae-9ea3-4c96-b02a-678b1935f166};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2275,11 +2282,11 @@
         </AFTimeRule>
       </AFAnalysisTemplate>
       <AFAnalysisTemplate>
-        <Name>Avg Alpha Spin</Name>
+        <Name>Avg Beta Spin</Name>
         <Target>Top-Level Assets Template</Target>
         <AFAnalysisRule>
           <AFPlugIn>Rollup</AFPlugIn>
-          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Alpha spin];Average||Avgerage Alpha Spin;[GUID]||{5bc00d6a-c6eb-4e84-910d-c31f2d893237};[GUID]||[UNSET];</VariableMapping>
+          <VariableMapping>SearchCriteria||Elements[@Name=*]|Attributes[@Name=Beta spin];Average||Average Beta Spin;[GUID]||{90d5028f-9090-4920-8b35-b41f4eab98d4};[GUID]||[UNSET];</VariableMapping>
         </AFAnalysisRule>
         <AFTimeRule>
           <AFPlugIn>Periodic</AFPlugIn>
@@ -2315,52 +2322,50 @@
       <Name>Assets</Name>
       <Template>Top-Level Assets Template</Template>
       <AFAttribute>
-        <Name>Average Alpha Spin</Name>
+        <Name>Average Beta Spin</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\Assets.Average Alpha Spin?20</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Average Proximity</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\Assets.Average Proximity?21</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway C Drive Space</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_LogicalDisk(C:)_% Free Space?22</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway CPU</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Processor Information(_Total)_% Processor Time?23</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway Disk Time</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_LogicalDisk(_Total)_% Disk Time?24</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Gateway RAM</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\localhost_Memory_% Committed Bytes In Use?25</ConfigString>
-        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Max Z-Axis Acceleration</Name>
         <DataReference>PI Point</DataReference>
         <ConfigString>\\localhost\Assets.Max Z-Axis Acceleration?14</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFAttribute>
         <Name>Minimum Light Level</Name>
-        <DataReference>PI Point</DataReference>
-        <ConfigString>\\localhost\Assets.Minimum Light Level?15</ConfigString>
-        <AFAttributeCategoryRef>Not Used By Web App</AFAttributeCategoryRef>
+        <AFAttributeCategoryRef>KPIs and Rollups</AFAttributeCategoryRef>
       </AFAttribute>
       <AFElement ReferenceType="Parent-Child">
         <Name>Asset 1</Name>
@@ -2412,8 +2417,6 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 1 Sensors.Ambient light level?27</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2632,8 +2635,6 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 2 Sensors.Ambient light level?35</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2750,8 +2751,6 @@
         </AFAttribute>
         <AFAttribute>
           <Name>Light</Name>
-          <DataReference>PI Point</DataReference>
-          <ConfigString>\\localhost\Phone 3 Sensors.Ambient light level?43</ConfigString>
           <AFAttributeCategoryRef>Environment</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
           <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
@@ -2876,8 +2875,8 @@
         </Target>
       </AFAnalysis>
       <AFAnalysis>
-        <Name>Avg Alpha Spin</Name>
-        <Template>Avg Alpha Spin</Template>
+        <Name>Avg Beta Spin</Name>
+        <Template>Avg Beta Spin</Template>
         <Status>Enabled</Status>
         <Target>
           <AFElementRef>Assets</AFElementRef>
