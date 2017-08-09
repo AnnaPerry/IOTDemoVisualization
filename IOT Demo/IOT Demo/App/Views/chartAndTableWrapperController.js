@@ -3,14 +3,12 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 
     var afTemplate = 'Phone Sensors Template';
     var attributeCategory = '*';
+    var stop;	
 
-    $scope.init = function () {
-		// Hide the top navbar; we'll replace it with a new one!
-		document.getElementById("mainNavbarContainer").style.display = "none";
-    };
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_WRITE_INTERVAL_IN_MILLISECONDS = 3000;
 
     // When this scope is closed, stop the recurring interval timer
-    var stop;
     $scope.$on('$destroy', function () {
         stopInt();
     });
@@ -22,7 +20,12 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
             stop = undefined;
         };
     };
-	
+		
+    $scope.init = function () {
+		// Hide the top navbar; we'll replace it with a new one!
+		document.getElementById("mainNavbarContainer").style.display = "none";
+    };
+
 	// Dynamically set widths for image and data div
 	$scope.showImageDiv = function () {
 		// If the screen is wider than it is tall, the image should appear; otherwise, it should not!
@@ -71,7 +74,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 				stop = $interval(function () {
 					var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
 					dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
-				}, 3000);
+				}, DATA_WRITE_INTERVAL_IN_MILLISECONDS);
 			} else {
 				console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");
 				$("#readOnlyModal").modal();

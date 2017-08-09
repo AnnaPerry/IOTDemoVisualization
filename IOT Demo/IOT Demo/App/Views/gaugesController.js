@@ -4,21 +4,23 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
     var afTemplate = 'Asset Template';
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
+	var stop;
+	
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
-    var stop;
-	$scope.$on('$destroy', function () {
+    // When this scope is closed, stop the recurring interval timer
+    $scope.$on('$destroy', function () {
         stopInt();
     });
 
+	// Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
             $interval.cancel(stop);
             stop = undefined;
         };
     };
-	
-	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 3000;
 
 	// Global variables for storing the chart object AND the most recently received data from the PI System
     var chart;
@@ -46,7 +48,6 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 
             stop = $interval(function () {
                 dataService.getSnapshots(attributes).then(function (response) {
-				//dataService.getPloValues(attributes).then(function (response) {
                     mostRecentDataFromPISystem = response.data.Items;
                     updateChartData();
                 });
@@ -62,30 +63,21 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         "fontSize": 13,
         "dataProvider": [],
         "color": "white",
+		"backgroundAlpha": 0,		
         "valueAxes": [{
             "id": "a1",
             "axisColor": "white",
-            "fillAlpha": 0,
             "fontSize": 10,
-            //"maximum": 360
-			"tickLength": 3
+			"tickLength": 3,
+			"gridAlpha": 0
         }, {
             "id": "a2",
             "axisColor": "white",
-            "fillAlpha": 0,
             "fontSize": 10,
-            //"maximum": 100
 			"tickLength": 0,
-			"labelsEnabled": false
+			"labelsEnabled": false,
+			"gridAlpha": 0
             }],
-/*
-        "valueAxesSettings": {
-            "axisThickness": 2,
-            "gridAlpha": 0,
-            "axisAlpha": 1,
-            "inside": false
-        },
-*/
         "graphs": [{
             "id": "g1",
 			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
@@ -111,13 +103,11 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 			"showAllValueLabels": true,
 			"valueAxis": "a2"
         }
-
         ],
         "categoryField": "name",
         "categoryAxis": {
 			"axisColor": "white",
             "gridAlpha": 0,
-			"labelsEnabled":true,
 			"tickLength": 0
         },
         "zoomOutButtonImage": "",

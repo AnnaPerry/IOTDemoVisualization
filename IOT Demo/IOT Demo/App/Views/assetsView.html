@@ -1,4 +1,4 @@
-﻿<div class="container-fluid" ng-init="init()" style="padding:0px;">
+﻿<div class="container-fluid el-inherit-size" ng-init="init()">
     <table class="table table-striped">
         <thead class="thead-inverse">
             <tr>
@@ -14,7 +14,6 @@
                 <td>{{asset.Name}}</td>
                 <td>{{asset.Description}}</td>
 				<td><a ui-sref="chartAndTableWrapperView.gauges({assetName: asset.Name})"><i style="color:#2a3e5d" class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
-				
             </tr>
         </tbody>
     </table>

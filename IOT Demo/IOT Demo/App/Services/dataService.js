@@ -27,8 +27,9 @@ angular.module('iotdemoApp')
     var _afserver = 'localhost';
     var _afdb = 'Asset Framework DB 1'; // The default is 'Asset Framework DB 1'; try changing this to 'DB 2' for phase 2!
     var _afdbwebid = '';
-    var _startTime = '*-10m';
+    var _startTime = '*-2m';
     var _endTime = '*';
+	var _interval = '1s';
 
     // Constant for turning on or off sending data to the PI System
     var SEND_DATA_TO_PI_SYSTEM = true;
@@ -298,6 +299,8 @@ angular.module('iotdemoApp')
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
         var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb;
+		// Limit the response fields!
+		url += "&selectedFields=WebId";
         return $http.get(url).then(function (response) {
             return response.data.WebId;
         }, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
@@ -308,14 +311,14 @@ angular.module('iotdemoApp')
     function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
         if (elementTemplate && (elementTemplate != '')) {
 			if (!attributeCategory) {
-				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter;
+				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&selectedFields=Items.WebId;Items.Name';
 			}
-			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;
+			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory + '&selectedFields=Items.WebId;Items.Name';
 		} else {
 			if (!attributeCategory) {
 				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter;
 			}
-			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory;			
+			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory; + '&selectedFields=Items.WebId;Items.Name';		
 		}
     };
 
@@ -346,7 +349,7 @@ angular.module('iotdemoApp')
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
             if (_afdbwebid) {
-                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
+                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + '&selectedFields=Items.WebId;Items.Name';
                 return $http.get(url).then(function (response) { 
 					return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
@@ -355,7 +358,7 @@ angular.module('iotdemoApp')
                 // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
-                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate;
+                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + '&selectedFields=Items.WebId;Items.Name';
                     return $http.get(url).then(function (response) { 
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
@@ -382,21 +385,14 @@ angular.module('iotdemoApp')
         },
         // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value?', attributes);
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation;Items.Value.Good&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               
         },
-        // Return an array of arrays of plot values for a certain array of attributes
-        getPloValues : function (attributes) {
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/plot?startTime=' + _startTime + '&endTime' + _endTime + '&', attributes);
-            return $http.get(url).then(function (response) {
-                return response;
-            }, function (response) {respondToHTTPRequestError(response, "requesting plotted data")});      
-        },
         // Return an array of arrays of interpolated values for a certain array of attributes
         getInterpolatedValues : function (attributes) {
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated?startTime=' + '*-2m' + '&endTime=' + '*' + '&interval=' + '1s' + '&', attributes);
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.Good;Items.Items.UnitsAbbreviation' + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       

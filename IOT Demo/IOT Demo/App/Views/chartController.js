@@ -4,36 +4,37 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     var afTemplate = 'Asset Template';
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
+    var stop;		
 
-    // Specify the default of whether or not to use multiple chart axes!  Note: this is also set later...
-    var USE_MULTIPLE_AXES = true;
+	// Specify how often should the visualization be updated (and new data requested from the PI System)
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
-    var stop;
+    // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
         stopInt();
     });
 
+	// Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
             $interval.cancel(stop);
             stop = undefined;
         };
     };
-	
-	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
 	// Global variables for storing the chart object AND the most recently received data from the PI System
     var chart;
     var mostRecentDataFromPISystem;
 
+    // Specify the default of whether or not to use multiple chart axes!  Note: this is also set later...
+    var USE_MULTIPLE_AXES = true;
+	
 	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
 		document.getElementById("loadingSpinner2").style.display = "inline";
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
             dataService.getInterpolatedValues(attributes).then(function (response) {
-			//dataService.getPloValues(attributes).then(function (response) {
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
 				// Turn off the loading spinner
@@ -42,7 +43,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
             stop = $interval(function () {
                 dataService.getInterpolatedValues(attributes).then(function (response) {
-				//dataService.getPloValues(attributes).then(function (response) {
                     mostRecentDataFromPISystem = response.data.Items;
                     updateChartData();
                 });
@@ -57,43 +57,27 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         "type": "serial",
         "dataProvider": [],
         "color": "white",
-        "autoMargins": false,
-        "marginLeft": 20,
-        "marginRight": 20,
-        "marginTop": 10,
-        "marginBottom": 55,
+		"backgroundAlpha": 0,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        "backgroundColor": "#2e2e2e",
-        "backgroundAlpha": 1,
         "valueAxes": [{
-            "axisAlpha": 1,
-            "position": "left",
             "fillAlpha": 0.05,
-            "inside":true
+			"axisColor": "white"
         }],
         "graphs": [],
         "legend": {
-            "useGraphSettings": true,
             "labelText": "[[title]]",
             "valueText": "",
             "fontSize": 10,
             "equalWidths": false,
 			"markerLabelGap":0,
             "markerSize": 0,
-            //"color": "white",
 			"useMarkerColorForLabels":true,
-            "autoMargins": false,
-            "marginTop": 0,
-            "marginBottom": 5,
             "position":"top"
         },
         "categoryField": "TwoLineFormattedTimestamp",
         "categoryAxis": {
             "dateFormats": [{ period: 'hh', format: 'JJ:NN' }],
-            "axisAlpha": 1,
             "gridAlpha": 0,
-            "autoRotateCount": 10,
-            "autoRotateAngle": 0,
             "fontSize": 9,
             "color": "white",
             "axisColor": "white"

@@ -1,17 +1,30 @@
 ﻿'use strict';
 app.controller('mainController', ['$scope', '$interval', 'dataService', function ($scope, $interval, dataService) {
 
-    // Hard-coded information for 
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';
     var afAttributeCategory = 'KPIs and Rollups';
-
-	// Define global variables for the chart object and the interval timer
-    var crazyGaugeChart;
-    var stop;
-
+    var stop;	
+	
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
 	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
+	
+    // When this scope is closed, stop the recurring interval timer
+    $scope.$on('$destroy', function () {
+        stopInt();
+    });
+
+	// Function that allows you to stop the recurring interval timer
+    function stopInt() {
+        if (angular.isDefined(stop)) {
+            $interval.cancel(stop);
+            stop = undefined;
+        };
+    };
+	
+	// Global variables for storing the chart object
+    var crazyGaugeChart;
+
 	
 	// On load, get snapshot values...
     $scope.init = function () {
@@ -50,23 +63,9 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         });
     };
 
-
-    $scope.$on('$destroy', function () {
-        stopInt();
-    });
-
-    function stopInt() {
-        if (angular.isDefined(stop)) {
-            $interval.cancel(stop);
-            stop = undefined;
-        };
-
-    };
-
     $scope.makeCrazyGauge = function () {
         crazyGaugeChart = AmCharts.makeChart("crazyGaugeDiv", crazyGaugeChartDef);
     };
-
 
     var updatecharts = function () {
         if (!crazyGaugeChart) return;
@@ -101,18 +100,14 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
     var chartAxisMax = 100;
     var crazyGaugeChartDef = {
         "type": "gauge",
-        "theme": "dark",
         "creditsPosition": "top-right",
 		"fontSize": 13,
+		"backgroundAlpha": 0,		
         "axes": [{
-            "axisAlpha": 1,
-            "tickAlpha": 1,
-            "labelsEnabled": true,
             "startValue": 0,
             "endValue": chartAxisMax,
             "startAngle": 0,
             "endAngle": 270,
-            "gridInside": false,
             "inside": false,
             "color":"darkgray",
             "bands": [{
