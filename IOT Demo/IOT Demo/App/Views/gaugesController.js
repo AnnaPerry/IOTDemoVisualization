@@ -74,8 +74,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
             "id": "a2",
             "axisColor": "white",
             "fontSize": 10,
-			"tickLength": 0,
-			"labelsEnabled": false,
+			"tickLength": 3,
 			"gridAlpha": 0
             }],
         "graphs": [{
@@ -134,7 +133,6 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         // Declare empty arrays to hold data, graphs, and axes
         var chartDataArray = [];
         var graphArray = [];
-        var axisArray = [];
        
         // For each attribute...
         var axisNumber = 0;
@@ -168,8 +166,8 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 				
 				// Update the second value axis position!
 				if (chart.categoryAxis.allLabels) {	
-					chart.valueAxes[1].labelsEnabled = true;
-					chart.valueAxes[1].tickLength = 3;
+					//chart.valueAxes[1].labelsEnabled = true;
+					//chart.valueAxes[1].tickLength = 3;
 					chart.valueAxes[1].offset = ( (2/3)*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
 				}
 				

@@ -59,10 +59,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         "color": "white",
 		"backgroundAlpha": 0,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
-        "valueAxes": [{
-            "fillAlpha": 0.05,
-			"axisColor": "white"
-        }],
         "graphs": [],
         "legend": {
             "labelText": "[[title]]",
@@ -123,11 +119,10 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             var newValueAxis = {
                 "id": attribute.Name,
                 "axisAlpha": 1,
-                "position": "left",
-                "axisColor": "white",
+				"axisColor": "white",
                 "color": chartColors[axisNumber],
-                "fillAlpha": 0.05,
-                "inside": true,
+                "fillAlpha": 0,
+				"gridAlpha":0,
                 "labelOffset": axisNumber * 35
             };
             axisNumber++;
