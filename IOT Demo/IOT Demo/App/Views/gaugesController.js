@@ -32,7 +32,6 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
             $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name}});
             dataService.getSnapshots(attributes).then(function (response) {
-			//dataService.getPloValues(attributes).then(function (response) {
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
 				// Turn off the loading spinner

@@ -83,10 +83,6 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 				});
 				// Start an interval to write data to these attributes!
 				stop = $interval(function () {
-					/*
-					var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
-					dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
-					*/
 					if (attributesToWriteTo) {
 						dataService.sendDatatoPIAttributes(attributesToWriteTo);
 					}
