@@ -62,7 +62,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			imageSource = 'Phidget';
 			
 			// Check if this a gas-sensing Phidget
-			else if ( ($stateParams.assetName).indexOf("Gas") != -1) {
+			if ( ($stateParams.assetName).indexOf("Gas") != -1) {
 				imageSource = 'Phidget2';
 			}
 		}		

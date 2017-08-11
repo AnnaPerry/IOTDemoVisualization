@@ -60,6 +60,14 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 		"backgroundAlpha": 0,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
         "graphs": [],
+		"valueAxes": [
+			{
+                "axisAlpha": 1,
+				"axisColor": "white",
+                "fillAlpha": 0,
+				"gridAlpha": 0
+            }
+		],
         "legend": {
             "labelText": "[[title]]",
             "valueText": "",
@@ -122,7 +130,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 				"axisColor": "white",
                 "color": chartColors[axisNumber],
                 "fillAlpha": 0,
-				"gridAlpha":0,
+				"gridAlpha": 0,
                 "labelOffset": axisNumber * 35
             };
             axisNumber++;
@@ -135,6 +143,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
             graph['bulletAlpha'] = 0;
             graph['valueField'] = attribute.Name + ' Value';
             graph['title'] = attribute.Name;
+			
             // Optional: associate this graph with the new axis
             if (USE_MULTIPLE_AXES == true) {
                 graph['valueAxis'] = attribute.Name;
@@ -146,7 +155,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
 
             // Now create the array of data that will actually be plotted!
             _.findWhere(mostRecentDataFromPISystem, { Name: attribute.Name }).Items.forEach(function (dataItem) {
-                if (!dataItem.Good) return;
+                if (isNaN(dataItem.Value)) return;
                 
                 var item = {};
                 item[attribute.Name + ' Value'] = dataItem.Value;
