@@ -414,6 +414,13 @@ angular.module('iotdemoApp')
                     sendCurrentReadings(attributes);
                 });
             }
+        },
+		// If the target attributes are already known, directly send data to those attributes!
+		sendDatatoPIAttributes: function (attributes) {
+            // Only send data if it is explicitly allowed!
+            if (SEND_DATA_TO_PI_SYSTEM == true) {
+                sendCurrentReadings(attributes);
+            }
         }
    };
 }]);
