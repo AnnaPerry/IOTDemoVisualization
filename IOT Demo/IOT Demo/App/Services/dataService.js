@@ -392,7 +392,7 @@ angular.module('iotdemoApp')
         },
         // Return an array of arrays of interpolated values for a certain array of attributes
         getInterpolatedValues : function (attributes) {
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.Good;Items.Items.UnitsAbbreviation' + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation' + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       
