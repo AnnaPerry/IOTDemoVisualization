@@ -133,6 +133,10 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         var chartDataArray = [];
         var graphArray = [];
        
+		// Set a flag to detect if we should be using a second axis to create a separate scale from spin data;
+		// this is only true if spin data is inside the result
+		var useSecondAxisForNonSpinData = false;
+
         // For each attribute...
         var axisNumber = 0;
         for (var i = 0; i < mostRecentDataFromPISystem.length; i++) {
@@ -163,13 +167,8 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
                     "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
                 };
 				
-				// Update the second value axis position!
-				if (chart.categoryAxis.allLabels) {	
-					//chart.valueAxes[1].labelsEnabled = true;
-					//chart.valueAxes[1].tickLength = 3;
-					chart.valueAxes[1].offset = ( (2/3)*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
-				}
-				
+				// Note this result!  Later, reposition the second axis!
+				useSecondAxisForNonSpinData = true;				
             }
 
             //if it is not a spin reading -- add this to the other axis
@@ -191,13 +190,17 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
         // Assign the new arrays to the chart object
         chart.dataProvider = chartDataArray;
 		
-		//console.log(chartDataArray);
-        // Refresh the chart
+		// Refresh the chart
         chart.validateData();
-        chart.animateAgain();
-
+		
+								
+		// Update the second value axis position!
+		if (chart.categoryAxis.allLabels && (useSecondAxisForNonSpinData == true)) {	
+			chart.valueAxes[1].offset = ( (2/3)*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
+		}
+		
         // Update the chart formatting (leave its data alone)
-        chart.validateNow;
+        chart.validateNow();
 
     };
 	
