@@ -385,7 +385,7 @@ angular.module('iotdemoApp')
         },
         // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation;Items.Value.Good&', attributes);
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation&', attributes);
             return $http.get(url).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               

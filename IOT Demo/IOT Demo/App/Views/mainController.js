@@ -71,10 +71,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         if (!crazyGaugeChart) return;
 
         // Update the even numbered bands with data
-        crazyGaugeChart.axes[0].bands[1].setEndValue($scope.dataItem1.Value.Good ? $scope.dataItem1.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[3].setEndValue($scope.dataItem2.Value.Good ? $scope.dataItem2.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[5].setEndValue($scope.dataItem3.Value.Good ? $scope.dataItem3.Value.Value : 0);
-        crazyGaugeChart.axes[0].bands[7].setEndValue($scope.dataItem4.Value.Good ? $scope.dataItem4.Value.Value : 0);
+        crazyGaugeChart.axes[0].bands[1].setEndValue(isNaN($scope.dataItem1.Value.Value) ? 0 : $scope.dataItem1.Value.Value);
+        crazyGaugeChart.axes[0].bands[3].setEndValue(isNaN($scope.dataItem2.Value.Value) ? 0 : $scope.dataItem2.Value.Value);
+        crazyGaugeChart.axes[0].bands[5].setEndValue(isNaN($scope.dataItem3.Value.Value) ? 0 : $scope.dataItem3.Value.Value);
+        crazyGaugeChart.axes[0].bands[7].setEndValue(isNaN($scope.dataItem4.Value.Value) ? 0 : $scope.dataItem4.Value.Value);
 
         // Update the labels
         crazyGaugeChart.allLabels[0].text = $scope.dataItem1.Name + ": " + crazyGaugeChart.axes[0].bands[1].endValue.toFixed(3) + " " + $scope.dataItem1.Value.UnitsAbbreviation;
