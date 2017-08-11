@@ -25,6 +25,7 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
     $scope.init = function () {
 		document.getElementById("loadingSpinner2").style.display = "inline";
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
+			$scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name}});
             dataService.getSnapshots(attributes).then(function (response) {
                 $scope.dataArray = response.data.Items;
 				// Turn off the loading spinner

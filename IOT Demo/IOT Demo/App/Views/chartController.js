@@ -33,7 +33,7 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
     $scope.init = function () {
 		document.getElementById("loadingSpinner2").style.display = "inline";
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-            $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name, Selected: true}});
+            $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name}});
             dataService.getInterpolatedValues(attributes).then(function (response) {
                 mostRecentDataFromPISystem = response.data.Items;
                 updateChartData();
@@ -121,7 +121,6 @@ app.controller('chartController', ['$scope', '$http', '$interval', '$stateParams
         // For each attribute...
         var axisNumber = 0;
         $scope.attributes.forEach(function (attribute) {
-            if (!attribute.Selected) return;
 
             // Create a new value axis
             var newValueAxis = {

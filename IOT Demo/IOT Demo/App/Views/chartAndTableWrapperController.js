@@ -4,7 +4,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
     var afTemplate = 'Phone Sensors Template';
     var attributeCategory = '*';
     var stop;	
-
+	var attributesToWriteTo;
+	
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
 	var DATA_WRITE_INTERVAL_IN_MILLISECONDS = 3000;
 
@@ -76,9 +77,19 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			// NEW! Check to see if the target asset name does NOT contain "Read Only"
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
+				// Get the attributes that will be written to
+				dataService.getElementAttributes(afTemplate, dataService.getTargetAssetElementName($stateParams.assetName)).then(function (attributes) {
+					attributesToWriteTo = attributes;//_.map(attributes, function (attribute) { return {Name: attribute.Name}});
+				});
+				// Start an interval to write data to these attributes!
 				stop = $interval(function () {
+					/*
 					var targetAsset = dataService.getTargetAssetElementName($stateParams.assetName);
 					dataService.sendDatatoPI(afTemplate, targetAsset, attributeCategory);
+					*/
+					if (attributesToWriteTo) {
+						dataService.sendDatatoPIAttributes(attributesToWriteTo);
+					}
 				}, DATA_WRITE_INTERVAL_IN_MILLISECONDS);
 			} else {
 				console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");
