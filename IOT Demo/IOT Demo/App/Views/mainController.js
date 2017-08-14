@@ -17,7 +17,7 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 	// Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
-            $interval.cancel(stop);
+			clearTimeout(stop);
             stop = undefined;
         };
     };
@@ -34,34 +34,29 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 		document.getElementById("loadingSpinner").style.display = "inline";
 		// Get attributes, then snapshot values, for the top-level element
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-            dataService.getSnapshots(attributes).then(function (response) {
-                var dataArray = response.data.Items;
-                // Get the first four data items!
-                $scope.dataItem1 = dataArray[0];
-                $scope.dataItem2 = dataArray[1];
-                $scope.dataItem3 = dataArray[2];
-                $scope.dataItem4 = dataArray[3];
-                // Update the chart
-                updatecharts();
-				// Turn off the loading spinner
-				document.getElementById("loadingSpinner").style.display = "none";
-            });
-			
-			// After the initial get, set up a recurring timer!
-            stop = $interval(function () {
-                dataService.getSnapshots(attributes).then(function (response) {
-                    var dataArray = response.data.Items;
-                    // Get the first four data items!
-                    $scope.dataItem1 = dataArray[0];
-                    $scope.dataItem2 = dataArray[1];
-                    $scope.dataItem3 = dataArray[2];
-                    $scope.dataItem4 = dataArray[3];
-                    // Update the chart
-                    updatecharts();
-                });
-            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
+			// Turn off the loading spinner
+			document.getElementById("loadingSpinner").style.display = "none";
+			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
+	
+	// Repetitive function!  Contains behavior for getting data and acting on it
+	function performRepetitiveActionsForTheseAFAttributes(attributes) {
+		dataService.getSnapshots(attributes).then(function (response) {
+			var dataArray = response.data.Items;
+			// Get the first four data items!
+			$scope.dataItem1 = dataArray[0];
+			$scope.dataItem2 = dataArray[1];
+			$scope.dataItem3 = dataArray[2];
+			$scope.dataItem4 = dataArray[3];
+			// Update the chart
+			updatecharts();
+		});
+		// Call this function again after a certain time range
+		stop = setTimeout( function() {
+			performRepetitiveActionsForTheseAFAttributes(attributes)
+		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
+	}
 
     $scope.makeCrazyGauge = function () {
         crazyGaugeChart = AmCharts.makeChart("crazyGaugeDiv", crazyGaugeChartDef);
@@ -102,7 +97,8 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
         "type": "gauge",
         "creditsPosition": "top-right",
 		"fontSize": 13,
-		"backgroundAlpha": 0,		
+		"backgroundAlpha": 0,
+		//"startDuration": 0, // Use this to turn off animation, if desired
         "axes": [{
             "startValue": 0,
             "endValue": chartAxisMax,

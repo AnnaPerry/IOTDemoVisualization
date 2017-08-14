@@ -22,8 +22,8 @@ $MyPIDAServerName = "localhost"
 $MyPIDAServerConnection = Connect-PIDataArchive -PIDataArchiveMachineName $MyPIDAServerName
 
 # Create the PI Points, if necessary
-Add-PIPoint -Name $PITag1Name -Connection $MyPIDAServerConnection -Attributes @{PointType="float32";Span=1000;Compdev=0.02;Excdev=0.01}
-Add-PIPoint -Name $PITag2Name -Connection $MyPIDAServerConnection -Attributes @{PointType="float32";Span=1000;Compdev=0.02;Excdev=0.01}
+Add-PIPoint -Name $PITag1Name -Connection $MyPIDAServerConnection -Attributes @{PointType="float32";Span=1000;Compdev=0.002;Excdev=0.001}
+Add-PIPoint -Name $PITag2Name -Connection $MyPIDAServerConnection -Attributes @{PointType="float32";Span=1000;Compdev=0.002;Excdev=0.001}
 
 #------------------------------------------------------------------------------------------------
 

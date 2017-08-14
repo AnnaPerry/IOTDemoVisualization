@@ -17,7 +17,7 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
 	// Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
-            $interval.cancel(stop);
+			clearTimeout(stop);
             stop = undefined;
         };
     };
@@ -25,20 +25,22 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
     $scope.init = function () {
 		document.getElementById("loadingSpinner2").style.display = "inline";
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-			$scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name}});
-            dataService.getSnapshots(attributes).then(function (response) {
-                $scope.dataArray = response.data.Items;
-				// Turn off the loading spinner
-				document.getElementById("loadingSpinner2").style.display = "none";
-            });
-
-            stop = $interval(function () {
-                dataService.getSnapshots(attributes).then(function (response) {
-                    $scope.dataArray = response.data.Items;
-                });
-            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
-
+			// Turn off the loading spinner
+			document.getElementById("loadingSpinner2").style.display = "none";
+			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
-
+	
+	// Repetitive function!  Contains behavior for getting data and acting on it
+	function performRepetitiveActionsForTheseAFAttributes(attributes) {
+		 dataService.getSnapshots(attributes).then(function (response) {
+			$scope.dataArray = response.data.Items;
+		});
+		
+		// Call this function again after a certain time range
+		stop = setTimeout( function() {
+			performRepetitiveActionsForTheseAFAttributes(attributes)
+		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
+	}
+	
 }]);

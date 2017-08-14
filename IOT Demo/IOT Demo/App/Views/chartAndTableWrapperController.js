@@ -7,7 +7,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 	var attributesToWriteTo;
 	
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_WRITE_INTERVAL_IN_MILLISECONDS = 3000;
+	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 3000;
 
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
@@ -17,7 +17,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
     // Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
-            $interval.cancel(stop);
+			clearTimeout(stop);
             stop = undefined;
         };
     };
@@ -79,14 +79,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
 				// Get the attributes that will be written to
 				dataService.getElementAttributes(afTemplate, dataService.getTargetAssetElementName($stateParams.assetName)).then(function (attributes) {
-					attributesToWriteTo = attributes;//_.map(attributes, function (attribute) { return {Name: attribute.Name}});
+					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
-				// Start an interval to write data to these attributes!
-				stop = $interval(function () {
-					if (attributesToWriteTo) {
-						dataService.sendDatatoPIAttributes(attributesToWriteTo);
-					}
-				}, DATA_WRITE_INTERVAL_IN_MILLISECONDS);
 			} else {
 				console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");
 				$("#readOnlyModal").modal();
@@ -95,5 +89,16 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			console.log("Current AF Element does not use a phone-based data source; device sensor data will not be streamed.");
 		}
     };
+	
+	// Repetitive function!  Contains behavior for getting data and acting on it
+	function performRepetitiveActionsForTheseAFAttributes(attributes) {
+		if (attributes) {
+			dataService.sendDatatoPIAttributes(attributes);
+		}
+		// Call this function again after a certain time range
+		stop = setTimeout( function() {
+			performRepetitiveActionsForTheseAFAttributes(attributes)
+		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
+	}
 
 }]);

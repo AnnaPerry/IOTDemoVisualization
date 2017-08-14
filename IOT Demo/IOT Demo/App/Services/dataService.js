@@ -2,7 +2,8 @@
 angular.module('iotdemoApp')
 .service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
 
-    
+    // Define a timeout for web requests
+    var WEB_REQUEST_MAX_TIMEOUT_SECONDS = 20;
     
     // Below is the PI Web API endpoint URL
     var _httpsPIWebAPIUrl = "";
@@ -150,7 +151,7 @@ angular.module('iotdemoApp')
         // Assemble the URL for writing these new values
         var url = _httpsPIWebAPIUrl + "/streamsets/value";
         // Send these new values to be written to the PI System
-        $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json'});
+        $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json', 'Timeout': WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000});
 
 		// Check if an incompatibility was detected; if so, trigger the alert!
 		if (incompatibleSensors !== "") {
@@ -287,7 +288,7 @@ angular.module('iotdemoApp')
 		document.getElementById("loadingSpinner").style.visibility = "hidden"; 
 		// Set the modal body text to the error
 		console.log(response);
-		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ".<br/><br/>" + response.data + "<br />" + "Please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
+		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ".<br/><br/>" + response.data + "<br />" + "Plese try refreshing this app. If this error reappears, please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
 		// Open the modal, but only if it's not already open!
 		if (!$('#errorMessageModal').is(':visible')) {
 			$("#errorMessageModal").modal();
@@ -300,7 +301,7 @@ angular.module('iotdemoApp')
     function getafdb() {
 		var selectedFieldsParamters = "&selectedFields=WebId";
         var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParamters;
-        return $http.get(url).then(function (response) {
+        return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
             return response.data.WebId;
         }, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
     };
@@ -351,7 +352,7 @@ angular.module('iotdemoApp')
 			var selectedFieldsParamters = '&selectedFields=Items.Name';
             if (_afdbwebid) {
                 var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParamters;
-                return $http.get(url).then(function (response) { 
+                return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 					return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
             }
@@ -360,7 +361,7 @@ angular.module('iotdemoApp')
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
                     var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParamters;
-                    return $http.get(url).then(function (response) { 
+                    return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
                 });
@@ -370,7 +371,7 @@ angular.module('iotdemoApp')
         getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory) {
             if (_afdbwebid) {
                 var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
-                return $http.get(url).then(function (response) {
+                return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                     return response.data.Items;
                 }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
             } else {
@@ -378,7 +379,7 @@ angular.module('iotdemoApp')
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
                     var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
-                    return $http.get(url).then(function (response) {
+                    return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                         return response.data.Items;
                     }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
                 });
@@ -388,7 +389,7 @@ angular.module('iotdemoApp')
         getSnapshots: function (attributes) {
 			var selectedFieldsParamters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParamters + '&', attributes);
-            return $http.get(url).then(function (response) {
+            return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               
         },
@@ -396,7 +397,7 @@ angular.module('iotdemoApp')
         getInterpolatedValues : function (attributes) {
 			var selectedFieldsParamters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
             var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParamters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
-            return $http.get(url).then(function (response) {
+            return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       
         },		
@@ -409,6 +410,8 @@ angular.module('iotdemoApp')
             return 'Phone ' + assetidNumber + ' Sensors';
 
         },
+		/*
+		// Depracated!
         // Given a target element template and element name, get its attributes, and next send values to those attributes
         sendDatatoPI: function (elementTemplate, targetAssetName) {
             // Only send data if it is explicitly allowed!
@@ -418,6 +421,7 @@ angular.module('iotdemoApp')
                 });
             }
         },
+		*/
 		// If the target attributes are already known, directly send data to those attributes!
 		sendDatatoPIAttributes: function (attributes) {
             // Only send data if it is explicitly allowed!

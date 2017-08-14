@@ -17,7 +17,7 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 	// Function that allows you to stop the recurring interval timer
     function stopInt() {
         if (angular.isDefined(stop)) {
-            $interval.cancel(stop);
+			clearTimeout(stop);
             stop = undefined;
         };
     };
@@ -29,30 +29,31 @@ app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParam
 	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
 		document.getElementById("loadingSpinner2").style.display = "inline";
-         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-            $scope.attributes = _.map(attributes, function (attribute) { return {Name: attribute.Name}});
-            dataService.getSnapshots(attributes).then(function (response) {
-                mostRecentDataFromPISystem = response.data.Items;
-                updateChartData();
-				// Turn off the loading spinner
-				document.getElementById("loadingSpinner2").style.display = "none";
-				// Show the "shake me!" modal for phone-based assets!
-				if (dataService.isFirstTimeThisPageHasLoaded() && (assetName.substring(0,6) == "Asset ")) { 
-					// NEW: check to make sure this isn't a read-only asset!
-					if (assetName.toLowerCase().indexOf("read only") == -1) {
-						$("#shakeMeModal").modal();
-					}
+         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {	
+			// Turn off the loading spinner
+			document.getElementById("loadingSpinner2").style.display = "none";
+			// Show the "shake me!" modal for phone-based assets!
+			if (dataService.isFirstTimeThisPageHasLoaded() && (assetName.substring(0,6) == "Asset ")) { 
+				// NEW: check to make sure this isn't a read-only asset!
+				if (assetName.toLowerCase().indexOf("read only") == -1) {
+					$("#shakeMeModal").modal();
 				}
-            });
-
-            stop = $interval(function () {
-                dataService.getSnapshots(attributes).then(function (response) {
-                    mostRecentDataFromPISystem = response.data.Items;
-                    updateChartData();
-                });
-            }, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);
+			}
+			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
+	
+	// Repetitive function!  Contains behavior for getting data and acting on it
+	function performRepetitiveActionsForTheseAFAttributes(attributes) {
+		dataService.getSnapshots(attributes).then(function (response) {
+			mostRecentDataFromPISystem = response.data.Items;
+			updateChartData();
+		});		
+		// Call this function again after a certain time range
+		stop = setTimeout( function() {
+			performRepetitiveActionsForTheseAFAttributes(attributes)
+		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
+	}
 
     // Define an array of colors used for the chart traces
     var chartColors = ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)", "rgb(60, 191, 60)", "rgb(197, 86, 13)","rgb(46, 32, 238)","rgb(165, 32, 86)" ];
