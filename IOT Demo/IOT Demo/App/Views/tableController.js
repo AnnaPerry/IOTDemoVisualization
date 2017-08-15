@@ -23,10 +23,11 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
     };
 	
     $scope.init = function () {
-		document.getElementById("loadingSpinner2").style.display = "inline";
+		// Show the loading spinner
+		document.getElementById("loadingSpinnerIcon2").className = "fa fa-spinner fa-spin fa-fw";
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
 			// Turn off the loading spinner
-			document.getElementById("loadingSpinner2").style.display = "none";
+			document.getElementById("loadingSpinnerIcon2").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
@@ -34,7 +35,11 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
 	// Repetitive function!  Contains behavior for getting data and acting on it
 	function performRepetitiveActionsForTheseAFAttributes(attributes) {
 		 dataService.getSnapshots(attributes).then(function (response) {
+			try {
 			$scope.dataArray = response.data.Items;
+			} catch (err) {
+				console.log("An error ocurred during the main loop: " + err.message);
+			}
 		});
 		
 		// Call this function again after a certain time range

@@ -232,7 +232,7 @@ angular.module('iotdemoApp')
 		if (supported == true) {
 			console.log("Event listener added for this type of sensor data: " + sensorType);
 		} else {
-			console.log("Notification: this browser and/or device is unable to generate data for the following sensor type: " + sensorType + "; simulated data will be generated for this sensor.");
+			console.log("Event listener NOT added for this type of sensor data: " + sensorType);
 		}
 	}
 	
@@ -285,7 +285,8 @@ angular.module('iotdemoApp')
 	// Fired when an http request returns an error!
 	function respondToHTTPRequestError(response, attemptedTask) {
 		// Hide the loading spinner
-		document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+		//document.getElementById("loadingSpinner").style.visibility = "hidden"; 
+		document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 		// Set the modal body text to the error
 		console.log(response);
 		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ".<br/><br/>" + response.data + "<br />" + "Plese try refreshing this app. If this error reappears, please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
@@ -299,8 +300,8 @@ angular.module('iotdemoApp')
 	
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
-		var selectedFieldsParamters = "&selectedFields=WebId";
-        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParamters;
+		var selectedFieldsParameters = "&selectedFields=WebId";
+        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParameters;
         return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
             return response.data.WebId;
         }, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
@@ -309,18 +310,24 @@ angular.module('iotdemoApp')
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
     // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
     function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
-		var selectedFieldsParamters = '&selectedFields=Items.WebId;Items.Name';
-        if (elementTemplate && (elementTemplate != '')) {
-			if (!attributeCategory) {
-				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + selectedFieldsParamters;
-			}
-			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementTemplate=' + elementTemplate + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory + selectedFieldsParamters;
-		} else {
-			if (!attributeCategory) {
-				return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter + selectedFieldsParamters;
-			}
-			return _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter + '&attributeCategory=' + attributeCategory; + selectedFieldsParamters;		
+		// By default, return just the Web Id
+		var selectedFieldsParameters = '&selectedFields=Items.WebId';
+		// Start with the base query URL, which always includes the AF DB web ID and the element name
+		var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter;
+		// If the element template is included, append that as well
+		if (elementTemplate && (elementTemplate != '')) {
+			url = url + '&elementTemplate=' + elementTemplate;
 		}
+		// If the attribute category is included, append that as well
+		if (attributeCategory) {
+			url = url + '&attributeCategory=' + attributeCategory;		
+		} else {
+			// If there is no category, then you must be writing to the PI System, in which case, you need both the attribute name and WebId too!
+			selectedFieldsParameters = selectedFieldsParameters + ';Items.Name';
+		}
+		// Add the selected fields parameters
+		url = url + selectedFieldsParameters;
+		return url;
     };
 
     // Returns a properly formatted multi-attribute URL given a URL prefix and a collection of additional attributes
@@ -349,9 +356,9 @@ angular.module('iotdemoApp')
         },
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
-			var selectedFieldsParamters = '&selectedFields=Items.Name';
+			var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';
             if (_afdbwebid) {
-                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParamters;
+                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
                 return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 					return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
@@ -360,7 +367,7 @@ angular.module('iotdemoApp')
                 // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
-                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParamters;
+                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
                     return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
@@ -387,16 +394,16 @@ angular.module('iotdemoApp')
         },
         // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {
-			var selectedFieldsParamters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParamters + '&', attributes);
+			var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParameters + '&', attributes);
             return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               
         },
         // Return an array of arrays of interpolated values for a certain array of attributes
         getInterpolatedValues : function (attributes) {
-			var selectedFieldsParamters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParamters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
+			var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
+            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
             return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       

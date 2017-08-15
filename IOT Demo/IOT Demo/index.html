@@ -17,19 +17,20 @@
 	
     <!-- Navigation bar -->
     <div class="container-fluid" id="mainNavbarContainer">
-        <nav class="navbar navbar-inverse fixed-top bg-inverse" style="background-color:#091d3a !important;display:inline !important;padding-bottom:13px;text-align:center;height:44px;font-size:16px;color:white">
+        <nav class="navbar navbar-inverse fixed-top bg-inverse customNavBarStylingClass">
             
-			<ul class="nav navbar-nav navbar-toggler-left" style="display:inline;">
-				<li class="nav-item" style="display:inline">
-					<a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><span class="fa fa-bullseye" style="margin-right:4px"></span>Asset Dashboard</a>
-				</li>
+			<ul class="nav navbar-nav navbar-toggler-left">
+				<li class="nav-item">
+					<a class="btn btn-primary btn-sm" ui-sref="home"><span class="fa fa-bullseye fa-fw customIconStylingClass"></span>Asset Dashboard</a>
+				</li>			
 			</ul>
 			
-			<i id="loadingSpinner" class="fa fa-spinner fa-spin fa-fw" style="margin-left:10px;"></i>
-			
-			<ul class="nav navbar-nav navbar-toggler-right" style="display:inline;padding-right:0px;">
-				<li class="nav-item" style="display:inline">
-					<a class="btn btn-primary btn-sm" style=";background-color:#091d3a" href="/#/gettingstarted"><span class="fa fa-question-circle-o" style="margin-right:4px"></span>Getting Started</a>
+			<ul class="nav navbar-nav navbar-toggler-right">
+				<li class="nav-item">
+					<a class="btn btn-primary btn-sm" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
+				</li>
+				<li class="nav-item" id="loadingSpinner" onclick="location.reload()">
+					<a class="btn btn-primary btn-sm customLoadingSpinnerClass" href=""><span id="loadingSpinnerIcon" class="fa fa-spinner fa-spin fa-fw"></span></a>
 				</li>
 			</ul>
 			
@@ -37,7 +38,7 @@
     </div>
 
     <!-- Main container -->
-    <div class="container maincontainer" ui-view style="padding-top:50px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important"></div>
+    <div class="container maincontainer" ui-view></div>
 
     <!-- Pop-up modal notification box (normally hidden) -->
     <div class="modal fade" id="compatibilityCheckModal" role="dialog">
@@ -57,7 +58,9 @@
 					</div>	
 				</div>			
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-default btn-sm" onclick="$('#sensorValuesModal').modal()">Sensor Check</button>
+					<button type="button" class="btn btn-default btn-sm" onclick='window.open("https://www.mozilla.org/en-US/firefox/new/?scene=2", "_blank")'>Get Firefox</button>
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@
                 </div>
                 <div class="modal-body" id="errorMessageModalBodyText"></div>
                 <div class="modal-footer">
-				<button type="button" class="btn btn-default" onclick="location.reload()">Attempt Refresh</button>
+				<button type="button" class="btn btn-default" onclick="location.reload()">Refresh Page</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -108,6 +111,7 @@
                     This app was designed to run in full-screen mode.  Click <b><a href="" onclick="turnOnFullScreen()">here</a></b> to turn on full-screen mode (for Windows and Android users only).
                 </div>
                 <div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="turnOnFullScreen()">Turn on Full-screen</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -126,6 +130,7 @@
 					This app was designed to be viewed in landscape (horizontal) orientation; please rotate your device 90 degrees into landscape mode--and then refresh this web page--to ensure the best experience.
 				</div>
                 <div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="location.reload()">Refresh Page</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

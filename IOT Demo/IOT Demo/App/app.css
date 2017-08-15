@@ -1,36 +1,113 @@
 ﻿.maincontainer {
-    height:inherit;
-    width:inherit;
-    padding-top:85px;
+	height: inherit;
+	width: inherit;
+	padding-top: 50px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	padding-bottom: 0px !important;
 }
 
 html, body {
-    background-color:#e9eaed;
-    height:100%
+	background-color: #e9eaed;
+	height: 100%;
 }
+
 .el-inherit-size {
-    height:inherit;
-    width:inherit;
+	height: inherit;
+	width: inherit;
+	padding: 0px;
 }
+
 .el-z {
-    z-index:11;
+	z-index: 11;
 }
+
+.p-2 {
+	height: 100%;
+	margin: 0px;
+	padding: 0px !important;
+}
+
 .jumbotron {
-    opacity:0.7;
-    background-color:darkgray;
-    height: 100%;
-    overflow:auto;
+	opacity: 0.7;
+	background-color: darkgray;
+	height: 100%;
+	overflow: auto;
+	margin: 0px;
+	padding: 0px;
+	border-radius: 0px;
 }
+
 .modal-dialog {
-	width:90% !important;
-	max-width:90% !important;
-	font-size:14px !important;
-	margin-bottom:0px;
+	width: 90% !important;
+	max-width: 90% !important;
+	font-size: 14px !important;
+	margin-bottom: 0px;
 }
-.btn {
-	border-color:darkgray;
+
+.card {
+	height: 100%;
+	border-style: none;
+	text-align: center;
 }
+.card-block {
+	padding: 0px;
+	text-align: center;
+}
+
+.btn-primary {
+	border-color: darkgray;
+	background-color: #2a3e5d;
+}
+
 .carousel-caption {
 	background-color: rgba(59,56,56, 0.9);
-	
+}
+
+.nav-item, .navbar-nav {
+	display: inline;
+}
+
+.navbar-toggler-left {
+	left:5px;
+}
+.navbar-toggler-right {
+	right:5px;
+}
+
+.fa-chevron-circle-right {
+	color: #2a3e5d;
+}
+
+.carousel-item, .carousel-inner, .carousel {
+	height: 100%;
+	width: 100%;
+	font-size: 14px;
+}
+
+.customLoadingSpinnerClass {
+	font-size: 14px;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.customNavBarStylingClass {
+	background-color: #091d3a !important;
+	display: inline !important;
+	padding-bottom: 13px;
+	text-align: center;
+	height: 44px;
+	font-size: 15px;
+	color: white;
+}
+
+.customBarsAndChartDivStylingClass {
+	width: 100%;
+	height: 100%;
+	padding-top: 5px;
+	background-color: #2e2e2e !important;
+}
+
+.customIconStylingClass {
+	margin-right: 4px;
 }

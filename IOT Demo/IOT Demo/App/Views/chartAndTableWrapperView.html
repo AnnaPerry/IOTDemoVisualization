@@ -1,98 +1,72 @@
 ﻿<!-- Single asset navigation bar -->
 <div class="container-fluid" id="mainNavbarContainer">
-	<nav class="navbar navbar-inverse fixed-top bg-inverse" style="background-color:#091d3a !important;display:inline !important;padding-bottom:13px;text-align:center;height:44px;font-size:16px;color:white">
+	<nav class="navbar navbar-inverse fixed-top bg-inverse customNavBarStylingClass">
 	
-		<ul class="nav navbar-nav navbar-toggler-left" style="display:inline;">
-			<li class="nav-item" style="display:inline">
-				<a class="btn btn-primary btn-sm" style="display:inline;background-color:#091d3a" ui-sref="home"><span class="fa fa-bullseye" style="margin-right:4px"></span>Asset Dashboard</a>
+		<ul class="nav navbar-nav navbar-toggler-left">
+			<li class="nav-item" >
+				<a class="btn btn-primary btn-sm" ui-sref="home"><span class="fa fa-bullseye fa-fw customIconStylingClass"></span>Asset Dashboard</a>
 			</li>
-		</ul>
-		
-		<ul class="nav navbar-nav" style="display:inline;">
-			<li class="nav-item" style="display:inline;" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" style="background-color:#2a3e5d" ui-sref='.gauges'><span class="fa fa-bar-chart fa-fw" style="margin-right:4px;"></span>Bars</a>
-			</li>
-			
-			<li class="nav-item" style="display:inline;" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" style="background-color:#2a3e5d" ui-sref='.table'><span class="fa fa-table fa-fw" style="margin-right:4px;"></span>Table</a>
+			<li class="nav-item" ng-show="showImageDiv()">
+				<a class="btn btn-primary btn-sm" ui-sref='assetoverview'><span class="fa fa-cube fa-fw customIconStylingClass"></span>Assets</a>
 			</li>	
-
-			<i id="loadingSpinner2" class="fa fa-spinner fa-spin fa-fw" style="margin-left:6px;margin-right:6px;"></i>
-					
-			<li class="nav-item" style="display:inline;" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" style="background-color:#2a3e5d" ui-sref='.chart'><span class="fa fa-area-chart fa-fw" style="margin-right:4px;"></span>Chart</a>
-			</li>				
 			
-			<li class="nav-item" style="display:inline;" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" style="background-color:#2a3e5d" ui-sref='assetoverview'><span class="fa fa-cube fa-fw" style="margin-right:4px;"></span>Assets</a>
+			<li class="nav-item" ng-show="showImageDiv()">
+				<a class="btn btn-primary btn-sm" ui-sref='.gauges'><span class="fa fa-bar-chart fa-fw customIconStylingClass"></span>Bars</a>
 			</li>
 			
+			<li class="nav-item" ng-show="showImageDiv()">
+				<a class="btn btn-primary btn-sm" ui-sref='.table'><span class="fa fa-table fa-fw customIconStylingClass"></span>Table</a>
+			</li>	
+	
+			<li class="nav-item" ng-show="showImageDiv()">
+				<a class="btn btn-primary btn-sm" ui-sref='.chart'><span class="fa fa-area-chart fa-fw customIconStylingClass"></span>Chart</a>
+			</li>				
 		</ul>
 		
-		<ul class="nav navbar-nav navbar-toggler-right" style="display:inline;padding-right:0px;">
-			<li class="nav-item" style="display:inline">
-				<a class="btn btn-primary btn-sm" style=";background-color:#091d3a" href="/#/gettingstarted"><span class="fa fa-question-circle-o" style="margin-right:4px"></span>Getting Started</a>
+		<ul class="nav navbar-nav navbar-toggler-right">
+			<li class="nav-item" >
+				<a class="btn btn-primary btn-sm" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
 			</li>
+			<li class="nav-item" id="loadingSpinner2" onclick="location.reload()">
+				<a class="btn btn-primary btn-sm customLoadingSpinnerClass" href=""><span id="loadingSpinnerIcon2" class="fa fa-spinner fa-spin fa-fw"></span></a>
+			</li>			
 		</ul>
 
 	</nav>
 </div>
 
-<div ng-init="sendDatatoPI()" class="el-inherit-size" style="padding:0px;">
+<div ng-init="sendDatatoPI()" class="el-inherit-size">
 
-    <div class="d-flex flex-row-reverse el-inherit-size" style="padding:0px";>
+    <div class="d-flex flex-row-reverse el-inherit-size">
 	
         <!-- Main container -->
-        <div class="p-2 el-z" style="height:100%;margin:0px; width:72%; padding:0px !important" id="dataVisualizationWrapper" >
-            <div class="jumbotron " style="margin:0px;padding:0px;border-radius:0px;">
+        <div class="p-2 el-z" style="width:72%;" id="dataVisualizationWrapper" >
+            <div class="jumbotron ">
                 <div ui-view style="height:100%"></div>
             </div>
         </div>
 		
         <!-- Data source image -->
-		<div class="p-2" style="height:100%;margin-right:4px; width:28%; padding:0px !important;" ng-show="showImageDiv()">
+		<div class="p-2" style="width:28%;" ng-show="showImageDiv()">
 			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="display:inline;" />
         </div>
-		
-        <!-- Side menu bar -->
-		<!--		
-        <div class="p-2 el-z" style="margin-top:0px;background-color:#606060">
-            <ul style="list-style-type:none;padding:0px;margin-left:3px;text-align:center;font-size:11px">
-				<li style="margin-top:15px;">
-					<a style="color:white !important" ui-sref=".gauges"><span class="fa fa-bar-chart fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Bars</span></a>
-				</li>			
-				<li style="margin-top:15px;">
-					<a style="color:white !important" ui-sref=".table"><span class="fa fa-table fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Table</span></a>
-				</li>
-                <li style="margin-top:15px;">
-					<a style="color:white !important" ui-sref=".chart"> <span class="fa fa-area-chart fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Trend</span></a>
-				</li>
-				<li style="margin-top:15px;">
-					<a style="color:white !important" ui-sref='assetoverview'><span class="fa fa-exchange fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Assets</span></a>
-				</li>
-				<li style="margin-top:15px;" ng-show="getAssetType() == 'PhoneSensor'">
-					<a style="color:white !important" href="" onclick="$('#sensorValuesModal').modal();"><span class="fa fa-info-circle fa-2x fa-fw" style=""></span><br/><span style="font-size:11px">Info</span></a>
-				</li>
-            </ul>
-        </div>
-		-->		
-		
     </div>
 	
-	<!-- Pop-up modal for instructions -->
-    <div class="modal fade" id="shakeMeModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:lightgreen">
-                    <h4 class="modal-title">Welcome!</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" id="shakeMeModalBodyText">
-					The bar chart is driven by sensor data collected from your own smart phone!  Try shaking your device to generate new X, Y, and Z accelerometer data!  Try covering up your phone screen to see the light level and proximity level drop, and uncover the phone to see the light and proximity bars grow again. Rotate your phone to see the alpha, beta, and gamma values change on the plot, and shake your phone to see the X, Y, and Z axis motion increase!
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
+</div>
+
+<!-- Pop-up modal for instructions -->
+<div class="modal fade" id="shakeMeModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="background-color:lightgreen">
+				<h4 class="modal-title">Welcome!</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" id="shakeMeModalBodyText">
+				The bar chart is driven by sensor data collected from your own smart phone!  Try shaking your device to generate new X, Y, and Z accelerometer data!  Try covering up your phone screen to see the light level and proximity level drop, and uncover the phone to see the light and proximity bars grow again. Rotate your phone to see the alpha, beta, and gamma values change on the plot, and shake your phone to see the X, Y, and Z axis motion increase!
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -2,7 +2,7 @@
     <table class="table table-striped">
         <thead class="thead-inverse">
             <tr>
-                <th>#</th>
+                <th></th>
                 <th>Name</th>
                 <th>Description</th>
                 <th></th>
@@ -10,10 +10,10 @@
         </thead>
         <tbody>
             <tr ng-repeat="asset in assetArray">
-                <th scope="row">{{$index + 1}}</th>
+                <th scope="row"><span class="fa fa-cube fa-fw customIconStylingClass"></span></th>
                 <td>{{asset.Name}}</td>
                 <td>{{asset.Description}}</td>
-				<td><a ui-sref="chartAndTableWrapperView.gauges({assetName: asset.Name})"><i style="color:#2a3e5d" class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
+				<td><a ui-sref="chartAndTableWrapperView.gauges({assetName: asset.Name})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
             </tr>
         </tbody>
     </table>

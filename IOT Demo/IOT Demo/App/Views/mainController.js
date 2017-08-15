@@ -31,11 +31,12 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 		// Show the top navbar
 		document.getElementById("mainNavbarContainer").style.display = "block";
 		// Show the loading spinner
-		document.getElementById("loadingSpinner").style.display = "inline";
+		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
 		// Get attributes, then snapshot values, for the top-level element
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
 			// Turn off the loading spinner
-			document.getElementById("loadingSpinner").style.display = "none";
+			// Turn off the loading spinner
+			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
@@ -43,14 +44,18 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 	// Repetitive function!  Contains behavior for getting data and acting on it
 	function performRepetitiveActionsForTheseAFAttributes(attributes) {
 		dataService.getSnapshots(attributes).then(function (response) {
-			var dataArray = response.data.Items;
-			// Get the first four data items!
-			$scope.dataItem1 = dataArray[0];
-			$scope.dataItem2 = dataArray[1];
-			$scope.dataItem3 = dataArray[2];
-			$scope.dataItem4 = dataArray[3];
-			// Update the chart
-			updatecharts();
+			try {
+				var dataArray = response.data.Items;
+				// Get the first four data items!
+				$scope.dataItem1 = dataArray[0];
+				$scope.dataItem2 = dataArray[1];
+				$scope.dataItem3 = dataArray[2];
+				$scope.dataItem4 = dataArray[3];
+				// Update the chart
+				updatecharts();
+			} catch (err) {
+				console.log("An error ocurred during the main loop: " + err.message);
+			}
 		});
 		// Call this function again after a certain time range
 		stop = setTimeout( function() {
@@ -186,4 +191,10 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
             "align": "right"
         }]
     };
+	// Add a function to resize the chart if the window size changes!
+	window.addEventListener("resize", function() {
+		if (crazyGaugeChart) {
+			crazyGaugeChart.validateNow();
+		}
+	});
 }]);
