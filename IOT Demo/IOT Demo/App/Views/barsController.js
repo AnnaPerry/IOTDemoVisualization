@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('gaugesController', ['$scope', '$http', '$interval', '$stateParams', 'dataService', function ($scope, $http, $interval,$stateParams, dataService) {
+app.controller('barsController', ['$scope', '$http', '$interval', '$stateParams', 'dataService', function ($scope, $http, $interval,$stateParams, dataService) {
 
     var afTemplate = 'Asset Template';
     var assetName = $stateParams.assetName;

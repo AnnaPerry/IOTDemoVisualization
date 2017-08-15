@@ -332,7 +332,11 @@ angular.module('iotdemoApp')
 
     // Returns a properly formatted multi-attribute URL given a URL prefix and a collection of additional attributes
     function constructUrl(url, attributes) {
-        attributes.forEach(function (attribute) { url += 'webid=' + attribute.WebId + '&' });
+		try {
+			attributes.forEach(function (attribute) { url += 'webid=' + attribute.WebId + '&' });
+		} catch (err) {
+			console.log("An error ocurred while appending attribute WebIds to URL: " + err.message);
+		}
         url = url.slice(0, -1);
         return url;
     };
