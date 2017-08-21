@@ -1,64 +1,32 @@
-﻿<!-- Single asset navigation bar -->
-<div class="container-fluid" id="mainNavbarContainer">
-	<nav class="navbar fixed-top customNavBarStylingClass">
-	
-		<ul class="nav navbar-nav navbar-toggler-left">
-			<li class="nav-item" >
-				<a class="btn btn-primary btn-sm" ui-sref="home"><span class="fa fa-bullseye fa-fw customIconStylingClass"></span>Asset Dashboard</a>
-			</li>
-			<li class="nav-item" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" ui-sref='assetoverview'><span class="fa fa-cube fa-fw customIconStylingClass"></span>Assets</a>
-			</li>	
-			
-			<li class="nav-item" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" ui-sref='.bars'><span class="fa fa-bar-chart fa-fw customIconStylingClass"></span>Bars</a>
-			</li>
-			
-			<li class="nav-item" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" ui-sref='.table'><span class="fa fa-table fa-fw customIconStylingClass"></span>Table</a>
-			</li>	
-	
-			<li class="nav-item" ng-show="showImageDiv()">
-				<a class="btn btn-primary btn-sm" ui-sref='.chart'><span class="fa fa-area-chart fa-fw customIconStylingClass"></span>Chart</a>
-			</li>				
-		</ul>
-		
-		<ul class="nav navbar-nav navbar-toggler-right">
-			<li class="nav-item" >
-				<a class="btn btn-primary btn-sm" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
-			</li>
-			<li class="nav-item" id="loadingSpinner2" onclick="location.reload()">
-				<a class="btn btn-primary btn-sm customLoadingSpinnerClass" href=""><span id="loadingSpinnerIcon2" class="fa fa-spinner fa-spin fa-fw"></span></a>
-			</li>			
-		</ul>
+﻿<div class="row fullHeightNoMarginsOrPadding" ng-init="sendDatatoPI()">
 
-	</nav>
-</div>
-
-<div ng-init="sendDatatoPI()" class="el-inherit-size">
-
-    <div class="d-flex flex-row-reverse el-inherit-size">
+	<!-- Data source image -->
+	<div class="col-xs-4 fullHeightNoMarginsOrPadding" id="imageColumn" ng-show="showImageDiv()">
+		<div class="card fullHeightNoMarginsOrPadding">
+			<div class="card-block fullHeightNoMarginsOrPadding">
+				<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" />
+			</div>
+		</div>
+	</div>
 	
-        <!-- Main container -->
-        <div class="p-2 el-z" style="width:72%;" id="dataVisualizationWrapper" >
-            <div class="jumbotron ">
-                <div ui-view style="height:100%"></div>
-            </div>
-        </div>
-		
-        <!-- Data source image -->
-		<div class="p-2" style="width:28%;" ng-show="showImageDiv()">
-			<img ng-src="../../Images/{{ getAssetType() }}Image.png" height="100%" width="100%" style="display:inline;" />
-        </div>
-    </div>
-	
+	<!-- Data visualization -->
+	<div class="col-xs-8 fullHeightNoMarginsOrPadding" id="dataVisualizationColumn">
+		<div class="card fullHeightNoMarginsOrPadding">
+			<div class="card-block fullHeightNoMarginsOrPadding">
+				<div class="jumbotron customJumbotronClassStyling" >
+					<div ui-view class="fullHeight"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
 <!-- Pop-up modal for instructions -->
 <div class="modal fade" id="shakeMeModal" role="dialog">
-	<div class="modal-dialog">
+	<div class="modal-dialog customModalDialogStyling">
 		<div class="modal-content">
-			<div class="modal-header" style="background-color:lightgreen">
+			<div class="modal-header customModalColorInfo">
 				<h4 class="modal-title">Welcome!</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>

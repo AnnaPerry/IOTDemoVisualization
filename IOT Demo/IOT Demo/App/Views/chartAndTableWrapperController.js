@@ -1,7 +1,15 @@
 ﻿'use strict';
-app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$interval', 'dataService', function ($scope, $stateParams, $interval, dataService) {
+app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dataService', function ($scope, $stateParams, dataService) {
 
-    var afTemplate = 'Phone Sensors Template';
+	// Get all of the buttons that should only be shown when an asset has selected, and set their correct visibility
+	var buttonElements = document.getElementsByClassName("showChartBarAndTableButtonsClass");
+	for (var i = 0; i < buttonElements.length; i++) {
+		//buttonElements[i].style.display = "none";
+		buttonElements[i].style.display = "block";
+	}
+	
+    //var afTemplate = 'Phone Sensors Template';
+	var afTemplate = 'Asset Template';
     var attributeCategory = '*';
     var stop;	
 	var attributesToWriteTo;
@@ -23,29 +31,18 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
     };
 		
     $scope.init = function () {
-		// Hide the top navbar; we'll replace it with a new one!
-		document.getElementById("mainNavbarContainer").style.display = "none";
     };
 
-	// Dynamically set widths for image and data div
+	// If the screen is wider than it is tall, the image should appear; otherwise, it should not!
 	$scope.showImageDiv = function () {
-		// If the screen is wider than it is tall, the image should appear; otherwise, it should not!
 		if (window.innerWidth > window.innerHeight) {
-			document.getElementById('dataVisualizationWrapper').style.width = '72%';
+			document.getElementById("dataVisualizationColumn").className = "col-xs-8 fullHeightNoMarginsOrPadding";
 			return true;
 		} else {
-			document.getElementById('dataVisualizationWrapper').style.width = '100%';
+			document.getElementById("dataVisualizationColumn").className = "col-xs-12 fullHeightNoMarginsOrPadding";
 			return false;
 		}	
 	};	
-	// If the screen is wider than it is tall, make the chart dive 70% wide; otherwise, make it 100% wide!
-	$scope.chartAndTableWidth = function () {
-		if (window.innerWidth > window.innerHeight) {
-			return '72%';
-		} else {
-			return '100%';
-		}		
-	};
 
 	// Get the asset type! Used to set image files and show or hide certain buttons
 	$scope.getAssetType = function () {
@@ -77,8 +74,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', '$in
 			// NEW! Check to see if the target asset name does NOT contain "Read Only"
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
-				// Get the attributes that will be written to
-				dataService.getElementAttributes(afTemplate, dataService.getTargetAssetElementName($stateParams.assetName)).then(function (attributes) {
+				// Get the attributes that will be written to; pass along the fourth arg as "true" in order to get the attribute names as well
+				dataService.getElementAttributes(afTemplate, $stateParams.assetName, 'Phone-based Data', true).then(function (attributes) {					
 					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
 			} else {

@@ -29,10 +29,10 @@ app.controller('barsController', ['$scope', '$http', '$interval', '$stateParams'
 	// Init function: get attributes for this element, store them in scope, and then get values for those attributes
     $scope.init = function () {
 		// Show the loading spinner
-		document.getElementById("loadingSpinnerIcon2").className = "fa fa-spinner fa-spin fa-fw";
+		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
          dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {	
 			// Turn off the loading spinner
-			document.getElementById("loadingSpinnerIcon2").className = "fa fa-refresh fa-fw"; 
+			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			// Show the "shake me!" modal for phone-based assets!
 			if (dataService.isFirstTimeThisPageHasLoaded() && (assetName.substring(0,6) == "Asset ")) { 
 				// NEW: check to make sure this isn't a read-only asset!

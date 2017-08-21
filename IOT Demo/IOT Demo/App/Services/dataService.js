@@ -50,11 +50,12 @@ angular.module('iotdemoApp')
     var proximityValue;                             // in centimenters
     var ambientLightLevel;                          // in lux
 
+	// Assume each sensor is supported, but if one isn't, log that!
+	var incompatibleSensors = "";
+		
     // Actually writes data for a certain group of attributes
     function sendCurrentReadings(attributes) {
-		// Assume each sensor is supported, but if one isn't, log that!
-		var incompatibleSensors = "";
-		
+
         // Define global variable to hold all of the new values
         var dataObj = [];
 
@@ -64,75 +65,67 @@ angular.module('iotdemoApp')
             // Based on that attributes name, read the correct sensor on the data source device
             var value;
             switch (attribute.Name) {
-                case "X-axis acceleration": {
+                case "X-axis": {
                     value = currentxAccelerationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
-						incompatibleSensors += ", x-acceleration";
                     }
                     break;
                 }
-                case "Y-axis acceleration": {
+                case "Y-axis": {
                     value = currentyAccelerationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
-						incompatibleSensors += ", y-acceleration";
                     }
                     break;
                 }
-                case "Z-axis acceleration": {
+                case "Z-axis": {
                     value = currentzAccelerationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
-						incompatibleSensors += ", z-acceleration";
                     }
                     break;
                 }
-                case "Alpha-axis rotation": {
+                case "Alpha spin": {
                     value = currentAlphaOrientationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
-						incompatibleSensors += ", alpha-orientation";
                     }
                     break;
                 }
-                case "Beta-axis rotation": {
+                case "Beta spin": {
                     value = currentBetaOrientationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
-						incompatibleSensors += ", beta-orientation";
                     }
                     break;
                 }
-                case "Gamma-axis rotation": {
+                case "Gamma spin": {
                     value = currentGammaOrientationReading;
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
-						incompatibleSensors += ", gamma-orientation";
                     }
                     break;
                 }
-                case "Ambient light level": {
+                case "Light": {
                     value = ambientLightLevel;
                     // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceLightEvent || value == null) {
-                        value = Math.random() * 100;
-						incompatibleSensors += ", light";
+                        value = Math.random() * 20;
                     }
                     break;
                 }
-                case "Proximity sensor reading": {
+                case "Proximity": {
                     value = proximityValue;
                     // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceProximityEvent || value == null) {
-                        value = Math.random() * 50;
-						incompatibleSensors += ", proximity";
+                        value = Math.random() * 10;
                     }
                     break;
                 }
@@ -183,7 +176,8 @@ angular.module('iotdemoApp')
             }, false);
             logCompatibility("acceleration", false);
         } else {
-            logCompatibility("acceleration", false);
+            incompatibleSensors += ", x-, y-, and z-acceleration";
+			logCompatibility("acceleration", false);
         }
 
         // Set up a handler to track orientation
@@ -197,7 +191,8 @@ angular.module('iotdemoApp')
             }, false);
             logCompatibility("orientation", true);
         } else {
-            logCompatibility("orientation", false);
+            incompatibleSensors += ", alpha-, beta-, and gamma-orientation";
+			logCompatibility("orientation", false);
         }
 
         // Also set up handlers for tracking proximity 
@@ -209,6 +204,7 @@ angular.module('iotdemoApp')
             });
             logCompatibility("proximity", true);
         } else {
+			incompatibleSensors += ", proximity";			
             logCompatibility("proximity", false);
         }
 
@@ -221,6 +217,7 @@ angular.module('iotdemoApp')
             });
             logCompatibility("light", true);
         } else {
+			incompatibleSensors += ", light";			
             logCompatibility("light", false);
         }
     } else {
@@ -241,7 +238,7 @@ angular.module('iotdemoApp')
         // Fire a notification if it hasn't been done yet
         if (!modalTriggeredAlready && SEND_DATA_TO_PI_SYSTEM) {
             modalTriggeredAlready = true;
-			var outputHTML = "Your device and/or browser does not support reading the following sensor types:<br/>";
+			var outputHTML = "Your device and/or browser does not support reading the following sensor types: ";
 			// Trim the first comma
 			outputHTML += (incompatibleSensors.substr(2));
 			outputHTML += "<br/>Simulated sensor values will be generated for these sensors to mimic a compatible device.";
@@ -289,7 +286,16 @@ angular.module('iotdemoApp')
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 		// Set the modal body text to the error
 		console.log(response);
-		document.getElementById("errorMessageModalBodyText").innerHTML = "Error when " + attemptedTask + ".<br/><br/>" + response.data + "<br />" + "Plese try refreshing this app. If this error reappears, please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
+		var newModalText = "Error when " + attemptedTask + ".<br/>";
+		if (response.data && response.data.Errors) {
+			newModalText += "Error code " + response.status + ": " + response.data.Errors[0] + "<br/>";
+		} else if (response.data) {
+			newModalText += response.data;
+		}
+		// Append some instructions
+		newModalText += "<br />Plese try refreshing this app. If this error reappears, please verify that the PI Web API Service is running, that the PI System is running, and that the target AF object exists.  If this error persists, please try restarting the PI Web API service.";
+		// Write this text to the modal
+		document.getElementById("errorMessageModalBodyText").innerHTML = newModalText;
 		// Open the modal, but only if it's not already open!
 		if (!$('#errorMessageModal').is(':visible')) {
 			$("#errorMessageModal").modal();
@@ -309,9 +315,13 @@ angular.module('iotdemoApp')
 
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
     // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
-    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory) {
+    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName) {
 		// By default, return just the Web Id
 		var selectedFieldsParameters = '&selectedFields=Items.WebId';
+		// Return the attribute name too, if desired
+		if (includeAttributeName) {
+			selectedFieldsParameters += ';Items.Name';
+		}
 		// Start with the base query URL, which always includes the AF DB web ID and the element name
 		var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter;
 		// If the element template is included, append that as well
@@ -323,7 +333,7 @@ angular.module('iotdemoApp')
 			url = url + '&attributeCategory=' + attributeCategory;		
 		} else {
 			// If there is no category, then you must be writing to the PI System, in which case, you need both the attribute name and WebId too!
-			selectedFieldsParameters = selectedFieldsParameters + ';Items.Name';
+			//selectedFieldsParameters = selectedFieldsParameters + ';Items.Name';
 		}
 		// Add the selected fields parameters
 		url = url + selectedFieldsParameters;
@@ -360,7 +370,7 @@ angular.module('iotdemoApp')
         },
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
-			var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';
+			var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
             if (_afdbwebid) {
                 var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
                 return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
@@ -379,9 +389,9 @@ angular.module('iotdemoApp')
             }
         },
         // Get an array of element attributes
-        getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory) {
+        getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeName) {
             if (_afdbwebid) {
-                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
+                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName);
                 return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                     return response.data.Items;
                 }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
@@ -389,7 +399,7 @@ angular.module('iotdemoApp')
                 // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
                 return getafdb().then(function (webid) {
                     _afdbwebid = webid;
-                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory);
+                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName);
                     return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                         return response.data.Items;
                     }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
@@ -412,27 +422,6 @@ angular.module('iotdemoApp')
                 return response;
             }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       
         },		
-        // Returns the correct string for the name of the AF asset, including the asset number
-        getTargetAssetElementName: function (assetName) {
-			// NEW! Replace the read-only suffix if it exists
-			var cleanedAssetName = assetName.replace(" (Read only)","");
-            var assetidNumber = cleanedAssetName.match(/[0-9]+/i)[0];
-            // All of the target assets start with "Phone" and end with "Sensors"; insert in the middle the asset id #
-            return 'Phone ' + assetidNumber + ' Sensors';
-
-        },
-		/*
-		// Depracated!
-        // Given a target element template and element name, get its attributes, and next send values to those attributes
-        sendDatatoPI: function (elementTemplate, targetAssetName) {
-            // Only send data if it is explicitly allowed!
-            if (SEND_DATA_TO_PI_SYSTEM == true) {
-                this.getElementAttributes(elementTemplate, targetAssetName).then(function (attributes) {
-                    sendCurrentReadings(attributes);
-                });
-            }
-        },
-		*/
 		// If the target attributes are already known, directly send data to those attributes!
 		sendDatatoPIAttributes: function (attributes) {
             // Only send data if it is explicitly allowed!

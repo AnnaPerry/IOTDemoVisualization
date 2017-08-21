@@ -1,10 +1,12 @@
 ﻿.maincontainer {
 	height: inherit;
-	width: inherit;
-	padding-top: 50px !important;
+	width: 100%;
+	padding-top: 58px !important;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
 	padding-bottom: 0px !important;
+	top:0px;
+	position:absolute;
 }
 
 html, body {
@@ -12,94 +14,56 @@ html, body {
 	height: 100%;
 }
 
-.el-inherit-size {
-	height: inherit;
-	width: inherit;
-	padding: 0px;
-}
-
-.el-z {
-	z-index: 11;
-}
-
-.p-2 {
+.customJumbotronClassStyling {
 	height: 100%;
-	margin: 0px;
 	padding: 0px !important;
+	width:100%;
+	margin:0px;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;
 }
 
-.jumbotron {
-	opacity: 0.7;
-	background-color: darkgray;
-	height: 100%;
-	overflow: auto;
-	margin: 0px;
-	padding: 0px;
-	border-radius: 0px;
-}
-
-.modal-dialog {
-	width: 90% !important;
-	max-width: 90% !important;
-	font-size: 14px !important;
-	margin-bottom: 0px;
-}
-
-.card {
-	height: 100%;
+.fullHeightNoMarginsOrPadding {
+	margin:0px;
+	height:100%;
+	padding:0px;
 	border-style: none;
-	text-align: center;
-}
-.card-block {
-	padding: 0px;
-	text-align: center;
 }
 
-.btn-primary {
-	border-color: darkgray;
-	background-color: #2a3e5d;
+.customTableStyling {
+	background-color:#eee;
 }
 
-.carousel-caption {
-	background-color: rgba(59,56,56, 0.9);
+.customNavBarStylingClass {
+	z-index: 1000;
+	//margin: 0px;
+	//width:100%;
+	-webkit-border-radius: 0px !important;
+	-moz-border-radius: 0px !important;
+	border-radius: 0px !important;
+	background-color: #091d3a !important;
+	background-image:none;
 }
 
-.nav-item, .navbar-nav {
-	display: inline;
+.customRightNavbarClass {
+	margin-right: 0px !important;
 }
 
-.navbar-toggler-left {
-	left:0.6rem;
-}
-.navbar-toggler-right {
-	right:5px;
-}
-
-.fa-chevron-circle-right {
-	color: #2a3e5d;
-}
-
-.carousel-item, .carousel-inner, .carousel {
-	height: 100%;
-	width: 100%;
-	font-size: 14px;
+.customNavBarButtonPaddingClass {
+	padding-left:15px !important;
+	padding-right:0px !important;
 }
 
 .customLoadingSpinnerClass {
 	font-size: 14px;
 	padding-left: 3px;
 	padding-right: 3px;
+	margin-left:10px;
+	margin-right:0px;	
 }
 
-.customNavBarStylingClass {
-	background-color: #091d3a !important;
-	display: inline !important;
-	padding-bottom: 13px;
-	text-align: center;
-	height: 44px;
-	font-size: 15px;
-	color: white;
-}
+/* NOTE: to change automatic navbar sizing, in the bootstrap.css file, all instances of "768px" were changed to "605px" */
 
 .customBarsAndChartDivStylingClass {
 	width: 100%;
@@ -109,5 +73,51 @@ html, body {
 }
 
 .customIconStylingClass {
-	margin-right: 4px;
+	margin-right: 2px;
+}
+
+.customModalDialogStyling {
+	width: 90% !important;
+	max-width: 90% !important;
+	font-size: 14px !important;
+	margin-bottom: 0px;
+}
+
+.customModalColorInfo {
+	background-color: lightgreen;
+}
+.customModalColorCaution {
+	background-color: yellow;
+}
+.customModalColorError {
+	background-color:pink;
+}
+.customModalColorDebug {
+	background-color:lightblue;
+}
+
+
+.modal-title {
+	display:inline;
+}
+
+.customCarouselItemClass {
+	height:100%;
+	background-color:rgb(59,56,56);
+}
+.customCarouselCaptionClass {
+	background-color: rgba(59,56,56, 0.9);
+}
+.customCarouselImageSize {
+	height:100% !important;
+	width: 100% !important;
+}
+
+.fullHeight {
+	height:100%;
+}
+
+.customViewDataButtonClass {
+	padding:5px;
+	font-size:16px;
 }

@@ -7,6 +7,7 @@
 	<meta name="mobile-web-app-capable" content="yes">
     <meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
+	<link href="Content/bootstrap-theme.min.css" rel="stylesheet" />
     <link href="Content/font-awesome.css" rel="stylesheet" />
     <link href="App/app.css" rel="stylesheet" />
 </head>
@@ -15,36 +16,54 @@
 	<!-- Load jquery first -->
     <script type="text/javascript" src="Scripts/jquery-3.1.1.min.js"></script>
 	
-    <!-- Navigation bar -->
-    <div class="container-fluid" id="mainNavbarContainer">
-        <nav class="navbar fixed-top customNavBarStylingClass">
-            
-			<ul class="nav navbar-nav navbar-toggler-left">
-				<li class="nav-item">
-					<a class="btn btn-primary btn-sm" ui-sref="home"><span class="fa fa-bullseye fa-fw customIconStylingClass"></span>Asset Dashboard</a>
-				</li>			
-			</ul>
-			
-			<ul class="nav navbar-nav navbar-toggler-right">
-				<li class="nav-item">
-					<a class="btn btn-primary btn-sm" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
+<!-- Navigation bar -->
+<nav class="navbar fixed-top navbar-inverse bg-inverse customNavBarStylingClass navbar-expand">
+	
+		<a id="loadingSpinner" class="navbar-brand customLoadingSpinnerClass" href="" onclick='location.reload();'><span id="loadingSpinnerIcon" class="fa fa-spinner fa-spin fa-fw"></span></a>
+
+		<button type="button" class="navbar-toggle customNavBarToggleClass" data-toggle="collapse" data-target="#myNavbar">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>   			
+		</button>
+
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li>
+					<a class="customNavBarButtonPaddingClass" ui-sref="home"><span class="fa fa-bullseye fa-fw customIconStylingClass"></span>Asset Dashboard</a>
+				</li>	
+				<li>
+					<a class="customNavBarButtonPaddingClass" ui-sref="assetoverview"><span class="fa fa-cube fa-fw customIconStylingClass"></span>Assets</a>
+				</li>	
+				<li class="showChartBarAndTableButtonsClass" >
+					<a class="customNavBarButtonPaddingClass" ui-sref='chartAndTableWrapperView.bars'><span class="fa fa-bar-chart fa-fw customIconStylingClass"></span>Bars</a>
 				</li>
-				<li class="nav-item" id="loadingSpinner" onclick="location.reload()">
-					<a class="btn btn-primary btn-sm customLoadingSpinnerClass" href=""><span id="loadingSpinnerIcon" class="fa fa-spinner fa-spin fa-fw"></span></a>
+				<li class="showChartBarAndTableButtonsClass" >
+					<a class="customNavBarButtonPaddingClass" ui-sref='chartAndTableWrapperView.table'><span class="fa fa-table fa-fw customIconStylingClass"></span>Table</a>
+				</li>	
+				<li class="showChartBarAndTableButtonsClass" >
+					<a class="customNavBarButtonPaddingClass" ui-sref='chartAndTableWrapperView.chart'><span class="fa fa-area-chart fa-fw customIconStylingClass"></span>Chart</a>
+				</li>	
+			</ul>
+			<ul class="nav navbar-nav navbar-right customRightNavbarClass">
+				<li>
+					<a class="customNavBarButtonPaddingClass" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
 				</li>
 			</ul>
-			
-        </nav>
-    </div>
+		</div>
+		
+	
+</nav>
+
 
     <!-- Main container -->
-    <div class="container maincontainer" ui-view></div>
+    <div class="container-fluid maincontainer" ui-view></div>
 
     <!-- Pop-up modal notification box (normally hidden) -->
     <div class="modal fade" id="compatibilityCheckModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:pink">
+                <div class="modal-header customModalColorError">
                     <h4 class="modal-title">Device and Browser Compatibility</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -68,9 +87,9 @@
 
     <!-- Pop-up modal notification box (normally hidden) -->
     <div class="modal fade" id="sensorValuesModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:lightblue">
+                <div class="modal-header customModalColorDebug">
                     <h4 class="modal-title">Sensor Health Check</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -84,9 +103,9 @@
 	
     <!-- Pop-up modal notification box for error messages (normally hidden) -->
     <div class="modal fade" id="errorMessageModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:pink">
+                <div class="modal-header customModalColorError">
                     <h4 class="modal-title">Error</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -101,9 +120,9 @@
 
     <!-- Pop-up modal notification box (normally hidden) -->
     <div class="modal fade" id="fullScreenModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:yellow">
+                <div class="modal-header customModalColorCaution">
                     <h4 class="modal-title">Full-screen Check</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -120,9 +139,9 @@
 
     <!-- Pop-up modal notification box for orientation messages (normally hidden) -->
     <div class="modal fade" id="orientationMessageModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:orange">
+                <div class="modal-header customModalColorCaution">
                     <h4 class="modal-title">Orientation Check!</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -139,10 +158,10 @@
 
 	<!-- Pop-up modal for read-only mode -->
     <div class="modal fade" id="readOnlyModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
-                <div class="modal-header" style="background-color:black">
-                    <h4 class="modal-title" style="color:white">Read-only Mode</h4>
+                <div class="modal-header customModalColorError">
+                    <h4 class="modal-title">Read-only Mode</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -158,7 +177,7 @@
     <script type="text/javascript" src="Scripts/angular.js"></script>
     <script type="text/javascript" src="Scripts/angular-ui-router.js"></script>    
     <script type="text/javascript" src="Scripts/tether.js"></script>
-    <script type="text/javascript" src="Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="Scripts/angular-sanitize.js"></script>
     <script type="text/javascript" src="Scripts/underscore-min.js"></script>
     <!-- Load scripts needed to render the chart -->

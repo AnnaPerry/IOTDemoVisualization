@@ -1,14 +1,16 @@
-﻿<div ng-init="init()" class="el-inherit-size">
-    <table class="table table-striped">
+﻿<div ng-init="init()" class="fullHeight" style="overflow-y:scroll;">
+    <table class="table table-striped customTableStyling">
         <thead class="thead-inverse">
             <tr>
-                <th>Item</th>
+				<th></th>
+				<th>Item</th>
                 <th>Value</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="dataItem in dataArray">
-                <td>{{dataItem.Name}}</td>
+                <td></td>
+				<td>{{dataItem.Name}}</td>
                 <td>{{dataItem.Value.Value}} {{dataItem.Value.UnitsAbbreviation}}</td>
             </tr>
         </tbody>

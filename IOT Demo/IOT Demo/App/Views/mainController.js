@@ -1,6 +1,13 @@
 ﻿'use strict';
-app.controller('mainController', ['$scope', '$interval', 'dataService', function ($scope, $interval, dataService) {
-
+app.controller('mainController', ['$scope', '$stateParams', 'dataService', function ($scope, $stateParams, dataService) {
+    
+	// Get all of the buttons that should only be shown when an asset has selected, and set their correct visibility
+	var buttonElements = document.getElementsByClassName("showChartBarAndTableButtonsClass");
+	for (var i = 0; i < buttonElements.length; i++) {
+		buttonElements[i].style.display = "none";
+		//buttonElements[i].style.display = "block";
+	}
+	
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';
     var afAttributeCategory = 'KPIs and Rollups';
@@ -29,12 +36,11 @@ app.controller('mainController', ['$scope', '$interval', 'dataService', function
 	// On load, get snapshot values...
     $scope.init = function () {
 		// Show the top navbar
-		document.getElementById("mainNavbarContainer").style.display = "block";
+		//document.getElementById("mainNavbarContainer").style.display = "block";
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
 		// Get attributes, then snapshot values, for the top-level element
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
-			// Turn off the loading spinner
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);

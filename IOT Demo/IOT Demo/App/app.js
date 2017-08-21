@@ -14,27 +14,26 @@ var app = angular.module('iotdemoApp', ['ui.router'])
             controller: 'mainController'
         })
         .state({
-            name: 'gettingstarted',
-            url: '/gettingstarted',
-            templateUrl: 'App/Views/gettingStartedView.html',
-			controller: 'gettingStartedController'
-        })
-        .state({
             name: 'assetoverview',
             url: '/assets',
             templateUrl: 'App/Views/assetsView.html',
             controller: 'assetsController'
         })
+		// This is the wrapper state for the chart and bars and table
         .state({
             name: 'chartAndTableWrapperView',
-            url: '/ar/:assetName',
+            url: '/viewAsset/:assetName',
             templateUrl: 'App/Views/chartAndTableWrapperView.html',
             controller: 'chartAndTableWrapperController',
             abstract: true,
             resolve: {
-                assetName: ['$stateParams', function ($stateParams) { return $stateParams.assetName }]
-            }
+                assetName:  ['$stateParams', function ($stateParams) { return $stateParams.assetName }]
+            }/*,
+			params: {
+				assetWebId: null
+			}*/
         })
+		// These are all the child states that appear within the wrapper view
         .state({
             name: 'chartAndTableWrapperView.chart',
             url: '/chart/',
@@ -52,5 +51,12 @@ var app = angular.module('iotdemoApp', ['ui.router'])
             url: '/bars/',
             templateUrl: 'App/Views/barsView.html',
             controller: 'barsController'
+        })
+		// Last, here is the entry for the getting started view
+        .state({
+            name: 'gettingstarted',
+            url: '/gettingstarted',
+            templateUrl: 'App/Views/gettingStartedView.html',
+			controller: 'gettingStartedController'
         })		
 }]);

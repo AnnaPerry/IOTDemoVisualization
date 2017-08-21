@@ -1,19 +1,22 @@
-﻿<div class="container-fluid el-inherit-size" ng-init="init()">
-    <table class="table table-striped">
+﻿<div class="container-fluid fullHeightNoMarginsOrPadding" ng-init="init()">
+    <table class="table table-striped customTableStyling">
         <thead class="thead-inverse">
             <tr>
                 <th></th>
                 <th>Name</th>
                 <th>Description</th>
                 <th></th>
+				<th></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="asset in assetArray">
-                <th scope="row"><span class="fa fa-cube fa-fw customIconStylingClass"></span></th>
-                <td>{{asset.Name}}</td>
+                <th scope="row"></th>
+                <td><span class="fa fa-cube fa-fw customIconStylingClass"></span>{{asset.Name}}</td>
                 <td>{{asset.Description}}</td>
-				<td><a ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
+				<td><a class="customViewDataButtonClass" ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
+				<!--<td><a ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name, assetWebId: asset.WebId})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td> -->
+				<td></td>
             </tr>
         </tbody>
     </table>

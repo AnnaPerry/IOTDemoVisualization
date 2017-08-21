@@ -24,10 +24,10 @@ app.controller('tableController', ['$scope', '$http', '$interval', '$stateParams
 	
     $scope.init = function () {
 		// Show the loading spinner
-		document.getElementById("loadingSpinnerIcon2").className = "fa fa-spinner fa-spin fa-fw";
+		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
 			// Turn off the loading spinner
-			document.getElementById("loadingSpinnerIcon2").className = "fa fa-refresh fa-fw"; 
+			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };

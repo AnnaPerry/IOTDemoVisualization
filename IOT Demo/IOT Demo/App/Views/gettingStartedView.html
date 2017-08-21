@@ -1,6 +1,7 @@
-﻿<div id="myCarousel" class="carousel slide" data-ride="carousel" ng-init="init()" style="background-color:rgb(59,56,56)">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
+﻿
+<div id="myCarousel" class="carousel slide fullHeightNoMarginsOrPadding" data-ride="carousel" ng-init="init()">
+
+    <ol class="carousel-indicators" style="bottom:10px !important;">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -13,78 +14,79 @@
         <li data-target="#myCarousel" data-slide-to="9"></li>
     </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-            <div class="carousel-caption">
+    <div class="carousel-inner fullHeight">
+	
+        <div class="item active customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 This app displays live sensor data from a PI System that is installed on an IoT gateway. The app collects that data from sensors on your phone and writes that data to the gateway PI System.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (1).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (1).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 A pop-up will instruct you to move your device to create interesting motion data. Click “Close” to exit the pop-up begin using the app.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (2).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (2).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 The schematic shows sensors on your device read by this app. The chart shows live values from your device that were written to the gateway.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (3).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (3).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Click the “Table” button on the navbar to see a table list of raw sensor values and calculations from the gateway PI System.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (4).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (4).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Click the “Chart” navbar button to see how sensor values change over time. Rotate and move your device to generate new values for the chart.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (5).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (5).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Click “Asset Dashboard” to see top-level KPIs, or click “View Assets” below to see a list of data sources connected to the gateway.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (6).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (6).png">
         </div>
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Click “Getting Started” to launch this tutorial again. Click the “Asset 1” button to return to Asset 1, or click another asset.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (7).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (7).png">
         </div>
-		<div class="carousel-item">
-            <div class="carousel-caption">
+		<div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Some gateways receive data from WISE 4012 wireless IoT sensor modules. In the Assets View, click “WISE-4012E 1” to see live data from this module.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (7b).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (7b).png">
         </div>	
-        <div class="carousel-item">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Rotate a WISE 4012 input board potentiometers to raise or lower the Analog Input voltage values, or toggle its switches to change the Digital Input values from low to high.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (7c).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (7c).png">
         </div>        	
-        <div class="carousel-item" onclick="window.location.href = '#/ar/Asset%201/bars/';">
-            <div class="carousel-caption">
+        <div class="item customCarouselItemClass" onclick="window.location.href = '#/viewAsset/Asset%201/bars/';">
+            <div class="carousel-caption customCarouselCaptionClass">
                 Click to get started using this web app! You’ll next see a live visualization of sensor data from your phone.
             </div>
-            <img class="img-fluid" src="../../Images/Slide (8).png">
+            <img class="customCarouselImageSize" src="../../Images/Slide (8).png">
         </div>
     </div>
 
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="" role="button" data-slide="prev" onclick="$('#myCarousel').carousel('prev');">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="" role="button" data-slide="next" onclick="$('#myCarousel').carousel('next');">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-
+	<!-- Icons courtesy of http://glyphicons.com/ -->
+  <a class="left carousel-control" href="" data-slide="prev" onclick="$('#myCarousel').carousel('prev');">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="" data-slide="next" onclick="$('#myCarousel').carousel('next');">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  
+ 
 </div>
