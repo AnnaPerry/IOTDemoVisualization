@@ -204,8 +204,14 @@
 		} else {
 			// In this case, you're in landscape mode--so you're alright!
 		}	
-		// Show the full screen modal message!
-		$("#fullScreenModal").modal();		
+		// Show the full screen modal message!  Note: only do this if the device is not an iOS device!
+		var isDeviceUsingiOS = false;
+		isDeviceUsingiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+		
+		if (isDeviceUsingiOS == false) {
+			$("#fullScreenModal").modal();	
+		}		
+		
 		// Allow making the window fullscreen!
 		// See https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
 		function turnOnFullScreen() {
