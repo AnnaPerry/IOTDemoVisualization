@@ -51,7 +51,8 @@ angular.module('iotdemoApp')
     var ambientLightLevel;                          // in lux
 
 	// Assume each sensor is supported, but if one isn't, log that!
-	var incompatibleSensors = "";
+	var unsupportedBrowserEvents = "";
+	var missingSensorTypes = "";
 		
     // Actually writes data for a certain group of attributes
     function sendCurrentReadings(attributes) {
@@ -70,6 +71,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						missingSensorTypes += ", x-acceleration";
                     }
                     break;
                 }
@@ -78,6 +80,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						missingSensorTypes += ", y-acceleration";
                     }
                     break;
                 }
@@ -86,6 +89,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 10;
+						missingSensorTypes += ", z-acceleration";
                     }
                     break;
                 }
@@ -94,6 +98,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						missingSensorTypes += ", alpha-orientation";
                     }
                     break;
                 }
@@ -102,6 +107,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						missingSensorTypes += ", beta-orientation";
                     }
                     break;
                 }
@@ -110,6 +116,7 @@ angular.module('iotdemoApp')
 					// If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (value == null) {
                         value = Math.random() * 90;
+						missingSensorTypes += ", gamma-orientation";
                     }
                     break;
                 }
@@ -118,6 +125,7 @@ angular.module('iotdemoApp')
                     // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceLightEvent || value == null) {
                         value = Math.random() * 20;
+						missingSensorTypes += ", light";
                     }
                     break;
                 }
@@ -126,6 +134,7 @@ angular.module('iotdemoApp')
                     // If this sensor value isn't defined, generate a simulated value, and log this incompatibility
                     if (!window.DeviceProximityEvent || value == null) {
                         value = Math.random() * 10;
+						missingSensorTypes += ", proximity";
                     }
                     break;
                 }
@@ -147,8 +156,8 @@ angular.module('iotdemoApp')
         $http.post(url, JSON.stringify(dataObj), {'Content-Type': 'application/json', 'Timeout': WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000});
 
 		// Check if an incompatibility was detected; if so, trigger the alert!
-		if (incompatibleSensors !== "") {
-			displayCompatibilityAlert(incompatibleSensors);
+		if ((unsupportedBrowserEvents !== "") || (missingSensorTypes != "")) {
+			displayCompatibilityAlert();
 		}
     };
 
@@ -176,7 +185,7 @@ angular.module('iotdemoApp')
             }, false);
             logCompatibility("acceleration", false);
         } else {
-            incompatibleSensors += ", x-, y-, and z-acceleration";
+            unsupportedBrowserEvents += ", x-, y-, and z-acceleration";
 			logCompatibility("acceleration", false);
         }
 
@@ -191,7 +200,7 @@ angular.module('iotdemoApp')
             }, false);
             logCompatibility("orientation", true);
         } else {
-            incompatibleSensors += ", alpha-, beta-, and gamma-orientation";
+            unsupportedBrowserEvents += ", alpha-, beta-, and gamma-orientation";
 			logCompatibility("orientation", false);
         }
 
@@ -204,7 +213,7 @@ angular.module('iotdemoApp')
             });
             logCompatibility("proximity", true);
         } else {
-			incompatibleSensors += ", proximity";			
+			unsupportedBrowserEvents += ", proximity";			
             logCompatibility("proximity", false);
         }
 
@@ -217,7 +226,7 @@ angular.module('iotdemoApp')
             });
             logCompatibility("light", true);
         } else {
-			incompatibleSensors += ", light";			
+			unsupportedBrowserEvents += ", light";			
             logCompatibility("light", false);
         }
     } else {
@@ -234,13 +243,24 @@ angular.module('iotdemoApp')
 	}
 	
 	// Helper function that toggles the compatibility alert if a sensor isn't supported
-	function displayCompatibilityAlert(incompatibleSensors) {
+	function displayCompatibilityAlert() {
         // Fire a notification if it hasn't been done yet
         if (!modalTriggeredAlready && SEND_DATA_TO_PI_SYSTEM) {
             modalTriggeredAlready = true;
-			var outputHTML = "Your device and/or browser does not support reading the following sensor types: ";
-			// Trim the first comma
-			outputHTML += (incompatibleSensors.substr(2));
+			var outputHTML = "";
+			
+			if (unsupportedBrowserEvents != "") {
+				outputHTML += "Your <b>web browser</b> is unable to read data for these sensor types: ";
+				// Trim the first comma, then add the unsupported event listeners
+				outputHTML += (unsupportedBrowserEvents.substr(2));
+				outputHTML += "<br/>"
+			}
+			if (missingSensorTypes != "") {
+				outputHTML += "Your <b>device</b> is unable to generate data for these sensor types: ";
+				// Trim the first comma, then add the unsupported sensor types
+				outputHTML += (missingSensorTypes.substr(2));
+				outputHTML += "<br/>"
+			}
 			outputHTML += "<br/>Simulated sensor values will be generated for these sensors to mimic a compatible device.";
 			document.getElementById("compatibilityCheckModalBodyText").innerHTML = outputHTML;
             $("#compatibilityCheckModal").modal();
@@ -285,7 +305,7 @@ angular.module('iotdemoApp')
 		//document.getElementById("loadingSpinner").style.visibility = "hidden"; 
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 		// Set the modal body text to the error
-		console.log(response);
+		//console.log(response);
 		var newModalText = "Error when " + attemptedTask + ".<br/>";
 		if (response.data && response.data.Errors) {
 			newModalText += "Error code " + response.status + ": " + response.data.Errors[0] + "<br/>";
