@@ -10,7 +10,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 	
     //var afTemplate = 'Phone Sensors Template';
 	var afTemplate = 'Asset Template';
-    var attributeCategory = '*';
+    var afAttributeCategory = 'Phone-based Data';
+	var includeAttributeNameInQueryResults = true;
     var stop;	
 	var attributesToWriteTo;
 	
@@ -75,7 +76,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
 				// Get the attributes that will be written to; pass along the fourth arg as "true" in order to get the attribute names as well
-				dataService.getElementAttributes(afTemplate, $stateParams.assetName, 'Phone-based Data', true).then(function (attributes) {					
+				dataService.getElementAttributes(afTemplate, $stateParams.assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {					
 					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
 			} else {

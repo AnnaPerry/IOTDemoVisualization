@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular.module('iotdemoApp')
-.service('dataService', ['$http', '$q', '$interval', '$window', function ($http, $q, $interval, $window) {
+.service('dataService', ['$http', '$q', '$window', function ($http, $q, $window) {
 
     // Define a timeout for web requests
     var WEB_REQUEST_MAX_TIMEOUT_SECONDS = 20;
@@ -302,7 +302,6 @@ angular.module('iotdemoApp')
 	// Fired when an http request returns an error!
 	function respondToHTTPRequestError(response, attemptedTask) {
 		// Hide the loading spinner
-		//document.getElementById("loadingSpinner").style.visibility = "hidden"; 
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 		// Set the modal body text to the error
 		//console.log(response);
@@ -326,20 +325,26 @@ angular.module('iotdemoApp')
 	
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
-		var selectedFieldsParameters = "&selectedFields=WebId";
-        var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParameters;
-        return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-            return response.data.WebId;
-        }, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
+		if (_afdbwebid) {
+			console.log("AF DB webId already found; passing along stored value and continuing...");
+			return _afdbwebid;
+		} else {
+			var selectedFieldsParameters = "&selectedFields=WebId";
+			var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParameters;
+			return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+				_afdbwebid = response.data.WebId;
+				return response.data.WebId;
+			}, function (response) {respondToHTTPRequestError(response, "first getting the target AF DB web ID")});
+		}
     };
 
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
     // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
-    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName) {
+    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
 		// By default, return just the Web Id
 		var selectedFieldsParameters = '&selectedFields=Items.WebId';
 		// Return the attribute name too, if desired
-		if (includeAttributeName) {
+		if (includeAttributeNameInQueryResults) {
 			selectedFieldsParameters += ';Items.Name';
 		}
 		// Start with the base query URL, which always includes the AF DB web ID and the element name
@@ -374,8 +379,11 @@ angular.module('iotdemoApp')
 	// Variable to for tracking if a page has loaded before
 	var isFirstTimeThisPageHasLoadedFlag = true;
 	
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	
     // Functions and objects accessible by the service
-    return {
+	var methodsExposedByThisService = {
         enablePhoneBasedDataCollectionFeatures: function () {
             return ( SEND_DATA_TO_PI_SYSTEM );
         },
@@ -387,39 +395,41 @@ angular.module('iotdemoApp')
 			} else {
 				return false;
 			}				
-        },
+        },	
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
-			var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
-            if (_afdbwebid) {
-                var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
-                return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
+			if (_afdbwebid) {
+				console.log("Using stored AF DB webID; now querying for elements...");
+				var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
+				var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
+				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 					return response.data.Items;
-					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
-            }
-            else {
+				}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
+			} else {
                 // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
-                return getafdb().then(function (webid) {
-                    _afdbwebid = webid;
-                    var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
-                    return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
+				return getafdb().then(function (webid) {
+					_afdbwebid = webid;
+					var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
+					var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
+					return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
-                });
-            }
+				});
+			}
         },
         // Get an array of element attributes
-        getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeName) {
+        getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
             if (_afdbwebid) {
-                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName);
+				console.log("Using stored AF DB webID; now querying for element attributes for element named '" + elementNameFilter + "'...");
+                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
                 return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                     return response.data.Items;
                 }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
             } else {
                 // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
-                return getafdb().then(function (webid) {
-                    _afdbwebid = webid;
-                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeName);
+				return getafdb().then(function (webid) {
+					_afdbwebid = webid;
+                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
                     return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
                         return response.data.Items;
                     }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
@@ -450,4 +460,5 @@ angular.module('iotdemoApp')
             }
         }
    };
+   return methodsExposedByThisService;
 }]);

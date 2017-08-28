@@ -1,9 +1,10 @@
 ﻿'use strict';
-app.controller('barsController', ['$scope', '$http', '$interval', '$stateParams', 'dataService', function ($scope, $http, $interval,$stateParams, dataService) {
+app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataService', function ($scope, $http,$stateParams, dataService) {
 
     var afTemplate = 'Asset Template';
     var assetName = $stateParams.assetName;
     var afAttributeCategory = 'Timeseries';
+	var includeAttributeNameInQueryResults = false;
 	var stop;
 	
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
@@ -30,7 +31,7 @@ app.controller('barsController', ['$scope', '$http', '$interval', '$stateParams'
     $scope.init = function () {
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
-         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {	
+         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {	
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			// Show the "shake me!" modal for phone-based assets!

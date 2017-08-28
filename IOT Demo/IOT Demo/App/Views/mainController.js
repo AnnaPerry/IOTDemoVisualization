@@ -11,6 +11,7 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
     var afTemplate = 'Top-Level Assets Template';
     var assetName = 'Assets';
     var afAttributeCategory = 'KPIs and Rollups';
+	var includeAttributeNameInQueryResults = false;
     var stop;	
 	
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
@@ -35,16 +36,14 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
 	
 	// On load, get snapshot values...
     $scope.init = function () {
-		// Show the top navbar
-		//document.getElementById("mainNavbarContainer").style.display = "block";
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
 		// Get attributes, then snapshot values, for the top-level element
-        dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory).then(function (attributes) {
+		dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);
-        });
+		});
     };
 	
 	// Repetitive function!  Contains behavior for getting data and acting on it
