@@ -66,6 +66,7 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
         "color": "white",
 		"backgroundAlpha": 0,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
+		/*
 		"titles": [
 			{
 				"text": assetName,
@@ -73,6 +74,7 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 				//"bold": false
 			}
 		],
+		*/
         "graphs": [],
 		"valueAxes": [
 			{

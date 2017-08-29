@@ -29,6 +29,8 @@ app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataServi
         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
+			// Allow the table to use the asset name as its header
+			$scope.currentAssetName = assetName;
 			performRepetitiveActionsForTheseAFAttributes(attributes);
         });
     };
@@ -48,5 +50,5 @@ app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataServi
 			performRepetitiveActionsForTheseAFAttributes(attributes)
 		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
 	}
-	
+
 }]);
