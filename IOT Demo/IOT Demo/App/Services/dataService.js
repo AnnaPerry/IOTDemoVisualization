@@ -38,6 +38,7 @@ angular.module('iotdemoApp')
 	var _cachedElementAttributes_snapshotCategory;
 	var _cachedElementAttributes_TopLevelKPISAsset;
 	var _cachedElementNameFilter;
+	var _cachedElementTemplate;
 
     // Constant for turning on or off sending data to the PI System
     var SEND_DATA_TO_PI_SYSTEM = true;
@@ -448,7 +449,7 @@ angular.module('iotdemoApp')
 				return deferred.promise;
 
 			// Check if the element is the same! Then see if the attributes have been saved and if so, return the corresponding cached attributes
-			} else if ((elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_timeSeriesCaterory != null) && (attributeCategory == 'Timeseries')) {
+			} else if ((elementTemplate == _cachedElementTemplate) && (elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_timeSeriesCaterory != null) && (attributeCategory == 'Timeseries')) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
@@ -456,7 +457,7 @@ angular.module('iotdemoApp')
 				return deferred.promise;	
 			
 			// Check if the element is the same! Then see if the attributes have been saved and if so, return the corresponding cached attributes
-			} else if ((elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_snapshotCategory != null) && (attributeCategory == 'Snapshot') ) {
+			} else if ((elementTemplate == _cachedElementTemplate) && (elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_snapshotCategory != null) && (attributeCategory == 'Snapshot') ) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
@@ -475,15 +476,17 @@ angular.module('iotdemoApp')
 							console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 							_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
 						} else {
-							// Save the name of this element!
-							_cachedElementNameFilter = elementNameFilter;
 							// Depending on if it's a time series or snapshot query, save that in the appropriate global var
 							if (attributeCategory == 'Timeseries') {
 								console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+								_cachedElementNameFilter = elementNameFilter;
 								_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
+								_cachedElementTemplate = elementTemplate;
 							} else if (attributeCategory == 'Snapshot') {
 								console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+								_cachedElementNameFilter = elementNameFilter;
 								_cachedElementAttributes_snapshotCategory = response.data.Items;
+								_cachedElementTemplate = elementTemplate;
 							}
 						}
 						return response.data.Items;
@@ -500,15 +503,17 @@ angular.module('iotdemoApp')
 								console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 								_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
 							} else {
-								// Save the name of this element!
-								_cachedElementNameFilter = elementNameFilter;
 								// Depending on if it's a time series or snapshot query, save that in the appropriate global var
 								if (attributeCategory == 'Timeseries') {
 									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+									_cachedElementNameFilter = elementNameFilter;
 									_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
+									_cachedElementTemplate = elementTemplate;
 								} else if (attributeCategory == 'Snapshot') {
 									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+									_cachedElementNameFilter = elementNameFilter;
 									_cachedElementAttributes_snapshotCategory = response.data.Items;
+									_cachedElementTemplate = elementTemplate;
 								}
 							}
 							return response.data.Items;
