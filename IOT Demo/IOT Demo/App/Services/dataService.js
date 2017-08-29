@@ -31,6 +31,13 @@ angular.module('iotdemoApp')
     var _startTime = '*-2m';
     var _endTime = '*';
 	var _interval = '1s';
+	
+	// Cache variables used to remember the results of recent queries
+	var _cachedElements;
+	var _cachedElementAttributes;
+	var _cachedElementNameFilter;
+	var _cachedAttributeCategory;
+	var _cachedIncludeAttributeNameInQueryResults;
 
     // Constant for turning on or off sending data to the PI System
     var SEND_DATA_TO_PI_SYSTEM = true;
@@ -326,7 +333,7 @@ angular.module('iotdemoApp')
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
 		if (_afdbwebid) {
-			console.log("AF DB webId already found; passing along stored value and continuing...");
+			console.log("AF DB webId already cached; passing along stored value and continuing...");
 			return _afdbwebid;
 		} else {
 			var selectedFieldsParameters = "&selectedFields=WebId";
@@ -398,43 +405,75 @@ angular.module('iotdemoApp')
         },	
         // Get an array of elements within an AF database that match a particular element template
         getElements: function (elementTemplate) {
-			if (_afdbwebid) {
-				console.log("Using stored AF DB webID; now querying for elements...");
-				var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
-				var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
-				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
-					return response.data.Items;
-				}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
-			} else {
-                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
-				return getafdb().then(function (webid) {
-					_afdbwebid = webid;
+			// If the elements have already been found, return the cached list!
+			if (_cachedElements) {
+				console.log("Elements already cached; passing along stored elements and continuing...");
+				// Convert the cached variable into a promise, and return it
+				var deferred = $q.defer();
+				deferred.resolve(_cachedElements);
+				return deferred.promise;
+			} else { 
+				if (_afdbwebid) {
+					console.log("Using cached AF DB webID; now querying for elements...");
 					var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
 					var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
 					return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
+						// Save the element list!
+						_cachedElements = response.data.Items;
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
-				});
+				} else {
+					// If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
+					return getafdb().then(function (webid) {
+						_afdbwebid = webid;
+						var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
+						var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
+						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
+							// Save the element list!
+							_cachedElements = response.data.Items;
+							return response.data.Items;
+						}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
+					});
+				}
 			}
         },
         // Get an array of element attributes
         getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
-            if (_afdbwebid) {
-				console.log("Using stored AF DB webID; now querying for element attributes for element named '" + elementNameFilter + "'...");
-                var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
-                return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-                    return response.data.Items;
-                }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
-            } else {
-                // If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
-				return getafdb().then(function (webid) {
-					_afdbwebid = webid;
-                    var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
-                    return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-                        return response.data.Items;
-                    }, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
-                });
-            }
+			// First, check if the attributes list already exists and the name filters match AND the attribute name isn't needed
+			if (_cachedElementAttributes && (elementNameFilter == _cachedElementNameFilter) && (attributeCategory == _cachedAttributeCategory) && (includeAttributeNameInQueryResults == _cachedIncludeAttributeNameInQueryResults)) {
+				console.log("Attributes for element '" + _cachedElementNameFilter + "' already cached; passing along stored attributes and continuing...");
+				// Convert the cached variable into a promise, and return it
+				var deferred = $q.defer();
+				deferred.resolve(_cachedElementAttributes);
+				return deferred.promise;			
+			} else {
+				if (_afdbwebid) {
+					console.log("Using cached AF DB webID; now querying for element attributes for element named '" + elementNameFilter + "'...");
+					var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
+					return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+						// Save the attributes and element name filter for future reference!
+						_cachedElementAttributes = response.data.Items;
+						_cachedElementNameFilter = elementNameFilter;
+						_cachedAttributeCategory = attributeCategory;
+						_cachedIncludeAttributeNameInQueryResults = includeAttributeNameInQueryResults;
+						return response.data.Items;
+					}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
+				} else {
+					// If the AF database webId isn't available yet, ask for the web ID of the database, and next launch the query
+					return getafdb().then(function (webid) {
+						_afdbwebid = webid;
+						var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
+						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+							// Save the attributes and element name filter for future reference!
+							_cachedElementAttributes = response.data.Items;
+							_cachedElementNameFilter = elementNameFilter;
+							_cachedAttributeCategory = attributeCategory;
+							_cachedIncludeAttributeNameInQueryResults = includeAttributeNameInQueryResults;
+							return response.data.Items;
+						}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
+					});
+				}
+			}
         },
         // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {

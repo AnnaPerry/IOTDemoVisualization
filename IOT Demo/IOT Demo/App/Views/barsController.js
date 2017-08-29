@@ -69,7 +69,14 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
         "fontSize": 13,
         "dataProvider": [],
         "color": "white",
-		"backgroundAlpha": 0,		
+		"backgroundAlpha": 0,
+		"titles": [
+			{
+				"text": assetName,
+				"size": 11,
+				//"bold": false
+			}
+		],
         "valueAxes": [{
             "id": "a1",
             "axisColor": "white",
@@ -85,7 +92,7 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
             }],
         "graphs": [{
             "id": "g1",
-			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
+			"balloonText": assetName + "\n" + "[[category]]\n[[valueFormatted]][[units]]",
 			"labelText": "[[valueFormatted]]\n[[units]]",
 			"fillAlphas": 1,
 			"lineAlpha": 0,
@@ -97,7 +104,7 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
             "valueAxis": "a1"
         }, {
 			"id": "g2",
-			"balloonText": "[[category]]\n[[valueFormatted]][[units]]",
+			"balloonText": assetName + "\n" + "[[category]]\n[[valueFormatted]][[units]]",
 			"labelText": "[[valueFormatted]]\n[[units]]",
 			"fillAlphas": 1,
 			"lineAlpha": 0,

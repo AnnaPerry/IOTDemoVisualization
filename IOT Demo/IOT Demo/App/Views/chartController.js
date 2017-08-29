@@ -66,6 +66,13 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
         "color": "white",
 		"backgroundAlpha": 0,
         "dataDateFormat": "YYYY-MM-DD HH:NN:SS",
+		"titles": [
+			{
+				"text": assetName,
+				"size": 11,
+				//"bold": false
+			}
+		],
         "graphs": [],
 		"valueAxes": [
 			{
@@ -143,7 +150,7 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 
             // Create a new graph
             var graph = {};
-            graph['balloonText'] = attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
+            graph['balloonText'] = assetName + "\n" + attribute.Name + ": [[" + attribute.Name + " Value]] [[" + attribute.Name + " UnitsAbbreviation]]";
             graph['bullet'] = "round";
             graph['bulletSize'] = 3;
             graph['bulletAlpha'] = 0;
