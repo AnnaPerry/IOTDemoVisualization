@@ -35,6 +35,9 @@ angular.module('iotdemoApp')
 	// Cache variables used to remember the results of recent queries
 	var _cachedElements;
 	var _cachedElementAttributes;
+	var _cachedElementAttributes_timeSeriesCaterory;
+	var _cachedElementAttributes_snapshotCategory;
+	var _cachedElementAttributes_TopLevelKPISAsset;
 	var _cachedElementNameFilter;
 	var _cachedAttributeCategory;
 	var _cachedIncludeAttributeNameInQueryResults;
@@ -439,12 +442,26 @@ angular.module('iotdemoApp')
         },
         // Get an array of element attributes
         getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
-			// First, check if the attributes list already exists and the name filters match AND the attribute name isn't needed
-			if (_cachedElementAttributes && (elementNameFilter == _cachedElementNameFilter) && (attributeCategory == _cachedAttributeCategory) && (includeAttributeNameInQueryResults == _cachedIncludeAttributeNameInQueryResults)) {
-				console.log("Attributes for element '" + _cachedElementNameFilter + "' already cached; passing along stored attributes and continuing...");
+			// Check if this a request for attributes for the top-level element, and if that element has already been queried
+			if (_cachedElementAttributes_TopLevelKPISAsset && (attributeCategory == 'KPIs and Rollups')) {
+				console.log("Attributes for element '" + elementNameFilter + "' already cached; passing along stored attributes and continuing...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
-				deferred.resolve(_cachedElementAttributes);
+				deferred.resolve(_cachedElementAttributes_TopLevelKPISAsset);
+				return deferred.promise;
+			// Check if the attributes list already exists and the attribute category matches...
+			} else if (_cachedElementAttributes_timeSeriesCaterory && attributeCategory == 'Timeseries') {
+				console.log("Attributes for element '" + elementNameFilter + "' already cached; passing along stored attributes and continuing...");
+				// Convert the cached variable into a promise, and return it
+				var deferred = $q.defer();
+				deferred.resolve(_cachedElementAttributes_timeSeriesCaterory);
+				return deferred.promise;	
+			// Check if the attributes list already exists and the attribute category matches...
+			} else if (_cachedElementAttributes_snapshotCategory && attributeCategory == 'Snapshot') {
+				console.log("Attributes for element '" + elementNameFilter + "' already cached; passing along stored attributes and continuing...");
+				// Convert the cached variable into a promise, and return it
+				var deferred = $q.defer();
+				deferred.resolve(_cachedElementAttributes_snapshotCategory);
 				return deferred.promise;			
 			} else {
 				if (_afdbwebid) {
@@ -452,10 +469,15 @@ angular.module('iotdemoApp')
 					var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
 					return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
 						// Save the attributes and element name filter for future reference!
-						_cachedElementAttributes = response.data.Items;
-						_cachedElementNameFilter = elementNameFilter;
-						_cachedAttributeCategory = attributeCategory;
-						_cachedIncludeAttributeNameInQueryResults = includeAttributeNameInQueryResults;
+						if (attributeCategory == 'KPIs and Rollups') {
+							_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
+						} 
+						if (attributeCategory == 'Timeseries') {
+							_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
+						}
+						if (attributeCategory == 'Snapshot') {
+							_cachedElementAttributes_snapshotCategory = response.data.Items;
+						}
 						return response.data.Items;
 					}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
 				} else {
@@ -465,10 +487,15 @@ angular.module('iotdemoApp')
 						var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
 						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
 							// Save the attributes and element name filter for future reference!
-							_cachedElementAttributes = response.data.Items;
-							_cachedElementNameFilter = elementNameFilter;
-							_cachedAttributeCategory = attributeCategory;
-							_cachedIncludeAttributeNameInQueryResults = includeAttributeNameInQueryResults;
+							if (attributeCategory == 'KPIs and Rollups') {
+								_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
+							} 
+							if (attributeCategory == 'Timeseries' && includeAttributeNameInQueryResults == true) {
+								_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
+							}
+							if (attributeCategory == 'Snapshot' && includeAttributeNameInQueryResults == true) {
+								_cachedElementAttributes_snapshotCategory = response.data.Items;
+							}
 							return response.data.Items;
 						}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
 					});
