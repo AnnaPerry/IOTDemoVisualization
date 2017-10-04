@@ -427,13 +427,19 @@ angular.module('iotdemoApp')
 					// If the AF database webId isn't availalbe yet, ask for the web ID of the database, and next launch the query
 					return getafdb().then(function (webid) {
 						_afdbwebid = webid;
-						var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
-						var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
-						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
-							// Save the element list!
-							_cachedElements = response.data.Items;
-							return response.data.Items;
-						}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
+						if (_afdbwebid) {
+							var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
+							var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
+							return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) { 
+								// Save the element list!
+								_cachedElements = response.data.Items;
+								return response.data.Items;
+							}, function (response) {respondToHTTPRequestError(response, "getting elements that match the desired template")});
+						} else {
+							console.log("Unable to get elements; AFDB WebID is null!!");
+							//respondToHTTPRequestError("", "looking up elements: AF DBV WebID is null");
+							return [];
+						}
 					});
 				}
 			}
@@ -493,50 +499,70 @@ angular.module('iotdemoApp')
 					}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
 				} else {
 					// If the AF database webId isn't available yet, ask for the web ID of the database, and next launch the query
+					console.log("AF DB WebID has not yet been found; now asking for AF DB WebId...");
 					return getafdb().then(function (webid) {
 						_afdbwebid = webid;
-						var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
-						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-							//console.log(attributeCategory, elementNameFilter, includeAttributeNameInQueryResults);
-							// Save the attributes and element name filter for future reference!
-							if (attributeCategory == 'KPIs and Rollups') {
-								console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
-								_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
-							} else {
-								// Depending on if it's a time series or snapshot query, save that in the appropriate global var
-								if (attributeCategory == 'Timeseries') {
+						console.log("AF DB WebID found: " + _afdbwebid);
+						if (_afdbwebid) {
+							var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
+							return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+								//console.log(attributeCategory, elementNameFilter, includeAttributeNameInQueryResults);
+								// Save the attributes and element name filter for future reference!
+								if (attributeCategory == 'KPIs and Rollups') {
 									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
-									_cachedElementNameFilter = elementNameFilter;
-									_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
-									_cachedElementTemplate = elementTemplate;
-								} else if (attributeCategory == 'Snapshot') {
-									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
-									_cachedElementNameFilter = elementNameFilter;
-									_cachedElementAttributes_snapshotCategory = response.data.Items;
-									_cachedElementTemplate = elementTemplate;
+									_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
+								} else {
+									// Depending on if it's a time series or snapshot query, save that in the appropriate global var
+									if (attributeCategory == 'Timeseries') {
+										console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+										_cachedElementNameFilter = elementNameFilter;
+										_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
+										_cachedElementTemplate = elementTemplate;
+									} else if (attributeCategory == 'Snapshot') {
+										console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
+										_cachedElementNameFilter = elementNameFilter;
+										_cachedElementAttributes_snapshotCategory = response.data.Items;
+										_cachedElementTemplate = elementTemplate;
+									}
 								}
-							}
-							return response.data.Items;
-						}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
+								return response.data.Items;
+							}, function (response) {respondToHTTPRequestError(response, "getting element attribute web IDs")});
+						} else {
+							console.log("Error looking up Web Id for AF DB!");
+							//respondToHTTPRequestError("", "looking up Web Id for AF DB!");
+							return [];
+						}
 					});
 				}
 			}
         },
         // Return an array of snapshot values, based on an array of attributes to query
         getSnapshots: function (attributes) {
-			var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParameters + '&', attributes);
-            return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-                return response;
-            }, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});               
+			if (attributes) {
+				var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
+				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParameters + '&', attributes);
+				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+					return response;
+				}, function (response) {respondToHTTPRequestError(response, "requesting snapshot data")});  
+			} else {
+				console.log("Error getting snapshots: attribute webIDs are null!");
+				//respondToHTTPRequestError("", "getting snapshot values: attribute webIDs are null");
+				return [];
+			}			
         },
         // Return an array of arrays of interpolated values for a certain array of attributes
         getInterpolatedValues : function (attributes) {
-			var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
-            var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
-            return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
-                return response;
-            }, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});       
+			if (attributes) {
+				var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
+				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
+				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(function (response) {
+					return response;
+				}, function (response) {respondToHTTPRequestError(response, "requesting interpolated data")});   
+			} else {
+				console.log("Error getting interpolated values: attribute webIDs are null!");
+				//respondToHTTPRequestError("", "getting interpolated values: attribute webIDs are null");
+				return [];
+			}				
         },		
 		// If the target attributes are already known, directly send data to those attributes!
 		sendDatatoPIAttributes: function (attributes) {
