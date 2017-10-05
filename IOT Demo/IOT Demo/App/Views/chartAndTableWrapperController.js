@@ -64,7 +64,11 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 			if ( ($stateParams.assetName).indexOf("Gas") != -1) {
 				imageSource = 'Phidget2';
 			}
-		}		
+		}
+		// Otherwise, just use the asset name!
+		else {
+			imageSource = $stateParams.assetName;
+		}
 		return imageSource;
 	};
 
