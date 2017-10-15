@@ -43,3 +43,7 @@ Install this next; you'll need a license file to complete the installation (cont
 4. PI System Management Tools (version 2017 or the most recent version). 
 
 After these pieces of software have been successfully installed, run the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator, which will download the rest of the needed files for this demonstration and properly configure the host PC.
+
+## For technical support related to this demonstration, email edgegatewaysupport@osisoft.com.
+
+After the project has been downloaded for the first time, to update the gateway demo code to the most recent version, copy the files Update-FilesFromGitHub.bat and Update-FilesFromGitHub.ps1 from C:\inetpub\wwwroot\Setup on your gateway to your user desktop folder on the gateway, then run the desktop copy of Update-FilesFromGitHub.bat as an administrator to download and install the most recent version of the demo code from GitHub.
