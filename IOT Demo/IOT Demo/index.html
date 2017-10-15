@@ -43,9 +43,22 @@
 				</li>	
 			</ul>
 			<ul class="nav navbar-nav navbar-right customRightNavbarClass">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" style="color:black !important;background-color:white;">
+						<li><a style="color:black !important" href="/#/gettingstarted">Open Getting Started Tutorial</a></li>
+						<li><a style="color:black !important" href="#" onclick="turnOnFullScreen()">Enable Full-screen (non-iOS only)</a></li>
+						<li><a style="color:black !important" href="https://github.com/AnnaPerry/IOTDemoVisualization">View on GitHub</a></li>
+						<li><a style="color:black !important" href="#" onclick="$('#supportModal').modal();">Get Support</a></li>
+					</ul>
+				</li>
+				<!--
 				<li>
 					<a class="customNavBarButtonPaddingClass" href="/#/gettingstarted"><span class="fa fa-question-circle-o fa-fw customIconStylingClass"></span>Getting Started</a>
 				</li>
+				-->
 			</ul>
 		</div>
 	</nav>
@@ -112,7 +125,7 @@
         </div>
     </div>
 
-    <!-- Pop-up modal notification box (normally hidden) -->
+    <!-- Pop-up modal notification box (normally hidden) for full-screen mode-->
     <div class="modal fade" id="fullScreenModal" role="dialog">
         <div class="modal-dialog customModalDialogStyling">
             <div class="modal-content">
@@ -168,6 +181,24 @@
         </div>
     </div>	
 	
+	<!-- Pop-up modal for getting support -->
+    <div class="modal fade" id="supportModal" role="dialog">
+        <div class="modal-dialog customModalDialogStyling">
+            <div class="modal-content">
+                <div class="modal-header customModalColorDebug">
+                    <h4 class="modal-title">Get Support</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+					For technical support related to this demonstration, email <a href='mailto:edgegatewaysupport@osisoft.com?Subject=Requesting support for an edge gateway demonstration'>edgegatewaysupport@osisoft.com</a>.
+                </div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>	
+	
     <!-- Load general-purpose bootstrap and other helper libraries -->
     <script type="text/javascript" src="Scripts/angular.min.js"></script>
     <script type="text/javascript" src="Scripts/angular-ui-router.min.js"></script>    
@@ -199,13 +230,17 @@
 		} else {
 			// In this case, you're in landscape mode--so you're alright!
 		}	
+		
+		// Uncomment the below section if you want the app to always prompt for full-screen mode
+		/*
 		// Show the full screen modal message!  Note: only do this if the device is not an iOS device!
 		var isDeviceUsingiOS = false;
 		isDeviceUsingiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 		
 		if (isDeviceUsingiOS == false) {
 			$("#fullScreenModal").modal();	
-		}		
+		}
+		*/		
 		
 		// Allow making the window fullscreen!
 		// See https://developers.google.com/web/fundamentals/native-hardware/fullscreen/
