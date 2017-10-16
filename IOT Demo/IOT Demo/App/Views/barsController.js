@@ -101,7 +101,8 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
 			"colorField": "color",
             "fontSize": 12,
             "showAllValueLabels": true,
-            "valueAxis": "a1"
+            "valueAxis": "a1",
+			"columnWidth":0.4
         }, {
 			"id": "g2",
 			"balloonText": assetName + "\n" + "[[category]]\n[[valueFormatted]][[units]]",
@@ -113,7 +114,9 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
 			"colorField": "color",
 			"fontSize": 12,
 			"showAllValueLabels": true,
-			"valueAxis": "a2"
+			"valueAxis": "a2",
+			"clustered":false, // Centers bars over labels
+			"columnWidth":0.4 // Prevents middle axis from overlapping bars
         }
         ],
         "categoryField": "name",
@@ -210,6 +213,7 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
 								
 		// Update the second value axis position!
 		if (chart.categoryAxis.allLabels && (useSecondAxisForNonSpinData == true)) {	
+			// Move the second axis inwards in between the spin and light data items
 			chart.valueAxes[1].offset = ( (2/3)*(chart.categoryAxis.allLabels[3].x - chart.categoryAxis.allLabels[2].x) + chart.categoryAxis.allLabels[2].x )  * -1; //-100;
 		}
 		
