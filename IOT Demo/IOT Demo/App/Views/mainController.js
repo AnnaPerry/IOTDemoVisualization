@@ -93,10 +93,6 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
         crazyGaugeChart.axes[0].bands[5].balloonText = crazyGaugeChart.allLabels[2].text;
         crazyGaugeChart.axes[0].bands[7].balloonText = crazyGaugeChart.allLabels[3].text;
 
-        // Update the chart div height
-        var newHeightString = ($("#crazyGaugeDiv").parent().innerHeight() - 2) + "px";
-        $("#crazyGaugeDiv").height(newHeightString);
-
         // Refresh the chart
         crazyGaugeChart.validateNow();
     };
@@ -196,10 +192,4 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
             "align": "right"
         }]
     };
-	// Add a function to resize the chart if the window size changes!
-	window.addEventListener("resize", function() {
-		if (crazyGaugeChart) {
-			crazyGaugeChart.validateNow();
-		}
-	});
 }]);
