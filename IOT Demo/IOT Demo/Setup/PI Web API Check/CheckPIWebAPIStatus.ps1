@@ -3,22 +3,25 @@ $PIWebAPIService = Get-Service -Name piwebapi
 
 # Restart if stopped!
 if ($PIWebAPIService.Status -eq "Stopped") {
-    write-host "PI Web API stopped! Starting now..."
+
+    Write-EventLog -LogName "Application" -Source “IoT Demo App” -EntryType Error -Message "PI Web API stopped! Starting now..." -EventId 1
     $PIWebAPIService.Start()
 
 } else {
-    write-host "PI Web API running!"
+
     # If it is running, make sure it's not hung!
     try {
         
         # Send a very simple web request
-        $ResultOfTestWebRequest = Invoke-WebRequest -Method Get -Uri "https://localhost/piwebapi/assetservers" -TimeoutSec 30
+        $ResultOfTestWebRequest = Invoke-WebRequest -Method Get -Uri "https://localhost/piwebapi/assetservers" -TimeoutSec 30 -UseBasicParsing
 
     } catch {
-        write-host "Error when checking PI Web API status! Restarting!"
+        Write-EventLog -LogName "Application" -Source “IoT Demo App” -EntryType Error -Message ("Error when checking PI Web API status! Restarting! Error text: " + $_.Exception.Message) -EventId 1
+
         # If an error occurs, then stop and start the service!
         $PIWebAPIService.Stop()
         $PIWebAPIService.Start()
+
     }
 
 }
