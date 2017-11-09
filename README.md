@@ -46,4 +46,4 @@ After these pieces of software have been successfully installed, run the Install
 
 ## For technical support related to this demonstration, email edgegatewaysupport@osisoft.com.
 
-After the project has been downloaded for the first time, to update the gateway demo code to the most recent version, copy the files Update-FilesFromGitHub.bat and Update-FilesFromGitHub.ps1 from C:\inetpub\wwwroot\Setup on your gateway to your user desktop folder on the gateway, then run the desktop copy of Update-FilesFromGitHub.bat as an administrator to download and install the most recent version of the demo code from GitHub.
+After the project has been downloaded for the first time, to update the gateway demo code to the most recent version, run the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator to download and install the most recent version of the demo code from GitHub.

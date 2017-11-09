@@ -9,7 +9,9 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
 	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
-
+	var INTERVAL_SECONDS = 1;
+	var DURATION_MINUTES = 2;
+	
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
         stopInt();
@@ -43,12 +45,21 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 
 	// Repetitive function!  Contains behavior for getting data and acting on it
 	function performRepetitiveActionsForTheseAFAttributes(attributes) {
-		dataService.getInterpolatedValues(attributes).then(function (response) {
+		// Get the most recent interval and duration from the DOM
+		INTERVAL_SECONDS = document.getElementById("chartIntervalInSecondsSelector").value;
+		DURATION_MINUTES = document.getElementById("chartDurationInMinutesSelector").value;
+		// Ask for data
+		dataService.getInterpolatedValues(attributes, INTERVAL_SECONDS, DURATION_MINUTES).then(function (response) {
 			try {
 				mostRecentDataFromPISystem = response.data.Items;
+			} catch (err) {
+				console.log("An error occurred when trying to read the response data.Items: " + err.message);
+			}
+			try {
+				// Update the chart
 				updateChartData();
 			} catch (err) {
-				console.log("An error ocurred during the main loop: " + err.message);
+				console.log("An error occurred when trying to update the chart: " + err.message);
 			}
 		});
 		// Call this function again after a certain time range
@@ -56,7 +67,7 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 			performRepetitiveActionsForTheseAFAttributes(attributes)
 		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
 	}	
-
+	
     // Define an array of colors used for the chart traces
     var chartColors = ["rgb(62, 152, 211)", "rgb(224, 138, 0)", "rgb(178, 107, 255)", "rgb(47, 188, 184)", "rgb(219, 70, 70)", "rgb(156, 128, 110)", "rgb(60, 191, 60)", "rgb(197, 86, 13)","rgb(46, 32, 238)","rgb(165, 32, 86)" ];
 

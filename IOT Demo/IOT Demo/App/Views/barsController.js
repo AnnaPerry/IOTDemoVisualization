@@ -50,9 +50,14 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
 		dataService.getSnapshots(attributes).then(function (response) {
 			try {
 				mostRecentDataFromPISystem = response.data.Items;
+			} catch (err) {
+				console.log("An error occurred when trying to read the response data.Items: " + err.message);
+			}
+			try {
+				// Update the chart
 				updateChartData();
 			} catch (err) {
-				console.log("An error ocurred during the main loop: " + err.message);
+				console.log("An error occurred when trying to update the chart: " + err.message);
 			}
 		});		
 		// Call this function again after a certain time range

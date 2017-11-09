@@ -39,9 +39,9 @@ app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataServi
 	function performRepetitiveActionsForTheseAFAttributes(attributes) {
 		 dataService.getSnapshots(attributes).then(function (response) {
 			try {
-			$scope.dataArray = response.data.Items;
+				$scope.dataArray = response.data.Items;
 			} catch (err) {
-				console.log("An error ocurred during the main loop: " + err.message);
+				console.log("An error occurred when trying to read the response data.Items: " + err.message);
 			}
 		});
 		

@@ -599,10 +599,10 @@ angular.module('iotdemoApp')
 			}			
         },
         // Return an array of arrays of interpolated values for a certain array of attributes
-        getInterpolatedValues : function (attributes) {
+        getInterpolatedValues : function (attributes, interval_seconds, duration_minutes) {
 			if (attributes) {
 				var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
-				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + _startTime + '&endTime=' + _endTime + '&interval=' + _interval + '&', attributes);
+				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + "*-" + duration_minutes + "m" + '&endTime=' + _endTime + '&interval=' + interval_seconds + "s" + '&', attributes);
 				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 					// If success!
 					function (response) {
