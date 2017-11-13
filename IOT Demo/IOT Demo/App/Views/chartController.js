@@ -144,6 +144,11 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
 		if (mostRecentDataFromPISystem.length > 4) {
             USE_MULTIPLE_AXES = false;
         }
+		if (document.getElementById("useMultipleYAxisScalesCheckbox").checked) {
+			USE_MULTIPLE_AXES = true;
+		} else {
+			USE_MULTIPLE_AXES = false;
+		}
 
         // For each attribute...
         var axisNumber = 0;
