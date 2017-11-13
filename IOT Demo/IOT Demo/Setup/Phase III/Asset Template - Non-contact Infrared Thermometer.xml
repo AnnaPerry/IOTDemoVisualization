@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="OSIsoft.AF.xsd" SchemaVersion="2.0" SoftwareVersion="2.9.1.8106" ExportMode="AllReferences, NoUniqueID" PISystem="ADLINKGATEWAY1" Database="Asset Framework DB 1" Description="" Created="2017-11-13T14:36:23.0083756Z" id="a2fe2262-fe50-4d84-93f6-cc027c311908" ParentKey="2567b629-97a6-4be2-8cbe-0cd4c62bde0f" ExportedObject="Asset Template - Non-contact Infrared Thermometer" ExportedType="AFElementTemplate" Identity="ElementTemplate" PIPersist="244 {9895150E-085D-4fcb-A16D-5EF5D2527196} 2\{ed0592ca-e354-43ed-bfff-cdac032eab79}\ElementTemplates[{a2fe2262-fe50-4d84-93f6-cc027c311908}]*ADLINKGATEWAY1\Asset Framework DB 1\ElementTemplates[Asset Template - Non-contact Infrared Thermometer]">
+  <AFElementTemplate>
+    <Name>Asset Template</Name>
+    <Type>None</Type>
+    <InstanceType>Element</InstanceType>
+    <AllowElementToExtend>false</AllowElementToExtend>
+    <AFAttributeTemplate>
+      <Name>Object Type</Name>
+      <Type>String</Type>
+      <Value type="String">Template</Value>
+      <AFAttributeCategoryRef>Metadata</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+  </AFElementTemplate>
+  <AFElementTemplate>
+    <Name>Asset Template - Non-contact Infrared Thermometer</Name>
+    <BaseTemplate>Asset Template</BaseTemplate>
+    <Type>None</Type>
+    <InstanceType>Element</InstanceType>
+    <AllowElementToExtend>false</AllowElementToExtend>
+    <AFExtendedProperty>
+      <Name>Override</Name>
+      <Type>Object</Type>
+      <Value />
+    </AFExtendedProperty>
+    <AFAttributeTemplate>
+      <Name>Connection Type</Name>
+      <Type>String</Type>
+      <Value type="String">USB</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Data Ingress Technology</Name>
+      <Type>String</Type>
+      <Value type="String">PI System Access Suite</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Data Update Rate</Name>
+      <Type>String</Type>
+      <Value type="String">1 scan every second</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Manufacturer Details</Name>
+      <Type>String</Type>
+      <Value type="String">https://www.phidgets.com/?prodid=34</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Sensor Model Number</Name>
+      <Type>String</Type>
+      <Value type="String">1045_1</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Sensor Type</Name>
+      <Type>String</Type>
+      <Value type="String">Non-contact infrared thermometer</Value>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature</Name>
+      <DefaultUOM>°F</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>\\localhost\PhidgetInterfaceKit.Sensor0</ConfigString>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature 30-sec. Avg.</Name>
+      <DefaultUOM>°F</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature 30-sec. Max.</Name>
+      <DefaultUOM>°F</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+    <AFAttributeTemplate>
+      <Name>Temperature 30-sec. Min.</Name>
+      <DefaultUOM>°F</DefaultUOM>
+      <Type>Single</Type>
+      <Value type="Single">0</Value>
+      <DataReference>PI Point</DataReference>
+      <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Minimum;TimeRangeMinPercentGood=0</ConfigString>
+      <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+      <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+    </AFAttributeTemplate>
+  </AFElementTemplate>
+</AF>

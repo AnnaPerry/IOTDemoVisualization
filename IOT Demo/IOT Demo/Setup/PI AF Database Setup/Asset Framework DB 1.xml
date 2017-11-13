@@ -2417,6 +2417,94 @@
       </AFAnalysisTemplate>
       <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x)|Notifications:A(r,w,rd,wd,an)|Asset Analytics Recalculation:A(x)</SecurityAccessControl>
     </AFElementTemplate>
+	<AFElementTemplate>
+		<Name>Asset Template - Non-contact Infrared Thermometer</Name>
+		<BaseTemplate>Asset Template</BaseTemplate>
+		<Type>None</Type>
+		<InstanceType>Element</InstanceType>
+		<AllowElementToExtend>false</AllowElementToExtend>
+		<AFExtendedProperty>
+		  <Name>Override</Name>
+		  <Type>Object</Type>
+		  <Value />
+		</AFExtendedProperty>
+		<AFAttributeTemplate>
+		  <Name>Connection Type</Name>
+		  <Type>String</Type>
+		  <Value type="String">USB</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Data Ingress Technology</Name>
+		  <Type>String</Type>
+		  <Value type="String">PI System Access Suite</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Data Update Rate</Name>
+		  <Type>String</Type>
+		  <Value type="String">1 scan every second</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Manufacturer Details</Name>
+		  <Type>String</Type>
+		  <Value type="String">https://www.phidgets.com/?prodid=34</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Sensor Model Number</Name>
+		  <Type>String</Type>
+		  <Value type="String">1045_1</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Sensor Type</Name>
+		  <Type>String</Type>
+		  <Value type="String">Non-contact infrared thermometer</Value>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Temperature</Name>
+		  <DefaultUOM>°F</DefaultUOM>
+		  <Type>Single</Type>
+		  <Value type="Single">0</Value>
+		  <DataReference>PI Point</DataReference>
+		  <ConfigString>\\localhost\PhidgetInterfaceKit.Sensor0</ConfigString>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		  <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Temperature 30-sec. Avg.</Name>
+		  <DefaultUOM>°F</DefaultUOM>
+		  <Type>Single</Type>
+		  <Value type="Single">0</Value>
+		  <DataReference>PI Point</DataReference>
+		  <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Average;TimeRangeBasis=EventWeighted;TimeRangeMinPercentGood=0</ConfigString>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		  <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Temperature 30-sec. Max.</Name>
+		  <DefaultUOM>°F</DefaultUOM>
+		  <Type>Single</Type>
+		  <Value type="Single">0</Value>
+		  <DataReference>PI Point</DataReference>
+		  <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Maximum;TimeRangeMinPercentGood=0</ConfigString>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		  <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+		<AFAttributeTemplate>
+		  <Name>Temperature 30-sec. Min.</Name>
+		  <DefaultUOM>°F</DefaultUOM>
+		  <Type>Single</Type>
+		  <Value type="Single">0</Value>
+		  <DataReference>PI Point</DataReference>
+		  <ConfigString>|Temperature;TimeMethod=TimeRangeOverride;RelativeTime=-30s;TimeRangeMethod=Minimum;TimeRangeMinPercentGood=0</ConfigString>
+		  <AFAttributeCategoryRef>Snapshot</AFAttributeCategoryRef>
+		  <AFAttributeCategoryRef>Timeseries</AFAttributeCategoryRef>
+		</AFAttributeTemplate>
+	  </AFElementTemplate>
     <AFElement>
       <Name>Assets</Name>
       <Template>Top-Level Assets Template</Template>

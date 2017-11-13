@@ -2,12 +2,14 @@
 # http://www.phidgets.com/downloads/libraries/Phidget-x64.exe
 
 # Preparation: close ports and connections if they exist
-if ($MyIOKitObject -ne $null) { $MyIOKitObject.Close() }
+if ($MyPhidgetObject -ne $null) { $MyPhidgetObject.Close() }
 
 # Create a windows scheduled task to start the data collection on boot!
 write-host "`nChecking if scheduled task needs to be created..."
 $taskName1 = "Start Phidget data collection on boot"
 $task = Get-ScheduledTask -TaskName $taskName1 -ErrorAction SilentlyContinue
+
+# Create the task if it doesn't already exist!
 if ($task -eq $null) {
     write-host "Creating task to run Phidget data collection script at boot..."
     Try {
@@ -15,6 +17,8 @@ if ($task -eq $null) {
         $trigger1 = New-ScheduledTaskTrigger -AtStartup
         $principal1 = New-ScheduledTaskPrincipal -UserID "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
         Register-ScheduledTask -Action $action1 -trigger $trigger1 -TaskName $taskName1 -Principal $principal1
+        
+        # Optional: disable the task
         #Disable-ScheduledTask -TaskName $taskName1
     } Catch {
         write-host "!!!!!!!!!!!!!!!! An error occurred creating scheduled task !!!!!!!!!!!!!!!!"
@@ -42,7 +46,7 @@ $MyPIDAServerName = "localhost"
 
 # Connect to the target PI System
 $MyPIDAServerConnection = Connect-PIDataArchive -PIDataArchiveMachineName $MyPIDAServerName
-write-host "`nConnected to PI Server: " $MyPIDAServerConnection.Connected
+write-host ("`nConnected to PI Server '" + $MyPIDAServerName + "': " + $MyPIDAServerConnection.Connected)
 
 # Create the PI Points, if necessary
 if ((Get-PIPoint -Connection $MyPIDAServerConnection -Name $PITag1Name -Attributes {name}) -eq $null) {
@@ -66,34 +70,81 @@ $MyPhidgetDLL = "C:\Program Files\Phidgets\Phidget21.NET.dll"
 # Add the Phidget type usign that path
 Add-Type -Path $MyPhidgetDLL
 
+#------------------------------------------------------------------------------------------------
+
 # Create the Phidget object
-$MyIOKitObject = New-Object -TypeName Phidgets.InterfaceKit
-#$MyIOKitObject = New-Object -TypeName Phidgets.TemperatureSensor
+$MyPhidgetObject = New-Object -TypeName Phidgets.InterfaceKit
 
 # Define a flag for monitoring this data source
 $PhidgetReady = $false
 
 # Try to open the connection 
-$MyIOKitObject.open()
+$MyPhidgetObject.open()
 
 # Wait for the Phidget to be attached
 $AttachWait_Seconds = 10
-write-host "`nWaiting" ($AttachWait_Seconds) "seconds for Phidget to be attached..."
-$MyIOKitObject.waitForAttachment($AttachWait_Seconds * 1000)
+write-host "`nWaiting" ($AttachWait_Seconds) "seconds for Interface Kit Phidget to be attached..."
+$MyPhidgetObject.waitForAttachment($AttachWait_Seconds * 1000)
 
 # Test to see if the data source is ready
-if ($MyIOKitObject.Attached -eq $true)
+if ($MyPhidgetObject.Attached -eq $true)
 {
     # Turn on monitoring!
     $PhidgetReady = $true
-    write-host "Phidget detected!"
+    write-host "Interface Kit detected!"
 }
 else
 {
-    # Turn off monitoring
+    # Try the second type!
     $PhidgetReady = $false
-    write-host "No Phidget detected! Ending program."
-    exit
+    write-host "Interface kit not detected; trying second Phidget type..."
+
+    # Create the Phidget object
+    $MyPhidgetObject = New-Object -TypeName Phidgets.TemperatureSensor
+
+    # Try to open the connection 
+    $MyPhidgetObject.open()
+
+    # Wait for the Phidget to be attached
+    $AttachWait_Seconds = 10
+    write-host "`nWaiting" ($AttachWait_Seconds) "seconds for Temperature Phidget to be attached..."
+    $MyPhidgetObject.waitForAttachment($AttachWait_Seconds * 1000)
+
+    # Test to see if the data source is ready
+    if ($MyPhidgetObject.Attached -eq $true)
+    {
+        # Turn on monitoring!
+        $PhidgetReady = $true
+        write-host "Temp. sensor detected!"
+
+        # Load in the AF Element and template from the attached XML file!
+        write-host "Creating AF Element!"
+        Try {
+            $myAFServerConnection = Connect-AFServer -AFServer (Get-AFServer -Name "localhost")
+            $myAFDB = Get-AFDatabase -AFServer $myAFServerConnection -Name "Asset Framework DB 1"
+            $myAFElementTemplate = Get-AFElementTemplate -Name "Asset Template - Non-contact Infrared Thermometer" -AFDatabase $myAFDB
+            $myTargetAFElement = Get-AFElement -Name "Assets" -AFDatabase $myAFDB
+            if ($true -and (Get-AFElement -Name "Non-contact Infrared Thermometer" -AFElement $myTargetAFElement)) {
+                write-host "New element already exists!"
+            } else {
+                $newAFElement = Add-AFElement -Name "Non-contact Infrared Thermometer" -AFElement $myTargetAFElement -AFElementTemplate $myAFElementTemplate -CheckIn
+                $myAFDB.CheckIn()
+            }
+        } Catch {
+            write-host "!!!!!!!!!!!!!!!! An error occurred when importing XML !!!!!!!!!!!!!!!!"
+            write-host $_.Exception.Message
+            Read-Host -Prompt "Press ENTER to attempt to continue"
+        }
+        write-host "Complete!`n"
+    }
+    else
+    {
+        # Try the second type!
+        $PhidgetReady = $false
+        write-host "No Phidget detected; program exiting!"
+        exit
+    }
+
 }
 
 #------------------------------------------------------------------------------------------------
@@ -101,16 +152,20 @@ else
 write-host ("`nNow logging data to PI Points every " + $MyWaitDuration_Milliseconds/1000 + " seconds!  Press CTRL+C to quit.")
 while($true -and $PhidgetReady) {
 
-    # Check the data source
-    if ($PhidgetReady -eq $true)
-    {
-        # Read data - low precision
-        #$sensorValue1 = $MyIOKitObject.sensors[0].Value
-        #$sensorValue2 = $MyIOKitObject.sensors[1].Value
+    # Perform different reads depending on the Phidget type!
+    if ($true -and $MyPhidgetObject.ambientSensor) {
+        
+        # Read the value(s)
+        $sensorValue1 = ($MyPhidgetObject.ambientSensor.Temperature * 9/5 + 32)
 
-        # Read data - high precision
-        $sensorValue1 = ($MyIOKitObject.sensors[0].RawValue) / 4.095
-        $sensorValue2 = ($MyIOKitObject.sensors[1].RawValue) / 4.095
+        # Write the sensor values to PI Points
+        Add-PIValue -PointName $PITag1Name -Value $sensorValue1 -Time (get-date) -Connection $MyPIDAServerConnection
+
+    } elseif ($true -and $MyPhidgetObject.sensors) {
+        
+        # Read the value(s)
+        $sensorValue1 = ($MyPhidgetObject.sensors[0].RawValue) / 4.095
+        $sensorValue2 = ($MyPhidgetObject.sensors[1].RawValue) / 4.095
 
         # Write the sensor values to PI Points
         Add-PIValue -PointName $PITag1Name -Value $sensorValue1 -Time (get-date) -Connection $MyPIDAServerConnection
