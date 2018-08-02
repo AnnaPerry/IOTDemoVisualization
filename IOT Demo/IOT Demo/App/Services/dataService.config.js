@@ -1,0 +1,16 @@
+
+var DEFAULT_AF_SERVER = "localhost";
+
+var DEFAULT_AF_DATABASE = "DB1";
+
+var DEFAULT_AF_TEMPLATE = "Reactor Template";
+
+var DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE = "Top-Level Assets Template";
+
+var DEFAULT_TOP_LEVEL_ASSET_NAME = "Assets";
+
+var DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY = "KPIs and Rollups";
+
+var SNAPSHOT_DATA_ATTRIBUTE_CATEGORY = "Snapshot";
+
+var TIMESERIES_DATA_ATTRIBUTE_CATEGORY = "Timeseries";

@@ -8,9 +8,11 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
 		//buttonElements[i].style.display = "block";
 	}
 	
-    var afTemplate = 'Top-Level Assets Template';
-    var assetName = 'Assets';
-    var afAttributeCategory = 'KPIs and Rollups';
+    //var afTemplate = 'Top-Level Assets Template';
+	//var assetName = 'Assets';
+	var afTemplate = DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE;
+	var assetName = DEFAULT_TOP_LEVEL_ASSET_NAME;
+    var afAttributeCategory = DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY;
 	var includeAttributeNameInQueryResults = false;
     var stop;	
 	

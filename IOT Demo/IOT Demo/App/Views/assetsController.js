@@ -8,7 +8,8 @@ app.controller('assetsController', ['$scope', '$http', 'dataService', function (
 		//buttonElements[i].style.display = "block";
 	}
 	
-    var afAssetTemplate = 'Asset Template';
+    //var afAssetTemplate = 'Asset Template';
+	var afTemplate = DEFAULT_AF_TEMPLATE;
 
     $scope.init = function () {
 		// Show the top navbar
@@ -16,7 +17,7 @@ app.controller('assetsController', ['$scope', '$http', 'dataService', function (
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
 		// Get a list of elements to display on the table
-		dataService.getElements(afAssetTemplate).then(function (assets) {
+		dataService.getElements(afTemplate).then(function (assets) {
 			$scope.assetArray = assets;
 			//console.log(assets);
 			// Turn off the loading spinner

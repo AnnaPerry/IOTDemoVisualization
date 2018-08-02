@@ -1,9 +1,11 @@
 ﻿'use strict';
 app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataService', function ($scope, $http,$stateParams, dataService) {
 
-    var afTemplate = 'Asset Template';
+    //var afTemplate = 'Asset Template';
+	var afTemplate = DEFAULT_AF_TEMPLATE;
     var assetName = $stateParams.assetName;
-    var afAttributeCategory = 'Timeseries';
+    //var afAttributeCategory = TIMESERIES_DATA_ATTRIBUTE_CATEGORY;
+	var afAttributeCategory = SNAPSHOT_DATA_ATTRIBUTE_CATEGORY;
 	var includeAttributeNameInQueryResults = false;
 	var stop;
 	

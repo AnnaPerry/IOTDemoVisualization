@@ -25,9 +25,11 @@ angular.module('iotdemoApp')
     }
 
     // Constants for connecting to and querying the target AF database and AF server
-    var _afserver = 'localhost';
-    var _afdb = 'Asset Framework DB 1'; // The default is 'Asset Framework DB 1'; try changing this to 'DB 2' for phase 2!
-    var _afdbwebid = '';
+    //var _afserver = 'localhost';
+    //var _afdb = 'Asset Framework DB 1'; // The default is 'Asset Framework DB 1'; try changing this to 'DB 2' for phase 2!
+    var _afserver = DEFAULT_AF_SERVER;
+    var _afdb = DEFAULT_AF_DATABASE; // The default is 'Asset Framework DB 1'; try changing this to 'DB 2' for phase 2!
+	var _afdbwebid = '';
     var _startTime = '*-2m';
     var _endTime = '*';
 	var _interval = '1s';

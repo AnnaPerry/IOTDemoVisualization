@@ -1,9 +1,10 @@
 ﻿'use strict';
 app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataService', function ($scope, $http,$stateParams, dataService) {
 
-	var afTemplate = '';
+	//var afTemplate = '';
+	var afTemplate = DEFAULT_AF_TEMPLATE;
     var assetName = $stateParams.assetName;
-    var afAttributeCategory = 'Snapshot';
+    var afAttributeCategory = SNAPSHOT_DATA_ATTRIBUTE_CATEGORY;
 	var includeAttributeNameInQueryResults = false;
     var stop;
 

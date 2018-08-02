@@ -9,7 +9,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 	}
 	
     //var afTemplate = 'Phone Sensors Template';
-	var afTemplate = 'Asset Template';
+	//var afTemplate = 'Asset Template';
+	var afTemplate = DEFAULT_AF_TEMPLATE;
     var afAttributeCategory = 'Phone-based Data';
 	var includeAttributeNameInQueryResults = true;
     var stop;	
