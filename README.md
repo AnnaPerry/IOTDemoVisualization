@@ -42,6 +42,8 @@ Install this next; you'll need a license file to complete the installation (cont
 
 After these pieces of software have been successfully installed, run the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator, which will download the rest of the needed files for this demonstration and properly configure the host PC.
 
+NOTE: to modify this demonstration to work with a PI System that has a different AF Database name, different template, asset, and/or attribute category names, edit the file IOTDemoVisualization\IOT Demo\IOT Demo\App\Services\dataService.config.js such that the constants now reflect the correct names in your target PI System.
+
 ## For technical support related to this demonstration, email edgegatewaysupport@osisoft.com.
 
 After the project has been downloaded for the first time, to update the gateway demo code to the most recent version, run the Install-EdgeGatewayDemo_RunAsAdministrator.ps1 PowerShell script as an Administrator to download and install the most recent version of the demo code from GitHub.
