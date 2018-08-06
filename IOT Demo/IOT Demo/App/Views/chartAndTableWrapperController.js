@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dataService', function ($scope, $stateParams, dataService) {
+app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dataService', 'mobileDeviceSensorDataService', function ($scope, $stateParams, dataService, mobileDeviceSensorDataService) {
 
 	// Get all of the buttons that should only be shown when an asset has selected, and set their correct visibility
 	var buttonElements = document.getElementsByClassName("showChartBarAndTableButtonsClass");
@@ -15,9 +15,6 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 	var includeAttributeNameInQueryResults = true;
     var stop;	
 	var attributesToWriteTo;
-	
-	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 3000;
 
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
@@ -68,6 +65,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 		}
 		// Otherwise, just use the asset name!
 		else {
+			//imageSource = $stateParams.assetName;
 			imageSource = $stateParams.assetName;
 		}
 		return imageSource;
@@ -80,7 +78,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 			// NEW! Check to see if the target asset name does NOT contain "Read Only"
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
-				// Get the attributes that will be written to; pass along the fourth arg as "true" in order to get the attribute names as well
+				// Get the attributes that will be written to; pass along the fourth argument as "true" in order to get the attribute names as well
 				dataService.getElementAttributes(afTemplate, $stateParams.assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {					
 					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
@@ -96,12 +94,13 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 	// Repetitive function!  Contains behavior for getting data and acting on it
 	function performRepetitiveActionsForTheseAFAttributes(attributes) {
 		if (attributes) {
-			dataService.sendDatatoPIAttributes(attributes);
+			// Sample data from mobile sensors, and send that data to the PI System!
+			mobileDeviceSensorDataService.sendDatatoPIAttributes(attributes);
 		}
 		// Call this function again after a certain time range
 		stop = setTimeout( function() {
 			performRepetitiveActionsForTheseAFAttributes(attributes)
-		}, DATA_REFRESH_INTERVAL_IN_MILLISECONDS);		
+		}, SENSOR_SAMPLE_RATE_IN_MILLISECONDS);		
 	}
 
 }]);

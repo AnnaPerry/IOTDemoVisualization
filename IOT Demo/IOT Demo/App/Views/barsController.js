@@ -4,14 +4,10 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
     //var afTemplate = 'Asset Template';
 	var afTemplate = DEFAULT_AF_TEMPLATE;
     var assetName = $stateParams.assetName;
-    //var afAttributeCategory = TIMESERIES_DATA_ATTRIBUTE_CATEGORY;
-	var afAttributeCategory = SNAPSHOT_DATA_ATTRIBUTE_CATEGORY;
+	var afAttributeCategory = TIMESERIES_DATA_ATTRIBUTE_CATEGORY;
 	var includeAttributeNameInQueryResults = false;
 	var stop;
 	
-	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
-
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
         stopInt();
@@ -170,45 +166,43 @@ app.controller('barsController', ['$scope', '$http', '$stateParams', 'dataServic
             //declare storage for data to be put on chart 
             var dataObject = {};
 
-			// Format the value!
-			var formattedValue = 0;
 			try {
-				formattedValue = mostRecentDataFromPISystem[i].Value.Value.toFixed(1);
+				// Format the value!
+				var formattedValue = mostRecentDataFromPISystem[i].Value.Value.toFixed(1);
+				// Check to see if we are looking at a spin reading 
+				if (mostRecentDataFromPISystem[i].Name.indexOf("spin") != -1) {           
+					//if it is a spin reading -- add this to the rotation axis
+					dataObject = {
+						"name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
+						"rotation": mostRecentDataFromPISystem[i].Value.Value,
+						"valueFormatted": formattedValue,
+						"timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
+						"color": chartColors[i],
+						"units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
+					};
+					
+					// Note this result!  Later, reposition the second axis!
+					useSecondAxisForNonSpinData = true;				
+				}
+
+				// If it is not a spin reading -- add this to the other axis
+				else {
+					dataObject = {
+						"name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
+						"value": mostRecentDataFromPISystem[i].Value.Value,
+						"valueFormatted": formattedValue,
+						"timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
+						"color": chartColors[i],
+						"units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
+					};
+				}
+
+				chartDataArray.push(dataObject);
+				//console.log(dataObject);
 			}
 			catch(err) {
-				console.log("Error while trying to parse vales for the gauge: ", err.message);
+				console.log("Error while trying to parse attribute '" + mostRecentDataFromPISystem[i].Name + "' value '" + mostRecentDataFromPISystem[i].Value.Value + "' for the bar chart: ", err.message);
 			}
-			
-            //check to see if we are looking at a spin reading 
-            if (mostRecentDataFromPISystem[i].Name.indexOf("spin") != -1) {           
-                //if it is a spin reading -- add this to the rotation axis
-                dataObject = {
-                    "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
-                    "rotation": mostRecentDataFromPISystem[i].Value.Value,
-                    "valueFormatted": formattedValue,
-                    "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
-                    "color": chartColors[i],
-                    "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
-                };
-				
-				// Note this result!  Later, reposition the second axis!
-				useSecondAxisForNonSpinData = true;				
-            }
-
-            //if it is not a spin reading -- add this to the other axis
-            else {
-                dataObject = {
-                    "name": mostRecentDataFromPISystem[i].Name.replace(" ", "\n").replace("-", "-\n"),
-                    "value": mostRecentDataFromPISystem[i].Value.Value,
-                    "valueFormatted": formattedValue,
-                    "timestamp": mostRecentDataFromPISystem[i].Value.Timestamp,
-                    "color": chartColors[i],
-                    "units": mostRecentDataFromPISystem[i].Value.UnitsAbbreviation
-                };
-            }
-
-            chartDataArray.push(dataObject);
-            //console.log(dataObject);
 		}
 		
         // Assign the new arrays to the chart object

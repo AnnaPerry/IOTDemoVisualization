@@ -9,7 +9,6 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
     var stop;		
 
 	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 	var INTERVAL_SECONDS = 1;
 	var DURATION_MINUTES = 2;
 	

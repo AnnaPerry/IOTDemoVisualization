@@ -16,9 +16,6 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
 	var includeAttributeNameInQueryResults = false;
     var stop;	
 	
-	// Specify how often should the visualization be updated (and new data requested from the PI System)
-	var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
-	
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
         stopInt();

@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('gettingStartedController', ['$scope', '$http', '$stateParams', function ($scope, $http, $stateParams) {
+app.controller('gettingStartedController', ['$scope', function ($scope) {
 	
 	// Get all of the buttons that should only be shown when an asset has selected, and set their correct visibility
 	var buttonElements = document.getElementsByClassName("showChartBarAndTableButtonsClass");
