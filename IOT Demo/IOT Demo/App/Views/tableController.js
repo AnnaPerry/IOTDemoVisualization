@@ -1,7 +1,8 @@
 ﻿'use strict';
-app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataService', function ($scope, $http,$stateParams, dataService) {
+app.controller('tableController', ['$scope', '$stateParams', 'dataService', function ($scope, $stateParams, dataService) {
 
-	//var afTemplate = '';
+	// Define constant values used for looking up element attributes for displaying on this view
+	var afElementCategory = DEFAULT_AF_ELEMENT_CATEGORY;
 	var afTemplate = DEFAULT_AF_TEMPLATE;
     var assetName = $stateParams.assetName;
     var afAttributeCategory = SNAPSHOT_DATA_ATTRIBUTE_CATEGORY;
@@ -24,7 +25,7 @@ app.controller('tableController', ['$scope', '$http', '$stateParams', 'dataServi
     $scope.init = function () {
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
-        dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
+        dataService.getElementAttributes(afTemplate, afElementCategory, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			// Allow the table to use the asset name as its header

@@ -8,8 +8,8 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
 		//buttonElements[i].style.display = "block";
 	}
 	
-    //var afTemplate = 'Top-Level Assets Template';
-	//var assetName = 'Assets';
+	// Define constant values used for looking up element attributes for displaying on this view
+	var afElementCategory = DEFAULT_TOP_LEVEL_ASSET_NAME_ELEMENT_CATEGORY;
 	var afTemplate = DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE;
 	var assetName = DEFAULT_TOP_LEVEL_ASSET_NAME;
     var afAttributeCategory = DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY;
@@ -38,7 +38,7 @@ app.controller('mainController', ['$scope', '$stateParams', 'dataService', funct
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
 		// Get attributes, then snapshot values, for the top-level element
-		dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
+		dataService.getElementAttributes(afTemplate, afElementCategory, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);

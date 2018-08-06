@@ -1,7 +1,8 @@
 ﻿'use strict';
-app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataService', function ($scope, $http,$stateParams, dataService) {
+app.controller('chartController', ['$scope', '$stateParams', 'dataService', function ($scope, $stateParams, dataService) {
 
-    //var afTemplate = 'Asset Template';
+    // Define constant values used for looking up element attributes for displaying on this view
+	var afElementCategory = DEFAULT_AF_ELEMENT_CATEGORY;
 	var afTemplate = DEFAULT_AF_TEMPLATE;
     var assetName = $stateParams.assetName;
     var afAttributeCategory = TIMESERIES_DATA_ATTRIBUTE_CATEGORY;
@@ -36,7 +37,7 @@ app.controller('chartController', ['$scope', '$http', '$stateParams', 'dataServi
     $scope.init = function () {
 		// Show the loading spinner
 		document.getElementById("loadingSpinnerIcon").className = "fa fa-spinner fa-spin fa-fw";
-         dataService.getElementAttributes(afTemplate, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {		
+         dataService.getElementAttributes(afTemplate, afElementCategory, assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {		
 			// Turn off the loading spinner
 			document.getElementById("loadingSpinnerIcon").className = "fa fa-refresh fa-fw"; 
 			performRepetitiveActionsForTheseAFAttributes(attributes);

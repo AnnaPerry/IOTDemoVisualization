@@ -52,7 +52,7 @@ angular.module('iotdemoApp')
     // Returns the webId of a particular AF database, based on the hard-coded AF database name
     function getafdb() {
 		if (_afdbwebid) {
-			console.log("AF DB webId already cached; passing along stored value and continuing...");
+			console.log("Using cached AF DB WebId...");
 			//return _afdbwebid;
 			var deferred = $q.defer();
 			deferred.resolve(_afdbwebid);
@@ -78,7 +78,7 @@ angular.module('iotdemoApp')
 
     // Returns a properly formatted query URL for asking for AF attributes within a particular database,
     // belonging to Elements with a certain name, template, and (if provided) a certain attribute category
-    function buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
+    function buildElementAttributesUrl(elementTemplate, afElementCategory, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
 		// By default, return just the Web Id
 		var selectedFieldsParameters = '&selectedFields=Items.WebId';
 		// Return the attribute name too, if desired
@@ -89,11 +89,15 @@ angular.module('iotdemoApp')
 		var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elementattributes?searchFullHierarchy=true' + '&elementNameFilter=' + elementNameFilter;
 		// If the element template is included, append that as well
 		if (elementTemplate && (elementTemplate != '')) {
-			url = url + '&elementTemplate=' + elementTemplate;
+			url += ('&elementTemplate=' + elementTemplate);
+		}
+		// If the element category is included, append that as well
+		if (afElementCategory && (afElementCategory != '')) {
+			url += ('&elementCategory=' + afElementCategory);
 		}
 		// If the attribute category is included, append that as well
-		if (attributeCategory) {
-			url = url + '&attributeCategory=' + attributeCategory;		
+		if (attributeCategory && (attributeCategory != '')) {
+			url += ('&attributeCategory=' + attributeCategory);		
 		} else {
 			// If there is no category, then you must be writing to the PI System, in which case, you need both the attribute name and WebId too!
 			//selectedFieldsParameters = selectedFieldsParameters + ';Items.Name';
@@ -169,7 +173,7 @@ angular.module('iotdemoApp')
 							}, 
 							// If failure...
 							function (response) {
-								respondToHTTPRequestError(response, "getting elements that match the desired template");
+								respondToHTTPRequestError(response, "getting elements that match the desired name, template, and/or category");
 								return [];
 							}
 						);
@@ -182,7 +186,7 @@ angular.module('iotdemoApp')
 			}
         },
         // Get an array of element attributes
-        getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
+        getElementAttributes: function (elementTemplate, afElementCategory, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
 			// Check if this a request for attributes for the top-level element, and if that element has already been queried
 			if ((attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) &&
 			(_cachedElementAttributes_TopLevelKPISAsset != null) &&
@@ -197,6 +201,7 @@ angular.module('iotdemoApp')
 			} else if ((attributeCategory == TIMESERIES_DATA_ATTRIBUTE_CATEGORY) &&
 			(_cachedElementAttributes_timeSeriesCaterory != null) &&
 			(elementTemplate == _cachedElementTemplate) && 
+			(afElementCategory == _cachedElementCategory) && 
 			(elementNameFilter == _cachedElementNameFilter)) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
@@ -208,6 +213,7 @@ angular.module('iotdemoApp')
 			} else if ((attributeCategory == SNAPSHOT_DATA_ATTRIBUTE_CATEGORY) &&
 			(_cachedElementAttributes_snapshotCategory != null) &&
 			(elementTemplate == _cachedElementTemplate) && 
+			(afElementCategory == _cachedElementCategory) && 
 			(elementNameFilter == _cachedElementNameFilter)) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
@@ -220,9 +226,8 @@ angular.module('iotdemoApp')
 				// Ask for the web ID of the database (the cached value will be used if it exists), and next launch the query
 				return getafdb().then(function (webid) {
 					_afdbwebid = webid;
-					console.log("AF DB WebID found: " + _afdbwebid);
 					if (_afdbwebid) {
-						var url = buildElementAttributesUrl(elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
+						var url = buildElementAttributesUrl(elementTemplate, afElementCategory, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
 						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 							// If success!
 							function (response) {
@@ -238,11 +243,13 @@ angular.module('iotdemoApp')
 										_cachedElementNameFilter = elementNameFilter;
 										_cachedElementAttributes_timeSeriesCaterory = response.data.Items;
 										_cachedElementTemplate = elementTemplate;
+										_cachedElementCategory = afElementCategory;
 									} else if (attributeCategory == SNAPSHOT_DATA_ATTRIBUTE_CATEGORY) {
 										console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'.");
 										_cachedElementNameFilter = elementNameFilter;
 										_cachedElementAttributes_snapshotCategory = response.data.Items;
 										_cachedElementTemplate = elementTemplate;
+										_cachedElementCategory = afElementCategory;
 									}
 								}
 								return response.data.Items;

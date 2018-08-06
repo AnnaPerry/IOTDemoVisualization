@@ -1,6 +1,45 @@
 
 // ------------------------------------------------------------
 
+// Specify the name of the default AF server
+var DEFAULT_AF_SERVER = "localhost";
+
+// Specify the default AF database; the default used by the demo is Asset Framework DB 1
+var DEFAULT_AF_DATABASE = "Asset Framework DB 1";
+
+// ------------------------------------------------------------
+
+// Specify the name of the template used by assets that you would like to appear in the app; the default is "Asset Template"; set it to blank to disable this criteria
+var DEFAULT_AF_TEMPLATE = "Asset Template";
+//var DEFAULT_AF_TEMPLATE = "";
+
+// Specify the name of the element category used by assets that you would like to appear in the app; set it to blank to disable this criteria
+var DEFAULT_AF_ELEMENT_CATEGORY = "";
+//var DEFAULT_AF_ELEMENT_CATEGORY = "Visible in app asset list";
+
+// Specify the attribute category for attributes of these elements that should appear in the table view
+var SNAPSHOT_DATA_ATTRIBUTE_CATEGORY = "Snapshot";
+
+// Specify the attribute category for attributes of these elements that should appear in the chart and bars view
+var TIMESERIES_DATA_ATTRIBUTE_CATEGORY = "Timeseries";
+
+// ------------------------------------------------------------
+
+// Specify the name of the template used by the asset that you want to appear on the main screen of the app
+var DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE = "Top-Level Assets Template";
+
+// Specify the name of the asset that you want to appear on the main screen of the app
+var DEFAULT_TOP_LEVEL_ASSET_NAME = "Assets";
+
+// Specify the attribute category used by the data items on that asset that you'd like to appear in the app
+var DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY = "KPIs and Rollups";
+
+// Specify the name of the element category used by asset that you would like to appear on the home page of the app
+//var DEFAULT_TOP_LEVEL_ASSET_NAME_ELEMENT_CATEGORY = "Visible in app home screen";
+var DEFAULT_TOP_LEVEL_ASSET_NAME_ELEMENT_CATEGORY = "";
+
+// ------------------------------------------------------------
+
 // Specify the PI Web API endpoint URL, or (as shown below) allow it to be set automatically
 var _httpsPIWebAPIUrl = "";
 
@@ -30,41 +69,5 @@ var DATA_REFRESH_INTERVAL_IN_MILLISECONDS = 5000;
 
 // Specify how often sensor data should be read (and sent to the PI System)
 var SENSOR_SAMPLE_RATE_IN_MILLISECONDS = 3000;
-
-// ------------------------------------------------------------
-
-// Specify the name of the default AF server
-var DEFAULT_AF_SERVER = "localhost";
-
-// Specify the default AF database; the default used by the demo is Asset Framework DB 1
-var DEFAULT_AF_DATABASE = "Asset Framework DB 1";
-
-// ------------------------------------------------------------
-
-// Specify the name of the template used by assets that you would like to appear in the app; the default is "Asset Template"; set it to blank to disable this criteria
-var DEFAULT_AF_TEMPLATE = "Asset Template";
-
-// Specify the name of the element category used by assets that you would like to appear in the app; set it to blank to disable this criteria
-var DEFAULT_AF_ELEMENT_CATEGORY = "Visible in app asset list";
-
-// Specify the attribute category for attributes of these elements that should appear in the table view
-var SNAPSHOT_DATA_ATTRIBUTE_CATEGORY = "Snapshot";
-
-// Specify the attribute category for attributes of these elements that should appear in the chart and bars view
-var TIMESERIES_DATA_ATTRIBUTE_CATEGORY = "Timeseries";
-
-// ------------------------------------------------------------
-
-// Specify the name of the template used by the asset that you want to appear on the main screen of the app
-var DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE = "Top-Level Assets Template";
-
-// Specify the name of the asset that you want to appear on the main screen of the app
-var DEFAULT_TOP_LEVEL_ASSET_NAME = "Assets";
-
-// Specify the attribute category used by the data items on that asset that you'd like to appear in the app
-var DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY = "KPIs and Rollups";
-
-// Specify the name of the element category used by asset that you would like to appear on the home page of the app
-var DEFAULT_TOP_LEVEL_ASSET_NAME_ELEMENT_CATEGORY = "Use on app home screen";
 
 // ------------------------------------------------------------

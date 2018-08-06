@@ -8,8 +8,8 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 		buttonElements[i].style.display = "block";
 	}
 	
-    //var afTemplate = 'Phone Sensors Template';
-	//var afTemplate = 'Asset Template';
+	// Define constant values used for looking up element attributes for displaying on this view
+	var afElementCategory = DEFAULT_AF_ELEMENT_CATEGORY;
 	var afTemplate = DEFAULT_AF_TEMPLATE;
     var afAttributeCategory = 'Phone-based Data';
 	var includeAttributeNameInQueryResults = true;
@@ -79,7 +79,7 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
 				console.log("Current AF Element is a phone-based element; will start streaming data!");
 				// Get the attributes that will be written to; pass along the fourth argument as "true" in order to get the attribute names as well
-				dataService.getElementAttributes(afTemplate, $stateParams.assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {					
+				dataService.getElementAttributes(afTemplate, afElementCategory, $stateParams.assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {					
 					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
 			} else {
