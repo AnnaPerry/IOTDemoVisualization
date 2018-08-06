@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,8 +99,10 @@
     <Content Include="amcharts\gauge.js" />
     <Content Include="amcharts\serial.js" />
     <Content Include="App\app.js" />
+    <Content Include="App\Services\dataService.config.js" />
     <Content Include="App\Services\dataService.js" />
     <Content Include="App\app.css" />
+    <Content Include="App\Services\mobileDeviceSensorDataService.js" />
     <Content Include="App\Views\chartAndTableWrapperView.html" />
     <Content Include="App\Views\chartAndTableWrapperController.js" />
     <Content Include="App\Views\assetsController.js" />
