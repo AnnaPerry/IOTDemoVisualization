@@ -41,11 +41,11 @@ var DEFAULT_AF_DATABASE = "Asset Framework DB 1";
 
 // ------------------------------------------------------------
 
-// Specify the name of the template used by assets that you would like to appear in the app; the default is "Asset Template"
+// Specify the name of the template used by assets that you would like to appear in the app; the default is "Asset Template"; set it to blank to disable this criteria
 var DEFAULT_AF_TEMPLATE = "Asset Template";
 
-// Specify the name of the element category used by assets that you would like to appear in the app
-var DEFAULT_AF_ELEMENT_CATEGORY = "Visible in app";
+// Specify the name of the element category used by assets that you would like to appear in the app; set it to blank to disable this criteria
+var DEFAULT_AF_ELEMENT_CATEGORY = "Visible in app asset list";
 
 // Specify the attribute category for attributes of these elements that should appear in the table view
 var SNAPSHOT_DATA_ATTRIBUTE_CATEGORY = "Snapshot";

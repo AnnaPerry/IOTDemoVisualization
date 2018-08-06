@@ -19,6 +19,7 @@ angular.module('iotdemoApp')
 	var _cachedElementAttributes_TopLevelKPISAsset;
 	var _cachedElementNameFilter;
 	var _cachedElementTemplate;
+	var _cachedElementCategory;
 
     // ---------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------
@@ -133,8 +134,8 @@ angular.module('iotdemoApp')
 				return false;
 			}				
         },	
-        // Get an array of elements within an AF database that match a particular element template
-        getElements: function (elementTemplate) {
+        // Get an array of elements within an AF database that match a particular element template or category
+        getElements: function (elementTemplate, elementCategory) {
 			// If the elements have already been found, return the cached list!
 			if (_cachedElements != null) {
 				console.log("Using cached elements list...");
@@ -148,7 +149,17 @@ angular.module('iotdemoApp')
 					_afdbwebid = webid;
 					if (_afdbwebid) {
 						var selectedFieldsParameters = '&selectedFields=Items.Name;Items.Description';//;Items.WebId';
-						var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true&templateName=' + elementTemplate  + selectedFieldsParameters;
+						// Build the URL; depending on whether the template or category was used, add that as a URL parameter
+						var url = _httpsPIWebAPIUrl + 'assetdatabases/' + _afdbwebid + '/elements?searchFullHierarchy=true';
+						if (elementTemplate != '') {
+							url += ('&templateName=' + elementTemplate);
+						}
+						if (elementCategory != '') {
+							url += ('&categoryName=' + elementCategory);
+						}
+						// Finally, add the suffix that specifies what parameters will be returned
+						url += selectedFieldsParameters;
+						// Send the query, and return the results!						
 						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 							// If success!
 							function (response) { 
@@ -173,7 +184,9 @@ angular.module('iotdemoApp')
         // Get an array of element attributes
         getElementAttributes: function (elementTemplate, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults) {
 			// Check if this a request for attributes for the top-level element, and if that element has already been queried
-			if ((_cachedElementAttributes_TopLevelKPISAsset != null) && (attributeCategory == 'KPIs and Rollups')) {
+			if ((attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) &&
+			(_cachedElementAttributes_TopLevelKPISAsset != null) &&
+			(elementNameFilter == DEFAULT_TOP_LEVEL_ASSET_NAME)) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
@@ -181,15 +194,21 @@ angular.module('iotdemoApp')
 				return deferred.promise;
 
 			// Check if the element is the same! Then see if the attributes have been saved and if so, return the corresponding cached attributes
-			} else if ((elementTemplate == _cachedElementTemplate) && (elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_timeSeriesCaterory != null) && (attributeCategory == TIMESERIES_DATA_ATTRIBUTE_CATEGORY)) {
+			} else if ((attributeCategory == TIMESERIES_DATA_ATTRIBUTE_CATEGORY) &&
+			(_cachedElementAttributes_timeSeriesCaterory != null) &&
+			(elementTemplate == _cachedElementTemplate) && 
+			(elementNameFilter == _cachedElementNameFilter)) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
 				deferred.resolve(_cachedElementAttributes_timeSeriesCaterory);
 				return deferred.promise;	
 			
-			// Check if the element is the same! Then see if the attributes have been saved and if so, return the corresponding cached attributes
-			} else if ((elementTemplate == _cachedElementTemplate) && (elementNameFilter == _cachedElementNameFilter) && (_cachedElementAttributes_snapshotCategory != null) && (attributeCategory == SNAPSHOT_DATA_ATTRIBUTE_CATEGORY) ) {
+			// Check if the element is the same! Then see if the attributes have been saved and if so, return the corresponding cached attribute				
+			} else if ((attributeCategory == SNAPSHOT_DATA_ATTRIBUTE_CATEGORY) &&
+			(_cachedElementAttributes_snapshotCategory != null) &&
+			(elementTemplate == _cachedElementTemplate) && 
+			(elementNameFilter == _cachedElementNameFilter)) {
 				console.log("Using cached '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'...");
 				// Convert the cached variable into a promise, and return it
 				var deferred = $q.defer();
@@ -209,7 +228,7 @@ angular.module('iotdemoApp')
 							function (response) {
 								//console.log(attributeCategory, elementNameFilter, includeAttributeNameInQueryResults);
 								// Save the attributes and element name filter for future reference!
-								if (attributeCategory == 'KPIs and Rollups') {
+								if (attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) {
 									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'.");
 									_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
 								} else {

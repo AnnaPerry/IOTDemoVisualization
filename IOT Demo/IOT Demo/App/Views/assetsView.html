@@ -5,6 +5,7 @@
                 <th></th>
                 <th>Name</th>
                 <th>Description</th>
+				<!--<th>Path</th>-->
                 <th></th>
 				<th></th>
             </tr>
@@ -12,9 +13,10 @@
         <tbody>
             <tr ng-repeat="asset in assetArray">
                 <th scope="row"></th>
-                <td><span class="fa fa-cube fa-fw customIconStylingClass"></span>{{asset.Name}}</td>
-                <td>{{asset.Description}}</td>
-				<td><a class="customViewDataButtonClass" ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
+                <td style="vertical-align:middle"><span class="fa fa-cube fa-fw customIconStylingClass"></span>{{asset.Name}}</td>
+                <td style="vertical-align:middle">{{asset.Description}}</td>
+				<!--<td style="vertical-align:middle; font-size:10px">{{asset.Path}}</td>-->
+				<td style="vertical-align:middle"><a class="customViewDataButtonClass" ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td>
 				<!--<td><a ui-sref="chartAndTableWrapperView.bars({assetName: asset.Name, assetWebId: asset.WebId})"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a></td> -->
 				<td></td>
             </tr>
