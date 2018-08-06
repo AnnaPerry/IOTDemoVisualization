@@ -233,7 +233,9 @@ angular.module('iotdemoApp')
 							function (response) {
 								//console.log(attributeCategory, elementNameFilter, includeAttributeNameInQueryResults);
 								// Save the attributes and element name filter for future reference!
-								if (attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) {
+								if ((attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) &&
+								(elementTemplate == DEFAULT_TOP_LEVEL_ASSET_AF_TEMPLATE) &&
+								(afElementCategory == DEFAULT_TOP_LEVEL_ASSET_NAME_ELEMENT_CATEGORY)) {
 									console.log("Caching '" + attributeCategory + "' attributes for element '" + elementNameFilter + "'.");
 									_cachedElementAttributes_TopLevelKPISAsset = response.data.Items;
 								} else {
