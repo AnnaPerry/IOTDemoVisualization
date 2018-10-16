@@ -140,6 +140,14 @@ angular.module('iotdemoApp')
         },	
         // Get an array of elements within an AF database that match a particular element template or category
         getElements: function (elementTemplate, elementCategory) {
+			console.log("Clearing cached element attributes...");
+			// Since you have arrived back on the elements screen, delete the cached snapshot and time series attributes
+			_cachedElementAttributes_timeSeriesCaterory = null;
+			_cachedElementAttributes_snapshotCategory = null;
+			_cachedElementNameFilter = null;
+			_cachedElementTemplate = null;
+			_cachedElementCategory = null;			
+			
 			// If the elements have already been found, return the cached list!
 			if (_cachedElements != null) {
 				console.log("Using cached elements list...");
