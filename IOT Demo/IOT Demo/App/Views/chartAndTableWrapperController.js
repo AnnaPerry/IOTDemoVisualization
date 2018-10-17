@@ -16,6 +16,9 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
     var stop;	
 	var attributesToWriteTo;
 
+	// Debug enable
+	var ENABLE_CONSOLE_OUTPUT = true;
+	
     // When this scope is closed, stop the recurring interval timer
     $scope.$on('$destroy', function () {
         stopInt();
@@ -77,17 +80,17 @@ app.controller('chartAndTableWrapperController', ['$scope', '$stateParams', 'dat
 		if ( ($stateParams.assetName).substring(0,6) == "Asset ") {
 			// NEW! Check to see if the target asset name does NOT contain "Read Only"
 			if ($stateParams.assetName.toLowerCase().indexOf("read only") == -1) {
-				console.log("Current AF Element is a phone-based element; will start streaming data!");
+				if (ENABLE_CONSOLE_OUTPUT) { console.log("Current AF Element is a phone-based element; will start streaming data!");};
 				// Get the attributes that will be written to; pass along the fourth argument as "true" in order to get the attribute names as well
 				dataService.getElementAttributes(afTemplate, afElementCategory, $stateParams.assetName, afAttributeCategory, includeAttributeNameInQueryResults).then(function (attributes) {					
 					performRepetitiveActionsForTheseAFAttributes(attributes);
 				});
 			} else {
-				console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");
+				if (ENABLE_CONSOLE_OUTPUT) { console.log("Read-only asset detected!  Data will not be written; data will only be read from the PI System.");};
 				$("#readOnlyModal").modal();
 			}
 		} else {
-			console.log("Current AF Element does not use a phone-based data source; device sensor data will not be streamed.");
+			if (ENABLE_CONSOLE_OUTPUT) { console.log("Current AF Element does not use a phone-based data source; device sensor data will not be streamed.");};
 		}
     };
 	

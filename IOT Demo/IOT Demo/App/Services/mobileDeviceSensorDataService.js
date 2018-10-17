@@ -22,6 +22,9 @@ angular.module('iotdemoApp')
 
 	// Global variable to detect if an incompatible device is used
 	var compatibilityModalTriggeredAlready = false;
+	
+	// Debug enable
+	var ENABLE_CONSOLE_OUTPUT = true;
 
 	// ---------------------------------------------------------------------------------------------
 	// ---------------------------------------------------------------------------------------------
@@ -92,15 +95,15 @@ angular.module('iotdemoApp')
 			logCompatibility("light", false);
 		}
 	} else {
-		console.log("Data streaming disabled!");
+		if (ENABLE_CONSOLE_OUTPUT) { console.log("Data streaming disabled!");};
 	}
 
 	// Helper function that logs the compatibility for each sensor
 	function logCompatibility(sensorType, supported) {
 		if (supported == true) {
-			console.log("Event listener added for this type of sensor data: " + sensorType);
+			if (ENABLE_CONSOLE_OUTPUT) { console.log("Event listener added for this type of sensor data: " + sensorType);};
 		} else {
-			console.log("Event listener NOT added for this type of sensor data: " + sensorType);
+			if (ENABLE_CONSOLE_OUTPUT) { console.log("Event listener NOT added for this type of sensor data: " + sensorType);};
 		}
 	}
 
