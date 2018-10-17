@@ -20,6 +20,9 @@ angular.module('iotdemoApp')
 	var _cachedElementNameFilter;
 	var _cachedElementTemplate;
 	var _cachedElementCategory;
+	
+	// Allow verbose debugging
+	var ALLOW_VERBOSE_CONSOLE_OUTPUT = false;
 
     // ---------------------------------------------------------------------------------------------
     // ---------------------------------------------------------------------------------------------
@@ -61,10 +64,14 @@ angular.module('iotdemoApp')
 		} else {
 			var selectedFieldsParameters = "&selectedFields=WebId";
 			var url = _httpsPIWebAPIUrl + 'assetdatabases?path=\\\\' + _afserver + '\\' + _afdb + selectedFieldsParameters;
+			if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("----- OUTGOING REQUEST -----");
+			if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Requesting the WebId for the default AF Database (DB) via a request to " + url);
 			return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 				// If success!
 				function (response) {
+					if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Response: ", response);
 					_afdbwebid = response.data.WebId;
+					if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Found AF DB WebId: ", _afdbwebid);
 					return response.data.WebId;
 				}, 
 				// If failure...
@@ -171,12 +178,16 @@ angular.module('iotdemoApp')
 						}
 						// Finally, add the suffix that specifies what parameters will be returned
 						url += selectedFieldsParameters;
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("----- OUTGOING REQUEST -----");
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Searching for AF Elements within the selected AF DB via a request to " + url);
 						// Send the query, and return the results!						
 						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 							// If success!
 							function (response) { 
+								if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Response: ", response);
 								// Save the element list!
 								_cachedElements = response.data.Items;
+								if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Found Elements: ", _cachedElements);
 								return response.data.Items;
 							}, 
 							// If failure...
@@ -236,9 +247,12 @@ angular.module('iotdemoApp')
 					_afdbwebid = webid;
 					if (_afdbwebid) {
 						var url = buildElementAttributesUrl(elementTemplate, afElementCategory, elementNameFilter, attributeCategory, includeAttributeNameInQueryResults);
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("----- OUTGOING REQUEST -----");
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Searching for AF Element Attributes for the selected AF Element via a request to " + url);
 						return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 							// If success!
 							function (response) {
+								if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Response: ", response);
 								//console.log(attributeCategory, elementNameFilter, includeAttributeNameInQueryResults);
 								// Save the attributes and element name filter for future reference!
 								if ((attributeCategory == DEFAULT_TOP_LEVEL_ASSET_ATTRIBUTE_CATEGORY) &&
@@ -262,6 +276,7 @@ angular.module('iotdemoApp')
 										_cachedElementCategory = afElementCategory;
 									}
 								}
+								if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Found Element Attributes: ", response.data.Items);
 								return response.data.Items;
 							}, 
 							// If failure...
@@ -283,9 +298,12 @@ angular.module('iotdemoApp')
 			if (attributes) {
 				var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Value.Value;Items.Value.UnitsAbbreviation';
 				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/value' + selectedFieldsParameters + '&', attributes);
+				if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("----- OUTGOING REQUEST -----");
+				if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Getting snapshot (most recent) values for the Attributes for the selected Element via a request to " + url);
 				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 					// If success!
 					function (response) {
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Response (values): ", response);
 						return response;
 					}, 
 					// If failure...
@@ -305,9 +323,12 @@ angular.module('iotdemoApp')
 			if (attributes) {
 				var selectedFieldsParameters = '?selectedFields=Items.Name;Items.Items.Value;Items.Items.Timestamp;Items.Items.UnitsAbbreviation';
 				var url = constructUrl(_httpsPIWebAPIUrl + '/streamsets/interpolated' + selectedFieldsParameters + '&startTime=' + "*-" + duration_minutes + "m" + '&endTime=' + _endTime + '&interval=' + interval_seconds + "s" + '&', attributes);
+				if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("----- OUTGOING REQUEST -----");
+				if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Getting a range of interpolated values for the Attributes for the selected Element via a request to " + url);
 				return $http.get(url, {timeout: WEB_REQUEST_MAX_TIMEOUT_SECONDS*1000}).then(
 					// If success!
 					function (response) {
+						if (ALLOW_VERBOSE_CONSOLE_OUTPUT) console.log("Response (values): ", response);
 						return response;
 					}, 
 					// If failure...
